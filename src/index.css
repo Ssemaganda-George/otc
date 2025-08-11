@@ -1,42 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* SAK OTC Design System - Dark Mode Premium Theme */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Core Brand Colors - Dark Mode */
+    --background: 0 0% 12%;              /* #1F1F1F */
+    --foreground: 0 0% 100%;             /* #FFFFFF */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Card & Surface Colors */
+    --card: 0 0% 15%;                    /* Slightly lighter than background */
+    --card-foreground: 0 0% 100%;
+    --card-hover: 0 0% 18%;              /* Hover state for cards */
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    /* Brand Golden Bronze */
+    --primary: 43 47% 59%;               /* #C7A264 Golden Bronze */
+    --primary-foreground: 0 0% 12%;      /* Dark text on golden */
+    --primary-glow: 43 47% 70%;          /* Lighter golden for glows */
+    --primary-dark: 43 47% 45%;          /* Darker golden for depth */
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Secondary Colors */
+    --secondary: 0 0% 20%;               /* Dark grey */
+    --secondary-foreground: 0 0% 95%;
+    --secondary-hover: 0 0% 25%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Accent & Highlights */
+    --accent: 43 47% 59%;                /* Same as primary for consistency */
+    --accent-foreground: 0 0% 12%;
+    --accent-subtle: 43 47% 10%;         /* Very subtle golden tint */
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted Colors */
+    --muted: 0 0% 18%;
+    --muted-foreground: 0 0% 65%;        /* Lighter grey for secondary text */
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Interactive States */
+    --border: 0 0% 25%;
+    --input: 0 0% 18%;
+    --ring: 43 47% 59%;                  /* Golden focus ring */
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Status Colors */
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 120 50% 50%;
+    --warning: 45 100% 50%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(43 47% 59% / 0.1), hsl(43 47% 45% / 0.05));
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 15%), hsl(0 0% 12%));
+    --gradient-golden: linear-gradient(135deg, hsl(43 47% 59%), hsl(43 47% 45%));
+    
+    /* Shadows */
+    --shadow-elegant: 0 20px 40px -10px hsl(0 0% 0% / 0.4);
+    --shadow-golden: 0 10px 30px -10px hsl(43 47% 59% / 0.3);
+    --shadow-card: 0 8px 32px -8px hsl(0 0% 0% / 0.3);
 
-    --radius: 0.5rem;
+    /* Spacing & Layout */
+    --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +123,100 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter antialiased;
+    overflow-x: hidden;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Typography Classes */
+  .heading-display {
+    @apply font-playfair font-bold text-4xl md:text-6xl lg:text-7xl leading-tight;
+  }
+
+  .heading-section {
+    @apply font-playfair font-semibold text-3xl md:text-4xl lg:text-5xl leading-tight;
+  }
+
+  .heading-card {
+    @apply font-playfair font-medium text-xl md:text-2xl leading-snug;
+  }
+
+  .text-body {
+    @apply font-inter text-base md:text-lg leading-relaxed;
+  }
+
+  .text-caption {
+    @apply font-inter text-sm text-muted-foreground;
+  }
+
+  /* Animation Classes */
+  .fade-in-up {
+    @apply opacity-0 translate-y-8 transition-all duration-700 ease-out;
+  }
+
+  .fade-in-up.in-view {
+    @apply opacity-100 translate-y-0;
+  }
+
+  .fade-in-left {
+    @apply opacity-0 -translate-x-8 transition-all duration-700 ease-out;
+  }
+
+  .fade-in-left.in-view {
+    @apply opacity-100 translate-x-0;
+  }
+
+  .fade-in-right {
+    @apply opacity-0 translate-x-8 transition-all duration-700 ease-out;
+  }
+
+  .fade-in-right.in-view {
+    @apply opacity-100 translate-x-0;
+  }
+
+  /* Gradient Text */
+  .text-gradient-golden {
+    @apply bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent;
+  }
+
+  /* Card Hover Effects */
+  .card-hover {
+    @apply transition-all duration-300 ease-out hover:scale-105 hover:shadow-[var(--shadow-golden)];
+  }
+
+  /* Button Hover Glow */
+  .btn-golden-glow {
+    @apply relative overflow-hidden;
+  }
+
+  .btn-golden-glow::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-primary/20 to-primary-dark/20 opacity-0 transition-opacity duration-300;
+  }
+
+  .btn-golden-glow:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Scrollbar Styling */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-background;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-primary/30 rounded-full;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/50;
   }
 }
