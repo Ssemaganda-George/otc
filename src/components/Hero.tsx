@@ -4,12 +4,12 @@ import heroImage from "@/assets/hero-bg.jpg";
 
 export function Hero() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-16">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img 
           src={heroImage} 
-          alt="SAK OTC Innovation Background" 
+          alt="OTC Innovation Background" 
           className="w-full h-full object-cover opacity-30"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-background/90 via-background/80 to-background/70" />
@@ -21,8 +21,8 @@ export function Hero() {
       <div className="absolute bottom-40 left-20 w-12 h-12 bg-primary/15 rounded-full animate-float" style={{ animationDelay: '2s' }} />
 
       {/* Main Content */}
-      <div className="relative z-10 container mx-auto px-6 text-center">
-        <div className="max-w-5xl mx-auto">
+      <div className="relative z-10 container mx-auto px-6 text-center sm:text-center py-8">
+        <div className="max-w-5xl mx-auto space-y-8">
           {/* Tagline */}
           <div className="inline-flex items-center space-x-2 bg-primary/10 border border-primary/20 rounded-full px-6 py-3 mb-8 backdrop-blur-sm">
             <span className="w-2 h-2 bg-primary rounded-full animate-golden-pulse" />
@@ -31,31 +31,31 @@ export function Hero() {
 
           {/* Main Headline */}
           <h1 className="heading-display text-gradient-golden mb-8 animate-fade-in-up">
-            SAK OneTechConnect
+            OneTechConnect
           </h1>
 
           {/* Subtitle */}
-          <p className="text-body text-muted-foreground max-w-3xl mx-auto mb-12 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+          <p className="text-body text-muted-foreground max-w-3xl mx-auto mb-12 animate-fade-in-up text-justify sm:text-center" style={{ animationDelay: '0.2s' }}>
             Leading the fusion of technology and law across Africa. We empower innovation through expert legal guidance, 
             strategic advocacy, and cutting-edge research that drives the continent's digital transformation.
           </p>
 
           {/* Stats Row */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 mb-12 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
             <div className="flex flex-col items-center space-y-2">
-              <Code className="w-12 h-12 text-primary mb-2" />
-              <div className="text-2xl font-bold text-gradient-golden">5+</div>
-              <div className="text-muted-foreground">Tech Sectors</div>
+              <Code className="w-10 h-10 sm:w-12 sm:h-12 text-primary mb-2" />
+              <div className="text-xl sm:text-2xl font-bold text-gradient-golden">5+</div>
+              <div className="text-muted-foreground text-sm sm:text-base">Tech Sectors</div>
             </div>
             <div className="flex flex-col items-center space-y-2">
-              <Scale className="w-12 h-12 text-primary mb-2" />
-              <div className="text-2xl font-bold text-gradient-golden">100+</div>
-              <div className="text-muted-foreground">Legal Frameworks</div>
+              <Scale className="w-10 h-10 sm:w-12 sm:h-12 text-primary mb-2" />
+              <div className="text-xl sm:text-2xl font-bold text-gradient-golden">100+</div>
+              <div className="text-muted-foreground text-sm sm:text-base">Legal Frameworks</div>
             </div>
-            <div className="flex flex-col items-center space-y-2">
-              <Globe className="w-12 h-12 text-primary mb-2" />
-              <div className="text-2xl font-bold text-gradient-golden">20+</div>
-              <div className="text-muted-foreground">African Countries</div>
+            <div className="flex flex-col items-center space-y-2 col-span-2 md:col-span-1">
+              <Globe className="w-10 h-10 sm:w-12 sm:h-12 text-primary mb-2" />
+              <div className="text-xl sm:text-2xl font-bold text-gradient-golden">20+</div>
+              <div className="text-muted-foreground text-sm sm:text-base">African Countries</div>
             </div>
           </div>
 

@@ -4,37 +4,37 @@ import { Button } from "@/components/ui/button";
 const teamMembers = [
   {
     name: "Ssekamwa Frank",
-    position: "Founder & CEO",
-    bio: "Visionary leader with 15+ years in technology law and African digital policy. Pioneer in tech-legal integration across sub-Saharan Africa.",
+    position: "Chief Executive Officer",
+    bio: "Frank is our founding Chief Executive Officer and a Tech lawyer and innovator with training in both law and ICT. He holds a Bachelor of Laws from Makerere University, Post Diploma in Legal Practice from Makerere University, and is currently a Master of Laws Finalist at Makerere University. Frank has undergone professional training on tax administration, organization management, application development, and machine learning.",
     image: "/placeholder.svg",
-    expertise: ["Tech Law", "Digital Policy", "IP Protection"],
+    expertise: ["Tech Law", "Digital Policy", "IP Protection", "Machine Learning"],
     social: {
       linkedin: "#",
-      email: "frank@sakonc.com",
+      email: "frank@onetechconnect.com",
       twitter: "#"
     }
   },
   {
     name: "Kalivayo Blair",
-    position: "Chief Legal Officer",
-    bio: "Expert in regulatory compliance and fintech law. Leading authority on cryptocurrency regulation and digital banking frameworks in Africa.",
+    position: "Co-Founder",
+    bio: "Blair is our co-founder and a Tech lawyer passionate about law and ICT. He holds a Bachelor of Laws from Makerere University and Post-Graduate Diploma in Legal Practice. Over the years, Blair has been part of various tech-related projects and trainings, focusing on the intersection of technology and legal frameworks.",
     image: "/placeholder.svg",
-    expertise: ["Fintech Law", "Compliance", "Regulatory Affairs"],
+    expertise: ["Tech Law", "Legal Practice", "Tech Projects", "Training"],
     social: {
       linkedin: "#",
-      email: "blair@sakonc.com",
+      email: "blair@onetechconnect.com",
       twitter: "#"
     }
   },
   {
     name: "Dr. Kakooza Anthony",
-    position: "Head of Research & Innovation",
-    bio: "Research leader with a PhD in Digital Governance. Driving breakthrough research in AI ethics, data protection, and tech policy frameworks.",
+    position: "Board of Trustees",
+    bio: "Dr. Kakooza Anthony serves on our Board of Trustees, bringing extensive experience in governance, strategic oversight, and organizational development. His expertise helps guide OTC's strategic direction and ensures alignment with our mission and values.",
     image: "/placeholder.svg",
-    expertise: ["AI Ethics", "Data Protection", "Research"],
+    expertise: ["Governance", "Strategic Planning", "Organizational Development", "Board Leadership"],
     social: {
       linkedin: "#",
-      email: "anthony@sakonc.com",
+      email: "anthony@onetechconnect.com",
       twitter: "#"
     }
   }
@@ -48,11 +48,11 @@ export function Team() {
           {/* Section Header */}
           <div className="text-center mb-16">
             <h2 className="heading-section text-gradient-golden mb-6">
-              Meet Our Leadership
+              Our Team
             </h2>
             <p className="text-body text-muted-foreground max-w-3xl mx-auto">
-              Our diverse team of legal experts, technologists, and policy makers brings together decades 
-              of experience in shaping Africa's digital future.
+              Meet the innovative minds behind One Tech Connect. Our diverse team of legal experts, 
+              technologists, and policy makers brings together decades of experience in shaping Africa's digital future.
             </p>
           </div>
 

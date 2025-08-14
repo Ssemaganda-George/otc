@@ -4,17 +4,32 @@ const values = [
   {
     icon: Target,
     title: "Excellence",
-    description: "Delivering world-class legal and tech solutions with unwavering quality standards."
+    description: "Delivering world-class legal and tech solutions with unwavering quality standards that drive African innovation."
   },
   {
     icon: Eye,
     title: "Innovation",
-    description: "Pioneering new approaches to complex legal challenges in the digital age."
+    description: "Pioneering new approaches to complex legal challenges in the digital age, fostering technological advancement."
   },
   {
     icon: Heart,
-    title: "Integrity",
-    description: "Building trust through transparent, ethical, and accountable practices."
+    title: "Human Rights",
+    description: "Ensuring technology serves humanity by protecting privacy, dignity, and promoting social justice across Africa."
+  },
+  {
+    icon: Users,
+    title: "Ubuntu",
+    description: "Embracing collective benefit from technology - ensuring all Africans can participate in and benefit from digital transformation."
+  },
+  {
+    icon: Briefcase,
+    title: "Corporate Responsibility",
+    description: "Promoting responsible business practices and corporate accountability in technology development and deployment."
+  },
+  {
+    icon: Lightbulb,
+    title: "Sustainable Technology",
+    description: "Advancing environmentally conscious and socially sustainable technology solutions for long-term African development."
   }
 ];
 
@@ -26,9 +41,9 @@ export function About() {
           {/* Section Header */}
           <div className="text-center mb-16">
             <h2 className="heading-section text-gradient-golden mb-6">
-              About SAK OneTechConnect
+              About OneTechConnect
             </h2>
-            <p className="text-body text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-body text-muted-foreground max-w-3xl mx-auto text-justify sm:text-center">
               We are Africa's premier technology law firm, bridging the gap between innovation and regulation 
               to create an enabling environment for digital transformation across the continent.
             </p>
@@ -44,10 +59,11 @@ export function About() {
                 </div>
                 <h3 className="heading-card text-gradient-golden">Our Mission</h3>
               </div>
-              <p className="text-body text-muted-foreground leading-relaxed">
-                To advance Africa's technological progress by providing innovative legal solutions, strategic advocacy, 
-                and comprehensive support that enables tech entrepreneurs, organizations, and governments to navigate 
-                the complex intersection of law and technology.
+              <p className="text-body text-muted-foreground leading-relaxed text-justify sm:text-left">
+                OneTechConnect (OTC) is a Tech Organization advancing the tech, social and legal services 
+                to empower African innovation. We provide real-time legal and advisory solutions at each step of 
+                our clients' business decisions, focusing on innovation, interoperability, equity, and human rights 
+                across health, agriculture, finance, education, and transport sectors.
               </p>
             </div>
 
@@ -59,7 +75,7 @@ export function About() {
                 </div>
                 <h3 className="heading-card text-gradient-golden">Our Vision</h3>
               </div>
-              <p className="text-body text-muted-foreground leading-relaxed">
+              <p className="text-body text-muted-foreground leading-relaxed text-justify sm:text-left">
                 To be the leading catalyst for Africa's digital transformation, creating a continent where technology 
                 and law work in harmony to drive innovation, economic growth, and social progress for all Africans.
               </p>
@@ -71,12 +87,11 @@ export function About() {
             <h3 className="heading-card text-gradient-golden mb-8">Our Core Values</h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {values.map((value, index) => (
               <div 
                 key={value.title}
-                className="text-center group"
-                style={{ animationDelay: `${index * 0.2}s` }}
+                className={`text-center group animate-fade-in-up opacity-0 [animation-delay:${index * 0.2}s] [animation-fill-mode:forwards]`}
               >
                 <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:shadow-golden transition-all duration-300 group-hover:scale-110">
                   <value.icon className="w-8 h-8 text-primary" />

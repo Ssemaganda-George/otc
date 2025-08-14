@@ -5,9 +5,10 @@ import { Button } from "./button";
 const navItems = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
-  { name: "Team", href: "#team" },
+  { name: "Areas", href: "#areas" },
   { name: "Services", href: "#services" },
   { name: "Programmes", href: "#programmes" },
+  { name: "Team", href: "#team" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -32,13 +33,12 @@ export function Navigation() {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-primary to-primary-dark rounded-lg flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-sm">SAK</span>
-            </div>
-            <div className="text-xl font-playfair font-bold text-gradient-golden">
-              OneTechConnect
-            </div>
+          <div className="flex items-center">
+            <img 
+              src="/Logo.png" 
+              alt="OneTechConnect Logo" 
+              className="h-8 w-auto"
+            />
           </div>
 
           {/* Desktop Navigation */}

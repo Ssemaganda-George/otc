@@ -4,7 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* SAK OTC Design System - Dark Mode Premium Theme */
+/* OTC Design System - Dark Mode Premium Theme */
 
 @layer base {
   :root {
@@ -161,6 +161,47 @@
 
   .fade-in-up.in-view {
     @apply opacity-100 translate-y-0;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes golden-pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-golden-pulse {
+    animation: golden-pulse 2s ease-in-out infinite;
   }
 
   .fade-in-left {
