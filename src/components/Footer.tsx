@@ -1,27 +1,27 @@
 import { Mail, Phone, MapPin, ArrowRight, ExternalLink } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const quickLinks = [
-  { name: "About Us", href: "#about" },
-  { name: "Services", href: "#services" },
-  { name: "Team", href: "#team" },
-  { name: "Areas of Work", href: "#areas" },
-  { name: "Programmes", href: "#programmes" },
-  { name: "Contact", href: "#contact" }
+  { name: "About Us", href: "/about" },
+  { name: "Services", href: "/services" },
+  { name: "Team", href: "/team" },
+  { name: "Programmes", href: "/programs" },
+  { name: "Contact", href: "/contact" }
 ];
 
 const services = [
-  { name: "Hackathon Program", href: "#services" },
-  { name: "Legal Support", href: "#services" },
-  { name: "Research & Training", href: "#services" },
-  { name: "Strategic Advocacy", href: "#services" }
+  { name: "Hackathon Program", href: "/services" },
+  { name: "Legal Support", href: "/services" },
+  { name: "Research & Training", href: "/services" },
+  { name: "Strategic Advocacy", href: "/services" }
 ];
 
 const programmes = [
-  { name: "AfricanIntelligenceNow (AINow)", href: "#programmes" },
-  { name: "EmpowerThem (EMP)", href: "#programmes" },
-  { name: "BigTechAfrica (BiTA)", href: "#programmes" },
-  { name: "One Tech Approach (OTA)", href: "#programmes" }
+  { name: "AfricanIntelligenceNow (AINow)", href: "/programs" },
+  { name: "EmpowerThem (EMP)", href: "/programs" },
+  { name: "BigTechAfrica (BiTA)", href: "/programs" },
+  { name: "One Tech Approach (OTA)", href: "/programs" }
 ];
 
 const legalLinks = [
@@ -78,12 +78,12 @@ export function Footer() {
               <ul className="space-y-3">
                 {quickLinks.map((link) => (
                   <li key={link.name}>
-                    <a 
-                      href={link.href}
+                    <Link 
+                      to={link.href}
                       className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm"
                     >
                       {link.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -97,12 +97,12 @@ export function Footer() {
               <ul className="space-y-3">
                 {services.map((service) => (
                   <li key={service.name}>
-                    <a 
-                      href={service.href}
+                    <Link 
+                      to={service.href}
                       className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm"
                     >
                       {service.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -114,12 +114,12 @@ export function Footer() {
                 <ul className="space-y-2">
                   {programmes.map((programme) => (
                     <li key={programme.name}>
-                      <a 
-                        href={programme.href}
+                      <Link 
+                        to={programme.href}
                         className="text-muted-foreground hover:text-primary transition-colors duration-200 text-xs"
                       >
                         {programme.name}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
