@@ -10,7 +10,7 @@ const teamMembers = [
     expertise: ["Tech Law", "Digital Policy", "IP Protection", "Machine Learning"],
     social: {
       linkedin: "#",
-      email: "frank@onetechconnect.com",
+      email: "frank@onetechconnect.org",
       twitter: "#"
     }
   },
@@ -22,7 +22,7 @@ const teamMembers = [
     expertise: ["Tech Law", "Legal Practice", "Tech Projects", "Training"],
     social: {
       linkedin: "#",
-      email: "blair@onetechconnect.com",
+      email: "blair@onetechconnect.org",
       twitter: "#"
     }
   },
@@ -34,7 +34,19 @@ const teamMembers = [
     expertise: ["Governance", "Strategic Planning", "Organizational Development", "Board Leadership"],
     social: {
       linkedin: "#",
-      email: "anthony@onetechconnect.com",
+      email: "anthony@onetechconnect.org",
+      twitter: "#"
+    }
+  },
+  {
+    name: "Nakitende Sauda",
+    position: "Head Research and Grants",
+    bio: "Nakitende Sauda leads our research initiatives and grant acquisition efforts. With extensive experience in research methodology, project management, and funding strategies, she drives OTC's evidence-based approach to tech law and policy development across Africa.",
+    image: "/placeholder.svg",
+    expertise: ["Research Methods", "Grant Writing", "Policy Research", "Project Management"],
+    social: {
+      linkedin: "#",
+      email: "sauda@onetechconnect.org",
       twitter: "#"
     }
   }
@@ -47,7 +59,7 @@ export function Team() {
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="heading-section text-gradient-golden mb-6">
+            <h2 className="heading-section text-gradient-blue mb-6">
               Our Team
             </h2>
             <p className="text-body text-muted-foreground max-w-3xl mx-auto">
@@ -61,7 +73,7 @@ export function Team() {
             {teamMembers.map((member, index) => (
               <div 
                 key={member.name}
-                className="group bg-card border border-border rounded-2xl overflow-hidden shadow-card hover:shadow-golden transition-all duration-500 card-hover"
+                className="group bg-card border border-border rounded-2xl overflow-hidden shadow-card hover:shadow-blue transition-all duration-500 card-hover"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 {/* Profile Image */}
@@ -125,7 +137,7 @@ export function Team() {
           {/* Call to Action */}
           <div className="text-center mt-16">
             <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl p-8 border border-primary/20">
-              <h3 className="heading-card text-gradient-golden mb-4">
+              <h3 className="heading-card text-gradient-blue mb-4">
                 Join Our Mission
               </h3>
               <p className="text-body text-muted-foreground mb-6 max-w-2xl mx-auto">

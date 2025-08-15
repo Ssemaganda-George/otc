@@ -90,7 +90,7 @@ export function Services() {
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="heading-section text-gradient-golden mb-6">
+            <h2 className="heading-section text-gradient-blue mb-6">
               Our Services
             </h2>
             <p className="text-body text-muted-foreground max-w-4xl mx-auto text-justify sm:text-center">
@@ -104,7 +104,7 @@ export function Services() {
             {services.map((service, index) => (
               <div 
                 key={service.title}
-                className={`group bg-card border ${service.borderColor} rounded-2xl p-8 shadow-card hover:shadow-golden transition-all duration-500 card-hover`}
+                className={`group bg-card border ${service.borderColor} rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-500 card-hover`}
               >
                 {/* Header */}
                 <div className="flex items-center mb-6">
@@ -112,7 +112,7 @@ export function Services() {
                     <service.icon className="w-8 h-8 text-primary" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-playfair font-semibold text-gradient-golden mb-2">
+                    <h3 className="text-xl font-playfair font-semibold text-gradient-blue mb-2">
                       {service.title}
                     </h3>
                   </div>
@@ -151,7 +151,7 @@ export function Services() {
           {/* Service Highlights */}
           <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-3xl p-12 border border-primary/20 mb-16">
             <div className="text-center mb-8">
-              <h3 className="heading-card text-gradient-golden mb-4">
+              <h3 className="heading-card text-gradient-blue mb-4">
                 Why Choose OTC?
               </h3>
               <p className="text-body text-muted-foreground max-w-2xl mx-auto">
@@ -175,7 +175,7 @@ export function Services() {
 
           {/* Call to Action */}
           <div className="text-center">
-            <h3 className="heading-card text-gradient-golden mb-6">
+            <h3 className="heading-card text-gradient-blue mb-6">
               Get Started With Our Services
             </h3>
             <p className="text-body text-muted-foreground mb-8 max-w-2xl mx-auto">

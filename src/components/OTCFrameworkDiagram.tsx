@@ -11,7 +11,7 @@ export function OTCFrameworkDiagram() {
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="heading-section text-gradient-golden mb-6">
+            <h2 className="heading-section text-gradient-blue mb-6">
               OTC Framework Visualization
             </h2>
             <p className="text-body text-muted-foreground max-w-4xl mx-auto">
@@ -30,7 +30,7 @@ export function OTCFrameworkDiagram() {
             <div className="relative z-10 space-y-8">
               {/* Top Level - Framework Title */}
               <div className="text-center">
-                <div className="inline-block bg-gradient-to-r from-primary/20 to-primary/30 border-2 border-primary rounded-xl px-8 py-4 shadow-lg hover:shadow-golden transition-all duration-300 hover:scale-105">
+                <div className="inline-block bg-gradient-to-r from-primary/20 to-primary/30 border-2 border-primary rounded-xl px-8 py-4 shadow-lg hover:shadow-blue transition-all duration-300 hover:scale-105">
                   <h3 className="text-xl md:text-2xl font-bold text-white font-playfair">
                     OTC OPERATION FRAMEWORK
                   </h3>
@@ -44,7 +44,7 @@ export function OTCFrameworkDiagram() {
 
               {/* Second Level - Tech & Innovation */}
               <div className="text-center">
-                <div className="inline-block bg-gradient-to-r from-primary/15 to-primary/25 border border-primary rounded-lg px-6 py-3 shadow-md hover:shadow-golden transition-all duration-300 hover:scale-105">
+                <div className="inline-block bg-gradient-to-r from-primary/15 to-primary/25 border border-primary rounded-lg px-6 py-3 shadow-md hover:shadow-blue transition-all duration-300 hover:scale-105">
                   <h4 className="text-lg md:text-xl font-semibold text-white">
                     TECH & INNOVATION IN AFRICA
                   </h4>
@@ -60,7 +60,7 @@ export function OTCFrameworkDiagram() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {sectors.map((sector, index) => (
                   <div key={sector} className="text-center">
-                    <div className={`bg-gradient-to-br from-primary/10 to-primary/20 border border-primary/50 rounded-lg px-4 py-3 shadow-md hover:shadow-golden transition-all duration-300 hover:scale-105 group`}>
+                    <div className={`bg-gradient-to-br from-primary/10 to-primary/20 border border-primary/50 rounded-lg px-4 py-3 shadow-md hover:shadow-blue transition-all duration-300 hover:scale-105 group`}>
                       <span className="text-sm md:text-base font-medium text-white group-hover:text-primary transition-colors">
                         {sector}
                       </span>
@@ -84,7 +84,7 @@ export function OTCFrameworkDiagram() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {activities.map((activity, index) => (
                   <div key={activity} className="text-center">
-                    <div className={`bg-gradient-to-br from-primary/8 to-primary/15 border border-primary/40 rounded-lg px-4 py-3 shadow-md hover:shadow-golden transition-all duration-300 hover:scale-105 group`}>
+                    <div className={`bg-gradient-to-br from-primary/8 to-primary/15 border border-primary/40 rounded-lg px-4 py-3 shadow-md hover:shadow-blue transition-all duration-300 hover:scale-105 group`}>
                       <span className="text-sm md:text-base font-medium text-white group-hover:text-primary transition-colors">
                         {activity}
                       </span>
@@ -100,7 +100,7 @@ export function OTCFrameworkDiagram() {
 
               {/* Fifth Level - Human Rights Header */}
               <div className="text-center">
-                <div className="inline-block bg-gradient-to-r from-primary/20 to-primary/30 border-2 border-primary rounded-xl px-6 py-4 shadow-lg hover:shadow-golden transition-all duration-300 hover:scale-105">
+                <div className="inline-block bg-gradient-to-r from-primary/20 to-primary/30 border-2 border-primary rounded-xl px-6 py-4 shadow-lg hover:shadow-blue transition-all duration-300 hover:scale-105">
                   <h4 className="text-lg md:text-xl font-bold text-white font-playfair">
                     FUNDAMENTAL HUMAN RIGHTS
                   </h4>
@@ -116,7 +116,7 @@ export function OTCFrameworkDiagram() {
               <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
                 {rights.map((right, index) => (
                   <div key={right} className="text-center">
-                    <div className={`bg-gradient-to-br from-primary/10 to-primary/20 border border-primary/50 rounded-lg px-3 py-2 shadow-md hover:shadow-golden transition-all duration-300 hover:scale-105 group`}>
+                    <div className={`bg-gradient-to-br from-primary/10 to-primary/20 border border-primary/50 rounded-lg px-3 py-2 shadow-md hover:shadow-blue transition-all duration-300 hover:scale-105 group`}>
                       <span className="text-xs md:text-sm font-medium text-white group-hover:text-primary transition-colors">
                         {right}
                       </span>
@@ -132,7 +132,7 @@ export function OTCFrameworkDiagram() {
 
               {/* Bottom Level - Vision Statement */}
               <div className="text-center">
-                <div className="bg-gradient-to-r from-primary/15 to-primary/25 border-2 border-primary rounded-2xl px-6 py-6 shadow-xl hover:shadow-golden transition-all duration-300 hover:scale-105">
+                <div className="bg-gradient-to-r from-primary/15 to-primary/25 border-2 border-primary rounded-2xl px-6 py-6 shadow-xl hover:shadow-blue transition-all duration-300 hover:scale-105">
                   <p className="text-sm md:text-base font-medium text-white leading-relaxed max-w-4xl mx-auto">
                     "An African Digital Present and Future Ingrained in Human Rights and Justice for All"
                   </p>
@@ -149,7 +149,7 @@ export function OTCFrameworkDiagram() {
 
           {/* Framework Explanation */}
           <div className="mt-16 bg-card border border-border rounded-2xl p-8 shadow-card">
-            <h3 className="heading-card text-gradient-golden mb-6 text-center">
+            <h3 className="heading-card text-gradient-blue mb-6 text-center">
               Understanding the Framework
             </h3>
             

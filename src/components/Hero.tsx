@@ -30,7 +30,7 @@ export function Hero() {
           </div>
 
           {/* Main Headline */}
-          <h1 className="heading-display text-gradient-golden mb-8 animate-fade-in-up">
+          <h1 className="heading-display text-gradient-blue mb-8 animate-fade-in-up">
             OneTechConnect
           </h1>
 
@@ -44,17 +44,17 @@ export function Hero() {
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 mb-12 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
             <div className="flex flex-col items-center space-y-2">
               <Code className="w-10 h-10 sm:w-12 sm:h-12 text-primary mb-2" />
-              <div className="text-xl sm:text-2xl font-bold text-gradient-golden">5+</div>
+              <div className="text-xl sm:text-2xl font-bold text-gradient-blue">5+</div>
               <div className="text-muted-foreground text-sm sm:text-base">Tech Sectors</div>
             </div>
             <div className="flex flex-col items-center space-y-2">
               <Scale className="w-10 h-10 sm:w-12 sm:h-12 text-primary mb-2" />
-              <div className="text-xl sm:text-2xl font-bold text-gradient-golden">100+</div>
+              <div className="text-xl sm:text-2xl font-bold text-gradient-blue">100+</div>
               <div className="text-muted-foreground text-sm sm:text-base">Legal Frameworks</div>
             </div>
             <div className="flex flex-col items-center space-y-2 col-span-2 md:col-span-1">
               <Globe className="w-10 h-10 sm:w-12 sm:h-12 text-primary mb-2" />
-              <div className="text-xl sm:text-2xl font-bold text-gradient-golden">20+</div>
+              <div className="text-xl sm:text-2xl font-bold text-gradient-blue">20+</div>
               <div className="text-muted-foreground text-sm sm:text-base">African Countries</div>
             </div>
           </div>

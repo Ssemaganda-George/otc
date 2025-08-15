@@ -40,7 +40,7 @@ export function About() {
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="heading-section text-gradient-golden mb-6">
+            <h2 className="heading-section text-gradient-blue mb-6">
               About OneTechConnect
             </h2>
             <p className="text-body text-muted-foreground max-w-3xl mx-auto text-justify sm:text-center">
@@ -52,12 +52,12 @@ export function About() {
           {/* Mission, Vision, Values Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
             {/* Mission */}
-            <div className="bg-card border border-border rounded-2xl p-8 shadow-card hover:shadow-golden transition-all duration-300 card-hover">
+            <div className="bg-card border border-border rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-300 card-hover">
               <div className="flex items-center mb-6">
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
                   <Briefcase className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="heading-card text-gradient-golden">Our Mission</h3>
+                <h3 className="heading-card text-gradient-blue">Our Mission</h3>
               </div>
               <p className="text-body text-muted-foreground leading-relaxed text-justify sm:text-left">
                 OneTechConnect (OTC) is a Tech Organization advancing the tech, social and legal services 
@@ -68,12 +68,12 @@ export function About() {
             </div>
 
             {/* Vision */}
-            <div className="bg-card border border-border rounded-2xl p-8 shadow-card hover:shadow-golden transition-all duration-300 card-hover">
+            <div className="bg-card border border-border rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-300 card-hover">
               <div className="flex items-center mb-6">
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
                   <Lightbulb className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="heading-card text-gradient-golden">Our Vision</h3>
+                <h3 className="heading-card text-gradient-blue">Our Vision</h3>
               </div>
               <p className="text-body text-muted-foreground leading-relaxed text-justify sm:text-left">
                 To be the leading catalyst for Africa's digital transformation, creating a continent where technology 
@@ -84,7 +84,7 @@ export function About() {
 
           {/* Values Section */}
           <div className="text-center mb-12">
-            <h3 className="heading-card text-gradient-golden mb-8">Our Core Values</h3>
+            <h3 className="heading-card text-gradient-blue mb-8">Our Core Values</h3>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -93,10 +93,10 @@ export function About() {
                 key={value.title}
                 className={`text-center group animate-fade-in-up opacity-0 [animation-delay:${index * 0.2}s] [animation-fill-mode:forwards]`}
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:shadow-golden transition-all duration-300 group-hover:scale-110">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:shadow-blue transition-all duration-300 group-hover:scale-110">
                   <value.icon className="w-8 h-8 text-primary" />
                 </div>
-                <h4 className="text-xl font-playfair font-semibold text-gradient-golden mb-4">
+                <h4 className="text-xl font-playfair font-semibold text-gradient-blue mb-4">
                   {value.title}
                 </h4>
                 <p className="text-body text-muted-foreground">
@@ -109,7 +109,7 @@ export function About() {
           {/* How We Operate */}
           <div className="mt-20 bg-gradient-to-r from-primary/5 to-primary/10 rounded-3xl p-12 border border-primary/20">
             <div className="text-center mb-8">
-              <h3 className="heading-card text-gradient-golden mb-4">The OTC Framework</h3>
+              <h3 className="heading-card text-gradient-blue mb-4">The OTC Framework</h3>
               <p className="text-body text-muted-foreground max-w-3xl mx-auto">
                 Our unique One Tech Connect methodology integrates legal expertise, 
                 regulatory knowledge, and technological understanding to deliver comprehensive solutions.

@@ -14,7 +14,7 @@ export function HomeNewsletter() {
             </div>
             
             {/* Header */}
-            <h2 className="heading-section text-gradient-golden mb-6">
+            <h2 className="heading-section text-gradient-blue mb-6">
               Stay Connected
             </h2>
             <p className="text-body text-muted-foreground max-w-2xl mx-auto text-justify sm:text-center leading-relaxed">
@@ -27,7 +27,7 @@ export function HomeNewsletter() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-12">
             {/* Value Proposition */}
             <div className="space-y-6">
-              <h3 className="heading-card text-gradient-golden">
+              <h3 className="heading-card text-gradient-blue">
                 What You'll Receive
               </h3>
               
@@ -78,7 +78,7 @@ export function HomeNewsletter() {
 
             {/* Subscription Form */}
             <div className="bg-card border border-border rounded-2xl p-8 shadow-card">
-              <h3 className="heading-card text-gradient-golden mb-6 text-center">
+              <h3 className="heading-card text-gradient-blue mb-6 text-center">
                 Join Our Community
               </h3>
               
@@ -141,7 +141,7 @@ export function HomeNewsletter() {
           {/* Social Proof & CTA */}
           <div className="text-center">
             <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl p-8 border border-primary/20">
-              <h4 className="font-playfair font-semibold text-gradient-golden mb-4">
+              <h4 className="font-playfair font-semibold text-gradient-blue mb-4">
                 Join Tech Leaders Across Africa
               </h4>
               <p className="text-muted-foreground mb-6 max-w-2xl mx-auto text-justify sm:text-center">

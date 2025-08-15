@@ -8,55 +8,55 @@
 
 @layer base {
   :root {
-    /* Core Brand Colors - Dark Mode */
-    --background: 0 0% 12%;              /* #1F1F1F */
-    --foreground: 0 0% 100%;             /* #FFFFFF */
+    /* Core Brand Colors - Light Mode */
+    --background: 0 0% 100%;             /* #FFFFFF */
+    --foreground: 0 0% 0%;               /* #000000 */
 
     /* Card & Surface Colors */
-    --card: 0 0% 15%;                    /* Slightly lighter than background */
-    --card-foreground: 0 0% 100%;
-    --card-hover: 0 0% 18%;              /* Hover state for cards */
+    --card: 0 0% 98%;                    /* Very light grey for cards */
+    --card-foreground: 0 0% 0%;
+    --card-hover: 0 0% 96%;              /* Slightly darker on hover */
 
-    /* Brand Golden Bronze */
-    --primary: 43 47% 59%;               /* #C7A264 Golden Bronze */
-    --primary-foreground: 0 0% 12%;      /* Dark text on golden */
-    --primary-glow: 43 47% 70%;          /* Lighter golden for glows */
-    --primary-dark: 43 47% 45%;          /* Darker golden for depth */
+    /* Brand Blue */
+    --primary: 217 91% 45%;              /* #1D4ED8 Strong Blue */
+    --primary-foreground: 0 0% 100%;     /* White text on blue */
+    --primary-glow: 217 91% 60%;         /* Lighter blue for glows */
+    --primary-dark: 217 91% 35%;         /* Darker blue for depth */
 
     /* Secondary Colors */
-    --secondary: 0 0% 20%;               /* Dark grey */
-    --secondary-foreground: 0 0% 95%;
-    --secondary-hover: 0 0% 25%;
+    --secondary: 0 0% 95%;               /* Light grey */
+    --secondary-foreground: 0 0% 10%;
+    --secondary-hover: 0 0% 90%;
 
     /* Accent & Highlights */
-    --accent: 43 47% 59%;                /* Same as primary for consistency */
-    --accent-foreground: 0 0% 12%;
-    --accent-subtle: 43 47% 10%;         /* Very subtle golden tint */
+    --accent: 217 91% 45%;               /* Same as primary for consistency */
+    --accent-foreground: 0 0% 100%;
+    --accent-subtle: 217 91% 95%;        /* Very subtle blue tint */
 
     /* Muted Colors */
-    --muted: 0 0% 18%;
-    --muted-foreground: 0 0% 65%;        /* Lighter grey for secondary text */
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 40%;        /* Grey for secondary text */
 
     /* Interactive States */
-    --border: 0 0% 25%;
-    --input: 0 0% 18%;
-    --ring: 43 47% 59%;                  /* Golden focus ring */
+    --border: 0 0% 85%;
+    --input: 0 0% 98%;
+    --ring: 217 91% 45%;                 /* Blue focus ring */
 
     /* Status Colors */
     --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 100%;
-    --success: 120 50% 50%;
-    --warning: 45 100% 50%;
+    --success: 120 50% 40%;
+    --warning: 45 100% 40%;
 
     /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(43 47% 59% / 0.1), hsl(43 47% 45% / 0.05));
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 15%), hsl(0 0% 12%));
-    --gradient-golden: linear-gradient(135deg, hsl(43 47% 59%), hsl(43 47% 45%));
+    --gradient-hero: linear-gradient(135deg, hsl(217 91% 45% / 0.1), hsl(217 91% 35% / 0.05));
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 98%), hsl(0 0% 100%));
+    --gradient-blue: linear-gradient(135deg, hsl(217 91% 45%), hsl(217 91% 35%));
     
     /* Shadows */
-    --shadow-elegant: 0 20px 40px -10px hsl(0 0% 0% / 0.4);
-    --shadow-golden: 0 10px 30px -10px hsl(43 47% 59% / 0.3);
-    --shadow-card: 0 8px 32px -8px hsl(0 0% 0% / 0.3);
+    --shadow-elegant: 0 20px 40px -10px hsl(0 0% 0% / 0.1);
+    --shadow-blue: 0 10px 30px -10px hsl(217 91% 45% / 0.2);
+    --shadow-card: 0 8px 32px -8px hsl(0 0% 0% / 0.08);
 
     /* Spacing & Layout */
     --radius: 1rem;
@@ -187,7 +187,7 @@
     }
   }
 
-  @keyframes golden-pulse {
+  @keyframes blue-pulse {
     0%, 100% {
       opacity: 1;
     }
@@ -200,8 +200,13 @@
     animation: float 3s ease-in-out infinite;
   }
 
+  .animate-blue-pulse {
+    animation: blue-pulse 2s ease-in-out infinite;
+  }
+
+  /* Legacy animation name for compatibility */
   .animate-golden-pulse {
-    animation: golden-pulse 2s ease-in-out infinite;
+    animation: blue-pulse 2s ease-in-out infinite;
   }
 
   .fade-in-left {
@@ -221,26 +226,31 @@
   }
 
   /* Gradient Text */
+  .text-gradient-blue {
+    @apply bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent;
+  }
+
+  /* Legacy class name for compatibility */
   .text-gradient-golden {
     @apply bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent;
   }
 
   /* Card Hover Effects */
   .card-hover {
-    @apply transition-all duration-300 ease-out hover:scale-105 hover:shadow-[var(--shadow-golden)];
+    @apply transition-all duration-300 ease-out hover:scale-105 hover:shadow-[var(--shadow-blue)];
   }
 
   /* Button Hover Glow */
-  .btn-golden-glow {
+  .btn-blue-glow {
     @apply relative overflow-hidden;
   }
 
-  .btn-golden-glow::before {
+  .btn-blue-glow::before {
     content: '';
     @apply absolute inset-0 bg-gradient-to-r from-primary/20 to-primary-dark/20 opacity-0 transition-opacity duration-300;
   }
 
-  .btn-golden-glow:hover::before {
+  .btn-blue-glow:hover::before {
     @apply opacity-100;
   }
 

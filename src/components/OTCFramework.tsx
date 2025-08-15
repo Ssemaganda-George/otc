@@ -59,7 +59,7 @@ export function OTCFramework() {
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="heading-section text-gradient-golden mb-6">
+            <h2 className="heading-section text-gradient-blue mb-6">
               The OTC Framework
             </h2>
             <p className="text-body text-muted-foreground max-w-4xl mx-auto">
@@ -77,7 +77,7 @@ export function OTCFramework() {
             <div className="mb-16">
               <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-3xl p-12 border border-primary/20">
                 <div className="text-center mb-8">
-                  <h3 className="heading-card text-gradient-golden mb-4">
+                  <h3 className="heading-card text-gradient-blue mb-4">
                     Operationalising the OTC Framework
                   </h3>
                   <p className="text-body text-muted-foreground max-w-3xl mx-auto">
@@ -112,7 +112,7 @@ export function OTCFramework() {
           {/* Scope of Rights */}
           <div className="mb-16">
             <div className="text-center mb-12">
-              <h3 className="heading-card text-gradient-golden mb-4">
+              <h3 className="heading-card text-gradient-blue mb-4">
                 Scope of Rights Protection
               </h3>
               <p className="text-body text-muted-foreground max-w-3xl mx-auto">
@@ -127,7 +127,7 @@ export function OTCFramework() {
                   <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 border border-primary/20">
                     <right.icon className="w-8 h-8 text-primary" />
                   </div>
-                  <h4 className="font-playfair font-semibold text-gradient-golden mb-3">
+                  <h4 className="font-playfair font-semibold text-gradient-blue mb-3">
                     {right.title}
                   </h4>
                   <p className="text-sm text-muted-foreground">
@@ -139,9 +139,9 @@ export function OTCFramework() {
           </div>
 
           {/* Overall Goal */}
-          <div className="bg-card border border-border rounded-2xl p-8 shadow-card hover:shadow-golden transition-all duration-300">
+          <div className="bg-card border border-border rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-300">
             <div className="text-center mb-6">
-              <h3 className="heading-card text-gradient-golden mb-4">
+              <h3 className="heading-card text-gradient-blue mb-4">
                 Our Overall Goal
               </h3>
               <div className="max-w-4xl mx-auto">
@@ -153,15 +153,15 @@ export function OTCFramework() {
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-gradient-golden mb-2">Digitization</div>
+                    <div className="text-2xl font-bold text-gradient-blue mb-2">Digitization</div>
                     <p className="text-sm text-muted-foreground">Converting analog systems to digital formats</p>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-gradient-golden mb-2">Innovation</div>
+                    <div className="text-2xl font-bold text-gradient-blue mb-2">Innovation</div>
                     <p className="text-sm text-muted-foreground">Creating new solutions for African challenges</p>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-gradient-golden mb-2">Justice</div>
+                    <div className="text-2xl font-bold text-gradient-blue mb-2">Justice</div>
                     <p className="text-sm text-muted-foreground">Ensuring equitable access to technology benefits</p>
                   </div>
                 </div>
