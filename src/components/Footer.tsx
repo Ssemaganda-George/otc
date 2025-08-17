@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, ArrowRight, ExternalLink } from "lucide-react";
+import { Mail, Phone, MapPin, ArrowRight, ExternalLink, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const quickLinks = [
@@ -57,15 +57,15 @@ export function Footer() {
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
                   <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
-                  <span className="text-sm text-muted-foreground">Kampala, Uganda</span>
+                  <span className="text-sm text-muted-foreground">Kingdom Kampala Building, Uganda</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Phone className="w-4 h-4 text-primary flex-shrink-0" />
-                  <span className="text-sm text-muted-foreground">+256 XXX XXX XXX</span>
+                  <span className="text-sm text-muted-foreground">+256-778410315</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Mail className="w-4 h-4 text-primary flex-shrink-0" />
-                  <span className="text-sm text-muted-foreground">info@onetechconnect.com</span>
+                  <span className="text-sm text-muted-foreground">info@onetechconnect.org</span>
                 </div>
               </div>
             </div>
@@ -145,6 +145,18 @@ export function Footer() {
                   <span>Follow on LinkedIn</span>
                   <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
+                <a 
+                  href="https://twitter.com/OneTechConnect" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <Button variant="ghost-golden" size="sm" className="w-full justify-start group">
+                    <Twitter className="w-4 h-4 mr-2" />
+                    <span>@OneTechConnect</span>
+                    <ExternalLink className="w-4 h-4 ml-auto group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </a>
                 <Button variant="ghost-golden" size="sm" className="w-full justify-start group">
                   <span>Join Our Community</span>
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />

@@ -10,7 +10,7 @@ const teamMembers = [
     expertise: ["Tech Law", "Digital Policy", "IP Protection", "Machine Learning"],
     social: {
       linkedin: "#",
-      email: "frank@onetechconnect.com",
+      email: "frank@onetechconnect.org",
       twitter: "#"
     }
   },
@@ -22,7 +22,19 @@ const teamMembers = [
     expertise: ["Tech Law", "Legal Practice", "Tech Projects", "Training"],
     social: {
       linkedin: "#",
-      email: "blair@onetechconnect.com",
+      email: "blair@onetechconnect.org",
+      twitter: "#"
+    }
+  },
+  {
+    name: "Nakitende Sauda",
+    position: "Head Research and Grants",
+    bio: "Sauda leads our research initiatives and grant management, bringing expertise in academic research, policy analysis, and funding acquisition. She oversees strategic research projects that inform our advocacy work and drives initiatives to secure funding for OTC's programs and partnerships.",
+    image: "/placeholder.svg",
+    expertise: ["Research Management", "Grant Writing", "Policy Analysis", "Strategic Planning"],
+    social: {
+      linkedin: "#",
+      email: "sauda@onetechconnect.org",
       twitter: "#"
     }
   },
@@ -34,7 +46,7 @@ const teamMembers = [
     expertise: ["Governance", "Strategic Planning", "Organizational Development", "Board Leadership"],
     social: {
       linkedin: "#",
-      email: "anthony@onetechconnect.com",
+      email: "anthony@onetechconnect.org",
       twitter: "#"
     }
   }
