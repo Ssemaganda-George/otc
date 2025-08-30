@@ -26,18 +26,18 @@ const teamMembers = [
       twitter: "#"
     }
   },
-  {
-    name: "Dr. Kakooza Anthony",
-    position: "Board of Trustees",
-    bio: "Dr. Kakooza Anthony serves on our Board of Trustees, bringing extensive experience in governance, strategic oversight, and organizational development. His expertise helps guide OTC's strategic direction and ensures alignment with our mission and values.",
-    image: "/placeholder.svg",
-    expertise: ["Governance", "Strategic Planning", "Organizational Development", "Board Leadership"],
-    social: {
-      linkedin: "#",
-      email: "anthony@onetechconnect.org",
-      twitter: "#"
-    }
-  },
+  // {
+  //   name: "Dr. Kakooza Anthony",
+  //   position: "Board of Trustees",
+  //   bio: "Dr. Kakooza Anthony serves on our Board of Trustees, bringing extensive experience in governance, strategic oversight, and organizational development. His expertise helps guide OTC's strategic direction and ensures alignment with our mission and values.",
+  //   image: "/placeholder.svg",
+  //   expertise: ["Governance", "Strategic Planning", "Organizational Development", "Board Leadership"],
+  //   social: {
+  //     linkedin: "#",
+  //     email: "anthony@onetechconnect.org",
+  //     twitter: "#"
+  //   }
+  // },
   {
     name: "Nakitende Sauda",
     position: "Head Research and Grants",
