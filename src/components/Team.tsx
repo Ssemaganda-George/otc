@@ -38,18 +38,19 @@ const teamMembers = [
       twitter: "#"
     }
   },
-  {
-    name: "Ssemaganda George (Shon)",
-    position: "Technical Expert - Innovations & Digital Transformation",
-    bio: "Shon is a dynamic tech innovator with a keen interest in artificial intelligence and start-up development. He has received professional training and practical experience in energy systems, web design, mobile app development, and AI applications. He is proficient in JavaScript, Swift, and Python, and is currently completing his Bachelor of Science in Computer Science. Shon is the Co-founder of Dirt Trails Safaris and has previously served as a DevOps Engineer at MpaMpe Logo, Network Auditor at UMEME, and Machine Learning Intern at DC4M. His diverse background equips him with practical insights that drive OTC's innovation initiatives, particularly in digital transformation, AI integration, and technology-driven solutions.",
-    image: "/placeholder.svg",
-    expertise: ["AI Development", "Mobile App Development", "DevOps", "Machine Learning"],
-    social: {
-      linkedin: "#",
-      email: "george@onetechconnect.org",
-      twitter: "#"
-    }
-  },
+  // {
+  //   name: "Dr. Kakooza Anthony",
+  //   position: "Board of Trustees",
+  //   bio: "Dr. Kakooza Anthony serves on our Board of Trustees, bringing extensive experience in governance, strategic oversight, and organizational development. His expertise helps guide OTC's strategic direction and ensures alignment with our mission and values.",
+  //   image: "/placeholder.svg",
+  //   expertise: ["Governance", "Strategic Planning", "Organizational Development", "Board Leadership"],
+  //   social: {
+  //     linkedin: "#",
+  //     email: "anthony@onetechconnect.org",
+  //     twitter: "#"
+  //   }
+  // },
+  
   {
     name: "Abomugisha Dorothy",
     position: "Head Finance",
