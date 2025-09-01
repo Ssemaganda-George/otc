@@ -5,11 +5,11 @@ import { Button } from "./button";
 
 const navItems = [
   { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Services", href: "/services" },
-  { name: "Programmes", href: "/programs" },
-  { name: "Team", href: "/team" },
-  { name: "Contact", href: "/contact" },
+  { name: "About Us", href: "/about" },
+  { name: "What we do", href: "/what-we-do" },
+  { name: "Our Products", href: "/our-products" },
+  { name: "News & Updates", href: "/news" },
+  { name: "Contact us", href: "/contact" },
 ];
 
 export function Navigation() {

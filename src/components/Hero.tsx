@@ -25,19 +25,21 @@ export function Hero() {
         <div className="max-w-5xl mx-auto space-y-8">
           {/* Tagline */}
           <div className="inline-flex items-center space-x-2 bg-primary/10 border border-primary/20 rounded-full px-6 py-3 mb-8 backdrop-blur-sm">
-            <span className="w-2 h-2 bg-primary rounded-full animate-golden-pulse" />
-            <span className="text-primary font-medium">Advancing Tech Legal Solutions in Africa</span>
+            <span className="w-2 h-2 bg-primary rounded-full animate-blue-pulse" />
+            <span className="text-primary font-medium">Championing Africa's Digital Transformation</span>
           </div>
 
           {/* Main Headline */}
           <h1 className="heading-display text-gradient-blue mb-8 animate-fade-in-up">
-            OneTechConnect
+            Championing Africa's Technological & Digital Transformation
           </h1>
 
           {/* Subtitle */}
           <p className="text-body text-muted-foreground max-w-3xl mx-auto mb-12 animate-fade-in-up text-justify sm:text-center" style={{ animationDelay: '0.2s' }}>
-            Leading the fusion of technology and law across Africa. We empower innovation through expert legal guidance, 
-            strategic advocacy, and cutting-edge research that drives the continent's digital transformation.
+            Upholding Respect for Human Rights and social justice for all. OTC is a Youth-led African Organization 
+            that ensures digital transformation in health, sexual reproductive health, finance, agriculture and 
+            development is advanced while ensuring respect to fundamental human rights and social justice for 
+            every individual and communities in Africa.
           </p>
 
           {/* Stats Row */}

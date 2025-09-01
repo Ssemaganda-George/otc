@@ -3,33 +3,33 @@ import { Target, Eye, Heart, Users, Briefcase, Lightbulb } from "lucide-react";
 const values = [
   {
     icon: Target,
-    title: "Excellence",
-    description: "Delivering world-class legal and tech solutions with unwavering quality standards that drive African innovation."
+    title: "Justice",
+    description: "Unwavering commitment to fairness, equity, and the rule of law in the digital age, ensuring technology serves all people equally."
   },
   {
     icon: Eye,
     title: "Innovation",
-    description: "Pioneering new approaches to complex legal challenges in the digital age, fostering technological advancement."
+    description: "Pioneering creative solutions that bridge the gap between emerging technologies and legal frameworks for sustainable progress."
   },
   {
     icon: Heart,
-    title: "Human Rights",
-    description: "Ensuring technology serves humanity by protecting privacy, dignity, and promoting social justice across Africa."
+    title: "Dignity",
+    description: "Respecting and protecting human dignity in all digital interactions, ensuring technology enhances rather than diminishes human worth."
   },
   {
     icon: Users,
-    title: "Ubuntu",
-    description: "Embracing collective benefit from technology - ensuring all Africans can participate in and benefit from digital transformation."
+    title: "Collaboration",
+    description: "Building partnerships and fostering teamwork across sectors to achieve collective impact in Africa's digital transformation."
   },
   {
     icon: Briefcase,
-    title: "Corporate Responsibility",
-    description: "Promoting responsible business practices and corporate accountability in technology development and deployment."
+    title: "Excellence",
+    description: "Delivering exceptional quality in every service, striving for the highest standards in legal expertise and technological innovation."
   },
   {
     icon: Lightbulb,
-    title: "Sustainable Technology",
-    description: "Advancing environmentally conscious and socially sustainable technology solutions for long-term African development."
+    title: "Transparency",
+    description: "Maintaining openness, accountability, and clear communication in all our operations and stakeholder relationships."
   }
 ];
 
@@ -60,10 +60,9 @@ export function About() {
                 <h3 className="heading-card text-gradient-blue">Our Mission</h3>
               </div>
               <p className="text-body text-muted-foreground leading-relaxed text-justify sm:text-left">
-                OneTechConnect (OTC) is a Tech Organization advancing the tech, social and legal services 
-                to empower African innovation. We provide real-time legal and advisory solutions at each step of 
-                our clients' business decisions, focusing on innovation, interoperability, equity, and human rights 
-                across health, agriculture, finance, education, and transport sectors.
+                To champion Africa's technological and digital transformation through innovative legal frameworks, 
+                policy advocacy, and strategic litigation. We empower the intersection of law, technology, and human rights 
+                to ensure that Africa's digital future is secure, equitable, and prosperity-driven for all.
               </p>
             </div>
 
@@ -76,8 +75,9 @@ export function About() {
                 <h3 className="heading-card text-gradient-blue">Our Vision</h3>
               </div>
               <p className="text-body text-muted-foreground leading-relaxed text-justify sm:text-left">
-                To be the leading catalyst for Africa's digital transformation, creating a continent where technology 
-                and law work in harmony to drive innovation, economic growth, and social progress for all Africans.
+                An Africa where technology drives sustainable development, economic growth, and social justice. 
+                We envision a digitally transformed continent that leads global innovation while preserving 
+                cultural values and promoting inclusive prosperity for all African communities.
               </p>
             </div>
           </div>

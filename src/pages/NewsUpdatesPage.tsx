@@ -1,0 +1,130 @@
+import { Navigation } from "@/components/ui/navigation";
+import { Footer } from "@/components/Footer";
+import { Button } from "@/components/ui/button";
+import { Calendar, ArrowRight, Newspaper } from "lucide-react";
+
+export default function NewsUpdatesPage() {
+  return (
+    <div className="min-h-screen bg-background">
+      <Navigation />
+      
+      <main className="pt-20">
+        {/* Hero Section */}
+        <section className="py-24 bg-gradient-to-br from-primary/10 to-primary/5">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="w-20 h-20 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Newspaper className="w-10 h-10 text-background" />
+              </div>
+              <h1 className="heading-display text-gradient-blue mb-8">
+                News & Updates
+              </h1>
+              <p className="text-body text-muted-foreground leading-relaxed">
+                Stay informed about OTC's latest developments, research findings, advocacy wins, 
+                and insights on technology, human rights, and digital transformation across Africa.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Coming Soon Section */}
+        <section className="py-24">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="bg-card border border-border rounded-2xl p-12 shadow-card">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <Calendar className="w-8 h-8 text-primary" />
+                </div>
+                
+                <h2 className="heading-section text-gradient-blue mb-6">
+                  Coming Soon
+                </h2>
+                
+                <p className="text-body text-muted-foreground leading-relaxed mb-8">
+                  We're working on bringing you the latest news, updates, and insights from OneTechConnect. 
+                  This section will feature our research publications, advocacy wins, partnership announcements, 
+                  and thought leadership on the intersection of technology and human rights in Africa.
+                </p>
+
+                <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg p-6 border border-primary/20 mb-8">
+                  <h3 className="text-lg font-playfair font-semibold text-gradient-blue mb-4">
+                    What to Expect
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {[
+                      "Research Publications & Findings",
+                      "Strategic Litigation Updates",
+                      "Partnership Announcements",
+                      "Policy & Advocacy Wins",
+                      "Event Coverage & Reports",
+                      "Thought Leadership Articles"
+                    ].map((item, index) => (
+                      <div key={index} className="flex items-center space-x-3">
+                        <div className="w-2 h-2 bg-primary rounded-full" />
+                        <span className="text-sm text-muted-foreground">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <p className="text-muted-foreground">
+                    Want to stay updated on our latest developments?
+                  </p>
+                  
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Button variant="golden" className="group">
+                      Subscribe to Newsletter
+                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                    
+                    <Button variant="ghost-golden" className="group">
+                      Follow @OneTechConnect
+                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Newsletter Signup */}
+        <section className="py-24 bg-gradient-to-br from-card/30 to-background">
+          <div className="container mx-auto px-6">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="heading-section text-gradient-blue mb-6">
+                Stay Connected
+              </h2>
+              <p className="text-body text-muted-foreground mb-8">
+                Be the first to know about our latest research, advocacy wins, and insights on 
+                technology and human rights in Africa.
+              </p>
+              
+              <div className="bg-card border border-border rounded-2xl p-8 shadow-card">
+                <form className="flex flex-col sm:flex-row gap-4">
+                  <input
+                    type="email"
+                    placeholder="Enter your email address"
+                    className="flex-1 px-4 py-3 bg-background border border-input rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                  />
+                  <Button variant="golden" className="group">
+                    Subscribe
+                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </form>
+                
+                <p className="text-xs text-muted-foreground mt-4">
+                  By subscribing, you agree to receive updates from OneTechConnect. 
+                  We respect your privacy and you can unsubscribe at any time.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+    </div>
+  );
+}
