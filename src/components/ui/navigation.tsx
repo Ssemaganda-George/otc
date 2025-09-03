@@ -5,11 +5,19 @@ import { Button } from "./button";
 
 const navItems = [
   { name: "Home", href: "/" },
+<<<<<<< HEAD
   { name: "About", href: "/about" },
   { name: "Services", href: "/services" },
   { name: "Programmes", href: "/programs" },
   { name: "Team", href: "/team" },
   { name: "Contact", href: "/contact" },
+=======
+  { name: "About Us", href: "/about" },
+  { name: "What we do", href: "/what-we-do" },
+  { name: "Our Products", href: "/our-products" },
+  { name: "News & Updates", href: "/news" },
+  { name: "Contact us", href: "/contact" },
+>>>>>>> chris
 ];
 
 export function Navigation() {
@@ -32,7 +40,7 @@ export function Navigation() {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled 
-        ? "bg-background/95 backdrop-blur-md border-b border-border shadow-elegant" 
+        ? "bg-secondary/98 backdrop-blur-md border-b border-border shadow-card" 
         : "bg-transparent"
     }`}>
       <div className="container mx-auto px-6 py-4">

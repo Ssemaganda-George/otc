@@ -34,6 +34,13 @@ export default {
 					glow: 'hsl(var(--primary-glow))',
 					dark: 'hsl(var(--primary-dark))'
 				},
+				golden: {
+					DEFAULT: 'hsl(var(--golden))',
+					foreground: 'hsl(var(--golden-foreground))',
+					hover: 'hsl(var(--golden-hover))',
+					light: 'hsl(var(--golden-light))',
+					dark: 'hsl(var(--golden-dark))'
+				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
 					foreground: 'hsl(var(--secondary-foreground))',
@@ -115,10 +122,12 @@ export default {
 				'fade-in-up': 'fade-in-up 0.8s ease-out',
 				'slide-in-left': 'slide-in-left 0.8s ease-out',
 				'slide-in-right': 'slide-in-right 0.8s ease-out',
-				'golden-pulse': 'golden-pulse 2s ease-in-out infinite',
+				'blue-pulse': 'blue-pulse 2s ease-in-out infinite',
+				'golden-pulse': 'blue-pulse 2s ease-in-out infinite', // Legacy compatibility
 				'float': 'float 3s ease-in-out infinite'
 			},
 			boxShadow: {
+				'blue': 'var(--shadow-blue)',
 				'golden': 'var(--shadow-golden)',
 				'elegant': 'var(--shadow-elegant)',
 				'card': 'var(--shadow-card)'

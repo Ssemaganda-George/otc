@@ -1,13 +1,10 @@
 import { Navigation } from "@/components/ui/navigation";
 import { Hero } from "@/components/Hero";
 import { CorePrinciples } from "@/components/CorePrinciples";
-import { About } from "@/components/About";
-import { AreasOfWork } from "@/components/AreasOfWork";
-import { Services } from "@/components/Services";
-import { Programs } from "@/components/Programs";
-import { OTCFramework } from "@/components/OTCFramework";
-import { Team } from "@/components/Team";
-import { Contact } from "@/components/Contact";
+import { HomeHighlights } from "@/components/HomeHighlights";
+import { HomeAbout } from "@/components/HomeAbout";
+import { HomeContact } from "@/components/HomeContact";
+import { HomeNewsletter } from "@/components/HomeNewsletter";
 import { Footer } from "@/components/Footer";
 
 const Index = () => {
@@ -17,13 +14,10 @@ const Index = () => {
       <main>
         <Hero />
         <CorePrinciples />
-        <About />
-        <AreasOfWork />
-        <Services />
-        <Programs />
-        <OTCFramework />
-        <Team />
-        <Contact />
+        <HomeHighlights />
+        <HomeAbout />
+        <HomeContact />
+        <HomeNewsletter />
       </main>
       <Footer />
     </div>

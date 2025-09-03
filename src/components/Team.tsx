@@ -4,10 +4,11 @@ import { Button } from "@/components/ui/button";
 const teamMembers = [
   {
     name: "Ssekamwa Frank",
-    position: "Chief Executive Officer",
-    bio: "Frank is our founding Chief Executive Officer and a Tech lawyer and innovator with training in both law and ICT. He holds a Bachelor of Laws from Makerere University, Post Diploma in Legal Practice from Makerere University, and is currently a Master of Laws Finalist at Makerere University. Frank has undergone professional training on tax administration, organization management, application development, and machine learning.",
-    image: "/placeholder.svg",
-    expertise: ["Tech Law", "Digital Policy", "IP Protection", "Machine Learning"],
+    pronouns: "(He/Him)",
+    position: "Executive Director",
+    bio: "Frank leads OTC as Chief Executive Director, bringing together expertise at the intersection of law, technology, and global health. He holds a Bachelor of Laws from Makerere University, a Postgraduate Diploma in Legal Practice from the Law Development Centre and a Master of Laws (LL.M.) specializing in Digital Health Rights in Low- and Middle-Income Countries. In addition to his academic qualifications, Frank has undertaken professional training in administrative science, climate change, digital health, reproductive health, and project management. His career spans diverse roles with the High Court of Uganda, leading law firms and Afya na Haki Institute equipping him with a unique blend of experience in research, strategic litigation, capacity building, and project leadership. Frank is a Tech Lawyer and Innovator passionate about advancing digital rights and justice in Africa. He is an active member of both the East African Law Society and the Uganda Law Society.",
+    image: "/images/Frank.jpg",
+    expertise: ["Digital Health Rights", "Tech Law", "Strategic Litigation", "Project Leadership"],
     social: {
       linkedin: "#",
       email: "frank@onetechconnect.org",
@@ -16,22 +17,35 @@ const teamMembers = [
   },
   {
     name: "Kalivayo Blair",
-    position: "Co-Founder",
-    bio: "Blair is our co-founder and a Tech lawyer passionate about law and ICT. He holds a Bachelor of Laws from Makerere University and Post-Graduate Diploma in Legal Practice. Over the years, Blair has been part of various tech-related projects and trainings, focusing on the intersection of technology and legal frameworks.",
-    image: "/placeholder.svg",
-    expertise: ["Tech Law", "Legal Practice", "Tech Projects", "Training"],
+    pronouns: "(He/Him)",
+    position: "Director of Operations",
+    bio: "Blair is the founding Director of Operations, a distinguished corporate lawyer with a profound passion for the intersection of law and ICT. Blair holds a Bachelor of Laws from Makerere University and a Post-Graduate Diploma in Legal Practice, supplemented by several relevant professional training certifications. His expertise is extensive, covering banking, corporate governance, insolvency practice, Mergers and Acquisitions (M&A), Intellectual Property (IP), Technology, Media, and Telecommunications (TMT). Over the years, Blair has been instrumental in the success of numerous start-ups across Uganda, East, and West Africa. His career includes serving with some of Uganda's leading law firms, providing him with a wealth of practical experience. He is a respected member of both the Uganda Law Society and the East African Law Society.",
+    image: "/images/Blair.jpg",
+    expertise: ["Corporate Law", "M&A", "Intellectual Property", "TMT Law"],
     social: {
       linkedin: "#",
       email: "blair@onetechconnect.org",
+<<<<<<< HEAD
       twitter: "#"
+=======
+      twitter: "https://x.com/blairekalivayo"
+>>>>>>> chris
     }
   },
   {
     name: "Nakitende Sauda",
+<<<<<<< HEAD
     position: "Head Research and Grants",
     bio: "Sauda leads our research initiatives and grant management, bringing expertise in academic research, policy analysis, and funding acquisition. She oversees strategic research projects that inform our advocacy work and drives initiatives to secure funding for OTC's programs and partnerships.",
     image: "/placeholder.svg",
     expertise: ["Research Management", "Grant Writing", "Policy Analysis", "Strategic Planning"],
+=======
+    pronouns: "",
+    position: "Director of Programs",
+    bio: "Sauda is the Director of Programs at OTC, driven by a passion for ensuring that technological transformation advances the well-being and rights of women, children, and underserved communities across Africa. Sauda holds a Bachelor of Laws (Hons) and a first-class Diploma in Legal Practice. She is currently a master's candidate, where her research explores the criminalization of cyber laws and its impact on the right to freedom of expression in the digital era. With her expertise in research, teaching, project planning, management, monitoring, and reporting, Sauda is instrumental in leading our initiatives. She is a registered member of both the East African Law Society and the Uganda Law Society.",
+    image: "/images/Sauda.jpg",
+    expertise: ["Research Management", "Program Development", "Cyber Law", "Women's Rights"],
+>>>>>>> chris
     social: {
       linkedin: "#",
       email: "sauda@onetechconnect.org",
@@ -39,14 +53,32 @@ const teamMembers = [
     }
   },
   {
-    name: "Dr. Kakooza Anthony",
-    position: "Board of Trustees",
-    bio: "Dr. Kakooza Anthony serves on our Board of Trustees, bringing extensive experience in governance, strategic oversight, and organizational development. His expertise helps guide OTC's strategic direction and ensures alignment with our mission and values.",
+    name: "Ssemaganda George (Shon)",
+    pronouns: "",
+    position: "Technical Expert Innovations & Digital Transformation",
+    bio: "Shon is a dynamic tech innovator with a keen interest in artificial intelligence and start-up development. He has received professional training and practical experience in energy systems, web design, mobile app development, and AI applications. He is proficient in JavaScript, Swift, and Python, and is currently completing his Bachelor of Science in Computer Science (Computer and Information Sciences and Support Services). Shon is the Co-founder of Dirt Trails Safaris and has previously served as a DevOps Engineer at MpaMpe Logo, Network Auditor at UMEME, and Machine Learning Intern at DC4M. His diverse background equips him with practical insights that drive OTC's innovation initiatives, particularly in digital transformation, AI integration, and technology-driven solutions.",
     image: "/placeholder.svg",
-    expertise: ["Governance", "Strategic Planning", "Organizational Development", "Board Leadership"],
+    expertise: ["Artificial Intelligence", "Web Development", "Mobile Apps", "Digital Transformation"],
     social: {
       linkedin: "#",
+<<<<<<< HEAD
       email: "anthony@onetechconnect.org",
+=======
+      email: "george@onetechconnect.org",
+      twitter: "#"
+    }
+  },
+  {
+    name: "Abomugisha Dorothy",
+    pronouns: "",
+    position: "Head Finance",
+    bio: "Dorothy leads OTC's financial operations, ensuring fiscal responsibility and strategic financial planning that supports our mission of advancing digital transformation across Africa. Her expertise in financial management and accounting helps maintain transparency and accountability in all our operations.",
+    image: "/placeholder.svg",
+    expertise: ["Financial Management", "Strategic Planning", "Accounting", "Budget Management"],
+    social: {
+      linkedin: "#",
+      email: "dorothy@onetechconnect.org",
+>>>>>>> chris
       twitter: "#"
     }
   }
@@ -54,12 +86,12 @@ const teamMembers = [
 
 export function Team() {
   return (
-    <section id="team" className="py-24 bg-card/50">
+    <section id="team" className="py-24 bg-background">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="heading-section text-gradient-golden mb-6">
+            <h2 className="heading-section text-gradient-blue mb-6">
               Our Team
             </h2>
             <p className="text-body text-muted-foreground max-w-3xl mx-auto">
@@ -73,15 +105,20 @@ export function Team() {
             {teamMembers.map((member, index) => (
               <div 
                 key={member.name}
-                className="group bg-card border border-border rounded-2xl overflow-hidden shadow-card hover:shadow-golden transition-all duration-500 card-hover"
+                className="group bg-card border border-border rounded-2xl overflow-hidden shadow-card hover:shadow-blue transition-all duration-500 card-hover"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 {/* Profile Image */}
-                <div className="relative h-80 bg-gradient-to-br from-primary/20 to-primary/5 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent" />
+                <div className="relative h-80 bg-gradient-to-br from-secondary/80 to-secondary/60 overflow-hidden">
+                  <img 
+                    src={member.image} 
+                    alt={member.name}
+                    className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-transparent to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4">
                     <h3 className="text-xl font-playfair font-bold text-foreground mb-1">
-                      {member.name}
+                      {member.name} {member.pronouns && <span className="text-muted-foreground font-normal text-sm">{member.pronouns}</span>}
                     </h3>
                     <p className="text-primary font-medium">{member.position}</p>
                   </div>
@@ -136,8 +173,8 @@ export function Team() {
 
           {/* Call to Action */}
           <div className="text-center mt-16">
-            <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl p-8 border border-primary/20">
-              <h3 className="heading-card text-gradient-golden mb-4">
+            <div className="bg-secondary/60 rounded-2xl p-8 border border-border">
+              <h3 className="heading-card text-gradient-blue mb-4">
                 Join Our Mission
               </h3>
               <p className="text-body text-muted-foreground mb-6 max-w-2xl mx-auto">

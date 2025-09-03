@@ -71,7 +71,7 @@ export function Programs() {
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="heading-section text-gradient-golden mb-6">
+            <h2 className="heading-section text-gradient-blue mb-6">
               Our Programmes of Work
             </h2>
             <p className="text-body text-muted-foreground max-w-4xl mx-auto text-justify sm:text-center">
@@ -86,7 +86,7 @@ export function Programs() {
             {programs.map((program, index) => (
               <div 
                 key={program.title}
-                className={`group bg-card border ${program.borderColor} rounded-2xl p-8 shadow-card hover:shadow-golden transition-all duration-500 card-hover`}
+                className={`group bg-card border ${program.borderColor} rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-500 card-hover`}
               >
                 {/* Header */}
                 <div className="flex items-start mb-6">
@@ -94,7 +94,7 @@ export function Programs() {
                     <program.icon className="w-8 h-8 text-primary" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-playfair font-semibold text-gradient-golden mb-1">
+                    <h3 className="text-xl font-playfair font-semibold text-gradient-blue mb-1">
                       {program.title}
                     </h3>
                     <p className="text-sm text-primary font-medium">
@@ -141,7 +141,7 @@ export function Programs() {
           {/* Values Section */}
           <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-3xl p-12 border border-primary/20">
             <div className="text-center mb-8">
-              <h3 className="heading-card text-gradient-golden mb-4">
+              <h3 className="heading-card text-gradient-blue mb-4">
                 Our Core Values
               </h3>
               <p className="text-body text-muted-foreground max-w-3xl mx-auto">
@@ -166,7 +166,7 @@ export function Programs() {
                 }
               ].map((value, index) => (
                 <div key={value.title} className="text-center">
-                  <h4 className="font-playfair font-semibold text-gradient-golden mb-2">
+                  <h4 className="font-playfair font-semibold text-gradient-blue mb-2">
                     {value.title}
                   </h4>
                   <p className="text-sm text-muted-foreground">

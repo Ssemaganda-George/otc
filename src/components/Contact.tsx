@@ -10,7 +10,7 @@ export function Contact() {
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="heading-section text-gradient-golden mb-6">
+            <h2 className="heading-section text-gradient-blue mb-6">
               Partner With Us
             </h2>
             <p className="text-body text-muted-foreground max-w-4xl mx-auto">
@@ -23,7 +23,7 @@ export function Contact() {
             {/* Contact Information */}
             <div className="space-y-8">
               <div>
-                <h3 className="heading-card text-gradient-golden mb-6">
+                <h3 className="heading-card text-gradient-blue mb-6">
                   Let's Connect
                 </h3>
                 <p className="text-body text-muted-foreground leading-relaxed mb-8">
@@ -81,7 +81,7 @@ export function Contact() {
 
               {/* Partnership Opportunities */}
               <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl p-6 border border-primary/20">
-                <h4 className="font-playfair font-semibold text-gradient-golden mb-4">
+                <h4 className="font-playfair font-semibold text-gradient-blue mb-4">
                   Partnership Opportunities
                 </h4>
                 <div className="space-y-3">
@@ -103,7 +103,7 @@ export function Contact() {
 
             {/* Contact Form */}
             <div className="bg-card border border-border rounded-2xl p-8 shadow-card">
-              <h3 className="heading-card text-gradient-golden mb-6">
+              <h3 className="heading-card text-gradient-blue mb-6">
                 Send Us a Message
               </h3>
               
@@ -165,7 +165,7 @@ export function Contact() {
           {/* Newsletter Signup */}
           <div className="mt-16 bg-gradient-to-r from-primary/10 to-primary/5 rounded-3xl p-12 border border-primary/20">
             <div className="text-center max-w-3xl mx-auto">
-              <h3 className="heading-card text-gradient-golden mb-4">
+              <h3 className="heading-card text-gradient-blue mb-4">
                 Stay Updated
               </h3>
               <p className="text-body text-muted-foreground mb-8">
