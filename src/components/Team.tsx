@@ -25,27 +25,16 @@ const teamMembers = [
     social: {
       linkedin: "#",
       email: "blair@onetechconnect.org",
-<<<<<<< HEAD
-      twitter: "#"
-=======
       twitter: "https://x.com/blairekalivayo"
->>>>>>> chris
     }
   },
   {
     name: "Nakitende Sauda",
-<<<<<<< HEAD
-    position: "Head Research and Grants",
-    bio: "Sauda leads our research initiatives and grant management, bringing expertise in academic research, policy analysis, and funding acquisition. She oversees strategic research projects that inform our advocacy work and drives initiatives to secure funding for OTC's programs and partnerships.",
-    image: "/placeholder.svg",
-    expertise: ["Research Management", "Grant Writing", "Policy Analysis", "Strategic Planning"],
-=======
     pronouns: "",
     position: "Director of Programs",
     bio: "Sauda is the Director of Programs at OTC, driven by a passion for ensuring that technological transformation advances the well-being and rights of women, children, and underserved communities across Africa. Sauda holds a Bachelor of Laws (Hons) and a first-class Diploma in Legal Practice. She is currently a master's candidate, where her research explores the criminalization of cyber laws and its impact on the right to freedom of expression in the digital era. With her expertise in research, teaching, project planning, management, monitoring, and reporting, Sauda is instrumental in leading our initiatives. She is a registered member of both the East African Law Society and the Uganda Law Society.",
     image: "/images/Sauda.jpg",
     expertise: ["Research Management", "Program Development", "Cyber Law", "Women's Rights"],
->>>>>>> chris
     social: {
       linkedin: "#",
       email: "sauda@onetechconnect.org",
@@ -61,9 +50,6 @@ const teamMembers = [
     expertise: ["Artificial Intelligence", "Web Development", "Mobile Apps", "Digital Transformation"],
     social: {
       linkedin: "#",
-<<<<<<< HEAD
-      email: "anthony@onetechconnect.org",
-=======
       email: "george@onetechconnect.org",
       twitter: "#"
     }
@@ -78,7 +64,6 @@ const teamMembers = [
     social: {
       linkedin: "#",
       email: "dorothy@onetechconnect.org",
->>>>>>> chris
       twitter: "#"
     }
   }

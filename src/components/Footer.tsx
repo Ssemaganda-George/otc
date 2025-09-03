@@ -1,8 +1,5 @@
 import { Mail, Phone, MapPin, ArrowRight, ExternalLink, Twitter } from "lucide-react";
-<<<<<<< HEAD
-=======
 import { Link } from "react-router-dom";
->>>>>>> chris
 import { Button } from "@/components/ui/button";
 
 const quickLinks = [
