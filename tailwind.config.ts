@@ -34,6 +34,13 @@ export default {
 					glow: 'hsl(var(--primary-glow))',
 					dark: 'hsl(var(--primary-dark))'
 				},
+				golden: {
+					DEFAULT: 'hsl(var(--golden))',
+					foreground: 'hsl(var(--golden-foreground))',
+					hover: 'hsl(var(--golden-hover))',
+					light: 'hsl(var(--golden-light))',
+					dark: 'hsl(var(--golden-dark))'
+				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
 					foreground: 'hsl(var(--secondary-foreground))',
@@ -121,7 +128,7 @@ export default {
 			},
 			boxShadow: {
 				'blue': 'var(--shadow-blue)',
-				'golden': 'var(--shadow-blue)', // Legacy compatibility
+				'golden': 'var(--shadow-golden)',
 				'elegant': 'var(--shadow-elegant)',
 				'card': 'var(--shadow-card)'
 			},

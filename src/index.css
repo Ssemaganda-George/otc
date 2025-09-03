@@ -8,39 +8,46 @@
 
 @layer base {
   :root {
-    /* Core Brand Colors - Light Mode */
-    --background: 0 0% 100%;             /* #FFFFFF */
-    --foreground: 0 0% 0%;               /* #000000 */
+    /* Core Brand Colors - Light Mode with Grey Backgrounds */
+    --background: 0 0% 94%;               /* #F0F0F0 More noticeable grey background */
+    --foreground: 217 91% 20%;            /* Darker navy blue for better contrast */
 
-    /* Card & Surface Colors */
-    --card: 0 0% 98%;                    /* Very light grey for cards */
-    --card-foreground: 0 0% 0%;
-    --card-hover: 0 0% 96%;              /* Slightly darker on hover */
+    /* Card & Surface Colors - Grey Shades */
+    --card: 0 0% 98%;                     /* #FAFAFA Very light grey for cards to stand out */
+    --card-foreground: 217 91% 20%;       /* Darker navy blue text on cards */
+    --card-hover: 0 0% 96%;               /* Light grey on hover */
 
-    /* Brand Blue */
-    --primary: 217 91% 45%;              /* #1D4ED8 Strong Blue */
-    --primary-foreground: 0 0% 100%;     /* White text on blue */
-    --primary-glow: 217 91% 60%;         /* Lighter blue for glows */
-    --primary-dark: 217 91% 35%;         /* Darker blue for depth */
+    /* Brand Blue for Text and Accents */
+    --primary: 217 91% 30%;               /* #1A365D Darker Navy Blue for better readability */
+    --primary-foreground: 0 0% 100%;      /* White text on blue */
+    --primary-glow: 217 91% 50%;          /* Lighter blue for glows */
+    --primary-dark: 217 91% 20%;          /* Very dark navy for depth */
 
-    /* Secondary Colors */
-    --secondary: 0 0% 95%;               /* Light grey */
-    --secondary-foreground: 0 0% 10%;
-    --secondary-hover: 0 0% 90%;
+    /* Golden Brown for Action Buttons */
+    --golden: 43 89% 38%;                 /* #B8860B Dark Golden Rod */
+    --golden-foreground: 0 0% 100%;       /* White text on golden */
+    --golden-hover: 43 74% 49%;           /* #DAA520 Golden Rod for hover */
+    --golden-light: 43 59% 85%;           /* #F4E4BC Light golden brown */
+    --golden-dark: 43 89% 28%;            /* #8B6914 Dark golden brown */
 
-    /* Accent & Highlights */
-    --accent: 217 91% 45%;               /* Same as primary for consistency */
-    --accent-foreground: 0 0% 100%;
-    --accent-subtle: 217 91% 95%;        /* Very subtle blue tint */
+    /* Secondary Colors - Grey Variations */
+    --secondary: 0 0% 88%;                /* Medium grey for secondary backgrounds */
+    --secondary-foreground: 217 91% 20%;  /* Dark navy blue text */
+    --secondary-hover: 0 0% 82%;          /* Darker grey on hover */
 
-    /* Muted Colors */
-    --muted: 0 0% 95%;
-    --muted-foreground: 0 0% 40%;        /* Grey for secondary text */
+    /* Accent & Highlights - Blue */
+    --accent: 217 91% 30%;                /* Darker navy blue for accents */
+    --accent-foreground: 0 0% 100%;       /* White on accent */
+    --accent-subtle: 217 91% 96%;         /* Very subtle blue tint */
+
+    /* Muted Colors - Grey Text */
+    --muted: 0 0% 90%;                    /* Light grey for muted backgrounds */
+    --muted-foreground: 0 0% 35%;         /* Darker grey for secondary text - better contrast */
 
     /* Interactive States */
-    --border: 0 0% 85%;
-    --input: 0 0% 98%;
-    --ring: 217 91% 45%;                 /* Blue focus ring */
+    --border: 0 0% 78%;                   /* Darker grey borders for better definition */
+    --input: 0 0% 96%;                    /* Very light grey input backgrounds */
+    --ring: 43 89% 38%;                   /* Golden brown focus ring */
 
     /* Status Colors */
     --destructive: 0 70% 50%;
@@ -49,33 +56,29 @@
     --warning: 45 100% 40%;
 
     /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(217 91% 45% / 0.1), hsl(217 91% 35% / 0.05));
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 98%), hsl(0 0% 100%));
-    --gradient-blue: linear-gradient(135deg, hsl(217 91% 45%), hsl(217 91% 35%));
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 92% / 0.9), hsl(0 0% 89% / 0.95));
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 98%), hsl(0 0% 96%));
+    --gradient-blue: linear-gradient(135deg, hsl(217 91% 30%), hsl(217 91% 20%));
+    --gradient-golden: linear-gradient(135deg, hsl(43 89% 38%), hsl(43 89% 28%));
     
     /* Shadows */
     --shadow-elegant: 0 20px 40px -10px hsl(0 0% 0% / 0.1);
-    --shadow-blue: 0 10px 30px -10px hsl(217 91% 45% / 0.2);
-    --shadow-card: 0 8px 32px -8px hsl(0 0% 0% / 0.08);
+    --shadow-blue: 0 10px 30px -10px hsl(217 91% 35% / 0.15);
+    --shadow-golden: 0 10px 30px -10px hsl(43 89% 38% / 0.2);
+    --shadow-card: 0 8px 32px -8px hsl(0 0% 0% / 0.06);
 
     /* Spacing & Layout */
     --radius: 1rem;
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Sidebar - Grey Theme */
+    --sidebar-background: 0 0% 90%;
+    --sidebar-foreground: 217 91% 20%;
+    --sidebar-primary: 217 91% 30%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 86%;
+    --sidebar-accent-foreground: 217 91% 20%;
+    --sidebar-border: 0 0% 78%;
+    --sidebar-ring: 43 89% 38%;
   }
 
   .dark {
@@ -196,6 +199,48 @@
     }
   }
 
+  @keyframes golden-pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.6;
+    }
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% {
+      box-shadow: 0 0 5px hsl(var(--golden) / 0.5);
+    }
+    50% {
+      box-shadow: 0 0 20px hsl(var(--golden) / 0.8);
+    }
+  }
+
+  @keyframes flow-line {
+    0% {
+      opacity: 0.3;
+      transform: scaleY(0);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scaleY(1);
+    }
+    100% {
+      opacity: 0.3;
+      transform: scaleY(0);
+    }
+  }
+
+  .animate-glow-pulse {
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+
+  .animate-flow-line {
+    animation: flow-line 2s ease-in-out infinite;
+    transform-origin: top;
+  }
+
   .animate-float {
     animation: float 3s ease-in-out infinite;
   }
@@ -204,9 +249,8 @@
     animation: blue-pulse 2s ease-in-out infinite;
   }
 
-  /* Legacy animation name for compatibility */
   .animate-golden-pulse {
-    animation: blue-pulse 2s ease-in-out infinite;
+    animation: golden-pulse 2s ease-in-out infinite;
   }
 
   .fade-in-left {
@@ -230,8 +274,16 @@
     @apply bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent;
   }
 
-  /* Legacy class name for compatibility */
+  /* Golden Gradient Text */
   .text-gradient-golden {
+    background: linear-gradient(135deg, hsl(43, 89%, 38%), hsl(43, 89%, 28%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Legacy class name for compatibility */
+  .text-gradient-golden-legacy {
     @apply bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent;
   }
 

@@ -1,6 +1,6 @@
 import { Navigation } from "@/components/ui/navigation";
 import { About } from "@/components/About";
-import { OTCFramework } from "@/components/OTCFramework";
+import { Team } from "@/components/Team";
 import { Footer } from "@/components/Footer";
 
 const AboutPage = () => {
@@ -9,7 +9,7 @@ const AboutPage = () => {
       <Navigation />
       <main className="pt-20">
         <About />
-        <OTCFramework />
+        <Team />
       </main>
       <Footer />
     </div>

@@ -10,22 +10,22 @@ export function Hero() {
         <img 
           src={heroImage} 
           alt="OTC Innovation Background" 
-          className="w-full h-full object-cover opacity-30"
+          className="w-full h-full object-cover opacity-15"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-background/90 via-background/80 to-background/70" />
+        <div className="absolute inset-0 bg-gradient-to-br from-secondary/98 via-background/95 to-secondary/90" />
       </div>
 
       {/* Floating Elements */}
-      <div className="absolute top-20 left-10 w-20 h-20 bg-primary/10 rounded-full animate-float" />
-      <div className="absolute top-40 right-20 w-16 h-16 bg-primary/5 rounded-full animate-float" style={{ animationDelay: '1s' }} />
-      <div className="absolute bottom-40 left-20 w-12 h-12 bg-primary/15 rounded-full animate-float" style={{ animationDelay: '2s' }} />
+      <div className="absolute top-20 left-10 w-20 h-20 bg-golden/15 rounded-full animate-float" />
+      <div className="absolute top-40 right-20 w-16 h-16 bg-primary/15 rounded-full animate-float" style={{ animationDelay: '1s' }} />
+      <div className="absolute bottom-40 left-20 w-12 h-12 bg-golden/20 rounded-full animate-float" style={{ animationDelay: '2s' }} />
 
       {/* Main Content */}
       <div className="relative z-10 container mx-auto px-6 text-center sm:text-center py-8">
         <div className="max-w-5xl mx-auto space-y-8">
           {/* Tagline */}
-          <div className="inline-flex items-center space-x-2 bg-primary/10 border border-primary/20 rounded-full px-6 py-3 mb-8 backdrop-blur-sm">
-            <span className="w-2 h-2 bg-primary rounded-full animate-blue-pulse" />
+          <div className="inline-flex items-center space-x-2 bg-primary/15 border border-primary/30 rounded-full px-6 py-3 mb-8 backdrop-blur-sm">
+            <span className="w-2 h-2 bg-golden rounded-full animate-golden-pulse" />
             <span className="text-primary font-medium">Championing Africa's Digital Transformation</span>
           </div>
 
@@ -76,8 +76,8 @@ export function Hero() {
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-primary/30 rounded-full p-1">
-          <div className="w-1 h-3 bg-primary rounded-full mx-auto animate-golden-pulse" />
+        <div className="w-6 h-10 border-2 border-golden/40 rounded-full p-1">
+          <div className="w-1 h-3 bg-golden rounded-full mx-auto animate-golden-pulse" />
         </div>
       </div>
     </section>
