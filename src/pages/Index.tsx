@@ -3,8 +3,8 @@ import { Hero } from "@/components/Hero";
 import { CorePrinciples } from "@/components/CorePrinciples";
 import { HomeHighlights } from "@/components/HomeHighlights";
 import { HomeAbout } from "@/components/HomeAbout";
-import { HomeContact } from "@/components/HomeContact";
-import { HomeNewsletter } from "@/components/HomeNewsletter";
+// import { HomeContact } from "@/components/HomeContact";
+// import { HomeNewsletter } from "@/components/HomeNewsletter";
 import { Footer } from "@/components/Footer";
 
 const Index = () => {
@@ -16,8 +16,8 @@ const Index = () => {
         <CorePrinciples />
         <HomeHighlights />
         <HomeAbout />
-        <HomeContact />
-        <HomeNewsletter />
+        {/* <HomeContact />
+        <HomeNewsletter /> */}
       </main>
       <Footer />
     </div>
