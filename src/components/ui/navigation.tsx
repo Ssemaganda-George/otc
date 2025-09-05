@@ -5,16 +5,41 @@ import { Button } from "./button";
 
 const navItems = [
   { name: "Home", href: "/" },
-  { name: "About Us", href: "/about" },
-  { name: "What we do", href: "/what-we-do" },
-  { name: "Our Products", href: "/our-products" },
+  {
+    name: "About Us",
+    href: "/about",
+    dropdown: [
+      { name: "Who We Are", href: "/about/who-we-are" },
+      { name: "OTC Framework", href: "/about/otc-framework" },
+      { name: "Our Team", href: "/about/team" },
+      { name: "Our Values", href: "/about/values" }
+    ]
+  },
+  {
+    name: "What We Do",
+    href: "/what-we-do",
+    dropdown: [
+      { name: "Our Approach", href: "/what-we-do/approach" },
+      { name: "Focus Areas", href: "/what-we-do/focus-areas" },
+      { name: "Strategic Pillars", href: "/what-we-do/pillars" }
+    ]
+  },
+  {
+    name: "Our Products",
+    href: "/our-products",
+    dropdown: [
+      { name: "Products Overview", href: "/our-products/overview" },
+      { name: "Services", href: "/our-products/services" }
+    ]
+  },
   { name: "News & Updates", href: "/news" },
-  { name: "Contact us", href: "/contact" },
+  { name: "Contact Us", href: "/contact" },
 ];
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -26,7 +51,11 @@ export function Navigation() {
   }, []);
 
   const isActive = (path: string) => {
-    return location.pathname === path;
+    return location.pathname === path || location.pathname.startsWith(path + "/");
+  };
+
+  const handleDropdownToggle = (itemName: string) => {
+    setActiveDropdown(activeDropdown === itemName ? null : itemName);
   };
 
   return (
@@ -49,17 +78,56 @@ export function Navigation() {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
             {navItems.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className={`font-medium transition-colors duration-200 ${
-                  isActive(item.href) 
-                    ? "text-primary" 
-                    : "text-foreground hover:text-primary"
-                }`}
-              >
-                {item.name}
-              </Link>
+              <div key={item.name} className="relative group">
+                {item.dropdown ? (
+                  <>
+                    <button
+                      className={`flex items-center space-x-1 font-medium transition-colors duration-200 ${
+                        isActive(item.href) 
+                          ? "text-primary" 
+                          : "text-foreground hover:text-primary"
+                      }`}
+                      onMouseEnter={() => setActiveDropdown(item.name)}
+                      onMouseLeave={() => setActiveDropdown(null)}
+                    >
+                      <span>{item.name}</span>
+                      <ChevronDown size={16} className="transition-transform duration-200 group-hover:rotate-180" />
+                    </button>
+                    
+                    {/* Dropdown Menu */}
+                    <div 
+                      className={`absolute top-full left-0 mt-2 w-56 bg-card border border-border rounded-xl shadow-lg transition-all duration-200 ${
+                        activeDropdown === item.name ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"
+                      }`}
+                      onMouseEnter={() => setActiveDropdown(item.name)}
+                      onMouseLeave={() => setActiveDropdown(null)}
+                    >
+                      <div className="py-2">
+                        {item.dropdown.map((dropdownItem) => (
+                          <Link
+                            key={dropdownItem.name}
+                            to={dropdownItem.href}
+                            className="block px-4 py-3 text-sm text-foreground hover:text-primary hover:bg-secondary/50 transition-colors duration-200"
+                          >
+                            {dropdownItem.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <Link
+                    to={item.href}
+                    className={`font-medium transition-colors duration-200 ${
+                      isActive(item.href) 
+                        ? "text-primary" 
+                        : "text-foreground hover:text-primary"
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                )}
+              </div>
             ))}
             <Link to="/contact">
               <Button variant="golden" size="sm">
@@ -80,20 +148,61 @@ export function Navigation() {
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
           <div className="lg:hidden mt-4 pb-4 border-t border-border">
-            <div className="flex flex-col space-y-4 pt-4">
+            <div className="flex flex-col space-y-2 pt-4">
               {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className={`font-medium py-2 transition-colors duration-200 ${
-                    isActive(item.href) 
-                      ? "text-primary" 
-                      : "text-foreground hover:text-primary"
-                  }`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
+                <div key={item.name}>
+                  {item.dropdown ? (
+                    <>
+                      <button
+                        className={`flex items-center justify-between w-full font-medium py-2 transition-colors duration-200 ${
+                          isActive(item.href) 
+                            ? "text-primary" 
+                            : "text-foreground hover:text-primary"
+                        }`}
+                        onClick={() => handleDropdownToggle(item.name)}
+                      >
+                        <span>{item.name}</span>
+                        <ChevronDown 
+                          size={16} 
+                          className={`transition-transform duration-200 ${
+                            activeDropdown === item.name ? "rotate-180" : ""
+                          }`} 
+                        />
+                      </button>
+                      
+                      {/* Mobile Dropdown */}
+                      {activeDropdown === item.name && (
+                        <div className="ml-4 mt-2 space-y-2">
+                          {item.dropdown.map((dropdownItem) => (
+                            <Link
+                              key={dropdownItem.name}
+                              to={dropdownItem.href}
+                              className="block py-2 text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
+                              onClick={() => {
+                                setIsMobileMenuOpen(false);
+                                setActiveDropdown(null);
+                              }}
+                            >
+                              {dropdownItem.name}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <Link
+                      to={item.href}
+                      className={`font-medium py-2 transition-colors duration-200 ${
+                        isActive(item.href) 
+                          ? "text-primary" 
+                          : "text-foreground hover:text-primary"
+                      }`}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  )}
+                </div>
               ))}
               <Link to="/contact">
                 <Button variant="golden" size="sm" className="self-start mt-4">
