@@ -70,6 +70,18 @@
     /* Spacing & Layout */
     --radius: 1rem;
 
+    /* Dark Section Backgrounds */
+    --dark-navy: 217 91% 12%;             /* #0F1629 Very dark navy */
+    --dark-brown: 25 40% 15%;             /* #2B1F17 Dark brown */
+    --dark-grey: 0 0% 18%;                /* #2E2E2E Dark grey */
+    --dark-blue: 217 50% 18%;             /* #1E293B Dark blue */
+    
+    /* Dark Section Text Colors */
+    --dark-text-primary: 0 0% 95%;        /* Off-white for primary text on dark */
+    --dark-text-muted: 0 0% 75%;          /* Light grey for secondary text on dark */
+    --dark-card: 217 91% 15%;             /* Slightly lighter dark navy for cards */
+    --dark-border: 217 50% 25%;           /* Dark border for dark sections */
+
     /* Sidebar - Grey Theme */
     --sidebar-background: 0 0% 90%;
     --sidebar-foreground: 217 91% 20%;
@@ -321,5 +333,51 @@
 
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     @apply bg-primary/50;
+  }
+  
+  /* Dark Section Utilities */
+  .section-dark-navy {
+    background-color: hsl(var(--dark-navy));
+    color: hsl(var(--dark-text-primary));
+  }
+  
+  .section-dark-brown {
+    background-color: hsl(var(--dark-brown));
+    color: hsl(var(--dark-text-primary));
+  }
+  
+  .section-dark-grey {
+    background-color: hsl(var(--dark-grey));
+    color: hsl(var(--dark-text-primary));
+  }
+  
+  .section-dark-blue {
+    background-color: hsl(var(--dark-blue));
+    color: hsl(var(--dark-text-primary));
+  }
+  
+  /* Dark Section Card Styles */
+  .card-dark {
+    background-color: hsl(var(--dark-card));
+    border-color: hsl(var(--dark-border));
+    color: hsl(var(--dark-text-primary));
+  }
+  
+  .card-dark:hover {
+    box-shadow: 0 10px 30px -10px hsl(217 91% 35% / 0.3);
+  }
+  
+  /* Dark Section Text Styles */
+  .text-dark-muted {
+    color: hsl(var(--dark-text-muted));
+  }
+  
+  .text-dark-primary {
+    color: hsl(var(--dark-text-primary));
+  }
+  
+  /* Dark Section Icon Backgrounds */
+  .icon-bg-dark {
+    background-color: hsl(var(--golden) / 0.15);
   }
 }

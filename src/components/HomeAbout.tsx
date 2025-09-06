@@ -27,7 +27,7 @@ const coreValues = [
 
 export function HomeAbout() {
   return (
-    <section className="py-24 bg-gradient-to-b from-background to-card/50">
+    <section className="py-24 section-dark-grey">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
@@ -35,7 +35,7 @@ export function HomeAbout() {
             <h2 className="heading-section text-gradient-blue mb-6">
               About OneTechConnect
             </h2>
-            <p className="text-body text-muted-foreground max-w-3xl mx-auto text-justify sm:text-center">
+            <p className="text-body text-dark-muted max-w-3xl mx-auto text-justify sm:text-center">
               OneTechConnect (OTC) is Africa's premier technology law organization, advancing tech, 
               social and legal services to empower African innovation. We provide real-time legal 
               and advisory solutions focusing on innovation, interoperability, equity, and human rights.
@@ -45,9 +45,9 @@ export function HomeAbout() {
           {/* Mission & Vision */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
             {/* Mission */}
-            <div className="bg-card border border-border rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-300 card-hover">
+            <div className="card-dark border border-primary/30 rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-300 card-hover">
               <h3 className="heading-card text-gradient-blue mb-4">Our Mission</h3>
-              <p className="text-body text-muted-foreground leading-relaxed text-justify sm:text-left">
+              <p className="text-body text-dark-muted leading-relaxed text-justify sm:text-left">
                 To advance Africa's technological progress by providing innovative legal solutions, 
                 strategic advocacy, and comprehensive support that enables tech entrepreneurs to navigate 
                 the complex intersection of law and technology.
@@ -55,9 +55,9 @@ export function HomeAbout() {
             </div>
 
             {/* Vision */}
-            <div className="bg-card border border-border rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-300 card-hover">
+            <div className="card-dark border border-primary/30 rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-300 card-hover">
               <h3 className="heading-card text-gradient-blue mb-4">Our Vision</h3>
-              <p className="text-body text-muted-foreground leading-relaxed text-justify sm:text-left">
+              <p className="text-body text-dark-muted leading-relaxed text-justify sm:text-left">
                 To be the leading catalyst for Africa's digital transformation, creating a continent 
                 where technology and law work in harmony to drive innovation, economic growth, 
                 and social progress for all Africans.
@@ -77,7 +77,7 @@ export function HomeAbout() {
                   <h4 className="font-playfair font-semibold text-gradient-blue mb-2">
                     {value.title}
                   </h4>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-dark-muted">
                     {value.description}
                   </p>
                 </div>
@@ -87,11 +87,11 @@ export function HomeAbout() {
 
           {/* Call to Action */}
           <div className="text-center">
-            <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl p-8 border border-primary/20">
+            <div className="bg-dark-card/50 rounded-2xl p-8 border border-primary/20">
               <h3 className="heading-card text-gradient-blue mb-4">
                 Ready to Transform Africa's Digital Future?
               </h3>
-              <p className="text-body text-muted-foreground mb-6 max-w-2xl mx-auto">
+              <p className="text-body text-dark-muted mb-6 max-w-2xl mx-auto">
                 Join us in our mission to create a more equitable and innovative digital ecosystem 
                 across Africa. Discover our comprehensive approach to technology law.
               </p>

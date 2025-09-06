@@ -25,7 +25,7 @@ const principles = [
 
 export function CorePrinciples() {
   return (
-    <section className="py-24 bg-gradient-to-b from-card/30 to-background">
+    <section className="py-24 section-dark-brown">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
@@ -33,7 +33,7 @@ export function CorePrinciples() {
             <h2 className="heading-section text-gradient-blue mb-6">
               Our Core Principles
             </h2>
-            <p className="text-body text-muted-foreground max-w-3xl mx-auto text-justify sm:text-center">
+            <p className="text-body text-dark-muted max-w-3xl mx-auto text-justify sm:text-center">
               These fundamental principles guide every decision we make and every solution we create, 
               ensuring our work drives meaningful change across Africa.
             </p>
@@ -52,7 +52,7 @@ export function CorePrinciples() {
                 <h3 className="text-xl font-playfair font-semibold text-gradient-blue mb-4">
                   {principle.title}
                 </h3>
-                <p className="text-body text-muted-foreground leading-relaxed">
+                <p className="text-body text-dark-muted leading-relaxed">
                   {principle.description}
                 </p>
               </div>
@@ -61,11 +61,11 @@ export function CorePrinciples() {
 
           {/* Call to Action */}
           <div className="text-center mt-16">
-            <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl p-8 border border-primary/20">
+            <div className="bg-dark-card/50 rounded-2xl p-8 border border-primary/20">
               <h3 className="heading-card text-gradient-blue mb-4">
                 Experience Our Principles in Action
               </h3>
-              <p className="text-body text-muted-foreground mb-6 max-w-2xl mx-auto">
+              <p className="text-body text-dark-muted mb-6 max-w-2xl mx-auto">
                 See how these core principles shape our approach to technology law and drive 
                 innovation across Africa's digital ecosystem.
               </p>

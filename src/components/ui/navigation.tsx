@@ -147,8 +147,8 @@ export function Navigation() {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden mt-4 pb-4 border-t border-border">
-            <div className="flex flex-col space-y-2 pt-4">
+          <div className="lg:hidden mt-4 pb-4 border-t border-border bg-card/95 backdrop-blur-md rounded-lg mx-4 shadow-lg">
+            <div className="flex flex-col space-y-2 pt-4 px-4">
               {navItems.map((item) => (
                 <div key={item.name}>
                   {item.dropdown ? (
@@ -172,7 +172,7 @@ export function Navigation() {
                       
                       {/* Mobile Dropdown */}
                       {activeDropdown === item.name && (
-                        <div className="ml-4 mt-2 space-y-2">
+                        <div className="ml-4 mt-2 space-y-2 bg-secondary/30 rounded-lg p-3">
                           {item.dropdown.map((dropdownItem) => (
                             <Link
                               key={dropdownItem.name}
