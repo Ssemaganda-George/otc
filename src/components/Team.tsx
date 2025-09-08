@@ -41,19 +41,19 @@ const teamMembers = [
       twitter: "#"
     }
   },
-  {
-    name: "Ssemaganda George ",
-    pronouns: "",
-    position: "Technical Expert Innovations & Digital Transformation",
-    bio: "George is a dynamic tech innovator with a keen interest in artificial intelligence and start-up development. He has received professional training and practical experience in energy systems, web design, mobile app development, and AI applications. He is proficient in JavaScript, Swift, and Python, and is currently completing his Bachelor of Science in Computer Science (Computer and Information Sciences and Support Services). Shon is the Co-founder of Dirt Trails Safaris and has previously served as a DevOps Engineer at MpaMpe Logo, Network Auditor at UMEME, and Machine Learning Intern at DC4M. His diverse background equips him with practical insights that drive OTC's innovation initiatives, particularly in digital transformation, AI integration, and technology-driven solutions.",
-    image: "/placeholder.svg",
-    expertise: ["Artificial Intelligence", "Web Development", "Mobile Apps", "Digital Transformation"],
-    social: {
-      linkedin: "#",
-      email: "george@onetechconnect.org",
-      twitter: "#"
-    }
-  },
+  // {
+  //   name: "Ssemaganda George ",
+  //   pronouns: "",
+  //   position: "Technical Expert Innovations & Digital Transformation",
+  //   bio: "George is a dynamic tech innovator with a keen interest in artificial intelligence and start-up development. He has received professional training and practical experience in energy systems, web design, mobile app development, and AI applications. He is proficient in JavaScript, Swift, and Python, and is currently completing his Bachelor of Science in Computer Science (Computer and Information Sciences and Support Services). Shon is the Co-founder of Dirt Trails Safaris and has previously served as a DevOps Engineer at MpaMpe Logo, Network Auditor at UMEME, and Machine Learning Intern at DC4M. His diverse background equips him with practical insights that drive OTC's innovation initiatives, particularly in digital transformation, AI integration, and technology-driven solutions.",
+  //   image: "/placeholder.svg",
+  //   expertise: ["Artificial Intelligence", "Web Development", "Mobile Apps", "Digital Transformation"],
+  //   social: {
+  //     linkedin: "#",
+  //     email: "george@onetechconnect.org",
+  //     twitter: "#"
+  //   }
+  // },
   {
     name: "Abomugisha Dorothy",
     pronouns: "",
