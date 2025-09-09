@@ -19,17 +19,19 @@ const navItems = [
     name: "What We Do",
     href: "/what-we-do",
     dropdown: [
-      { name: "Our Approach", href: "/what-we-do/approach" },
+      { name: "Departments", href: "/what-we-do/approach" },
       { name: "Focus Areas", href: "/what-we-do/focus-areas" },
-      { name: "Strategic Pillars", href: "/what-we-do/pillars" }
+      { name: "Programmes", href: "/what-we-do/programmes" }
     ]
   },
   {
     name: "Our Products",
     href: "/our-products",
     dropdown: [
-      { name: "Products Overview", href: "/our-products/overview" },
-      { name: "Services", href: "/our-products/services" }
+      { name: "Strategic Litigation", href: "/products/strategic-litigation" },
+      { name: "Innovations", href: "/products/innovations" },
+      { name: "Consultancy Services", href: "/products/consultancy" },
+      { name: "Short Courses", href: "/products/short-courses" }
     ]
   },
   { name: "News & Updates", href: "/news" },

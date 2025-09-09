@@ -1,25 +1,25 @@
-import { Lightbulb, Link, Users, Heart } from "lucide-react";
+import { Search, GraduationCap, Megaphone, Lightbulb } from "lucide-react";
 
 const principles = [
   {
+    icon: Search,
+    title: "Research & Development (R&D)",
+    description: "Generating evidence to inform policy, practice, and innovation through comprehensive research and analysis."
+  },
+  {
+    icon: GraduationCap,
+    title: "Training & Skillset Development (TSD)",
+    description: "Equipping young people and communities with digital, technical, and rights-based skills for the future."
+  },
+  {
+    icon: Megaphone,
+    title: "Strategic Advocacy & Partnerships (SAP)",
+    description: "Building alliances to influence policy and amplify voices for justice and accountability across Africa."
+  },
+  {
     icon: Lightbulb,
-    title: "Innovation",
-    description: "Pioneering cutting-edge solutions that transform Africa's digital landscape and drive technological advancement across the continent."
-  },
-  {
-    icon: Link,
-    title: "Interoperability",
-    description: "Building connected systems that seamlessly integrate across platforms, ensuring technology works together for maximum impact."
-  },
-  {
-    icon: Users,
-    title: "Equity",
-    description: "Ensuring fair access to technology and legal services for all Africans, regardless of background or geographic location."
-  },
-  {
-    icon: Heart,
-    title: "Human Rights",
-    description: "Upholding fundamental human rights in all our tech solutions, protecting privacy, dignity, and freedom in the digital age."
+    title: "Tech, Innovation & Digital Transformation (TID)",
+    description: "Creating and supporting solutions that harness technology for inclusive and sustainable development."
   }
 ];
 
@@ -31,11 +31,11 @@ export function CorePrinciples() {
           {/* Section Header */}
           <div className="text-center mb-16">
             <h2 className="heading-section text-white mb-6">
-              Our Core Principles
+              Our Strategic Pillars
             </h2>
             <p className="text-body text-gray-300 max-w-3xl mx-auto text-justify sm:text-center">
-              These fundamental principles guide every decision we make and every solution we create, 
-              ensuring our work drives meaningful change across Africa.
+              We deliver our work through four strategic pillars that drive inclusive digital transformation 
+              while ensuring respect for fundamental human rights and social justice.
             </p>
           </div>
 

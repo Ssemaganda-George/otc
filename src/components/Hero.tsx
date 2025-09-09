@@ -36,10 +36,7 @@ export function Hero() {
 
           {/* Subtitle */}
           <p className="text-body text-muted-foreground max-w-3xl mx-auto mb-12 animate-fade-in-up text-justify sm:text-center" style={{ animationDelay: '0.2s' }}>
-            Upholding Respect for Human Rights and social justice for all. OTC is a Youth-led African Organization 
-            that ensures digital transformation in health, sexual reproductive health, finance, agriculture and 
-            development is advanced while ensuring respect to fundamental human rights and social justice for 
-            every individual and communities in Africa.
+            OTC is a Youth-led African Organization that ensures digital transformation in health, sexual reproductive health, finance, agriculture and Development is advanced while ensuring respect to fundamental human rights and social justice for every individual and communities in Africa.
           </p>
 
           {/* Stats Row */}

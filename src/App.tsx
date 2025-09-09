@@ -20,6 +20,11 @@ import NewsUpdatesPage from "./pages/NewsUpdatesPage";
 import TeamPage from "./pages/TeamPage";
 import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
+import StrategicLitigationPage from "./pages/StrategicLitigationPage";
+import InnovationsPage from "./pages/InnovationsPage";
+import ConsultancyPage from "./pages/ConsultancyPage";
+import ShortCoursesPage from "./pages/ShortCoursesPage";
+import ProgrammesPage from "./pages/ProgrammesPage";
 
 const queryClient = new QueryClient();
 
@@ -44,12 +49,16 @@ const App = () => (
           <Route path="/what-we-do" element={<WhatWeDoPage />} />
           <Route path="/what-we-do/approach" element={<OurApproachPage />} />
           <Route path="/what-we-do/focus-areas" element={<FocusAreasPage />} />
-          <Route path="/what-we-do/pillars" element={<StrategicPillarsPage />} />
+          <Route path="/what-we-do/programmes" element={<ProgrammesPage />} />
           
           {/* Our Products Routes */}
           <Route path="/our-products" element={<OurProductsPage />} />
           <Route path="/our-products/overview" element={<ProductsOverviewPage />} />
           <Route path="/our-products/services" element={<OurServicesPage />} />
+          <Route path="/products/strategic-litigation" element={<StrategicLitigationPage />} />
+          <Route path="/products/innovations" element={<InnovationsPage />} />
+          <Route path="/products/consultancy" element={<ConsultancyPage />} />
+          <Route path="/products/short-courses" element={<ShortCoursesPage />} />
           
           {/* Other Routes */}
           <Route path="/news" element={<NewsUpdatesPage />} />

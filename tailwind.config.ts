@@ -21,6 +21,8 @@ export default {
 			fontFamily: {
 				inter: ['Inter', 'sans-serif'],
 				playfair: ['Playfair Display', 'serif'],
+				aptos: ['Aptos', 'sans-serif'],
+				sans: ['Aptos', 'Inter', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',

@@ -1,27 +1,32 @@
-import { Target, Users, Heart, Lightbulb, ArrowRight } from "lucide-react";
+import { Target, Users, Heart, Lightbulb, ArrowRight, Globe } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const coreValues = [
   {
-    icon: Target,
-    title: "Excellence",
-    description: "Delivering world-class legal and tech solutions."
+    icon: Users,
+    title: "Connectivity",
+    description: "Building technologies and systems that seamlessly connect people, communities, and innovations across Africa."
   },
   {
     icon: Lightbulb,
     title: "Innovation",
-    description: "Pioneering new approaches to digital challenges."
+    description: "Driving creative, future-oriented solutions that harness technology to improve lives and transform societies."
+  },
+  {
+    icon: Globe,
+    title: "Afrocentrism",
+    description: "Advancing an African-led tech agenda, rooted in local knowledge, institutions, and leadership."
   },
   {
     icon: Heart,
-    title: "Human Rights",
-    description: "Protecting privacy, dignity, and promoting social justice."
+    title: "Human Rights & Social Justice",
+    description: "Ensuring that digital transformation upholds rights, dignity, and equity for all Africans."
   },
   {
-    icon: Users,
-    title: "Ubuntu",
-    description: "Ensuring all Africans benefit from digital transformation."
+    icon: Target,
+    title: "Excellence",
+    description: "Committing to the highest standards of professionalism, integrity, and impact in all our work."
   }
 ];
 
@@ -48,9 +53,7 @@ export function HomeAbout() {
             <div className="card-dark border border-golden/30 rounded-2xl p-8 shadow-card hover:shadow-golden transition-all duration-300 card-hover">
               <h3 className="heading-card text-white mb-4">Our Mission</h3>
               <p className="text-body text-gray-300 leading-relaxed text-justify sm:text-left">
-                To advance Africa's technological progress by providing innovative legal solutions, 
-                strategic advocacy, and comprehensive support that enables tech entrepreneurs to navigate 
-                the complex intersection of law and technology.
+                To drive inclusive digital transformation in health, sexual and reproductive health, finance, agriculture, and development across Africa while safeguarding fundamental human rights and advancing social justice through research, training, advocacy, and innovation.
               </p>
             </div>
 
@@ -58,9 +61,7 @@ export function HomeAbout() {
             <div className="card-dark border border-golden/30 rounded-2xl p-8 shadow-card hover:shadow-golden transition-all duration-300 card-hover">
               <h3 className="heading-card text-white mb-4">Our Vision</h3>
               <p className="text-body text-gray-300 leading-relaxed text-justify sm:text-left">
-                To be the leading catalyst for Africa's digital transformation, creating a continent 
-                where technology and law work in harmony to drive innovation, economic growth, 
-                and social progress for all Africans.
+                An Africa where innovation and digital transformation advance human rights and leave no one behind.
               </p>
             </div>
           </div>

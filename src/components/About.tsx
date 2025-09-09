@@ -23,7 +23,7 @@ const values = [
   },
   {
     icon: Users,
-    title: "Connectivity",
+    title: "Connectivity (One Tech Approach)",
     description: "Building technologies and systems that seamlessly connect people, communities, and innovations across Africa."
   }
 ];
@@ -55,9 +55,7 @@ export function About() {
                 <h3 className="heading-card text-white">Our Mission</h3>
               </div>
               <p className="text-body text-gray-300 leading-relaxed text-justify sm:text-left">
-                To champion Africa's technological and digital transformation through innovative legal frameworks, 
-                policy advocacy, and strategic litigation. We empower the intersection of law, technology, and human rights 
-                to ensure that Africa's digital future is secure, equitable, and prosperity-driven for all.
+                To drive inclusive digital transformation in health, sexual and reproductive health, finance, agriculture, and development across Africa while safeguarding fundamental human rights and advancing social justice through research, training, advocacy, and innovation.
               </p>
             </div>
 
@@ -70,9 +68,7 @@ export function About() {
                 <h3 className="heading-card text-white">Our Vision</h3>
               </div>
               <p className="text-body text-gray-300 leading-relaxed text-justify sm:text-left">
-                An Africa where technology drives sustainable development, economic growth, and social justice. 
-                We envision a digitally transformed continent that leads global innovation while preserving 
-                cultural values and promoting inclusive prosperity for all African communities.
+                An Africa where innovation and digital transformation advance human rights and leave no one behind.
               </p>
             </div>
           </div>

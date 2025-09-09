@@ -1,4 +1,51 @@
-import { Target, Users, Briefcase, Lightbulb } from "lucide-react";
+import { BookOpen, Users, Megaphone, Lightbulb } from "lucide-react";
+
+const departments = [
+  {
+    icon: BookOpen,
+    title: "Research & Development",
+    description: "Generating evidence to inform policy, practice, and innovation through comprehensive research and analysis across all sectors.",
+    keyActivities: [
+      "Documentation and Think tanks",
+      "Policy Analysis and Legislative Scrutiny", 
+      "Experiments and Implementation",
+      "Kimeeza / Public debates"
+    ]
+  },
+  {
+    icon: Users,
+    title: "Training & Skill Development",
+    description: "Equipping young people and communities with digital, technical, and rights-based skills for the digital transformation era.",
+    keyActivities: [
+      "Short courses and Academic programmes",
+      "Seminars and Master classes",
+      "Webinars and Workshops",
+      "Capacity building initiatives"
+    ]
+  },
+  {
+    icon: Megaphone,
+    title: "Advocacy & Partnerships",
+    description: "Building alliances to influence policy and amplify voices for justice and accountability across Africa.",
+    keyActivities: [
+      "Reporting and MDA collaborations",
+      "Activism and Strategic litigation",
+      "ADR and Legislative drafting",
+      "Coalition/Networks/Movement building"
+    ]
+  },
+  {
+    icon: Lightbulb,
+    title: "Tech, Innovation & Digital Transformation (TID)",
+    description: "Creating and supporting solutions that harness technology for inclusive and sustainable development.",
+    keyActivities: [
+      "Hackathons and IP Protection",
+      "Data management and Sandboxes",
+      "Compliance services",
+      "Grant & Donations and Investment Fund"
+    ]
+  }
+];
 
 export function OurApproach() {
   return (
@@ -8,120 +55,61 @@ export function OurApproach() {
           {/* Section Header */}
           <div className="text-center mb-16">
             <h2 className="heading-section text-gradient-blue mb-6">
-              Our Approach
+              Our Departments
             </h2>
             <p className="text-body text-muted-foreground max-w-3xl mx-auto">
-              We employ a comprehensive, integrated approach that combines legal expertise, 
-              technological innovation, and human rights advocacy to drive meaningful change.
+              We organize our work through four specialized departments that drive inclusive digital 
+              transformation while ensuring respect for fundamental human rights and social justice.
             </p>
           </div>
 
-          {/* Approach Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
-            <div className="bg-card border border-border rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-300">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mr-4">
-                  <Target className="w-6 h-6 text-primary" />
+          {/* Departments Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+            {departments.map((department, index) => (
+              <div 
+                key={department.title}
+                className="bg-card border border-border rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-300 card-hover"
+              >
+                <div className="flex items-start mb-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mr-6 flex-shrink-0">
+                    <department.icon className="w-8 h-8 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-playfair font-semibold text-gradient-blue mb-3">
+                      {department.title}
+                    </h3>
+                    <p className="text-body text-muted-foreground leading-relaxed mb-4">
+                      {department.description}
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-playfair font-semibold text-primary">
-                  Integrated Solutions
-                </h3>
-              </div>
-              <p className="text-body text-muted-foreground leading-relaxed">
-                We don't just address symptoms—we tackle root causes by integrating legal frameworks, 
-                policy development, and technological innovation to create lasting solutions that serve 
-                Africa's diverse communities.
-              </p>
-            </div>
-
-            <div className="bg-card border border-border rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-300">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mr-4">
-                  <Users className="w-6 h-6 text-primary" />
+                
+                <div className="ml-22">
+                  <h4 className="font-semibold text-foreground mb-3">Key Activities:</h4>
+                  <ul className="space-y-2">
+                    {department.keyActivities.map((activity, activityIndex) => (
+                      <li key={activityIndex} className="flex items-start space-x-3">
+                        <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-sm text-muted-foreground">{activity}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <h3 className="text-xl font-playfair font-semibold text-primary">
-                  Human-Centered Design
-                </h3>
               </div>
-              <p className="text-body text-muted-foreground leading-relaxed">
-                Every solution we develop places human rights and social justice at its core. 
-                We ensure that technological advancement serves people, protects their dignity, 
-                and promotes inclusive development across Africa.
-              </p>
-            </div>
+            ))}
           </div>
 
-          {/* Methodology */}
-          <div className="bg-gradient-to-r from-secondary/60 to-secondary/40 rounded-2xl p-8 mb-16">
-            <h3 className="text-2xl font-playfair font-semibold text-center text-primary mb-8">
-              Our Methodology
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-              {[
-                {
-                  number: "01",
-                  title: "Research & Analysis",
-                  description: "Deep dive into challenges and opportunities"
-                },
-                {
-                  number: "02", 
-                  title: "Stakeholder Engagement",
-                  description: "Collaborate with communities and partners"
-                },
-                {
-                  number: "03",
-                  title: "Solution Development",
-                  description: "Create integrated legal and tech solutions"
-                },
-                {
-                  number: "04",
-                  title: "Implementation & Impact",
-                  description: "Deploy solutions and measure real-world impact"
-                }
-              ].map((step, index) => (
-                <div key={step.number} className="text-center">
-                  <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-primary-foreground font-bold text-lg">{step.number}</span>
-                  </div>
-                  <h4 className="font-semibold text-foreground mb-2">{step.title}</h4>
-                  <p className="text-sm text-muted-foreground">{step.description}</p>
-                </div>
-              ))}
+          {/* Connectivity Statement */}
+          <div className="bg-gradient-to-r from-golden/10 to-golden/5 border-2 border-golden/20 rounded-2xl p-8 text-center">
+            <div className="flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-golden/20 rounded-lg flex items-center justify-center mr-4">
+                <Lightbulb className="w-6 h-6 text-golden" />
+              </div>
+              <h3 className="text-2xl font-playfair font-bold text-gradient-blue">One Tech Approach</h3>
             </div>
-          </div>
-
-          {/* Core Principles */}
-          <div className="text-center">
-            <h3 className="text-2xl font-playfair font-semibold text-primary mb-8">
-              Guiding Principles
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                {
-                  icon: Briefcase,
-                  title: "Evidence-Based",
-                  description: "All our work is grounded in rigorous research and data-driven insights"
-                },
-                {
-                  icon: Users,
-                  title: "Collaborative",
-                  description: "We work closely with communities, governments, and partners across Africa"
-                },
-                {
-                  icon: Lightbulb,
-                  title: "Innovative", 
-                  description: "We embrace cutting-edge approaches while respecting African contexts and values"
-                }
-              ].map((principle, index) => (
-                <div key={principle.title} className="text-center">
-                  <div className="w-16 h-16 bg-golden/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <principle.icon className="w-8 h-8 text-primary" />
-                  </div>
-                  <h4 className="text-lg font-semibold text-primary mb-3">{principle.title}</h4>
-                  <p className="text-body text-muted-foreground">{principle.description}</p>
-                </div>
-              ))}
-            </div>
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-4xl mx-auto">
+              <span className="font-semibold text-primary">Connectivity:</span> Building technologies and systems that seamlessly connect people, communities, and innovations across Africa through our integrated departmental approach.
+            </p>
           </div>
         </div>
       </div>
