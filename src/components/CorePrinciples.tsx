@@ -1,25 +1,25 @@
-import { Lightbulb, Link, Users, Heart } from "lucide-react";
+import { Search, GraduationCap, Megaphone, Lightbulb } from "lucide-react";
 
 const principles = [
   {
+    icon: Search,
+    title: "Research & Development (R&D)",
+    description: "Generating evidence to inform policy, practice, and innovation through comprehensive research and analysis."
+  },
+  {
+    icon: GraduationCap,
+    title: "Training & Skillset Development (TSD)",
+    description: "Equipping young people and communities with digital, technical, and rights-based skills for the future."
+  },
+  {
+    icon: Megaphone,
+    title: "Strategic Advocacy & Partnerships (SAP)",
+    description: "Building alliances to influence policy and amplify voices for justice and accountability across Africa."
+  },
+  {
     icon: Lightbulb,
-    title: "Innovation",
-    description: "Pioneering cutting-edge solutions that transform Africa's digital landscape and drive technological advancement across the continent."
-  },
-  {
-    icon: Link,
-    title: "Interoperability",
-    description: "Building connected systems that seamlessly integrate across platforms, ensuring technology works together for maximum impact."
-  },
-  {
-    icon: Users,
-    title: "Equity",
-    description: "Ensuring fair access to technology and legal services for all Africans, regardless of background or geographic location."
-  },
-  {
-    icon: Heart,
-    title: "Human Rights",
-    description: "Upholding fundamental human rights in all our tech solutions, protecting privacy, dignity, and freedom in the digital age."
+    title: "Tech, Innovation & Digital Transformation (TID)",
+    description: "Creating and supporting solutions that harness technology for inclusive and sustainable development."
   }
 ];
 
@@ -30,12 +30,12 @@ export function CorePrinciples() {
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="heading-section text-gradient-blue mb-6">
-              Our Core Principles
+            <h2 className="heading-section text-white mb-6">
+              Our Strategic Pillars
             </h2>
-            <p className="text-body text-dark-muted max-w-3xl mx-auto text-justify sm:text-center">
-              These fundamental principles guide every decision we make and every solution we create, 
-              ensuring our work drives meaningful change across Africa.
+            <p className="text-body text-gray-300 max-w-3xl mx-auto text-justify sm:text-center">
+              We deliver our work through four strategic pillars that drive inclusive digital transformation 
+              while ensuring respect for fundamental human rights and social justice.
             </p>
           </div>
 
@@ -46,13 +46,13 @@ export function CorePrinciples() {
                 key={principle.title}
                 className={`text-center group animate-fade-in-up opacity-0 [animation-delay:${index * 0.2}s] [animation-fill-mode:forwards]`}
               >
-                <div className="w-20 h-20 bg-gradient-to-br from-primary/20 to-primary/10 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:shadow-blue transition-all duration-300 group-hover:scale-110 border border-primary/20">
-                  <principle.icon className="w-10 h-10 text-primary" />
+                <div className="w-20 h-20 bg-gradient-to-br from-golden/30 to-golden/20 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:shadow-golden transition-all duration-300 group-hover:scale-110 border border-golden/30">
+                  <principle.icon className="w-10 h-10 text-golden" />
                 </div>
-                <h3 className="text-xl font-playfair font-semibold text-gradient-blue mb-4">
+                <h3 className="text-xl font-playfair font-semibold text-white mb-4">
                   {principle.title}
                 </h3>
-                <p className="text-body text-dark-muted leading-relaxed">
+                <p className="text-body text-gray-300 leading-relaxed">
                   {principle.description}
                 </p>
               </div>
@@ -61,11 +61,11 @@ export function CorePrinciples() {
 
           {/* Call to Action */}
           <div className="text-center mt-16">
-            <div className="bg-dark-card/50 rounded-2xl p-8 border border-primary/20">
-              <h3 className="heading-card text-gradient-blue mb-4">
+            <div className="bg-dark-card/50 rounded-2xl p-8 border border-golden/30">
+              <h3 className="heading-card text-white mb-4">
                 Experience Our Principles in Action
               </h3>
-              <p className="text-body text-dark-muted mb-6 max-w-2xl mx-auto">
+              <p className="text-body text-gray-300 mb-6 max-w-2xl mx-auto">
                 See how these core principles shape our approach to technology law and drive 
                 innovation across Africa's digital ecosystem.
               </p>

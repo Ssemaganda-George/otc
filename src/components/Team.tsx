@@ -31,26 +31,13 @@ const teamMembers = [
   {
     name: "Nakitende Sauda",
     pronouns: "",
-    position: "Director of Programs",
-    bio: "Sauda is the Director of Programs at OTC, driven by a passion for ensuring that technological transformation advances the well-being and rights of women, children, and underserved communities across Africa. Sauda holds a Bachelor of Laws (Hons) and a first-class Diploma in Legal Practice. She is currently a master's candidate, where her research explores the criminalization of cyber laws and its impact on the right to freedom of expression in the digital era. With her expertise in research, teaching, project planning, management, monitoring, and reporting, Sauda is instrumental in leading our initiatives. She is a registered member of both the East African Law Society and the Uganda Law Society.",
+    position: "Head of Research and Development (R&D)",
+    bio: "Sauda is the Head of Research and Development at OTC, driven by a passion for ensuring that technological transformation advances the well-being and rights of women, children, and underserved communities across Africa. Sauda holds a Bachelor of Laws (Hons) and a first-class Diploma in Legal Practice. She is currently a master's candidate, where her research explores the criminalization of cyber laws and its impact on the right to freedom of expression in the digital era. With her expertise in research, teaching, project planning, management, monitoring, and reporting, Sauda is instrumental in leading our initiatives. She is a registered member of both the East African Law Society and the Uganda Law Society.",
     image: "/images/Sauda.jpg",
     expertise: ["Research Management", "Program Development", "Cyber Law", "Women's Rights"],
     social: {
       linkedin: "#",
       email: "sauda@onetechconnect.org",
-      twitter: "#"
-    }
-  },
-  {
-    name: "Ssemaganda George ",
-    pronouns: "",
-    position: "Technical Expert Innovations & Digital Transformation",
-    bio: "George is a dynamic tech innovator with a keen interest in artificial intelligence and start-up development. He has received professional training and practical experience in energy systems, web design, mobile app development, and AI applications. He is proficient in JavaScript, Swift, and Python, and is currently completing his Bachelor of Science in Computer Science (Computer and Information Sciences and Support Services). Shon is the Co-founder of Dirt Trails Safaris and has previously served as a DevOps Engineer at MpaMpe Logo, Network Auditor at UMEME, and Machine Learning Intern at DC4M. His diverse background equips him with practical insights that drive OTC's innovation initiatives, particularly in digital transformation, AI integration, and technology-driven solutions.",
-    image: "/placeholder.svg",
-    expertise: ["Artificial Intelligence", "Web Development", "Mobile Apps", "Digital Transformation"],
-    social: {
-      linkedin: "#",
-      email: "george@onetechconnect.org",
       twitter: "#"
     }
   },
@@ -98,7 +85,7 @@ export function Team() {
                   <img 
                     src={member.image} 
                     alt={member.name}
-                    className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-transparent to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4">

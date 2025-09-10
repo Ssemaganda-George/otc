@@ -1,7 +1,25 @@
 # OneTechConnect Website Updates
 
 ## Overview
-Major website restructure based on new organizational information and branding guidelines.
+Major website restructure based on new organizational information and branding guidelines provided on September 9, 2025.
+
+## Recent Updates (September 9, 2025)
+- [x] Fix team photo headroom (photos have heads cut off) - Changed object-center to object-top
+- [x] Update Nakitende Sauda's position to "Head of Research and Development (R&D)"
+- [x] Update hero section to start with "OTC..."
+- [x] Uncomment George (Ssemaganda George/Shon) in team
+- [x] Update Mission statement in About and HomeAbout components
+- [x] Update Vision statement in About and HomeAbout components
+- [x] Update core values in HomeAbout component to match new 5 values
+- [x] Update CorePrinciples component to show four strategic pillars
+- [x] Update footer services and programmes sections
+- [x] Update font to Aptos (Body) - Added to Tailwind config and index.html
+- [x] Update favicon to show Logo.png from public directory
+- [x] Navigation structure already matches requirements
+- [x] "What we do" page content already matches requirements
+- [x] "Our Products" page content already matches requirements
+- [x] Update "Who We Are" page according to documentation - Updated mission, vision, and organizational description
+- [x] Replace "Our Approach" page with Departments structure - Updated with 4 departments and key activities
 
 ## Navigation Structure Changes
 

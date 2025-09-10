@@ -4,24 +4,24 @@ import { Button } from "@/components/ui/button";
 
 const quickLinks = [
   { name: "About Us", href: "/about" },
-  { name: "Services", href: "/services" },
-  { name: "Team", href: "/team" },
-  { name: "Programmes", href: "/programs" },
-  { name: "Contact", href: "/contact" }
+  { name: "What We Do", href: "/what-we-do" },
+  { name: "Our Products", href: "/our-products" },
+  { name: "Team", href: "/about/team" },
+  { name: "Contact Us", href: "/contact" }
 ];
 
 const services = [
-  { name: "Hackathon Program", href: "/services" },
-  { name: "Legal Support", href: "/services" },
-  { name: "Research & Training", href: "/services" },
-  { name: "Strategic Advocacy", href: "/services" }
+  { name: "Strategic Litigation", href: "/products/strategic-litigation" },
+  { name: "Innovations", href: "/products/innovations" },
+  { name: "Consultancy Services", href: "/products/consultancy" },
+  { name: "Research & Development", href: "/what-we-do/programmes" }
 ];
 
 const programmes = [
-  { name: "AfricanIntelligenceNow (AINow)", href: "/programs" },
-  { name: "EmpowerThem (EMP)", href: "/programs" },
-  { name: "BigTechAfrica (BiTA)", href: "/programs" },
-  { name: "One Tech Approach (OTA)", href: "/programs" }
+  { name: "Tech & SRHR Governance (TSG)", href: "/what-we-do/programmes" },
+  { name: "AfricanIntelligenceNow (AiNow)", href: "/what-we-do/programmes" },
+  { name: "BigTech Africa (BiTA)", href: "/what-we-do/programmes" },
+  { name: "EmpowerThem (EMT)", href: "/what-we-do/programmes" }
 ];
 
 const legalLinks = [
