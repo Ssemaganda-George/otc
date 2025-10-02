@@ -3,9 +3,11 @@ import { ArrowRight, Code, Scale, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroImage1 from "@/assets/hero-bg.jpg";
 import heroImage2 from "@/assets/sac1.jpg";
+import heroImage3 from "@/assets/sac2.png";
+import heroImage4 from "@/assets/sac3.webp";
 // Add more images as needed
 
-const heroImages = [heroImage1, heroImage2 /*, more images */];
+const heroImages = [heroImage1, heroImage2, heroImage3, heroImage4];
 
 export function Hero() {
   const [current, setCurrent] = useState(0);
