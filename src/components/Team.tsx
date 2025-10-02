@@ -175,7 +175,7 @@ export function Team() {
               </h3>
               <p className="text-body text-muted-foreground mb-6 max-w-2xl mx-auto">
                 We're always looking for passionate individuals who share our vision 
-                of advancing Africa's tech-legal landscape.
+                of advancing digital Justice in Africa.
               </p>
               <Button variant="golden">
                 View Open Positions

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { BookOpen, Users, Megaphone, Lightbulb } from "lucide-react";
 
 const departments = [
@@ -48,6 +49,15 @@ const departments = [
 ];
 
 export function OurApproach() {
+  // State to control visibility of each department's details
+  const [openDetails, setOpenDetails] = useState(Array(departments.length).fill(false));
+
+  const handleToggle = (idx: number) => {
+    setOpenDetails((prev) =>
+      prev.map((open, i) => (i === idx ? !open : open))
+    );
+  };
+
   return (
     <section className="py-24 bg-background">
       <div className="container mx-auto px-6">
@@ -85,15 +95,25 @@ export function OurApproach() {
                 </div>
                 
                 <div className="ml-22">
-                  <h4 className="font-semibold text-foreground mb-3">Key Activities:</h4>
-                  <ul className="space-y-2">
-                    {department.keyActivities.map((activity, activityIndex) => (
-                      <li key={activityIndex} className="flex items-start space-x-3">
-                        <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="text-sm text-muted-foreground">{activity}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <button
+                    className="mb-4 px-5 py-2 rounded-full bg-golden text-golden-foreground text-xs font-semibold shadow-lg hover:bg-golden-dark hover:scale-105 transition active:scale-95 focus:outline-none focus:ring-2 focus:ring-golden focus:ring-offset-2"
+                    onClick={() => handleToggle(index)}
+                  >
+                    {openDetails[index] ? "Hide Details" : "View Details"}
+                  </button>
+                  {openDetails[index] && (
+                    <>
+                      <h4 className="font-semibold text-foreground mb-3">Key Activities:</h4>
+                      <ul className="space-y-2">
+                        {department.keyActivities.map((activity, activityIndex) => (
+                          <li key={activityIndex} className="flex items-start space-x-3">
+                            <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                            <span className="text-sm text-muted-foreground">{activity}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
                 </div>
               </div>
             ))}

@@ -55,7 +55,7 @@ export function About() {
                 <h3 className="heading-card text-white">Our Vision</h3>
               </div>
               <p className="text-body text-gray-300 leading-relaxed text-justify sm:text-left">
-                An Africa where innovation and digital transformation advance human rights and leave no one behind.
+                An Africa where innovation and digital transformation advance human rights and Social Justice for everyone.
               </p>
             </div>
             {/* Mission */}

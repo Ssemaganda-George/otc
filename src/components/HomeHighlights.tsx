@@ -13,7 +13,7 @@ const highlights = [
   {
     icon: Brain,
     title: "Innovation Programs", 
-    description: "AINow, EmpowerThem, BigTechAfrica, and One Tech Approach initiatives.",
+    description: "AINow, EmpowerThem, BigTechAfrica and SRHR Governance (TSG).",
     link: "/programs",
     linkText: "Explore Programs"
   },
@@ -26,10 +26,10 @@ const highlights = [
   },
   {
     icon: Briefcase,
-    title: "OTC Framework",
-    description: "Our comprehensive methodology for tech-legal integration.",
-    link: "/about",
-    linkText: "Learn Framework"
+    title: "Health Tech & SRHR",
+    description: "Our comprehensive support towards Health Justice and SRHR.",
+    link: "/programs",
+    linkText: "Learn More"
   }
 ];
 
@@ -77,29 +77,7 @@ export function HomeHighlights() {
                 </div>
               </div>
             ))}
-          </div>
-
-          {/* Core Values Preview */}
-          <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-3xl p-12 border border-primary/20">
-            <div className="text-center">
-              <h3 className="heading-card text-gradient-blue mb-6">
-                Our Core Principles
-              </h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-                {["Innovation", "Interoperability", "Equity", "Human Rights"].map((principle) => (
-                  <div key={principle} className="text-center">
-                    <h4 className="font-semibold text-foreground mb-2">{principle}</h4>
-                  </div>
-                ))}
-              </div>
-              <Link to="/about">
-                <Button variant="golden" size="lg" className="group">
-                  Learn More About OTC
-                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </Link>
-            </div>
-          </div>
+          </div>          
         </div>
       </div>
     </section>

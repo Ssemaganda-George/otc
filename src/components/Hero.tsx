@@ -52,7 +52,7 @@ export function Hero() {
 
           {/* Subtitle */}
           <p className="text-body text-muted-foreground max-w-3xl mx-auto mb-12 animate-fade-in-up text-justify sm:text-center" style={{ animationDelay: '0.2s' }}>
-            OTC is a Youth-led African Organization that ensures digital justice in health, sexual reproductive health, finance, agriculture and Development is advanced while ensuring respect to fundamental human rights and social justice for every individual and communities in Africa.
+            OTC is a Youth-led African Not for Profit Organization that ensures digital justice in health, sexual reproductive health, finance, agriculture and Development is advanced while ensuring respect to fundamental human rights and social justice for every individual and communities in Africa.
           </p>
 
           {/* Stats Row */}
@@ -69,7 +69,7 @@ export function Hero() {
             </div>
             <div className="flex flex-col items-center space-y-2 col-span-2 md:col-span-1">
               <Globe className="w-10 h-10 sm:w-12 sm:h-12 text-primary mb-2" />
-              <div className="text-xl sm:text-2xl font-bold text-gradient-blue">20+</div>
+              <div className="text-xl sm:text-2xl font-bold text-gradient-blue">5+</div>
               <div className="text-muted-foreground text-sm sm:text-base">African Countries</div>
             </div>
           </div>

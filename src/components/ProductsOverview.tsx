@@ -58,8 +58,7 @@ export function ProductsOverview() {
               Our Products & Solutions
             </h2>
             <p className="text-body text-muted-foreground max-w-3xl mx-auto">
-              Comprehensive products and solutions designed to advance Africa's digital transformation 
-              while protecting rights and promoting inclusive development.
+              We offer a range of expert consultancy services designed to support innovation and growth across Africa, available with flexible payment options, including legal tender, equity, partnerships, co-investment, and other in-kind arrangements.
             </p>
           </div>
 
