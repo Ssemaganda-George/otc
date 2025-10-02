@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Navigation } from "@/components/ui/navigation";
 import { Footer } from "@/components/Footer";
 import { Brain, Heart, Users, Shield, Gavel, Target, ArrowRight } from "lucide-react";
@@ -66,6 +67,8 @@ const programmes = [
 ];
 
 export default function ProgrammesPage() {
+  const [expanded, setExpanded] = useState<number | null>(null);
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -94,85 +97,112 @@ export default function ProgrammesPage() {
           <div className="container mx-auto px-6">
             <div className="max-w-6xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                {programmes.map((programme, index) => (
-                  <div key={programme.id} className="space-y-8">
-                    {/* Programme Header */}
-                    <div className="bg-card border border-border rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-300">
-                      <div className="flex items-start space-x-6 mb-6">
-                        <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center flex-shrink-0">
-                          <programme.icon className="w-8 h-8 text-primary" />
-                        </div>
-                        <div>
-                          <h2 className="text-2xl font-playfair font-bold text-gradient-blue mb-3">
-                            {programme.title}
-                          </h2>
-                        </div>
-                      </div>
-                      
-                      <p className="text-body text-muted-foreground leading-relaxed mb-6">
-                        {programme.description}
-                      </p>
-
-                      {/* Programme Goal */}
-                      <div className="mb-6">
-                        <h3 className="text-lg font-semibold text-golden mb-3">Goal:</h3>
-                        <p className="text-body text-muted-foreground leading-relaxed">
-                          {programme.goal}
-                        </p>
-                      </div>
-
-                      {/* Strategic Objectives */}
-                      <div className="mb-6">
-                        <h3 className="text-lg font-semibold text-golden mb-4">
-                          {programme.id === 1 ? "Strategic Objectives:" : "Objectives:"}
-                        </h3>
-                        <ul className="space-y-3">
-                          {programme.objectives.map((objective, objIndex) => (
-                            <li key={objIndex} className="flex items-start space-x-3">
-                              <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                              <span className="text-body text-muted-foreground leading-relaxed">
-                                {objective}
-                              </span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      {/* Expected Outcomes (for programmes that have them) */}
-                      {programme.outcomes && (
-                        <div className="mb-6">
-                          <h3 className="text-lg font-semibold text-golden mb-3">Expected Outcomes:</h3>
-                          <p className="text-body text-muted-foreground leading-relaxed">
-                            {programme.outcomes}
-                          </p>
-                        </div>
-                      )}
-
-                      {/* Activities (for programmes that have them) */}
-                      {programme.activities && (
-                        <div className="mb-6">
-                          <h3 className="text-lg font-semibold text-golden mb-3">Outputs & Activities:</h3>
-                          <p className="text-body text-muted-foreground leading-relaxed">
-                            {programme.activities}
-                          </p>
-                        </div>
-                      )}
-
-                      {/* Special Note for BiTA */}
-                      {programme.specialNote && (
-                        <div className="bg-golden/10 border border-golden/20 rounded-xl p-6">
-                          <div className="flex items-center space-x-3 mb-3">
-                            <Gavel className="w-5 h-5 text-golden" />
-                            <h4 className="font-semibold text-golden">{programme.specialNote.title}</h4>
+                {programmes.map((programme, index) => {
+                  const isExpanded = expanded === index;
+                  return (
+                    <div key={programme.id} className="space-y-8">
+                      {/* Programme Header */}
+                      <div className="bg-card border border-border rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-300">
+                        <div className="flex items-start space-x-6 mb-6">
+                          <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center flex-shrink-0">
+                            <programme.icon className="w-8 h-8 text-primary" />
                           </div>
-                          <p className="text-body text-muted-foreground leading-relaxed">
-                            {programme.specialNote.description}
-                          </p>
+                          <div>
+                            <h2 className="text-2xl font-playfair font-bold text-gradient-blue mb-3">
+                              {programme.title}
+                            </h2>
+                          </div>
                         </div>
-                      )}
+                        
+                        <p className="text-body text-muted-foreground leading-relaxed mb-6">
+                          {programme.description}
+                        </p>
+
+                        {/* Collapsible Details */}
+                        {isExpanded && (
+                          <>
+                            {/* Programme Goal */}
+                            <div className="mb-6">
+                              <h3 className="text-lg font-semibold text-golden mb-3">Goal:</h3>
+                              <p className="text-body text-muted-foreground leading-relaxed">
+                                {programme.goal}
+                              </p>
+                            </div>
+
+                            {/* Strategic Objectives */}
+                            <div className="mb-6">
+                              <h3 className="text-lg font-semibold text-golden mb-4">
+                                {programme.id === 1 ? "Strategic Objectives:" : "Objectives:"}
+                              </h3>
+                              <ul className="space-y-3">
+                                {programme.objectives.map((objective, objIndex) => (
+                                  <li key={objIndex} className="flex items-start space-x-3">
+                                    <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                                    <span className="text-body text-muted-foreground leading-relaxed">
+                                      {objective}
+                                    </span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+
+                            {/* Expected Outcomes (for programmes that have them) */}
+                            {programme.outcomes && (
+                              <div className="mb-6">
+                                <h3 className="text-lg font-semibold text-golden mb-3">Expected Outcomes:</h3>
+                                <p className="text-body text-muted-foreground leading-relaxed">
+                                  {programme.outcomes}
+                                </p>
+                              </div>
+                            )}
+
+                            {/* Activities (for programmes that have them) */}
+                            {programme.activities && (
+                              <div className="mb-6">
+                                <h3 className="text-lg font-semibold text-golden mb-3">Outputs & Activities:</h3>
+                                <p className="text-body text-muted-foreground leading-relaxed">
+                                  {programme.activities}
+                                </p>
+                              </div>
+                            )}
+
+                            {/* Special Note for BiTA */}
+                            {programme.specialNote && (
+                              <div className="bg-golden/10 border border-golden/20 rounded-xl p-6">
+                                <div className="flex items-center space-x-3 mb-3">
+                                  <Gavel className="w-5 h-5 text-golden" />
+                                  <h4 className="font-semibold text-golden">{programme.specialNote.title}</h4>
+                                </div>
+                                <p className="text-body text-muted-foreground leading-relaxed">
+                                  {programme.specialNote.description}
+                                </p>
+                              </div>
+                            )}
+                          </>
+                        )}
+
+                        {/* View More / Hide Details Button */}
+                        <Button
+                          variant="ghost-golden"
+                          className="w-full mt-4"
+                          onClick={() => setExpanded(isExpanded ? null : index)}
+                        >
+                          {isExpanded ? (
+                            <>
+                              Hide Details
+                              <ArrowRight className="w-4 h-4 ml-2 rotate-180 transition-transform" />
+                            </>
+                          ) : (
+                            <>
+                              View More
+                              <ArrowRight className="w-4 h-4 ml-2 transition-transform" />
+                            </>
+                          )}
+                        </Button>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>

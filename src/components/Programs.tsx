@@ -1,3 +1,5 @@
+
+import { useState } from "react";
 import { Brain, Users, Building, Link, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -66,6 +68,7 @@ const programs = [
 ];
 
 export function Programs() {
+  const [expanded, setExpanded] = useState<number | null>(null);
   return (
     <section id="programmes" className="py-24 bg-gradient-to-b from-background to-card/50">
       <div className="container mx-auto px-6">
@@ -84,59 +87,82 @@ export function Programs() {
 
           {/* Programs Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-16">
-            {programs.map((program, index) => (
-              <div 
-                key={program.title}
-                className={`group bg-card border ${program.borderColor} rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-500 card-hover`}
-              >
-                {/* Header */}
-                <div className="flex items-start mb-6">
-                  <div className={`w-16 h-16 bg-gradient-to-br ${program.color} rounded-2xl flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
-                    <program.icon className="w-8 h-8 text-primary" />
+            {programs.map((program, index) => {
+              const isExpanded = expanded === index;
+              return (
+                <div 
+                  key={program.title}
+                  className={`group bg-card border ${program.borderColor} rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-500 card-hover`}
+                >
+                  {/* Header */}
+                  <div className="flex items-start mb-6">
+                    <div className={`w-16 h-16 bg-gradient-to-br ${program.color} rounded-2xl flex items-center justify-center mr-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
+                      <program.icon className="w-8 h-8 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-playfair font-semibold text-gradient-blue mb-1">
+                        {program.title}
+                      </h3>
+                      <p className="text-sm text-primary font-medium">
+                        {program.subtitle}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-playfair font-semibold text-gradient-blue mb-1">
-                      {program.title}
-                    </h3>
-                    <p className="text-sm text-primary font-medium">
-                      {program.subtitle}
-                    </p>
-                  </div>
-                </div>
 
-                {/* Description */}
-                <p className="text-body text-muted-foreground mb-6 leading-relaxed">
-                  {program.description}
-                </p>
+                  {/* Collapsible Details */}
+                  {isExpanded && (
+                    <>
+                      {/* Description */}
+                      <p className="text-body text-muted-foreground mb-6 leading-relaxed">
+                        {program.description}
+                      </p>
 
-                {/* Focus Area */}
-                <div className="mb-6">
-                  <h4 className="font-semibold text-foreground mb-2">Focus Areas:</h4>
-                  <span className="text-sm bg-primary/10 text-primary px-3 py-1 rounded-full border border-primary/20">
-                    {program.focus}
-                  </span>
-                </div>
-
-                {/* Objectives */}
-                <div className="mb-6">
-                  <h4 className="font-semibold text-foreground mb-3">Key Objectives:</h4>
-                  <div className="space-y-2">
-                    {program.objectives.map((objective, idx) => (
-                      <div key={idx} className="flex items-start">
-                        <div className="w-2 h-2 bg-primary rounded-full mr-3 mt-2 flex-shrink-0" />
-                        <span className="text-sm text-muted-foreground">{objective}</span>
+                      {/* Focus Area */}
+                      <div className="mb-6">
+                        <h4 className="font-semibold text-foreground mb-2">Focus Areas:</h4>
+                        <span className="text-sm bg-primary/10 text-primary px-3 py-1 rounded-full border border-primary/20">
+                          {program.focus}
+                        </span>
                       </div>
-                    ))}
-                  </div>
-                </div>
 
-                {/* Learn More */}
-                <Button variant="ghost-golden" className="w-full group/btn">
-                  Learn More About {program.title.split('(')[0].trim()}
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-                </Button>
-              </div>
-            ))}
+                      {/* Objectives */}
+                      <div className="mb-6">
+                        <h4 className="font-semibold text-foreground mb-3">Key Objectives:</h4>
+                        <div className="space-y-2">
+                          {program.objectives.map((objective, idx) => (
+                            <div key={idx} className="flex items-start">
+                              <div className="w-2 h-2 bg-primary rounded-full mr-3 mt-2 flex-shrink-0" />
+                              <span className="text-sm text-muted-foreground">{objective}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </>
+                  )}
+
+                  {/* Explore More / Collapse Button */}
+                  <Button
+                    variant="ghost-golden"
+                    className="w-full group/btn"
+                    onClick={() => setExpanded(isExpanded ? null : index)}
+                    aria-expanded={isExpanded}
+                    aria-controls={`program-details-${index}`}
+                  >
+                    {isExpanded ? (
+                      <>
+                        Hide Details
+                        <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform rotate-180" />
+                      </>
+                    ) : (
+                      <>
+                        Explore More
+                        <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+                      </>
+                    )}
+                  </Button>
+                </div>
+              );
+            })}
           </div>
 
           {/* Values Section */}
@@ -182,3 +208,4 @@ export function Programs() {
     </section>
   );
 }
+// ...existing code...
