@@ -277,7 +277,7 @@ export function OTCFramework() {
                 <h4 className="text-2xl font-bold text-primary">One Tech Approach</h4>
               </div>
               <p className="text-lg text-foreground leading-relaxed max-w-4xl mx-auto">
-                <span className="font-semibold text-primary">Connectivity:</span> Building technologies and systems that connect people, communities, and innovations across Africa.
+                <span className="font-semibold text-primary">Connectivity:</span> Building technologies and systems that easily Connects people, communities, and innovations across Africa.
               </p>
             </div>
           </div>
