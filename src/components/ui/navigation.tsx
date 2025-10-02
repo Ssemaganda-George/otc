@@ -71,9 +71,9 @@ export function Navigation() {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <img 
-              src="/Logo.png" 
+              src="/OTC_logo.png" 
               alt="OneTechConnect Logo" 
-              className="h-8 w-auto"
+              className="h-12 w-auto"
             />
           </Link>
 

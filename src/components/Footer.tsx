@@ -44,7 +44,7 @@ export function Footer() {
                 <img 
                   src="/OTC_logo.png" 
                   alt="OneTechConnect Logo" 
-                  className="h-8 w-auto"
+                  className="h-12 w-auto"
                 />
               </div>
               
