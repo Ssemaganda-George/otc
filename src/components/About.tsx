@@ -46,19 +46,6 @@ export function About() {
 
           {/* Mission, Vision, Values Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
-            {/* Mission */}
-            <div className="card-dark rounded-2xl p-8 shadow-card hover:shadow-golden transition-all duration-300 card-hover">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-golden/20 rounded-lg flex items-center justify-center mr-4">
-                  <Briefcase className="w-6 h-6 text-golden" />
-                </div>
-                <h3 className="heading-card text-white">Our Mission</h3>
-              </div>
-              <p className="text-body text-gray-300 leading-relaxed text-justify sm:text-left">
-                To drive inclusive digital transformation in health, sexual and reproductive health, finance, agriculture, and development across Africa while safeguarding fundamental human rights and advancing social justice through research, training, advocacy, and innovation.
-              </p>
-            </div>
-
             {/* Vision */}
             <div className="card-dark rounded-2xl p-8 shadow-card hover:shadow-golden transition-all duration-300 card-hover">
               <div className="flex items-center mb-6">
@@ -71,6 +58,18 @@ export function About() {
                 An Africa where innovation and digital transformation advance human rights and leave no one behind.
               </p>
             </div>
+            {/* Mission */}
+            <div className="card-dark rounded-2xl p-8 shadow-card hover:shadow-golden transition-all duration-300 card-hover">
+              <div className="flex items-center mb-6">
+                <div className="w-12 h-12 bg-golden/20 rounded-lg flex items-center justify-center mr-4">
+                  <Briefcase className="w-6 h-6 text-golden" />
+                </div>
+                <h3 className="heading-card text-white">Our Mission</h3>
+              </div>
+              <p className="text-body text-gray-300 leading-relaxed text-justify sm:text-left">
+                To drive inclusive digital transformation in health, sexual and reproductive health, finance, agriculture, and development across Africa while safeguarding fundamental human rights and advancing social justice through research, training, advocacy, and innovation.
+              </p>
+            </div>            
           </div>
 
           {/* Values Section */}
