@@ -26,17 +26,17 @@ export function Hero() {
           {/* Tagline */}
           <div className="inline-flex items-center space-x-2 bg-primary/15 border border-primary/30 rounded-full px-6 py-3 mb-8 backdrop-blur-sm">
             <span className="w-2 h-2 bg-golden rounded-full animate-golden-pulse" />
-            <span className="text-primary font-medium">Championing Africa's Digital Transformation</span>
+            <span className="text-primary font-medium">Championing Africa's Digital Justice</span>
           </div>
 
           {/* Main Headline */}
           <h1 className="heading-display text-gradient-blue mb-8 animate-fade-in-up">
-            Championing Africa's Technological & Digital Transformation
+            Championing Africa's Technological & Digital Justice
           </h1>
 
           {/* Subtitle */}
           <p className="text-body text-muted-foreground max-w-3xl mx-auto mb-12 animate-fade-in-up text-justify sm:text-center" style={{ animationDelay: '0.2s' }}>
-            OTC is a Youth-led African Organization that ensures digital transformation in health, sexual reproductive health, finance, agriculture and Development is advanced while ensuring respect to fundamental human rights and social justice for every individual and communities in Africa.
+            OTC is a Youth-led African Organization that ensures digital justice in health, sexual reproductive health, finance, agriculture and Development is advanced while ensuring respect to fundamental human rights and social justice for every individual and communities in Africa.
           </p>
 
           {/* Stats Row */}

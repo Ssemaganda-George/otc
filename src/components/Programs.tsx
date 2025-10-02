@@ -3,6 +3,21 @@ import { Button } from "@/components/ui/button";
 
 const programs = [
   {
+    icon: Building,
+    title: "BigTechAfrica (BiTA)",
+    subtitle: "Big Tech Accountability",
+    description: "Explores how big tech, small, and medium tech companies, as well as governments operating in health, agriculture, finance, and related areas affect rights to health, privacy, property, decent environment, and development across Africa.",
+    objectives: [
+      "Monitor and assess big tech operations in Africa",
+      "Advocate for responsible business practices",
+      "Ensure compliance with human rights standards",
+      "Promote corporate accountability and transparency"
+    ],
+    focus: "Corporate Accountability, Rights Protection, Policy Advocacy",
+    color: "from-orange-500/20 to-red-500/20",
+    borderColor: "border-orange-500/30"
+  },
+  {
     icon: Brain,
     title: "AfricanIntelligenceNow (AINow)",
     subtitle: "AI Development & Ethics in Africa",
@@ -32,21 +47,7 @@ const programs = [
     color: "from-pink-500/20 to-rose-500/20",
     borderColor: "border-pink-500/30"
   },
-  {
-    icon: Building,
-    title: "BigTechAfrica (BiTA)",
-    subtitle: "Big Tech Accountability",
-    description: "Explores how big tech, small, and medium tech companies, as well as governments operating in health, agriculture, finance, and related areas affect rights to health, privacy, property, decent environment, and development across Africa.",
-    objectives: [
-      "Monitor and assess big tech operations in Africa",
-      "Advocate for responsible business practices",
-      "Ensure compliance with human rights standards",
-      "Promote corporate accountability and transparency"
-    ],
-    focus: "Corporate Accountability, Rights Protection, Policy Advocacy",
-    color: "from-orange-500/20 to-red-500/20",
-    borderColor: "border-orange-500/30"
-  },
+  
   {
     icon: Link,
     title: "One Tech Approach (OTA)",
