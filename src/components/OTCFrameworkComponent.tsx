@@ -122,13 +122,15 @@ export function OTCFramework() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16">
               {/* Research */}
               <div className="animate-fade-in-up opacity-0" style={{ animationDelay: `0.2s`, animationFillMode: 'forwards' }}>
-                <div className="bg-card border-2 border-primary/20 rounded-xl p-8 text-center shadow-card transition-all duration-300 hover:shadow-blue hover:border-primary/40 h-[200px] flex flex-col justify-center">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                    <Target className="w-6 h-6 text-primary" />
+                <div className="bg-card border-2 border-primary/20 rounded-xl p-8 text-center shadow-card transition-all duration-300 hover:shadow-blue hover:border-primary/40 h-[200px] flex flex-col justify-between">
+                  <div>
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                      <Target className="w-6 h-6 text-primary" />
+                    </div>
+                    <h4 className="text-lg font-semibold text-primary mb-2">RESEARCH</h4>
                   </div>
-                  <h4 className="text-lg font-semibold text-primary mb-2">RESEARCH</h4>
                   <button
-                    className="px-4 py-1 rounded-full bg-golden text-golden-foreground text-xs font-semibold shadow-lg hover:bg-golden-dark hover:scale-105 transition active:scale-95 focus:outline-none focus:ring-2 focus:ring-golden focus:ring-offset-2"
+                    className="px-4 py-1 rounded-full bg-golden text-golden-foreground text-xs font-semibold shadow-lg hover:bg-golden-dark hover:scale-105 transition active:scale-95 focus:outline-none focus:ring-2 focus:ring-golden focus:ring-offset-2 mt-4"
                     onClick={() => setShowResearch((prev) => !prev)}
                   >
                     {showResearch ? "Hide Details" : "View Details"}
@@ -157,13 +159,15 @@ export function OTCFramework() {
               </div>
               {/* Training */}
               <div className="animate-fade-in-up opacity-0" style={{ animationDelay: `0.3s`, animationFillMode: 'forwards' }}>
-                <div className="bg-card border-2 border-primary/20 rounded-xl p-8 text-center shadow-card transition-all duration-300 hover:shadow-blue hover:border-primary/40 h-[200px] flex flex-col justify-center">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                    <Users className="w-6 h-6 text-primary" />
+                <div className="bg-card border-2 border-primary/20 rounded-xl p-8 text-center shadow-card transition-all duration-300 hover:shadow-blue hover:border-primary/40 h-[200px] flex flex-col justify-between">
+                  <div>
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                      <Users className="w-6 h-6 text-primary" />
+                    </div>
+                    <h4 className="text-lg font-semibold text-primary mb-2">TRAINING</h4>
                   </div>
-                  <h4 className="text-lg font-semibold text-primary mb-2">TRAINING</h4>
                   <button
-                    className="px-4 py-1 rounded-full bg-golden text-golden-foreground text-xs font-semibold shadow-lg hover:bg-golden-dark hover:scale-105 transition active:scale-95 focus:outline-none focus:ring-2 focus:ring-golden focus:ring-offset-2"
+                    className="px-4 py-1 rounded-full bg-golden text-golden-foreground text-xs font-semibold shadow-lg hover:bg-golden-dark hover:scale-105 transition active:scale-95 focus:outline-none focus:ring-2 focus:ring-golden focus:ring-offset-2 mt-4"
                     onClick={() => setShowTraining((prev) => !prev)}
                   >
                     {showTraining ? "Hide Details" : "View Details"}
@@ -190,13 +194,15 @@ export function OTCFramework() {
               </div>
               {/* Advocacy */}
               <div className="animate-fade-in-up opacity-0" style={{ animationDelay: `0.4s`, animationFillMode: 'forwards' }}>
-                <div className="bg-card border-2 border-primary/20 rounded-xl p-8 text-center shadow-card transition-all duration-300 hover:shadow-blue hover:border-primary/40 h-[200px] flex flex-col justify-center">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                    <Briefcase className="w-6 h-6 text-primary" />
+                <div className="bg-card border-2 border-primary/20 rounded-xl p-8 text-center shadow-card transition-all duration-300 hover:shadow-blue hover:border-primary/40 h-[200px] flex flex-col justify-between">
+                  <div>
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                      <Briefcase className="w-6 h-6 text-primary" />
+                    </div>
+                    <h4 className="text-lg font-semibold text-primary mb-2">ADVOCACY</h4>
                   </div>
-                  <h4 className="text-lg font-semibold text-primary mb-2">ADVOCACY</h4>
                   <button
-                    className="px-4 py-1 rounded-full bg-golden text-golden-foreground text-xs font-semibold shadow-lg hover:bg-golden-dark hover:scale-105 transition active:scale-95 focus:outline-none focus:ring-2 focus:ring-golden focus:ring-offset-2"
+                    className="px-4 py-1 rounded-full bg-golden text-golden-foreground text-xs font-semibold shadow-lg hover:bg-golden-dark hover:scale-105 transition active:scale-95 focus:outline-none focus:ring-2 focus:ring-golden focus:ring-offset-2 mt-4"
                     onClick={() => setShowAdvocacy((prev) => !prev)}
                   >
                     {showAdvocacy ? "Hide Details" : "View Details"}
@@ -225,13 +231,15 @@ export function OTCFramework() {
               </div>
               {/* Innovation */}
               <div className="animate-fade-in-up opacity-0" style={{ animationDelay: `0.5s`, animationFillMode: 'forwards' }}>
-                <div className="bg-card border-2 border-primary/20 rounded-xl p-8 text-center shadow-card transition-all duration-300 hover:shadow-blue hover:border-primary/40 h-[200px] flex flex-col justify-center">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                    <Lightbulb className="w-6 h-6 text-primary" />
+                <div className="bg-card border-2 border-primary/20 rounded-xl p-8 text-center shadow-card transition-all duration-300 hover:shadow-blue hover:border-primary/40 h-[200px] flex flex-col justify-between">
+                  <div>
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                      <Lightbulb className="w-6 h-6 text-primary" />
+                    </div>
+                    <h4 className="text-lg font-semibold text-primary mb-2">INNOVATION</h4>
                   </div>
-                  <h4 className="text-lg font-semibold text-primary mb-2">INNOVATION</h4>
                   <button
-                    className="px-4 py-1 rounded-full bg-golden text-golden-foreground text-xs font-semibold shadow-lg hover:bg-golden-dark hover:scale-105 transition active:scale-95 focus:outline-none focus:ring-2 focus:ring-golden focus:ring-offset-2"
+                    className="px-4 py-1 rounded-full bg-golden text-golden-foreground text-xs font-semibold shadow-lg hover:bg-golden-dark hover:scale-105 transition active:scale-95 focus:outline-none focus:ring-2 focus:ring-golden focus:ring-offset-2 mt-4"
                     onClick={() => setShowInnovation((prev) => !prev)}
                   >
                     {showInnovation ? "Hide Details" : "View Details"}
