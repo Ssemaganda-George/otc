@@ -6,19 +6,6 @@ import { Button } from "@/components/ui/button";
 
 const programmes = [
   {
-    id: 1,
-    title: "Tech & SRHR Governance (TSG)",
-    icon: Heart,
-    description: "The Tech & SRHR Governance (TSG) programme examines the complex governance challenges at the intersection of technology, digitalization, and sexual and reproductive health and rights (SRHR) in Africa. It explores both the opportunities and risks that emerging technologies bring to the SRHR landscape ranging from improved access to health information and services, to threats such as privacy violations, data misuse, and exclusion of vulnerable groups.",
-    objectives: [
-      "Research & Development aimed at generating evidence on how technology impacts SRHR policies, access, and accountability.",
-      "Advocacy & Movement Building to influence policy reforms and building coalitions to promote rights-based digital governance in SRHR.",
-      "Training & Skillset Development to equip stakeholders with knowledge and skills to navigate the digital-SRHR interface responsibly.",
-      "Innovation aimed at supporting the design and deployment of inclusive, ethical, and rights-respecting digital solutions for SRHR."
-    ],
-    goal: "Through TSG, we aim to ensure that digital transformation in Africa strengthens, rather than undermines, sexual and reproductive health and rights advancing dignity, equity, and justice for all."
-  },
-  {
     id: 2,
     title: "AfricanIntelligenceNow (AiNow)",
     icon: Brain,
@@ -31,6 +18,19 @@ const programmes = [
     ],
     outcomes: "Increased awareness and capacity on AI and rights; stronger regional dialogue on AI ethics; practical models for rights-based AI.",
     activities: "Policy briefs, research reports, expert dialogues, and community engagement platforms."
+  },
+  {
+    id: 1,
+    title: "Tech & SRHR Governance (TSG)",
+    icon: Heart,
+    description: "The Tech & SRHR Governance (TSG) programme examines the complex governance challenges at the intersection of technology, digitalization, and sexual and reproductive health and rights (SRHR) in Africa. It explores both the opportunities and risks that emerging technologies bring to the SRHR landscape ranging from improved access to health information and services, to threats such as privacy violations, data misuse, and exclusion of vulnerable groups.",
+    objectives: [
+      "Research & Development aimed at generating evidence on how technology impacts SRHR policies, access, and accountability.",
+      "Advocacy & Movement Building to influence policy reforms and building coalitions to promote rights-based digital governance in SRHR.",
+      "Training & Skillset Development to equip stakeholders with knowledge and skills to navigate the digital-SRHR interface responsibly.",
+      "Innovation aimed at supporting the design and deployment of inclusive, ethical, and rights-respecting digital solutions for SRHR."
+    ],
+    goal: "Through TSG, we aim to ensure that digital transformation in Africa strengthens, rather than undermines, sexual and reproductive health and rights advancing dignity, equity, and justice for all."
   },
   {
     id: 3,
