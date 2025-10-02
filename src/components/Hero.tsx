@@ -1,19 +1,35 @@
+import { useState, useEffect } from "react";
 import { ArrowRight, Code, Scale, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-bg.jpg";
+import heroImage1 from "@/assets/hero-bg.jpg";
+import heroImage2 from "@/assets/sac1.jpg";
+// Add more images as needed
+
+const heroImages = [heroImage1, heroImage2 /*, more images */];
 
 export function Hero() {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % heroImages.length);
+    }, 3000); // 3 seconds
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-16">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
+      {/* Sliding Background Image with Overlay */}
+      <div className="absolute inset-0 z-0 transition-all duration-700">
         <img 
-          src={heroImage} 
+          src={heroImages[current]} 
           alt="OTC Innovation Background" 
-          className="w-full h-full object-cover opacity-15"
+          className="w-full h-full object-cover opacity-15 transition-all duration-700"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-secondary/98 via-background/95 to-secondary/90" />
       </div>
+
+      {/* ...rest of your code remains unchanged... */}
 
       {/* Floating Elements */}
       <div className="absolute top-20 left-10 w-20 h-20 bg-golden/15 rounded-full animate-float" />
