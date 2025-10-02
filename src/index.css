@@ -137,9 +137,10 @@
     @apply border-border;
   }
 
-  body {
+    body {
     @apply bg-background text-foreground font-inter antialiased;
     overflow-x: hidden;
+    font-size: 18px; /* Add this line, or adjust to your preferred size */
   }
 
   html {
