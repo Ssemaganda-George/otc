@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import heroImage1 from "@/assets/hero-bg.jpg";
 import heroImage2 from "@/assets/sac1.jpg";
 import heroImage3 from "@/assets/sac2.png";
-import heroImage4 from "@/assets/sac3.webp";
+import heroImage4 from "@/assets/sac3.png";
 // Add more images as needed
 
 const heroImages = [heroImage1, heroImage2, heroImage3, heroImage4];
