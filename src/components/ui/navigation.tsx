@@ -61,11 +61,7 @@ export function Navigation() {
   };
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled 
-        ? "bg-secondary/98 backdrop-blur-md border-b border-border shadow-card" 
-        : "bg-transparent"
-    }`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white border-b border-border shadow-card`}>
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -73,7 +69,7 @@ export function Navigation() {
             <img 
               src="/OTC_logo.png" 
               alt="OneTechConnect Logo" 
-              className="h-12 w-auto"
+              className="h-16 w-auto"
             />
           </Link>
 
@@ -86,8 +82,8 @@ export function Navigation() {
                     <button
                       className={`flex items-center space-x-1 font-medium transition-colors duration-200 ${
                         isActive(item.href) 
-                          ? "text-primary" 
-                          : "text-foreground hover:text-primary"
+                          ? "text-golden" 
+                          : "text-golden hover:text-primary"
                       }`}
                       onMouseEnter={() => setActiveDropdown(item.name)}
                       onMouseLeave={() => setActiveDropdown(null)}
@@ -122,8 +118,8 @@ export function Navigation() {
                     to={item.href}
                     className={`font-medium transition-colors duration-200 ${
                       isActive(item.href) 
-                        ? "text-primary" 
-                        : "text-foreground hover:text-primary"
+                        ? "text-golden" 
+                        : "text-golden hover:text-primary"
                     }`}
                   >
                     {item.name}
@@ -140,7 +136,7 @@ export function Navigation() {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2 text-foreground hover:text-primary transition-colors"
+            className="lg:hidden p-2 text-golden hover:text-primary transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -149,7 +145,7 @@ export function Navigation() {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden mt-4 pb-4 border-t border-border bg-card/95 backdrop-blur-md rounded-lg mx-4 shadow-lg">
+          <div className="lg:hidden mt-4 pb-4 border-t border-border bg-white/95 backdrop-blur-md rounded-lg mx-4 shadow-lg">
             <div className="flex flex-col space-y-2 pt-4 px-4">
               {navItems.map((item) => (
                 <div key={item.name}>
@@ -158,8 +154,8 @@ export function Navigation() {
                       <button
                         className={`flex items-center justify-between w-full font-medium py-2 transition-colors duration-200 ${
                           isActive(item.href) 
-                            ? "text-primary" 
-                            : "text-foreground hover:text-primary"
+                            ? "text-golden" 
+                            : "text-golden hover:text-primary"
                         }`}
                         onClick={() => handleDropdownToggle(item.name)}
                       >
@@ -196,8 +192,8 @@ export function Navigation() {
                       to={item.href}
                       className={`font-medium py-2 transition-colors duration-200 ${
                         isActive(item.href) 
-                          ? "text-primary" 
-                          : "text-foreground hover:text-primary"
+                          ? "text-golden" 
+                          : "text-golden hover:text-primary"
                       }`}
                       onClick={() => setIsMobileMenuOpen(false)}
                     >

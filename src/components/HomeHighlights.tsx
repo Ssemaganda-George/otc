@@ -82,9 +82,9 @@ export function HomeHighlights() {
               <h2 className="heading-section text-gradient-blue mb-6">
                 Empowering Africa's Digital Future
               </h2>
-              <p className="text-body text-muted-foreground max-w-3xl mx-auto text-justify sm:text-center">
+              <p className="text-body max-w-3xl mx-auto text-justify sm:text-center text-white drop-shadow-md">
                 OneTechConnect (OTC) advances technology, social and legal services across Africa, 
-                focusing on innovation, interoperability, equity, and human rights in the digital age.
+                focusing on <span className="font-semibold">innovation</span>, <span className="font-semibold">interoperability</span>, <span className="font-semibold">equity</span>, and <span className="font-semibold">human rights</span> in the digital age.
               </p>
             </div>
 

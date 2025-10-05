@@ -1,17 +1,14 @@
+// ...existing imports...
 import { useState, useEffect } from "react";
 import { ArrowRight, Code, Scale, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroImage1 from "@/assets/hero-bg.jpg";
 import heroImage2 from "@/assets/sac1.png";
-import heroImage3 from "@/assets/sac2.png";
 import heroImage4 from "@/assets/sac3.png";
-import heroImage5 from "@/assets/sac4.png";
 import heroImage6 from "@/assets/sac5.png";
-import heroImage7 from "@/assets/sac6.jpg";
 import heroImage8 from "@/assets/sac7.png";
-// Add more images as needed
 
-const heroImages = [heroImage1, heroImage2, heroImage3, heroImage4, heroImage5, heroImage6, heroImage7, heroImage8];
+const heroImages = [heroImage1, heroImage2, heroImage4, heroImage6, heroImage8];
 
 export function Hero() {
   const [current, setCurrent] = useState(0);
@@ -19,7 +16,7 @@ export function Hero() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % heroImages.length);
-    }, 3000); // 3 seconds
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
 
@@ -30,10 +27,20 @@ export function Hero() {
         <img 
           src={heroImages[current]} 
           alt="OTC Innovation Background" 
-          className="w-full h-full object-cover opacity-40 transition-all duration-700" // <-- Increased opacity for more visible images
+          className="w-full h-full object-cover opacity-90 transition-all duration-700"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-secondary/80 via-background/70 to-secondary/60" /> {/* <-- Reduced overlay opacity */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-black/60" />
       </div>
+
+      {/* --- MENU BACKGROUND (add this block just below the section tag if your menu is fixed/absolute) --- */}
+      <div className="fixed top-0 left-0 w-full z-30">
+        <div className="backdrop-blur-md bg-black/70 shadow-lg">
+          {/* Place your menu/nav component here, or wrap your existing nav in this div */}
+          {/* Example: */}
+          {/* <Navbar /> */}
+        </div>
+      </div>
+      {/* --- END MENU BACKGROUND --- */}
 
       {/* Floating Elements */}
       <div className="absolute top-20 left-10 w-20 h-20 bg-golden/15 rounded-full animate-float" />
@@ -44,37 +51,40 @@ export function Hero() {
       <div className="relative z-10 container mx-auto px-6 text-center sm:text-center py-8">
         <div className="max-w-5xl mx-auto space-y-8">
           {/* Tagline */}
-          <div className="inline-flex items-center space-x-2 bg-primary/15 border border-primary/30 rounded-full px-6 py-3 mb-8 backdrop-blur-sm">
+          <div className="inline-flex items-center space-x-2 bg-white/70 border border-primary/40 rounded-full px-6 py-3 mb-8 backdrop-blur-md">
             <span className="w-2 h-2 bg-golden rounded-full animate-golden-pulse" />
             <span className="text-primary font-medium">Championing Africa's Digital Justice</span>
           </div>
 
           {/* Main Headline */}
-          <h1 className="heading-display text-gradient-blue mb-8 animate-fade-in-up">
+          <h1 className="heading-display text-white mb-8 animate-fade-in-up drop-shadow-lg">
             Championing Africa's Technological & Digital Justice
           </h1>
 
           {/* Subtitle */}
-          <p className="text-body text-muted-foreground max-w-3xl mx-auto mb-12 animate-fade-in-up text-justify sm:text-center" style={{ animationDelay: '0.2s' }}>
+          <p
+            className="text-body text-lg md:text-xl max-w-3xl mx-auto mb-12 animate-fade-in-up text-justify sm:text-center text-white drop-shadow-md bg-gradient-to-br from-gray-800/90 via-gray-700/80 to-gray-900/90 rounded-xl px-6 py-4"
+            style={{ animationDelay: '0.2s' }}
+          >
             OTC is a Youth-led African Not for Profit Organization that ensures digital justice in health, sexual reproductive health, finance, agriculture and Development is advanced while ensuring respect to fundamental human rights and social justice for every individual and communities in Africa.
           </p>
 
           {/* Stats Row */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 mb-12 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
             <div className="flex flex-col items-center space-y-2">
-              <Code className="w-10 h-10 sm:w-12 sm:h-12 text-primary mb-2" />
-              <div className="text-xl sm:text-2xl font-bold text-gradient-blue">5+</div>
-              <div className="text-muted-foreground text-sm sm:text-base">Tech Sectors</div>
+              <Code className="w-10 h-10 sm:w-12 sm:h-12 text-golden mb-2" />
+              <div className="text-xl sm:text-2xl font-bold text-golden">5+</div>
+              <div className="text-white text-sm sm:text-base">Tech Sectors</div>
             </div>
             <div className="flex flex-col items-center space-y-2">
-              <Scale className="w-10 h-10 sm:w-12 sm:h-12 text-primary mb-2" />
-              <div className="text-xl sm:text-2xl font-bold text-gradient-blue">100+</div>
-              <div className="text-muted-foreground text-sm sm:text-base">Legal Frameworks</div>
+              <Scale className="w-10 h-10 sm:w-12 sm:h-12 text-golden mb-2" />
+              <div className="text-xl sm:text-2xl font-bold text-golden">100+</div>
+              <div className="text-white text-sm sm:text-base">Legal Frameworks</div>
             </div>
             <div className="flex flex-col items-center space-y-2 col-span-2 md:col-span-1">
-              <Globe className="w-10 h-10 sm:w-12 sm:h-12 text-primary mb-2" />
-              <div className="text-xl sm:text-2xl font-bold text-gradient-blue">5+</div>
-              <div className="text-muted-foreground text-sm sm:text-base">African Countries</div>
+              <Globe className="w-10 h-10 sm:w-12 sm:h-12 text-golden mb-2" />
+              <div className="text-xl sm:text-2xl font-bold text-golden">5+</div>
+              <div className="text-white text-sm sm:text-base">African Countries</div>
             </div>
           </div>
 
