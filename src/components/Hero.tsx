@@ -2,12 +2,16 @@ import { useState, useEffect } from "react";
 import { ArrowRight, Code, Scale, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroImage1 from "@/assets/hero-bg.jpg";
-import heroImage2 from "@/assets/sac1.jpg";
+import heroImage2 from "@/assets/sac1.png";
 import heroImage3 from "@/assets/sac2.png";
 import heroImage4 from "@/assets/sac3.png";
+import heroImage5 from "@/assets/sac4.png";
+import heroImage6 from "@/assets/sac5.png";
+import heroImage7 from "@/assets/sac6.jpg";
+import heroImage8 from "@/assets/sac7.png";
 // Add more images as needed
 
-const heroImages = [heroImage1, heroImage2, heroImage3, heroImage4];
+const heroImages = [heroImage1, heroImage2, heroImage3, heroImage4, heroImage5, heroImage6, heroImage7, heroImage8];
 
 export function Hero() {
   const [current, setCurrent] = useState(0);
@@ -26,12 +30,10 @@ export function Hero() {
         <img 
           src={heroImages[current]} 
           alt="OTC Innovation Background" 
-          className="w-full h-full object-cover opacity-15 transition-all duration-700"
+          className="w-full h-full object-cover opacity-40 transition-all duration-700" // <-- Increased opacity for more visible images
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-secondary/98 via-background/95 to-secondary/90" />
+        <div className="absolute inset-0 bg-gradient-to-br from-secondary/80 via-background/70 to-secondary/60" /> {/* <-- Reduced overlay opacity */}
       </div>
-
-      {/* ...rest of your code remains unchanged... */}
 
       {/* Floating Elements */}
       <div className="absolute top-20 left-10 w-20 h-20 bg-golden/15 rounded-full animate-float" />
