@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { ArrowRight, Code, Scale, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroImage1 from "@/assets/hero-bg.jpg";
+import heroImage1 from "@/assets/sac7.jpeg";
 import heroImage2 from "@/assets/sac1.png";
 import heroImage4 from "@/assets/sac3.png";
 import heroImage6 from "@/assets/sac5.png";
