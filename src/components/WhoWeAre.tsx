@@ -52,7 +52,7 @@ export function WhoWeAre() {
             <h3 className="heading-card text-gradient-blue mb-8">Our Story</h3>
             <div className="space-y-6 text-body text-muted-foreground leading-relaxed text-justify sm:text-left">
               <p>
-                OneTechConnect (OTC) is a youth-led African centre advancing digital justice. We believe technology should empower communities, protect rights and promote equity, not deepen inequality.
+                OneTechConnect (OTC) is a youth-led African centre advancing digital justice on the continent. We believe technology should empower communities, protect rights and promote equity, not deepen inequality.
 
               </p>
               <p>
