@@ -23,7 +23,7 @@ export function Hero() {
   const subtitle = (
     <>
       OTC is a Youth-led African Not for Profit Organization that ensures digital justice in health, sexual reproductive health, finance, agriculture and Development is advanced while ensuring respect to fundamental human rights and social justice for every individual and communities in Africa.
-    </>
+    </>     
   );
 
   return (
