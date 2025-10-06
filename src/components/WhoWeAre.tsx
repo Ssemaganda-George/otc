@@ -80,7 +80,7 @@ export function WhoWeAre() {
             <div className="text-center mb-12">
               <h3 className="heading-card text-gradient-blue mb-4">Our Strategic Pillars</h3>
               <p className="text-body text-muted-foreground max-w-2xl mx-auto">
-                We deliver our work through four strategic pillars that drive inclusive digital transformation
+                We deliver our work through four strategic pillars that drive inclusive digital transformation.
               </p>
             </div>
             
