@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Navigation } from "@/components/ui/navigation";
 import { Footer } from "@/components/Footer";
 import { BookOpen, Users, Shield, Building, TrendingUp, DollarSign, Briefcase } from "lucide-react";
@@ -73,6 +74,14 @@ const consultancyServices = [
 ];
 
 export default function ConsultancyPage() {
+  const [openDetails, setOpenDetails] = useState(Array(consultancyServices.length).fill(false));
+
+  const handleToggle = (idx: number) => {
+    setOpenDetails((prev) =>
+      prev.map((open, i) => (i === idx ? !open : open))
+    );
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -88,35 +97,6 @@ export default function ConsultancyPage() {
               <h1 className="heading-display text-gradient-blue mb-8">
                 Consultancy Services
               </h1>
-              <p className="text-body text-muted-foreground leading-relaxed">
-                We offer a range of expert consultancy services designed to support innovation and growth across Africa, 
-                available with flexible payment options, including legal tender, equity, partnerships, co-investment, 
-                and other in-kind arrangements.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Payment Options */}
-        <section className="py-16 bg-secondary/20">
-          <div className="container mx-auto px-6">
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-2xl font-playfair font-semibold text-gradient-blue mb-8">
-                Flexible Payment Options
-              </h2>
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-                {[
-                  "Legal Tender",
-                  "Equity",
-                  "Partnerships", 
-                  "Co-investment",
-                  "In-kind Arrangements"
-                ].map((option, index) => (
-                  <div key={index} className="bg-card border border-border rounded-xl p-4 shadow-card">
-                    <span className="text-sm font-medium text-primary">{option}</span>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
         </section>
@@ -126,9 +106,6 @@ export default function ConsultancyPage() {
           <div className="container mx-auto px-6">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-16">
-                <h2 className="heading-section text-gradient-blue mb-6">
-                  Our Consultancy Services
-                </h2>
                 <p className="text-body text-muted-foreground max-w-3xl mx-auto">
                   Comprehensive expertise across all aspects of technology, innovation, and business development
                 </p>
@@ -152,15 +129,25 @@ export default function ConsultancyPage() {
                     </div>
                     
                     <div className="ml-22">
-                      <h4 className="font-semibold text-foreground mb-3">Key Features:</h4>
-                      <ul className="space-y-2">
-                        {service.features.map((feature, featureIndex) => (
-                          <li key={featureIndex} className="flex items-start space-x-3">
-                            <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="text-sm text-muted-foreground">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
+                      <button
+                        className="mb-4 px-5 py-2 rounded-full bg-golden text-golden-foreground text-xs font-semibold shadow-lg hover:bg-golden-dark hover:scale-105 transition active:scale-95 focus:outline-none focus:ring-2 focus:ring-golden focus:ring-offset-2"
+                        onClick={() => handleToggle(index)}
+                      >
+                        {openDetails[index] ? "Hide Details" : "View Details"}
+                      </button>
+                      {openDetails[index] && (
+                        <>
+                          <h4 className="font-semibold text-foreground mb-3">Key Features:</h4>
+                          <ul className="space-y-2">
+                            {service.features.map((feature, featureIndex) => (
+                              <li key={featureIndex} className="flex items-start space-x-3">
+                                <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                                <span className="text-sm text-muted-foreground">{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </>
+                      )}
                     </div>
                   </div>
                 ))}

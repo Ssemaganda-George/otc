@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Navigation } from "@/components/ui/navigation";
 import { Footer } from "@/components/Footer";
 import { Brain, Heart, Users, Shield, Target, ArrowRight } from "lucide-react";
@@ -36,6 +37,8 @@ const programmes = [
 ];
 
 export default function ProgrammesPage() {
+  const [expanded, setExpanded] = useState<number | null>(null);
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />

@@ -1,6 +1,13 @@
+import { useState } from "react";
 import { Heart, Lightbulb, Briefcase, Target, Globe, Users } from "lucide-react";
 
 export function OTCFramework() {
+  // State for each pillar's details
+  const [showResearch, setShowResearch] = useState(false);
+  const [showTraining, setShowTraining] = useState(false);
+  const [showAdvocacy, setShowAdvocacy] = useState(false);
+  const [showInnovation, setShowInnovation] = useState(false);
+
   return (
     <section id="otc-framework" className="py-24 bg-secondary/40">
       <div className="container mx-auto px-6">
@@ -18,7 +25,6 @@ export function OTCFramework() {
           
           {/* Framework Diagram */}
           <div className="max-w-5xl mx-auto space-y-8">
-            
             {/* Title Box - Full Width */}
             <div className="relative group animate-fade-in-up opacity-0" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
               <div className="bg-gradient-to-r from-primary to-primary-dark rounded-2xl p-6 text-center shadow-blue transition-all duration-300 hover:shadow-lg hover:scale-[1.02] group-hover:animate-glow-pulse">
@@ -101,7 +107,6 @@ export function OTCFramework() {
                 </p>
               </div>
             </div>
-
           </div>
 
           {/* Operationalising the OTC Framework */}
@@ -113,95 +118,158 @@ export function OTCFramework() {
               </p>
             </div>
 
-            {/* Four Strategic Pillars Header */}
+            {/* Four Strategic Pillars Header with golden buttons */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16">
-              {[
-                { title: "RESEARCH", icon: Target },
-                { title: "TRAINING", icon: Users },
-                { title: "ADVOCACY", icon: Briefcase },
-                { title: "INNOVATION", icon: Lightbulb }
-              ].map((pillar, index) => (
-                <div key={pillar.title} className={`animate-fade-in-up opacity-0`} style={{ animationDelay: `${0.1 + index * 0.1}s`, animationFillMode: 'forwards' }}>
-                  <div className="bg-card border-2 border-primary/20 rounded-xl p-8 text-center shadow-card transition-all duration-300 hover:shadow-blue hover:border-primary/40 h-[140px] flex flex-col justify-center">
+              {/* Research */}
+              <div className="animate-fade-in-up opacity-0" style={{ animationDelay: `0.2s`, animationFillMode: 'forwards' }}>
+                <div className="bg-card border-2 border-primary/20 rounded-xl p-8 text-center shadow-card transition-all duration-300 hover:shadow-blue hover:border-primary/40 h-[200px] flex flex-col justify-between">
+                  <div>
                     <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                      <pillar.icon className="w-6 h-6 text-primary" />
+                      <Target className="w-6 h-6 text-primary" />
                     </div>
-                    <h4 className="text-lg font-semibold text-primary">{pillar.title}</h4>
+                    <h4 className="text-lg font-semibold text-primary mb-2">RESEARCH</h4>
                   </div>
+                  <button
+                    className="px-4 py-1 rounded-full bg-golden text-golden-foreground text-xs font-semibold shadow-lg hover:bg-golden-dark hover:scale-105 transition active:scale-95 focus:outline-none focus:ring-2 focus:ring-golden focus:ring-offset-2 mt-4"
+                    onClick={() => setShowResearch((prev) => !prev)}
+                  >
+                    {showResearch ? "Hide Details" : "View Details"}
+                  </button>
                 </div>
-              ))}
-            </div>
-
-            {/* Detailed Pillar Descriptions */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-              {[
-                {
-                  title: "Research",
-                  items: [
-                    "Documentation",
-                    "Think tanks", 
-                    "Experiments",
-                    "Policy Analysis",
-                    "Legislative Scrutiny",
-                    "Kimeeza / Public debates",
-                    "Implementation"
-                  ]
-                },
-                {
-                  title: "Training",
-                  items: [
-                    "Short courses",
-                    "Academic programmes", 
-                    "Seminars",
-                    "Master classes",
-                    "Webinars"
-                  ]
-                },
-                {
-                  title: "Advocacy", 
-                  items: [
-                    "Reporting",
-                    "MDA collaborations",
-                    "Activism",
-                    "Litigation",
-                    "ADR",
-                    "Legislative drafting",
-                    "Coalition/Networks/Movement"
-                  ]
-                },
-                {
-                  title: "Innovation",
-                  items: [
-                    "Hackathons",
-                    "IP Protection",
-                    "Data",
-                    "Sandboxes", 
-                    "Compliance services",
-                    "Grant & Donations",
-                    "Investment Fund"
-                  ]
-                }
-              ].map((pillar, index) => (
-                <div key={pillar.title} className={`animate-fade-in-up opacity-0`} style={{ animationDelay: `${0.5 + index * 0.1}s`, animationFillMode: 'forwards' }}>
-                  <div className="bg-card border-2 border-primary/20 rounded-xl p-6 shadow-card transition-all duration-300 hover:shadow-blue hover:border-primary/40 h-[380px] flex flex-col">
-                    <h5 className="text-lg font-semibold text-primary mb-6 pb-3 border-b border-border">{pillar.title}</h5>
-                    <div className="flex-1">
-                      <ul className="space-y-3">
-                        {pillar.items.map((item, itemIndex) => (
-                          <li key={itemIndex} className="flex items-start space-x-3">
-                            <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="text-sm text-foreground leading-relaxed">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
+                {showResearch && (
+                  <div className="mt-4 bg-card border border-primary/10 rounded-xl p-4 shadow-card">
+                    <ul className="space-y-2 text-left">
+                      {[
+                        "Documentation",
+                        "Think tanks", 
+                        "Experiments",
+                        "Policy Analysis",
+                        "Legislative Scrutiny",
+                        "Kimeeza / Public debates",
+                        "Implementation"
+                      ].map((item, idx) => (
+                        <li key={idx} className="flex items-start space-x-2">
+                          <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-sm text-foreground leading-relaxed">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+              {/* Training */}
+              <div className="animate-fade-in-up opacity-0" style={{ animationDelay: `0.3s`, animationFillMode: 'forwards' }}>
+                <div className="bg-card border-2 border-primary/20 rounded-xl p-8 text-center shadow-card transition-all duration-300 hover:shadow-blue hover:border-primary/40 h-[200px] flex flex-col justify-between">
+                  <div>
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                      <Users className="w-6 h-6 text-primary" />
                     </div>
+                    <h4 className="text-lg font-semibold text-primary mb-2">TRAINING</h4>
                   </div>
+                  <button
+                    className="px-4 py-1 rounded-full bg-golden text-golden-foreground text-xs font-semibold shadow-lg hover:bg-golden-dark hover:scale-105 transition active:scale-95 focus:outline-none focus:ring-2 focus:ring-golden focus:ring-offset-2 mt-4"
+                    onClick={() => setShowTraining((prev) => !prev)}
+                  >
+                    {showTraining ? "Hide Details" : "View Details"}
+                  </button>
                 </div>
-              ))}
+                {showTraining && (
+                  <div className="mt-4 bg-card border border-primary/10 rounded-xl p-4 shadow-card">
+                    <ul className="space-y-2 text-left">
+                      {[
+                        "Short courses",
+                        "Academic programmes", 
+                        "Seminars",
+                        "Master classes",
+                        "Webinars"
+                      ].map((item, idx) => (
+                        <li key={idx} className="flex items-start space-x-2">
+                          <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-sm text-foreground leading-relaxed">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+              {/* Advocacy */}
+              <div className="animate-fade-in-up opacity-0" style={{ animationDelay: `0.4s`, animationFillMode: 'forwards' }}>
+                <div className="bg-card border-2 border-primary/20 rounded-xl p-8 text-center shadow-card transition-all duration-300 hover:shadow-blue hover:border-primary/40 h-[200px] flex flex-col justify-between">
+                  <div>
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                      <Briefcase className="w-6 h-6 text-primary" />
+                    </div>
+                    <h4 className="text-lg font-semibold text-primary mb-2">ADVOCACY</h4>
+                  </div>
+                  <button
+                    className="px-4 py-1 rounded-full bg-golden text-golden-foreground text-xs font-semibold shadow-lg hover:bg-golden-dark hover:scale-105 transition active:scale-95 focus:outline-none focus:ring-2 focus:ring-golden focus:ring-offset-2 mt-4"
+                    onClick={() => setShowAdvocacy((prev) => !prev)}
+                  >
+                    {showAdvocacy ? "Hide Details" : "View Details"}
+                  </button>
+                </div>
+                {showAdvocacy && (
+                  <div className="mt-4 bg-card border border-primary/10 rounded-xl p-4 shadow-card">
+                    <ul className="space-y-2 text-left">
+                      {[
+                        "Reporting",
+                        "MDA collaborations",
+                        "Activism",
+                        "Litigation",
+                        "ADR",
+                        "Legislative drafting",
+                        "Coalition/Networks/Movement"
+                      ].map((item, idx) => (
+                        <li key={idx} className="flex items-start space-x-2">
+                          <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-sm text-foreground leading-relaxed">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+              {/* Innovation */}
+              <div className="animate-fade-in-up opacity-0" style={{ animationDelay: `0.5s`, animationFillMode: 'forwards' }}>
+                <div className="bg-card border-2 border-primary/20 rounded-xl p-8 text-center shadow-card transition-all duration-300 hover:shadow-blue hover:border-primary/40 h-[200px] flex flex-col justify-between">
+                  <div>
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                      <Lightbulb className="w-6 h-6 text-primary" />
+                    </div>
+                    <h4 className="text-lg font-semibold text-primary mb-2">INNOVATION</h4>
+                  </div>
+                  <button
+                    className="px-4 py-1 rounded-full bg-golden text-golden-foreground text-xs font-semibold shadow-lg hover:bg-golden-dark hover:scale-105 transition active:scale-95 focus:outline-none focus:ring-2 focus:ring-golden focus:ring-offset-2 mt-4"
+                    onClick={() => setShowInnovation((prev) => !prev)}
+                  >
+                    {showInnovation ? "Hide Details" : "View Details"}
+                  </button>
+                </div>
+                {showInnovation && (
+                  <div className="mt-4 bg-card border border-primary/10 rounded-xl p-4 shadow-card">
+                    <ul className="space-y-2 text-left">
+                      {[
+                        "Hackathons",
+                        "IP Protection",
+                        "Data",
+                        "Sandboxes", 
+                        "Compliance services",
+                        "Grant & Donations",
+                        "Investment Fund"
+                      ].map((item, idx) => (
+                        <li key={idx} className="flex items-start space-x-2">
+                          <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-sm text-foreground leading-relaxed">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Connectivity Statement */}
-            <div className="bg-card border-2 border-primary/20 rounded-2xl p-8 text-center shadow-card">
+            <div className="bg-card border-2 border-primary/20 rounded-2xl p-8 text-center shadow-card mt-16">
               <div className="flex items-center justify-center mb-4">
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
                   <Globe className="w-6 h-6 text-primary" />
@@ -209,7 +277,7 @@ export function OTCFramework() {
                 <h4 className="text-2xl font-bold text-primary">One Tech Approach</h4>
               </div>
               <p className="text-lg text-foreground leading-relaxed max-w-4xl mx-auto">
-                <span className="font-semibold text-primary">Connectivity:</span> Building technologies and systems that seamlessly connect people, communities, and innovations across Africa.
+                <span className="font-semibold text-primary">Connectivity:</span> Building technologies and systems that easily Connects people, communities, and innovations across Africa.
               </p>
             </div>
           </div>

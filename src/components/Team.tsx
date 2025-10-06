@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { LinkedinIcon, MailIcon, TwitterIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -10,9 +11,9 @@ const teamMembers = [
     image: "/images/Frank.jpg",
     expertise: ["Digital Health Rights", "Tech Law", "Strategic Litigation", "Project Leadership"],
     social: {
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/ssekamwa-frank-451b6920b/",
       email: "frank@onetechconnect.org",
-      twitter: "#"
+      twitter: "https://x.com/ssekamwafrank"
     }
   },
   {
@@ -23,7 +24,7 @@ const teamMembers = [
     image: "/images/Blair.jpg",
     expertise: ["Corporate Law", "M&A", "Intellectual Property", "TMT Law"],
     social: {
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/blair-kalivayo-748007198/",
       email: "blair@onetechconnect.org",
       twitter: "https://x.com/blairekalivayo"
     }
@@ -57,6 +58,8 @@ const teamMembers = [
 ];
 
 export function Team() {
+  const [expanded, setExpanded] = useState<number | null>(null);
+
   return (
     <section id="team" className="py-24 bg-background">
       <div className="container mx-auto px-6">
@@ -98,46 +101,67 @@ export function Team() {
 
                 {/* Content */}
                 <div className="p-6">
-                  <p className="text-body text-muted-foreground mb-6 leading-relaxed">
-                    {member.bio}
-                  </p>
-
-                  {/* Expertise Tags */}
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {member.expertise.map((skill) => (
-                      <span 
-                        key={skill}
-                        className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full border border-primary/20"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
+                  {/* Only show bio and expertise if expanded */}
+                  {expanded === index && (
+                    <>
+                      <p className="text-body text-muted-foreground mb-6 leading-relaxed">
+                        {member.bio}
+                      </p>
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {member.expertise.map((skill) => (
+                          <span 
+                            key={skill}
+                            className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full border border-primary/20"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </>
+                  )}
 
                   {/* Social Links */}
-                  <div className="flex items-center space-x-3">
+                  <div className="flex items-center space-x-3 mb-4">
                     <Button 
+                      asChild
                       variant="ghost-golden" 
                       size="icon"
                       className="w-8 h-8"
                     >
-                      <LinkedinIcon className="w-4 h-4" />
+                      <a href={member.social.linkedin} target="_blank" rel="noopener noreferrer">
+                        <LinkedinIcon className="w-4 h-4" />
+                      </a>
                     </Button>
                     <Button 
+                      asChild
                       variant="ghost-golden" 
                       size="icon"
                       className="w-8 h-8"
                     >
-                      <MailIcon className="w-4 h-4" />
+                      <a href={`mailto:${member.social.email}`}>
+                        <MailIcon className="w-4 h-4" />
+                      </a>
                     </Button>
                     <Button 
+                      asChild
                       variant="ghost-golden" 
                       size="icon"
                       className="w-8 h-8"
                     >
-                      <TwitterIcon className="w-4 h-4" />
+                      <a href={member.social.twitter} target="_blank" rel="noopener noreferrer">
+                        <TwitterIcon className="w-4 h-4" />
+                      </a>
                     </Button>
                   </div>
+
+                  {/* More Details Button */}
+                  <Button
+                    variant="outline"
+                    className="w-full shadow-md transition-all duration-200 hover:shadow-lg hover:bg-primary/10 active:scale-95 focus:ring-2 focus:ring-primary focus:outline-none"
+                    onClick={() => setExpanded(expanded === index ? null : index)}
+                  >
+                    {expanded === index ? "Hide Details" : "View Details"}
+                  </Button>
                 </div>
               </div>
             ))}
@@ -151,7 +175,7 @@ export function Team() {
               </h3>
               <p className="text-body text-muted-foreground mb-6 max-w-2xl mx-auto">
                 We're always looking for passionate individuals who share our vision 
-                of advancing Africa's tech-legal landscape.
+                of advancing digital Justice in Africa.
               </p>
               <Button variant="golden">
                 View Open Positions
