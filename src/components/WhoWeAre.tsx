@@ -54,10 +54,12 @@ export function WhoWeAre() {
               <p>
                 At OneTechConnect (OTC), we are a youth-led African centre advancing digital justice. We believe technology should empower communities, protect rights and promote equity, not deepen inequality.
 
-                We work across Digital Health & SRHR, AgriTech, FinTech and Development, because these sectors are interconnected pillars of Africa’s growth. Through research, advocacy, capacity-building and innovation, we tackle systemic challenges and shape fair, accountable digital policies.
               </p>
               <p>
                 OTC was founded to respond to Africa’s fast-spreading digital injustices, where systems were often implemented without contextualization, community participation, ethical safeguards, or transparency. We exist to ensure that justice leads technology, reflecting African values and agency.
+              </p>
+              <p>
+                We work across Digital Health & SRHR, AgriTech, FinTech and Development, because these sectors are interconnected pillars of Africa’s growth. Through research, advocacy, capacity-building and innovation, we tackle systemic challenges and shape fair, accountable digital policies.
               </p>
               <p>
                 Our vision is an Africa where technology strengthens dignity, amplifies voices, and drives inclusive development. Every project, partnership, and innovation we create is guided by Ubuntu, Afrocentrism, transparency, decoloniality, intersectionality and ensure that digital progress truly serves the people.
