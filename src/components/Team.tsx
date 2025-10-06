@@ -47,7 +47,7 @@ const teamMembers = [
     pronouns: "",
     position: "Head Finance",
     bio: "Dorothy leads OTC's financial operations, ensuring fiscal responsibility and strategic financial planning that supports our mission of advancing digital transformation across Africa. Her expertise in financial management and accounting helps maintain transparency and accountability in all our operations.",
-    image: "/placeholder.svg",
+    image: "/images/Dorothy.jpg",
     expertise: ["Financial Management", "Strategic Planning", "Accounting", "Budget Management"],
     social: {
       linkedin: "#",
