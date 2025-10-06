@@ -18,10 +18,10 @@ const services = [
 ];
 
 const programmes = [
-  { name: "Tech & SRHR Governance (TSG)", href: "/what-we-do/programmes" },
-  { name: "AfricanIntelligenceNow (AiNow)", href: "/what-we-do/programmes" },
-  { name: "BigTech Africa (BiTA)", href: "/what-we-do/programmes" },
-  { name: "EmpowerThem (EMT)", href: "/what-we-do/programmes" }
+  { name: "Tech & SRHR Governance (TSG)", href: "/programmes/tsg" },
+  { name: "BigTech Africa (BiTA)", href: "/programmes/bita" },
+  { name: "AfricanIntelligenceNow (AiNow)", href: "/programmes/ainow" },
+  { name: "EmpowerThem (EMT)", href: "/programmes/emt" }
 ];
 
 const legalLinks = [

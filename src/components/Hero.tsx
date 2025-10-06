@@ -26,12 +26,12 @@ export function Hero() {
           {/* Tagline */}
           <div className="inline-flex items-center space-x-2 bg-primary/15 border border-primary/30 rounded-full px-6 py-3 mb-8 backdrop-blur-sm">
             <span className="w-2 h-2 bg-golden rounded-full animate-golden-pulse" />
-            <span className="text-primary font-medium">Championing Africa's Digital Transformation</span>
+            <span className="text-primary font-medium">Championing Africa's Digital Justice</span>
           </div>
 
           {/* Main Headline */}
           <h1 className="heading-display text-gradient-blue mb-8 animate-fade-in-up">
-            Championing Africa's Technological & Digital Transformation
+            Championing Africa's Technological & Digital Justice
           </h1>
 
           {/* Subtitle */}
