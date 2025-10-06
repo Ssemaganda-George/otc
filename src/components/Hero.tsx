@@ -50,7 +50,7 @@ export function Hero() {
           {/* Tagline */}
           <div className="inline-flex items-center space-x-2 bg-white/80 border border-primary/40 rounded-full px-6 py-3 mb-8 backdrop-blur-md shadow">
             <span className="w-2 h-2 bg-golden rounded-full animate-golden-pulse" />
-            <span className="text-primary font-medium">Championing Africa's Digital Justice</span>
+            <span className="text-primary font-medium">Championing Digital Justice In Africa</span>
           </div>
 
           {/* Main Headline */}
