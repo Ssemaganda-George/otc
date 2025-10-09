@@ -52,25 +52,17 @@ export function WhoWeAre() {
             <h3 className="heading-card text-gradient-blue mb-8">Our Story</h3>
             <div className="space-y-6 text-body text-muted-foreground leading-relaxed text-justify sm:text-left">
               <p>
-                OneTechConnect (OTC) emerged as a Youth-led African Organization with a clear mission: 
-                to ensure that digital transformation serves as a force for good across Africa. We 
-                champion technological advancement while upholding respect for human rights and social 
-                justice for all.
+                OneTechConnect (OTC) is a youth-led African centre advancing digital justice on the continent. We believe technology should empower communities, protect rights and promote equity, not deepen inequality.
+
               </p>
               <p>
-                We deliver our work through four strategic pillars: Research & Development (R&D) – 
-                generating evidence to inform policy, practice, and innovation; Training & Skillset 
-                Development (TSD) – equipping young people and communities with digital, technical, 
-                and rights-based skills; Strategic Advocacy & Partnerships (SAP) – building alliances 
-                to influence policy and amplify voices for justice and accountability; and Tech, 
-                Innovation & Digital Transformation (TID) – creating and supporting solutions that 
-                harness technology for inclusive and sustainable development.
+                OTC was founded to respond to Africa’s fast-spreading digital injustices, where systems were often implemented without contextualization, community participation, ethical safeguards, or transparency. We exist to ensure that justice leads technology, reflecting African values and agency.
               </p>
               <p>
-                Today, we stand as a leading voice in Africa's digital transformation journey, 
-                working across health, sexual reproductive health, finance, agriculture, and 
-                development sectors to ensure that technology advances human rights and leaves 
-                no one behind.
+                We work across Digital Health & SRHR, AgriTech, FinTech and Development, because these sectors are interconnected pillars of Africa’s growth. Through research, advocacy, capacity-building and innovation, we tackle systemic challenges and shape fair, accountable digital policies and practices.
+              </p>
+              <p>
+                Our vision is an Africa where technology strengthens dignity, amplifies voices, and drives inclusive development. Every project, partnership, and innovation we create is guided by Ubuntu, Afrocentrism, transparency, decoloniality, intersectionality and ensure that digital progress truly serves the people.
               </p>
             </div>
           </div>
@@ -80,7 +72,7 @@ export function WhoWeAre() {
             <div className="text-center mb-12">
               <h3 className="heading-card text-gradient-blue mb-4">Our Strategic Pillars</h3>
               <p className="text-body text-muted-foreground max-w-2xl mx-auto">
-                We deliver our work through four strategic pillars that drive inclusive digital transformation
+                We deliver our work through four strategic pillars that drive inclusive digital transformation.
               </p>
             </div>
             
