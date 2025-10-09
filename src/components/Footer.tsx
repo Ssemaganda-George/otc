@@ -12,9 +12,9 @@ const quickLinks = [
 
 const services = [
   { name: "Strategic Litigation", href: "/products/strategic-litigation" },
-  { name: "Innovations", href: "/products/innovations" },
-  { name: "Consultancy Services", href: "/products/consultancy" },
-  { name: "Research & Development", href: "/what-we-do/programmes" }
+  { name: "Innovation Hub", href: "/products/innovations" },
+  { name: "Center for Digital Justice", href: "/products/center-for-digital-justice" },
+  { name: "Consultancy Services", href: "/products/consultancy" }
 ];
 
 const programmes = [

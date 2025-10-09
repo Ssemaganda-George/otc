@@ -24,6 +24,8 @@ import StrategicLitigationPage from "./pages/StrategicLitigationPage";
 import InnovationsPage from "./pages/InnovationsPage";
 import ConsultancyPage from "./pages/ConsultancyPage";
 import ShortCoursesPage from "./pages/ShortCoursesPage";
+import CenterForDigitalJusticePage from "./pages/CenterForDigitalJusticePage";
+import DonatePage from "./pages/DonatePage";
 import ProgrammesPage from "./pages/ProgrammesPage";
 import TSGPage from "./pages/programmes/TSGPage";
 import AiNowPage from "./pages/programmes/AiNowPage";
@@ -67,6 +69,7 @@ const App = () => (
           <Route path="/our-products/services" element={<OurServicesPage />} />
           <Route path="/products/strategic-litigation" element={<StrategicLitigationPage />} />
           <Route path="/products/innovations" element={<InnovationsPage />} />
+          <Route path="/products/center-for-digital-justice" element={<CenterForDigitalJusticePage />} />
           <Route path="/products/consultancy" element={<ConsultancyPage />} />
           <Route path="/products/short-courses" element={<ShortCoursesPage />} />
           
@@ -74,6 +77,7 @@ const App = () => (
           <Route path="/news" element={<NewsUpdatesPage />} />
           <Route path="/team" element={<TeamPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/donate" element={<DonatePage />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
