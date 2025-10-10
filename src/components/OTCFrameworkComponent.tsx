@@ -29,7 +29,7 @@ export function OTCFramework() {
             <div className="relative group animate-fade-in-up opacity-0" style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}>
               <div className="bg-gradient-to-r from-primary to-primary-dark rounded-2xl p-6 text-center shadow-blue transition-all duration-300 hover:shadow-lg hover:scale-[1.02] group-hover:animate-glow-pulse">
                 <h4 className="text-xl md:text-2xl font-bold text-primary-foreground leading-tight">
-                  THE OTC FRAMEWORK ON TECH, INNOVATION & DIGITALISATION IN AFRICA
+                  THE OTC AFROCENTRIC FRAMEWORK FOR DIGITAL TRANSFORMATION
                 </h4>
               </div>
               {/* Connecting Arrow */}
