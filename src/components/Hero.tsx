@@ -41,7 +41,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden pt-32 pb-12">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-40 pb-16">
       {/* Sliding Background Images Container */}
       <div className="absolute inset-0 z-0">
         {heroSlides.map((slide, index) => (
@@ -72,25 +72,25 @@ export function Hero() {
       <div className="absolute bottom-32 left-20 w-10 h-10 bg-golden/20 rounded-full animate-float pointer-events-none" style={{ animationDelay: '2s' }} />
 
       {/* Main Content */}
-      <div className="relative z-10 container mx-auto px-6 text-center">
-        <div className="max-w-5xl mx-auto space-y-6">
+      <div className="relative z-10 container mx-auto px-6 text-center py-8">
+        <div className="max-w-5xl mx-auto space-y-8">
           {/* Tagline */}
-          <div className="inline-flex items-center space-x-2 bg-white/80 border border-primary/40 rounded-full px-5 py-2 mb-6 backdrop-blur-md shadow">
+          <div className="inline-flex items-center space-x-2 bg-white/80 border border-primary/40 rounded-full px-5 py-2 backdrop-blur-md shadow">
             <span className="w-2 h-2 bg-golden rounded-full animate-golden-pulse" />
             <span className="text-primary font-medium text-sm">Championing Digital Justice In Africa</span>
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-playfair font-bold text-white mb-4 animate-fade-in-up drop-shadow-lg">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-bold text-white animate-fade-in-up drop-shadow-lg">
             Championing Africa's Technological & Digital Justice
           </h1>
 
           {/* Sliding Messages Container */}
-          <div className="relative h-40 md:h-32 lg:h-28 mb-8 overflow-hidden">
+          <div className="relative min-h-[120px] md:min-h-[100px] overflow-hidden">
             {heroSlides.map((slide, index) => (
               <p
                 key={index}
-                className={`absolute inset-0 text-base md:text-lg max-w-4xl mx-auto text-justify sm:text-center text-white drop-shadow-md bg-gradient-to-br from-blue-900/90 via-blue-800/90 to-blue-950/90 rounded-xl px-6 py-4 transition-all duration-1000 ease-in-out flex items-center justify-center leading-relaxed ${
+                className={`absolute inset-0 text-sm md:text-base lg:text-lg max-w-4xl mx-auto text-center text-white drop-shadow-md bg-gradient-to-br from-blue-900/90 via-blue-800/90 to-blue-950/90 rounded-xl px-6 py-4 transition-all duration-1000 ease-in-out flex items-center justify-center leading-relaxed ${
                   index === current 
                     ? 'translate-x-0 opacity-100' 
                     : index === (current + 1) % heroSlides.length
@@ -106,21 +106,21 @@ export function Hero() {
           </div>
 
           {/* Stats Row */}
-          <div className="grid grid-cols-3 gap-4 md:gap-6 mb-8 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-            <div className="flex flex-col items-center space-y-1 group">
-              <Code className="w-8 h-8 md:w-10 md:h-10 text-golden mb-1 group-hover:scale-110 transition-transform" />
-              <div className="text-lg md:text-xl font-bold text-golden group-hover:text-white transition-colors">5+</div>
-              <div className="text-white text-xs md:text-sm">Tech Sectors</div>
+          <div className="grid grid-cols-3 gap-4 md:gap-8 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+            <div className="flex flex-col items-center space-y-2 group">
+              <Code className="w-8 h-8 md:w-10 md:h-10 text-golden group-hover:scale-110 transition-transform" />
+              <div className="text-xl md:text-2xl font-bold text-golden group-hover:text-white transition-colors">5+</div>
+              <div className="text-white text-sm md:text-base">Tech Sectors</div>
             </div>
-            <div className="flex flex-col items-center space-y-1 group">
-              <Scale className="w-8 h-8 md:w-10 md:h-10 text-golden mb-1 group-hover:scale-110 transition-transform" />
-              <div className="text-lg md:text-xl font-bold text-golden group-hover:text-white transition-colors">100+</div>
-              <div className="text-white text-xs md:text-sm">Legal Frameworks</div>
+            <div className="flex flex-col items-center space-y-2 group">
+              <Scale className="w-8 h-8 md:w-10 md:h-10 text-golden group-hover:scale-110 transition-transform" />
+              <div className="text-xl md:text-2xl font-bold text-golden group-hover:text-white transition-colors">100+</div>
+              <div className="text-white text-sm md:text-base">Legal Frameworks</div>
             </div>
-            <div className="flex flex-col items-center space-y-1 group">
-              <Globe className="w-8 h-8 md:w-10 md:h-10 text-golden mb-1 group-hover:scale-110 transition-transform" />
-              <div className="text-lg md:text-xl font-bold text-golden group-hover:text-white transition-colors">5+</div>
-              <div className="text-white text-xs md:text-sm">African Countries</div>
+            <div className="flex flex-col items-center space-y-2 group">
+              <Globe className="w-8 h-8 md:w-10 md:h-10 text-golden group-hover:scale-110 transition-transform" />
+              <div className="text-xl md:text-2xl font-bold text-golden group-hover:text-white transition-colors">5+</div>
+              <div className="text-white text-sm md:text-base">African Countries</div>
             </div>
           </div>
 
@@ -143,6 +143,7 @@ export function Hero() {
           <button
             key={index}
             onClick={() => setCurrent(index)}
+            title={`Go to slide ${index + 1}`}
             className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
               index === current ? 'bg-golden scale-110' : 'bg-white/50 hover:bg-white/70'
             }`}
