@@ -2,8 +2,86 @@ import { MapPin, Phone, Mail, Send, ArrowRight, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 export function Contact() {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [newsletterSubmitting, setNewsletterSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("https://formspree.io/f/mnnggjok", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Message sent successfully!",
+          description: "We'll get back to you within 24 hours.",
+        });
+        form.reset();
+      } else {
+        throw new Error("Failed to send message");
+      }
+    } catch (error) {
+      toast({
+        title: "Failed to send message",
+        description: "Please try again or contact us directly via email.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleNewsletterSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setNewsletterSubmitting(true);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("https://formspree.io/f/mdkwwayn", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Successfully subscribed!",
+          description: "Thank you for subscribing to our newsletter.",
+        });
+        form.reset();
+      } else {
+        throw new Error("Failed to subscribe");
+      }
+    } catch (error) {
+      toast({
+        title: "Subscription failed",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setNewsletterSubmitting(false);
+    }
+  };
+
   return (
     <section id="contact" className="py-24 bg-gradient-to-b from-background to-card/50">
       <div className="container mx-auto px-6">
@@ -107,19 +185,19 @@ export function Contact() {
                 Send Us a Message
               </h3>
               
-              <form className="space-y-6">
+              <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
                       First Name
                     </label>
-                    <Input placeholder="Enter your first name" />
+                    <Input name="firstName" placeholder="Enter your first name" required />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
                       Last Name
                     </label>
-                    <Input placeholder="Enter your last name" />
+                    <Input name="lastName" placeholder="Enter your last name" required />
                   </div>
                 </div>
 
@@ -127,21 +205,21 @@ export function Contact() {
                   <label className="block text-sm font-medium text-foreground mb-2">
                     Email Address
                   </label>
-                  <Input type="email" placeholder="Enter your email address" />
+                  <Input name="email" type="email" placeholder="Enter your email address" required />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-2">
                     Organization
                   </label>
-                  <Input placeholder="Enter your organization name" />
+                  <Input name="organization" placeholder="Enter your organization name" />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-2">
                     Subject
                   </label>
-                  <Input placeholder="What's this about?" />
+                  <Input name="subject" placeholder="What's this about?" required />
                 </div>
 
                 <div>
@@ -149,13 +227,21 @@ export function Contact() {
                     Message
                   </label>
                   <Textarea 
+                    name="message"
                     placeholder="Tell us about your project, questions, or how you'd like to collaborate..."
                     rows={5}
+                    required
                   />
                 </div>
 
-                <Button variant="golden" size="lg" className="w-full group">
-                  Send Message
+                <Button 
+                  variant="golden" 
+                  size="lg" 
+                  className="w-full group"
+                  type="submit"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Sending..." : "Send Message"}
                   <Send className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </form>
@@ -173,17 +259,27 @@ export function Contact() {
                 and innovation opportunities across Africa.
               </p>
               
-              <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 max-w-md mx-auto">
+              <form 
+                className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 max-w-md mx-auto"
+                onSubmit={handleNewsletterSubmit}
+              >
                 <Input 
                   type="email" 
+                  name="email"
                   placeholder="Enter your email address"
                   className="flex-1"
+                  required
                 />
-                <Button variant="golden" className="group">
-                  Subscribe
+                <Button 
+                  variant="golden" 
+                  className="group"
+                  type="submit"
+                  disabled={newsletterSubmitting}
+                >
+                  {newsletterSubmitting ? "Subscribing..." : "Subscribe"}
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
-              </div>
+              </form>
               
               <p className="text-xs text-muted-foreground mt-4">
                 We respect your privacy. Unsubscribe at any time.

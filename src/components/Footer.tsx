@@ -137,9 +137,11 @@ export function Footer() {
               </p>
 
               <div className="space-y-4 mb-6">
-                <Button variant="ghost-golden" size="sm" className="w-full justify-start group">
-                  <span>Subscribe to Newsletter</span>
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                <Button variant="ghost-golden" size="sm" className="w-full justify-start group" asChild>
+                  <Link to="/newsletter">
+                    <span>Subscribe to Newsletter</span>
+                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Link>
                 </Button>
                 <Button variant="ghost-golden" size="sm" className="w-full justify-start group">
                   <span>Follow on LinkedIn</span>

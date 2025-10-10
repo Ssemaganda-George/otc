@@ -26,6 +26,7 @@ import ConsultancyPage from "./pages/ConsultancyPage";
 import ShortCoursesPage from "./pages/ShortCoursesPage";
 import CenterForDigitalJusticePage from "./pages/CenterForDigitalJusticePage";
 import DonatePage from "./pages/DonatePage";
+import NewsletterPage from "./pages/NewsletterPage";
 import ProgrammesPage from "./pages/ProgrammesPage";
 import TSGPage from "./pages/programmes/TSGPage";
 import AiNowPage from "./pages/programmes/AiNowPage";
@@ -78,6 +79,7 @@ const App = () => (
           <Route path="/team" element={<TeamPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/donate" element={<DonatePage />} />
+          <Route path="/newsletter" element={<NewsletterPage />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
