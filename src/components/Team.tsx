@@ -80,8 +80,10 @@ export function Team() {
             {teamMembers.map((member, index) => (
               <div 
                 key={member.name}
-                className="group bg-card border border-border rounded-2xl overflow-hidden shadow-card hover:shadow-blue transition-all duration-500 card-hover"
-                style={{ animationDelay: `${index * 0.2}s` }}
+                className={`group bg-card border border-border rounded-2xl overflow-hidden shadow-card hover:shadow-blue transition-all duration-500 card-hover
+                  ${expanded === index ? "ring-2 ring-primary/30" : ""}
+                  opacity-0 translate-y-8 animate-fade-in`}
+                style={{ animationDelay: `${index * 0.2}s`, animationFillMode: "forwards" }}
               >
                 {/* Profile Image */}
                 <div className="relative h-80 bg-gradient-to-br from-secondary/80 to-secondary/60 overflow-hidden">
@@ -102,23 +104,29 @@ export function Team() {
                 {/* Content */}
                 <div className="p-6">
                   {/* Only show bio and expertise if expanded */}
-                  {expanded === index && (
-                    <>
-                      <p className="text-body text-muted-foreground mb-6 leading-relaxed">
-                        {member.bio}
-                      </p>
-                      <div className="flex flex-wrap gap-2 mb-6">
-                        {member.expertise.map((skill) => (
-                          <span 
-                            key={skill}
-                            className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full border border-primary/20"
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    </>
-                  )}
+                  <div
+                    className={`transition-all duration-500 ease-in-out overflow-hidden
+                      ${expanded === index ? "max-h-[500px] opacity-100 translate-y-0" : "max-h-0 opacity-0 -translate-y-4"}
+                    `}
+                  >
+                    {expanded === index && (
+                      <>
+                        <p className="text-body text-muted-foreground mb-6 leading-relaxed transition-opacity duration-500">
+                          {member.bio}
+                        </p>
+                        <div className="flex flex-wrap gap-2 mb-6">
+                          {member.expertise.map((skill) => (
+                            <span 
+                              key={skill}
+                              className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full border border-primary/20"
+                            >
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      </>
+                    )}
+                  </div>
 
                   {/* Social Links */}
                   <div className="flex items-center space-x-3 mb-4">
@@ -187,3 +195,16 @@ export function Team() {
     </section>
   );
 }
+
+// Add to your global CSS (e.g., src/index.css or tailwind.css):
+/*
+@keyframes fade-in {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-fade-in {
+  animation: fade-in 0.7s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+*/
