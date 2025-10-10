@@ -17,7 +17,7 @@ export function OTCFramework() {
             <h2 className="heading-section text-gradient-blue mb-6">
               The OTC Framework
             </h2>
-            <p className="text-body text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Our comprehensive approach to advancing Africa's digital transformation through 
               integrated legal, technological, and social justice initiatives.
             </p>
@@ -50,7 +50,7 @@ export function OTCFramework() {
                       <sector.icon className="w-4 h-4 text-primary" />
                     </div>
                     <h5 className="font-bold text-foreground text-sm mb-1">{sector.title}</h5>
-                    <p className="text-xs text-muted-foreground">{sector.desc}</p>
+                    <p className="text-sm text-muted-foreground">{sector.desc}</p>
                   </div>
                   {/* Connecting lines to center */}
                   <div className="hidden md:block absolute top-full left-1/2 transform -translate-x-1/2 w-0.5 h-6 bg-gradient-to-b from-primary to-primary/40 opacity-40"></div>
@@ -65,7 +65,7 @@ export function OTCFramework() {
                   <h4 className="text-lg md:text-xl font-bold text-foreground mb-2">
                     HUMAN RIGHTS & SOCIAL JUSTICE
                   </h4>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-base text-muted-foreground">
                     At the heart of everything we do
                   </p>
                 </div>
@@ -88,7 +88,7 @@ export function OTCFramework() {
                       <dept.icon className="w-4 h-4 text-primary" />
                     </div>
                     <h5 className="font-bold text-foreground text-sm mb-1">{dept.title}</h5>
-                    <p className="text-xs text-muted-foreground">{dept.desc}</p>
+                    <p className="text-sm text-muted-foreground">{dept.desc}</p>
                   </div>
                 </div>
               ))}
@@ -102,7 +102,7 @@ export function OTCFramework() {
                 <h4 className="text-lg md:text-xl font-bold text-foreground mb-2">
                   "Transformation that Promotes Human Rights and Justice for All in Africa"
                 </h4>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-base text-muted-foreground">
                   Our ultimate goal: An Africa where technology drives inclusive prosperity and social justice
                 </p>
               </div>
@@ -113,7 +113,7 @@ export function OTCFramework() {
           <div className="mt-24 bg-secondary/30 rounded-3xl p-12">
             <div className="text-center mb-16">
               <h3 className="heading-section text-gradient-blue mb-6">Operationalising the OTC Framework</h3>
-              <p className="text-body text-muted-foreground max-w-3xl mx-auto">
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
                 We operationalize the OTC Framework through our four (4) strategic pillars
               </p>
             </div>
@@ -150,7 +150,7 @@ export function OTCFramework() {
                       ].map((item, idx) => (
                         <li key={idx} className="flex items-start space-x-2">
                           <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-sm text-foreground leading-relaxed">{item}</span>
+                          <span className="text-base text-foreground leading-relaxed">{item}</span>
                         </li>
                       ))}
                     </ul>
@@ -185,7 +185,7 @@ export function OTCFramework() {
                       ].map((item, idx) => (
                         <li key={idx} className="flex items-start space-x-2">
                           <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-sm text-foreground leading-relaxed">{item}</span>
+                          <span className="text-base text-foreground leading-relaxed">{item}</span>
                         </li>
                       ))}
                     </ul>
@@ -222,7 +222,7 @@ export function OTCFramework() {
                       ].map((item, idx) => (
                         <li key={idx} className="flex items-start space-x-2">
                           <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-sm text-foreground leading-relaxed">{item}</span>
+                          <span className="text-base text-foreground leading-relaxed">{item}</span>
                         </li>
                       ))}
                     </ul>
@@ -259,7 +259,7 @@ export function OTCFramework() {
                       ].map((item, idx) => (
                         <li key={idx} className="flex items-start space-x-2">
                           <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-sm text-foreground leading-relaxed">{item}</span>
+                          <span className="text-base text-foreground leading-relaxed">{item}</span>
                         </li>
                       ))}
                     </ul>
@@ -276,7 +276,7 @@ export function OTCFramework() {
                 </div>
                 <h4 className="text-2xl font-bold text-primary">One Tech Approach</h4>
               </div>
-              <p className="text-lg text-foreground leading-relaxed max-w-4xl mx-auto">
+              <p className="text-xl text-foreground leading-relaxed max-w-4xl mx-auto">
                 <span className="font-semibold text-primary">Connectivity:</span> Building technologies and systems that easily Connects people, communities, and innovations across Africa.
               </p>
             </div>
