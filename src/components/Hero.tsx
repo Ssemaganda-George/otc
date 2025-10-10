@@ -18,15 +18,15 @@ const heroSlides = [
   },
   {
     image: heroImage4,
-    message: "We work around HealthTech& SRHR, AgriTech, FinTech & Development"
+    message: "We work around HealthTech& SRHR, AgriTech, FinTech & Development."
   },
   {
     image: heroImage6,
-    message: "We promote social justice and human rights "
+    message: "We promote social justice and human rights."
   },
   {
     image: heroImage8,
-    message: "We Research, Capacitate, Advocate and Innovate"
+    message: "We Research, Capacitate, Advocate and Innovate."
   }
 ];
 
