@@ -69,7 +69,7 @@ export function Navigation() {
             <img 
               src="/OTC_logo.png" 
               alt="OneTechConnect Logo" 
-              className="h-24 w-auto"
+              className="h-16 w-auto"
             />
           </Link>
 
