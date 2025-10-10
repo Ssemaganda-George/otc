@@ -116,7 +116,7 @@ export function Footer() {
                     <li key={programme.name}>
                       <Link 
                         to={programme.href}
-                        className="text-muted-foreground hover:text-primary transition-colors duration-200 text-xs"
+                        className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm"
                       >
                         {programme.name}
                       </Link>
