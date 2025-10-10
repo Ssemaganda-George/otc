@@ -21,82 +21,83 @@ export function OTCFrameworkDiagram() {
           </div>
 
           {/* Framework Diagram */}
-          <div className="relative bg-black rounded-3xl p-8 md:p-12 border border-primary/30 shadow-2xl overflow-hidden">
-            {/* Background pattern */}
-            <div className="absolute inset-0 opacity-5">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-primary/10"></div>
-            </div>
-
-            <div className="relative z-10 space-y-8">
-              {/* Top Level - Framework Title */}
-              <div className="text-center">
-                <div className="inline-block bg-gradient-to-r from-primary/20 to-primary/30 border-2 border-primary rounded-xl px-8 py-4 shadow-lg hover:shadow-blue transition-all duration-300 hover:scale-105">
-                  <h3 className="text-xl md:text-2xl font-bold text-white font-playfair">
-                    OTC OPERATION FRAMEWORK
-                  </h3>
-                </div>
+          <div className="w-full overflow-x-auto">
+            <div className="relative bg-black rounded-3xl p-8 md:p-12 border border-primary/30 shadow-2xl overflow-hidden min-w-[768px]">
+              {/* Background pattern */}
+              <div className="absolute inset-0 opacity-5">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-primary/10"></div>
               </div>
 
-              {/* Arrow Down */}
-              <div className="flex justify-center">
-                <ArrowDown className="w-8 h-8 text-primary animate-bounce" />
-              </div>
-
-              {/* Second Level - Tech & Innovation */}
-              <div className="text-center">
-                <div className="inline-block bg-gradient-to-r from-primary/15 to-primary/25 border border-primary rounded-lg px-6 py-3 shadow-md hover:shadow-blue transition-all duration-300 hover:scale-105">
-                  <h4 className="text-lg md:text-xl font-semibold text-white">
-                    TECH & INNOVATION IN AFRICA
-                  </h4>
-                </div>
-              </div>
-
-              {/* Arrow Down */}
-              <div className="flex justify-center">
-                <ArrowDown className="w-6 h-6 text-primary/80" />
-              </div>
-
-              {/* Third Level - Sectors */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {sectors.map((sector, index) => (
-                  <div key={sector} className="text-center">
-                    <div className={`bg-gradient-to-br from-primary/10 to-primary/20 border border-primary/50 rounded-lg px-4 py-3 shadow-md hover:shadow-blue transition-all duration-300 hover:scale-105 group`}>
-                      <span className="text-sm md:text-base font-medium text-white group-hover:text-primary transition-colors">
-                        {sector}
-                      </span>
-                    </div>
+              <div className="relative z-10 space-y-8">
+                {/* Top Level - Framework Title */}
+                <div className="text-center">
+                  <div className="inline-block bg-gradient-to-r from-primary/20 to-primary/30 border-2 border-primary rounded-xl px-8 py-4 shadow-lg hover:shadow-blue transition-all duration-300 hover:scale-105">
+                    <h3 className="text-xl md:text-2xl font-bold text-white font-playfair">
+                      OTC OPERATION FRAMEWORK
+                    </h3>
                   </div>
-                ))}
-              </div>
+                </div>
 
-              {/* Connecting Lines */}
-              <div className="flex justify-center">
-                <div className="grid grid-cols-4 gap-8 w-full max-w-md">
-                  {Array.from({ length: 4 }).map((_, i) => (
-                    <div key={i} className="flex justify-center">
-                      <ArrowDown className="w-5 h-5 text-primary/60" />
+                {/* Arrow Down */}
+                <div className="flex justify-center">
+                  <ArrowDown className="w-8 h-8 text-primary animate-bounce" />
+                </div>
+
+                {/* Second Level - Tech & Innovation */}
+                <div className="text-center">
+                  <div className="inline-block bg-gradient-to-r from-primary/15 to-primary/25 border border-primary rounded-lg px-6 py-3 shadow-md hover:shadow-blue transition-all duration-300 hover:scale-105">
+                    <h4 className="text-lg md:text-xl font-semibold text-white">
+                      TECH & INNOVATION IN AFRICA
+                    </h4>
+                  </div>
+                </div>
+
+                {/* Arrow Down */}
+                <div className="flex justify-center">
+                  <ArrowDown className="w-6 h-6 text-primary/80" />
+                </div>
+
+                {/* Third Level - Sectors */}
+                <div className="grid grid-cols-4 gap-4">
+                  {sectors.map((sector, index) => (
+                    <div key={sector} className="text-center">
+                      <div className={`bg-gradient-to-br from-primary/10 to-primary/20 border border-primary/50 rounded-lg px-4 py-3 shadow-md hover:shadow-blue transition-all duration-300 hover:scale-105 group`}>
+                        <span className="text-sm md:text-base font-medium text-white group-hover:text-primary transition-colors">
+                          {sector}
+                        </span>
+                      </div>
                     </div>
                   ))}
                 </div>
-              </div>
 
-              {/* Fourth Level - Activities */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {activities.map((activity, index) => (
-                  <div key={activity} className="text-center">
-                    <div className={`bg-gradient-to-br from-primary/8 to-primary/15 border border-primary/40 rounded-lg px-4 py-3 shadow-md hover:shadow-blue transition-all duration-300 hover:scale-105 group`}>
-                      <span className="text-sm md:text-base font-medium text-white group-hover:text-primary transition-colors">
-                        {activity}
-                      </span>
-                    </div>
+                {/* Connecting Lines */}
+                <div className="flex justify-center">
+                  <div className="grid grid-cols-4 gap-8 w-full max-w-md">
+                    {Array.from({ length: 4 }).map((_, i) => (
+                      <div key={i} className="flex justify-center">
+                        <ArrowDown className="w-5 h-5 text-primary/60" />
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
+                </div>
 
-              {/* Arrow Down */}
-              <div className="flex justify-center">
-                <ArrowDown className="w-8 h-8 text-primary animate-pulse" />
-              </div>
+                {/* Fourth Level - Activities */}
+                <div className="grid grid-cols-4 gap-4">
+                  {activities.map((activity, index) => (
+                    <div key={activity} className="text-center">
+                      <div className={`bg-gradient-to-br from-primary/8 to-primary/15 border border-primary/40 rounded-lg px-4 py-3 shadow-md hover:shadow-blue transition-all duration-300 hover:scale-105 group`}>
+                        <span className="text-sm md:text-base font-medium text-white group-hover:text-primary transition-colors">
+                          {activity}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Arrow Down */}
+                <div className="flex justify-center">
+                  <ArrowDown className="w-8 h-8 text-primary animate-pulse" />
+                </div>
 
               {/* Fifth Level - Human Rights Header */}
               <div className="text-center">
@@ -113,7 +114,7 @@ export function OTCFrameworkDiagram() {
               </div>
 
               {/* Sixth Level - Rights */}
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+              <div className="grid grid-cols-5 gap-3">
                 {rights.map((right, index) => (
                   <div key={right} className="text-center">
                     <div className={`bg-gradient-to-br from-primary/10 to-primary/20 border border-primary/50 rounded-lg px-3 py-2 shadow-md hover:shadow-blue transition-all duration-300 hover:scale-105 group`}>
@@ -145,6 +146,7 @@ export function OTCFrameworkDiagram() {
             <div className="absolute top-8 right-6 w-2 h-2 bg-primary/40 rounded-full animate-ping"></div>
             <div className="absolute bottom-6 left-8 w-4 h-4 bg-primary/20 rounded-full animate-pulse"></div>
             <div className="absolute bottom-4 right-4 w-3 h-3 bg-primary/35 rounded-full animate-ping"></div>
+          </div>
           </div>
 
           {/* Framework Explanation */}

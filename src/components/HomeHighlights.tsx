@@ -13,31 +13,31 @@ const heroImages = [hero1, hero2, hero3];
 const highlights = [
   {
     icon: Scale,
-    title: "Legal & Tech Expertise",
-    description: "Comprehensive legal solutions for Africa's digital transformation.",
-    link: "/services",
-    linkText: "View Services"
+    title: "Strategic Litigation",
+    description: "Comprehensive legal solutions and strategic interest litigation for digital rights and justice across Africa.",
+    link: "/products/strategic-litigation",
+    linkText: "Learn More"
   },
   {
     icon: Brain,
-    title: "Innovation Programs", 
-    description: "AINow, EmpowerThem, BigTechAfrica and SRHR Governance (TSG).",
-    link: "/programs",
-    linkText: "Explore Programs"
-  },
-  {
-    icon: Users,
-    title: "Expert Team",
-    description: "Leading African tech lawyers and policy experts driving change.",
-    link: "/team", 
-    linkText: "Meet Our Team"
+    title: "Innovation Hub", 
+    description: "Driving technological innovation through hackathons, innovation funds, data solutions, and our OTC Sandbox.",
+    link: "/products/innovations",
+    linkText: "Explore Innovation"
   },
   {
     icon: Briefcase,
-    title: "Health Tech & SRHR",
-    description: "Our comprehensive support towards Health Justice and SRHR.",
-    link: "/programs",
-    linkText: "Learn More"
+    title: "Center for Digital Justice",
+    description: "Capacity building through courses on AI, health rights, data privacy and digital justice.",
+    link: "/products/center-for-digital-justice", 
+    linkText: "View Programs"
+  },
+  {
+    icon: Users,
+    title: "Consultancy Services",
+    description: "Expert advisory services for organizations navigating digital transformation and tech governance.",
+    link: "/products/consultancy",
+    linkText: "Get Support"
   }
 ];
 

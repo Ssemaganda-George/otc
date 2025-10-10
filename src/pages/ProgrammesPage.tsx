@@ -1,68 +1,38 @@
 import { useState } from "react";
 import { Navigation } from "@/components/ui/navigation";
 import { Footer } from "@/components/Footer";
-import { Brain, Heart, Users, Shield, Gavel, Target, ArrowRight } from "lucide-react";
+import { Brain, Heart, Users, Shield, Target, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const programmes = [
-  {
-    id: 2,
-    title: "AfricanIntelligenceNow (AiNow)",
-    icon: Brain,
-    description: "AiNow explores the rapid evolution of Artificial Intelligence in Africa, focusing on its application in the critical areas of health, agriculture, finance and development. We are dedicated to ensuring that the development and deployment of AI not only respects the fundamental rights of African people but also aligns with their social values and norms. Our program examines how AI can be based on or can effectively understand and interact with African intelligence and data. The \"Now\" in our name underscores the urgency of acting in the present to shape a future where AI serves as a force for good.",
-    goal: "To promote AI solutions that are rights-respecting, inclusive, and responsive to Africa's realities.",
-    objectives: [
-      "Examine the opportunities and risks of AI for African societies.",
-      "Support research on AI built on African data and contexts.",
-      "Advocate for AI that can effectively understand, serve, and interact with African citizens."
-    ],
-    outcomes: "Increased awareness and capacity on AI and rights; stronger regional dialogue on AI ethics; practical models for rights-based AI.",
-    activities: "Policy briefs, research reports, expert dialogues, and community engagement platforms."
-  },
   {
     id: 1,
     title: "Tech & SRHR Governance (TSG)",
     icon: Heart,
-    description: "The Tech & SRHR Governance (TSG) programme examines the complex governance challenges at the intersection of technology, digitalization, and sexual and reproductive health and rights (SRHR) in Africa. It explores both the opportunities and risks that emerging technologies bring to the SRHR landscape ranging from improved access to health information and services, to threats such as privacy violations, data misuse, and exclusion of vulnerable groups.",
-    objectives: [
-      "Research & Development aimed at generating evidence on how technology impacts SRHR policies, access, and accountability.",
-      "Advocacy & Movement Building to influence policy reforms and building coalitions to promote rights-based digital governance in SRHR.",
-      "Training & Skillset Development to equip stakeholders with knowledge and skills to navigate the digital-SRHR interface responsibly.",
-      "Innovation aimed at supporting the design and deployment of inclusive, ethical, and rights-respecting digital solutions for SRHR."
-    ],
-    goal: "Through TSG, we aim to ensure that digital transformation in Africa strengthens, rather than undermines, sexual and reproductive health and rights advancing dignity, equity, and justice for all."
+    description: "The Tech & SRHR Governance (TSG) programme examines the complex governance challenges at the intersection of technology, digitalization, and sexual and reproductive health and rights (SRHR) in Africa.",
+    link: "/programmes/tsg"
+  },
+  {
+    id: 2,
+    title: "BigTech Africa (BiTA)",
+    icon: Shield,
+    description: "BiTA examines the role and impact of big tech, small and medium tech companies, and governments operating across health, agriculture, finance, and development sectors.",
+    link: "/programmes/bita"
   },
   {
     id: 3,
-    title: "BigTech Africa (BiTA)",
-    icon: Shield,
-    description: "BiTA examines the role and impact of big tech, small and medium tech companies, and governments operating across health, agriculture, finance, and development sectors. We explore how their operations intersect with fundamental rights such as the right to health, privacy, expression, property, a decent environment and development.",
-    goal: "To hold technology & innovation actors accountable while promoting innovation that respects rights and justice.",
-    objectives: [
-      "Analyse how tech business models affect rights in Africa.",
-      "Strengthen regulatory responses to the risks of digital monopolies.",
-      "Build public awareness on the implications of tech practices for human rights."
-    ],
-    outcomes: "Improved accountability of tech companies; stronger legal and policy frameworks; informed citizens able to demand rights-based digital governance.",
-    activities: "Research studies, public dialogues, strategic litigation, and multi-stakeholder advocacy platforms.",
-    specialNote: {
-      title: "Ssekamwa Frank & 3 Others v Google LLC",
-      description: "This strategic interest litigation led to a landmark decision that"
-    }
+    title: "AfricanIntelligenceNow (AiNow)",
+    icon: Brain,
+    description: "AiNow explores the rapid evolution of Artificial Intelligence in Africa, focusing on its application in the critical areas of health, agriculture, finance and development.",
+    link: "/programmes/ainow"
   },
   {
     id: 4,
     title: "EmpowerThem (EMT)",
     icon: Users,
     description: "EmpowerThem focuses on the intersection of technology and vulnerable groups including children, youth women and marginalized communities in the areas of health, finance, agriculture, and development.",
-    goal: "To ensure that digital transformation empowers, rather than excludes, Africa's most vulnerable populations.",
-    objectives: [
-      "Build digital literacy and rights awareness among young people and vulnerable communities.",
-      "Strengthen access to safe and inclusive technologies.",
-      "Amplify voices of underrepresented groups in shaping digital futures."
-    ],
-    outcomes: "Empowered communities with greater agency in digital spaces; reduced inequalities in tech access; stronger protections for vulnerable groups.",
-    activities: "Training programmes, digital rights toolkits, mentorship, advocacy campaigns, and community-driven innovation projects."
+    link: "/programmes/emt"
   }
 ];
 
@@ -96,113 +66,32 @@ export default function ProgrammesPage() {
         <section className="py-24">
           <div className="container mx-auto px-6">
             <div className="max-w-6xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                {programmes.map((programme, index) => {
-                  const isExpanded = expanded === index;
-                  return (
-                    <div key={programme.id} className="space-y-8">
-                      {/* Programme Header */}
-                      <div className="bg-card border border-border rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-300">
-                        <div className="flex items-start space-x-6 mb-6">
-                          <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center flex-shrink-0">
-                            <programme.icon className="w-8 h-8 text-primary" />
-                          </div>
-                          <div>
-                            <h2 className="text-2xl font-playfair font-bold text-gradient-blue mb-3">
-                              {programme.title}
-                            </h2>
-                          </div>
-                        </div>
-                        
-                        <p className="text-body text-muted-foreground leading-relaxed mb-6">
-                          {programme.description}
-                        </p>
-
-                        {/* Collapsible Details */}
-                        {isExpanded && (
-                          <>
-                            {/* Programme Goal */}
-                            <div className="mb-6">
-                              <h3 className="text-lg font-semibold text-golden mb-3">Goal:</h3>
-                              <p className="text-body text-muted-foreground leading-relaxed">
-                                {programme.goal}
-                              </p>
-                            </div>
-
-                            {/* Strategic Objectives */}
-                            <div className="mb-6">
-                              <h3 className="text-lg font-semibold text-golden mb-4">
-                                {programme.id === 1 ? "Strategic Objectives:" : "Objectives:"}
-                              </h3>
-                              <ul className="space-y-3">
-                                {programme.objectives.map((objective, objIndex) => (
-                                  <li key={objIndex} className="flex items-start space-x-3">
-                                    <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                                    <span className="text-body text-muted-foreground leading-relaxed">
-                                      {objective}
-                                    </span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-
-                            {/* Expected Outcomes (for programmes that have them) */}
-                            {programme.outcomes && (
-                              <div className="mb-6">
-                                <h3 className="text-lg font-semibold text-golden mb-3">Expected Outcomes:</h3>
-                                <p className="text-body text-muted-foreground leading-relaxed">
-                                  {programme.outcomes}
-                                </p>
-                              </div>
-                            )}
-
-                            {/* Activities (for programmes that have them) */}
-                            {programme.activities && (
-                              <div className="mb-6">
-                                <h3 className="text-lg font-semibold text-golden mb-3">Outputs & Activities:</h3>
-                                <p className="text-body text-muted-foreground leading-relaxed">
-                                  {programme.activities}
-                                </p>
-                              </div>
-                            )}
-
-                            {/* Special Note for BiTA */}
-                            {programme.specialNote && (
-                              <div className="bg-golden/10 border border-golden/20 rounded-xl p-6">
-                                <div className="flex items-center space-x-3 mb-3">
-                                  <Gavel className="w-5 h-5 text-golden" />
-                                  <h4 className="font-semibold text-golden">{programme.specialNote.title}</h4>
-                                </div>
-                                <p className="text-body text-muted-foreground leading-relaxed">
-                                  {programme.specialNote.description}
-                                </p>
-                              </div>
-                            )}
-                          </>
-                        )}
-
-                        {/* View More / Hide Details Button */}
-                        <Button
-                          variant="ghost-golden"
-                          className="w-full mt-4"
-                          onClick={() => setExpanded(isExpanded ? null : index)}
-                        >
-                          {isExpanded ? (
-                            <>
-                              Hide Details
-                              <ArrowRight className="w-4 h-4 ml-2 rotate-180 transition-transform" />
-                            </>
-                          ) : (
-                            <>
-                              View More
-                              <ArrowRight className="w-4 h-4 ml-2 transition-transform" />
-                            </>
-                          )}
-                        </Button>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {programmes.map((programme) => (
+                  <div key={programme.id} className="bg-card border border-border rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-300">
+                    <div className="flex items-start space-x-6 mb-6">
+                      <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center flex-shrink-0">
+                        <programme.icon className="w-8 h-8 text-primary" />
+                      </div>
+                      <div>
+                        <h2 className="text-2xl font-playfair font-bold text-gradient-blue mb-3">
+                          {programme.title}
+                        </h2>
                       </div>
                     </div>
-                  );
-                })}
+                    
+                    <p className="text-body text-muted-foreground leading-relaxed mb-6">
+                      {programme.description}
+                    </p>
+
+                    <Link to={programme.link}>
+                      <Button variant="ghost-golden" size="sm" className="w-full group">
+                        Learn More
+                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                      </Button>
+                    </Link>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

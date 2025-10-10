@@ -24,7 +24,14 @@ import StrategicLitigationPage from "./pages/StrategicLitigationPage";
 import InnovationsPage from "./pages/InnovationsPage";
 import ConsultancyPage from "./pages/ConsultancyPage";
 import ShortCoursesPage from "./pages/ShortCoursesPage";
+import CenterForDigitalJusticePage from "./pages/CenterForDigitalJusticePage";
+import DonatePage from "./pages/DonatePage";
+import NewsletterPage from "./pages/NewsletterPage";
 import ProgrammesPage from "./pages/ProgrammesPage";
+import TSGPage from "./pages/programmes/TSGPage";
+import AiNowPage from "./pages/programmes/AiNowPage";
+import BiTAPage from "./pages/programmes/BiTAPage";
+import EMTPage from "./pages/programmes/EMTPage";
 
 const queryClient = new QueryClient();
 
@@ -51,12 +58,19 @@ const App = () => (
           <Route path="/what-we-do/focus-areas" element={<FocusAreasPage />} />
           <Route path="/what-we-do/programmes" element={<ProgrammesPage />} />
           
+          {/* Programmes Routes */}
+          <Route path="/programmes/tsg" element={<TSGPage />} />
+          <Route path="/programmes/ainow" element={<AiNowPage />} />
+          <Route path="/programmes/bita" element={<BiTAPage />} />
+          <Route path="/programmes/emt" element={<EMTPage />} />
+          
           {/* Our Products Routes */}
           <Route path="/our-products" element={<OurProductsPage />} />
           <Route path="/our-products/overview" element={<ProductsOverviewPage />} />
           <Route path="/our-products/services" element={<OurServicesPage />} />
           <Route path="/products/strategic-litigation" element={<StrategicLitigationPage />} />
           <Route path="/products/innovations" element={<InnovationsPage />} />
+          <Route path="/products/center-for-digital-justice" element={<CenterForDigitalJusticePage />} />
           <Route path="/products/consultancy" element={<ConsultancyPage />} />
           <Route path="/products/short-courses" element={<ShortCoursesPage />} />
           
@@ -64,6 +78,8 @@ const App = () => (
           <Route path="/news" element={<NewsUpdatesPage />} />
           <Route path="/team" element={<TeamPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/donate" element={<DonatePage />} />
+          <Route path="/newsletter" element={<NewsletterPage />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

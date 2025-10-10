@@ -12,16 +12,16 @@ const quickLinks = [
 
 const services = [
   { name: "Strategic Litigation", href: "/products/strategic-litigation" },
-  { name: "Innovations", href: "/products/innovations" },
-  { name: "Consultancy Services", href: "/products/consultancy" },
-  { name: "Research & Development", href: "/what-we-do/programmes" }
+  { name: "Innovation Hub", href: "/products/innovations" },
+  { name: "Center for Digital Justice", href: "/products/center-for-digital-justice" },
+  { name: "Consultancy Services", href: "/products/consultancy" }
 ];
 
 const programmes = [
-  { name: "Tech & SRHR Governance (TSG)", href: "/what-we-do/programmes" },
-  { name: "AfricanIntelligenceNow (AiNow)", href: "/what-we-do/programmes" },
-  { name: "BigTech Africa (BiTA)", href: "/what-we-do/programmes" },
-  { name: "EmpowerThem (EMT)", href: "/what-we-do/programmes" }
+  { name: "Tech & SRHR Governance (TSG)", href: "/programmes/tsg" },
+  { name: "BigTech Africa (BiTA)", href: "/programmes/bita" },
+  { name: "AfricanIntelligenceNow (AiNow)", href: "/programmes/ainow" },
+  { name: "EmpowerThem (EMT)", href: "/programmes/emt" }
 ];
 
 const legalLinks = [
@@ -137,9 +137,11 @@ export function Footer() {
               </p>
 
               <div className="space-y-4 mb-6">
-                <Button variant="ghost-golden" size="sm" className="w-full justify-start group">
-                  <span>Subscribe to Newsletter</span>
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                <Button variant="ghost-golden" size="sm" className="w-full justify-start group" asChild>
+                  <Link to="/newsletter">
+                    <span>Subscribe to Newsletter</span>
+                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Link>
                 </Button>
                 <Button variant="ghost-golden" size="sm" className="w-full justify-start group">
                   <span>Follow on LinkedIn</span>

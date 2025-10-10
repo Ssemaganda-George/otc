@@ -29,9 +29,9 @@ const navItems = [
     href: "/our-products",
     dropdown: [
       { name: "Strategic Litigation", href: "/products/strategic-litigation" },
-      { name: "Innovations", href: "/products/innovations" },
-      { name: "Consultancy Services", href: "/products/consultancy" },
-      { name: "Short Courses", href: "/products/short-courses" }
+      { name: "Innovation Hub", href: "/products/innovations" },
+      { name: "Center for Digital Justice", href: "/products/center-for-digital-justice" },
+      { name: "Consultancy Services", href: "/products/consultancy" }
     ]
   },
   { name: "News & Updates", href: "/news" },
@@ -69,7 +69,7 @@ export function Navigation() {
             <img 
               src="/OTC_logo.png" 
               alt="OneTechConnect Logo" 
-              className="h-16 w-auto"
+              className="h-24 w-auto"
             />
           </Link>
 
@@ -127,9 +127,9 @@ export function Navigation() {
                 )}
               </div>
             ))}
-            <Link to="/contact">
+            <Link to="/donate">
               <Button variant="golden" size="sm">
-                Get Involved
+                Donate
               </Button>
             </Link>
           </div>
@@ -202,9 +202,9 @@ export function Navigation() {
                   )}
                 </div>
               ))}
-              <Link to="/contact">
+              <Link to="/donate">
                 <Button variant="golden" size="sm" className="self-start mt-4">
-                  Get Involved
+                  Donate
                 </Button>
               </Link>
             </div>
