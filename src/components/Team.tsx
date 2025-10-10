@@ -63,7 +63,7 @@ export function Team() {
   return (
     <section id="team" className="py-24 bg-background">
       <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto">
+        <div className={`mx-auto transition-all duration-500 ${expanded !== null ? 'max-w-7xl' : 'max-w-6xl'}`}>
           {/* Section Header */}
           <div className="text-center mb-16">
             <h2 className="heading-section text-gradient-blue mb-6">

@@ -16,7 +16,7 @@ export default function CenterForDigitalJusticePage() {
               <div className="w-20 h-20 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Scale className="w-10 h-10 text-background" />
               </div>
-              <h1 className="heading-display text-gradient-blue mb-8">
+              <h1 className="heading-section text-gradient-blue mb-8">
                 Center for Digital Justice
                 <span className="block text-lg text-golden font-normal mt-2">(Coming Soon)</span>
               </h1>

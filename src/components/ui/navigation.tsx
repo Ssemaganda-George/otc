@@ -113,7 +113,7 @@ export function Navigation() {
 													<Link
 														key={dropdownItem.name}
 														to={dropdownItem.href}
-														className="block px-4 py-3 text-xs font-bold text-blue-700 hover:text-golden hover:bg-secondary/50 transition-colors duration-200"
+														className="block px-4 py-3 text-lg font-bold text-blue-700 hover:text-golden hover:bg-secondary/50 transition-colors duration-200"
 													>
 														{dropdownItem.name}
 													</Link>
@@ -183,7 +183,7 @@ export function Navigation() {
 														<Link
 															key={dropdownItem.name}
 															to={dropdownItem.href}
-															className="block py-2 text-xs font-bold text-blue-700 hover:text-golden transition-colors duration-200"
+															className="block py-2 text-lg font-bold text-blue-700 hover:text-golden transition-colors duration-200"
 															onClick={() => {
 																setIsMobileMenuOpen(false);
 																setActiveDropdown(null);

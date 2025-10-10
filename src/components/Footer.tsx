@@ -205,7 +205,7 @@ export function Footer() {
           {/* Mission Statement */}
           <div className="mt-6 pt-6 border-t border-border/50">
             <p className="text-center text-base text-muted-foreground italic max-w-3xl mx-auto">
-              "Working towards a Digitized Africa where respect for human rights and access to justice is for everyone."
+              Footnote: Advancing Digital Justice through research, training, advocacy and innovation in health & SRHR, Finance, Agriculture and Development.
             </p>
           </div>
         </div>

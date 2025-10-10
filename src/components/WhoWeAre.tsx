@@ -103,10 +103,10 @@ export function WhoWeAre() {
                   <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                     <pillar.icon className="w-8 h-8 text-primary" />
                   </div>
-                  <h4 className="text-lg font-playfair font-semibold text-gradient-blue mb-2">
+                  <h4 className="text-xl font-playfair font-semibold text-gradient-blue mb-2">
                     {pillar.title}
                   </h4>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-base text-muted-foreground leading-relaxed">
                     {pillar.description}
                   </p>
                 </div>

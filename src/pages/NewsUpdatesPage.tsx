@@ -2,6 +2,7 @@ import { Navigation } from "@/components/ui/navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Calendar, ArrowRight, Newspaper } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function NewsUpdatesPage() {
   return (
@@ -16,7 +17,7 @@ export default function NewsUpdatesPage() {
               <div className="w-20 h-20 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Newspaper className="w-10 h-10 text-background" />
               </div>
-              <h1 className="heading-display text-gradient-blue mb-8">
+              <h1 className="heading-section text-gradient-blue mb-8">
                 News & Updates
               </h1>
               <p className="text-body text-muted-foreground leading-relaxed">
@@ -47,7 +48,7 @@ export default function NewsUpdatesPage() {
                 </p>
 
                 <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg p-6 border border-primary/20 mb-8">
-                  <h3 className="text-lg font-playfair font-semibold text-gradient-blue mb-4">
+                  <h3 className="text-xl font-playfair font-semibold text-gradient-blue mb-4">
                     What to Expect
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -61,7 +62,7 @@ export default function NewsUpdatesPage() {
                     ].map((item, index) => (
                       <div key={index} className="flex items-center space-x-3">
                         <div className="w-2 h-2 bg-primary rounded-full" />
-                        <span className="text-sm text-muted-foreground">{item}</span>
+                        <span className="text-base text-muted-foreground">{item}</span>
                       </div>
                     ))}
                   </div>
@@ -73,10 +74,12 @@ export default function NewsUpdatesPage() {
                   </p>
                   
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Button variant="golden" className="group">
-                      Subscribe to Newsletter
-                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                    </Button>
+                    <Link to="/newsletter">
+                      <Button variant="golden" className="group">
+                        Subscribe to Newsletter
+                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                      </Button>
+                    </Link>
                     
                     <Button variant="ghost-golden" className="group">
                       Follow @OneTechConnect

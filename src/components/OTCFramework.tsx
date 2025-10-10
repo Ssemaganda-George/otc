@@ -93,13 +93,13 @@ export function OTCFramework() {
                       <div className="w-16 h-16 bg-primary text-primary-foreground rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-lg">
                         {step.step}
                       </div>
-                      <h4 className="font-semibold text-foreground mb-3">{step.title}</h4>
-                      <p className="text-sm text-muted-foreground mb-4">{step.description}</p>
+                      <h4 className="font-semibold text-foreground mb-3 text-lg">{step.title}</h4>
+                      <p className="text-base text-muted-foreground mb-4">{step.description}</p>
                       <div className="space-y-2">
                         {step.details.map((detail, idx) => (
                           <div key={idx} className="flex items-center justify-center">
                             <CheckCircle className="w-3 h-3 text-primary mr-2" />
-                            <span className="text-xs text-muted-foreground">{detail}</span>
+                            <span className="text-sm text-muted-foreground">{detail}</span>
                           </div>
                         ))}
                       </div>
@@ -127,10 +127,10 @@ export function OTCFramework() {
                   <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 border border-primary/20">
                     <right.icon className="w-8 h-8 text-primary" />
                   </div>
-                  <h4 className="font-playfair font-semibold text-gradient-blue mb-3">
+                  <h4 className="font-playfair font-semibold text-gradient-blue mb-3 text-lg">
                     {right.title}
                   </h4>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-base text-muted-foreground">
                     {right.description}
                   </p>
                 </div>
@@ -154,23 +154,23 @@ export function OTCFramework() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                   <div className="text-center">
                     <div className="text-2xl font-bold text-gradient-blue mb-2">Digitization</div>
-                    <p className="text-sm text-muted-foreground">Converting analog systems to digital formats</p>
+                    <p className="text-base text-muted-foreground">Converting analog systems to digital formats</p>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-gradient-blue mb-2">Innovation</div>
-                    <p className="text-sm text-muted-foreground">Creating new solutions for African challenges</p>
+                    <p className="text-base text-muted-foreground">Creating new solutions for African challenges</p>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-gradient-blue mb-2">Justice</div>
-                    <p className="text-sm text-muted-foreground">Ensuring equitable access to technology benefits</p>
+                    <p className="text-base text-muted-foreground">Ensuring equitable access to technology benefits</p>
                   </div>
                 </div>
 
                 <div className="border-t border-border pt-6">
-                  <h4 className="font-semibold text-foreground mb-4">Key Focus Areas:</h4>
+                  <h4 className="font-semibold text-foreground mb-4 text-lg">Key Focus Areas:</h4>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     {["African Tech Justice", "Human Rights", "Sustainable Development", "Digital Inclusion"].map((area) => (
-                      <span key={area} className="text-sm bg-primary/10 text-primary px-3 py-2 rounded-full border border-primary/20 text-center">
+                      <span key={area} className="text-base bg-primary/10 text-primary px-3 py-2 rounded-full border border-primary/20 text-center">
                         {area}
                       </span>
                     ))}

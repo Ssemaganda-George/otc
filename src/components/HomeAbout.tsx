@@ -75,10 +75,10 @@ export function HomeAbout() {
                   <div className="w-16 h-16 bg-gradient-to-br from-golden/30 to-golden/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 border border-golden/30">
                     <value.icon className="w-8 h-8 text-golden" />
                   </div>
-                  <h4 className="font-playfair font-semibold text-white mb-2">
+                  <h4 className="font-playfair font-semibold text-white mb-2 text-xl">
                     {value.title}
                   </h4>
-                  <p className="text-sm text-gray-300">
+                  <p className="text-base text-gray-300">
                     {value.description}
                   </p>
                 </div>

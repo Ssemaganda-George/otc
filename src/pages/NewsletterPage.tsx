@@ -60,7 +60,7 @@ const NewsletterPage = () => {
               <div className="w-20 h-20 bg-gradient-to-br from-golden to-golden/80 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Mail className="w-10 h-10 text-background" />
               </div>
-              <h1 className="heading-display text-gradient-blue mb-8">
+              <h1 className="heading-section text-gradient-blue mb-8">
                 Subscribe to Our Newsletter
               </h1>
               <p className="text-body text-muted-foreground leading-relaxed max-w-3xl mx-auto">
