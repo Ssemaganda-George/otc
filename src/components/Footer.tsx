@@ -57,15 +57,15 @@ export function Footer() {
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
                   <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
-                  <span className="text-sm text-muted-foreground">Kingdom Kampala Building, Uganda</span>
+                  <span className="text-base text-muted-foreground">Kingdom Kampala Building, Uganda</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Phone className="w-4 h-4 text-primary flex-shrink-0" />
-                  <span className="text-sm text-muted-foreground">+256-778410315</span>
+                  <span className="text-base text-muted-foreground">+256-778410315</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Mail className="w-4 h-4 text-primary flex-shrink-0" />
-                  <span className="text-sm text-muted-foreground">info@onetechconnect.org</span>
+                  <span className="text-base text-muted-foreground">info@onetechconnect.org</span>
                 </div>
               </div>
             </div>
@@ -80,7 +80,7 @@ export function Footer() {
                   <li key={link.name}>
                     <Link 
                       to={link.href}
-                      className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm"
+                      className="text-muted-foreground hover:text-primary transition-colors duration-200 text-base font-medium"
                     >
                       {link.name}
                     </Link>
@@ -99,7 +99,7 @@ export function Footer() {
                   <li key={service.name}>
                     <Link 
                       to={service.href}
-                      className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm"
+                      className="text-muted-foreground hover:text-primary transition-colors duration-200 text-base font-medium"
                     >
                       {service.name}
                     </Link>
@@ -116,7 +116,7 @@ export function Footer() {
                     <li key={programme.name}>
                       <Link 
                         to={programme.href}
-                        className="text-muted-foreground hover:text-primary transition-colors duration-200 text-sm"
+                        className="text-muted-foreground hover:text-primary transition-colors duration-200 text-base font-medium"
                       >
                         {programme.name}
                       </Link>
@@ -132,7 +132,7 @@ export function Footer() {
                 Stay Connected
               </h3>
               
-              <p className="text-muted-foreground text-sm mb-4">
+              <p className="text-muted-foreground text-base mb-4">
                 Get the latest updates on African tech law and innovation.
               </p>
 
@@ -167,10 +167,10 @@ export function Footer() {
 
               {/* Core Values */}
               <div className="bg-primary/5 rounded-lg p-4 border border-primary/20">
-                <h4 className="font-semibold text-primary text-sm mb-2">Our Values</h4>
+                <h4 className="font-semibold text-primary text-base mb-2">Our Values</h4>
                 <div className="flex flex-wrap gap-2">
                   {["Innovation", "Interoperability", "Equity", "Human Rights"].map((value) => (
-                    <span key={value} className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
+                    <span key={value} className="text-sm bg-primary/10 text-primary px-2 py-1 rounded-full">
                       {value}
                     </span>
                   ))}
@@ -184,7 +184,7 @@ export function Footer() {
         <div className="border-t border-border py-8">
           <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
             {/* Copyright */}
-            <div className="text-sm text-muted-foreground">
+            <div className="text-base text-muted-foreground">
               © 2025 OneTechConnect. All rights reserved.
             </div>
 
@@ -194,7 +194,7 @@ export function Footer() {
                 <a 
                   key={link.name}
                   href={link.href}
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
+                  className="text-base text-muted-foreground hover:text-primary transition-colors duration-200 font-medium"
                 >
                   {link.name}
                 </a>
@@ -204,7 +204,7 @@ export function Footer() {
 
           {/* Mission Statement */}
           <div className="mt-6 pt-6 border-t border-border/50">
-            <p className="text-center text-sm text-muted-foreground italic max-w-3xl mx-auto">
+            <p className="text-center text-base text-muted-foreground italic max-w-3xl mx-auto">
               "Working towards a Digitized Africa where respect for human rights and access to justice is for everyone."
             </p>
           </div>
