@@ -40,7 +40,7 @@ export function OTCFramework() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
               {[
                 { title: "HEALTH & SRHR", desc: "Sexual & Reproductive Health Rights", icon: Heart },
-                { title: "AGRICULTURE", desc: "Tech & Innovation", icon: Lightbulb },
+                { title: "AGRICULTURE", desc: "AgiTech & Innovation", icon: Lightbulb },
                 { title: "FINANCE", desc: "FinTech & Governance", icon: Briefcase },
                 { title: "DEVELOPMENT", desc: "Digitalization & Growth", icon: Target }
               ].map((sector, index) => (
