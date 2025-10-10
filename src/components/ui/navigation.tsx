@@ -76,6 +76,7 @@ export function Navigation() {
 						/>
 					</Link>
 
+<<<<<<< HEAD
 					{/* Desktop Navigation */}
 					<div className="hidden lg:flex items-center space-x-8 mr-6">
 						{navItems.map((item) => (
@@ -97,6 +98,68 @@ export function Navigation() {
 												className="transition-transform duration-200 group-hover:rotate-180"
 											/>
 										</button>
+=======
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center space-x-8">
+            {navItems.map((item) => (
+              <div key={item.name} className="relative group">
+                {item.dropdown ? (
+                  <>
+                    <button
+                      className={`flex items-center space-x-1 font-medium transition-colors duration-200 ${
+                        isActive(item.href) 
+                          ? "text-golden" 
+                          : "text-blue-700 hover:text-golden"
+                      }`}
+                      onMouseEnter={() => setActiveDropdown(item.name)}
+                      onMouseLeave={() => setActiveDropdown(null)}
+                    >
+                      <span>{item.name}</span>
+                      <ChevronDown size={16} className="transition-transform duration-200 group-hover:rotate-180" />
+                    </button>
+                    
+                    {/* Dropdown Menu */}
+                    <div 
+                      className={`absolute top-full left-0 mt-2 w-56 bg-card border border-border rounded-xl shadow-lg transition-all duration-200 ${
+                        activeDropdown === item.name ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"
+                      }`}
+                      onMouseEnter={() => setActiveDropdown(item.name)}
+                      onMouseLeave={() => setActiveDropdown(null)}
+                    >
+                      <div className="py-2">
+                        {item.dropdown.map((dropdownItem) => (
+                          <Link
+                            key={dropdownItem.name}
+                            to={dropdownItem.href}
+                            className="block px-4 py-3 text-base font-bold text-blue-700 hover:text-golden hover:bg-secondary/50 transition-colors duration-200"
+                          >
+                            {dropdownItem.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <Link
+                    to={item.href}
+                    className={`font-medium transition-colors duration-200 ${
+                      isActive(item.href) 
+                        ? "text-golden" 
+                        : "text-blue-700 hover:text-golden"
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                )}
+              </div>
+            ))}
+            <Link to="/donate">
+              <Button variant="golden" size="sm">
+                Donate
+              </Button>
+            </Link>
+          </div>
+>>>>>>> 57c1e2973ea12ab4b1a76a6a6c4adf36e49124ae
 
 										{/* Dropdown Menu */}
 										<div
@@ -142,6 +205,7 @@ export function Navigation() {
 						</Link>
 					</div>
 
+<<<<<<< HEAD
 					{/* Mobile Menu Button */}
 					<button
 						className="lg:hidden p-2 text-blue-700 hover:text-golden transition-colors"
@@ -225,4 +289,76 @@ export function Navigation() {
 			</div>
 		</nav>
 	);
+=======
+        {/* Mobile Navigation */}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden mt-4 pb-4 border-t border-border bg-white/95 backdrop-blur-md rounded-lg mx-4 shadow-lg">
+            <div className="flex flex-col space-y-2 pt-4 px-4">
+              {navItems.map((item) => (
+                <div key={item.name}>
+                  {item.dropdown ? (
+                    <>
+                      <button
+                        className={`flex items-center justify-between w-full font-medium py-2 transition-colors duration-200 ${
+                          isActive(item.href) 
+                            ? "text-golden" 
+                            : "text-blue-700 hover:text-golden"
+                        }`}
+                        onClick={() => handleDropdownToggle(item.name)}
+                      >
+                        <span>{item.name}</span>
+                        <ChevronDown 
+                          size={16} 
+                          className={`transition-transform duration-200 ${
+                            activeDropdown === item.name ? "rotate-180" : ""
+                          }`} 
+                        />
+                      </button>
+                      
+                      {/* Mobile Dropdown */}
+                      {activeDropdown === item.name && (
+                        <div className="ml-4 mt-2 space-y-2 bg-secondary/30 rounded-lg p-3">
+                          {item.dropdown.map((dropdownItem) => (
+                            <Link
+                              key={dropdownItem.name}
+                              to={dropdownItem.href}
+                              className="block py-2 text-base font-bold text-blue-700 hover:text-golden transition-colors duration-200"
+                              onClick={() => {
+                                setIsMobileMenuOpen(false);
+                                setActiveDropdown(null);
+                              }}
+                            >
+                              {dropdownItem.name}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <Link
+                      to={item.href}
+                      className={`font-medium py-2 transition-colors duration-200 ${
+                        isActive(item.href) 
+                          ? "text-golden" 
+                          : "text-blue-700 hover:text-golden"
+                      }`}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  )}
+                </div>
+              ))}
+              <Link to="/donate">
+                <Button variant="golden" size="sm" className="self-start mt-4">
+                  Donate
+                </Button>
+              </Link>
+            </div>
+          </div>
+        )}
+      </div>
+    </nav>
+  );
+>>>>>>> 57c1e2973ea12ab4b1a76a6a6c4adf36e49124ae
 }
