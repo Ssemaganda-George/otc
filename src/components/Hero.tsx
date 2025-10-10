@@ -14,19 +14,19 @@ const heroSlides = [
   },
   {
     image: heroImage2,
-    message: "Empowering communities through innovative legal frameworks that protect digital health rights and ensure equitable access to healthcare technology for all Africans."
+    message: "We nurture the next generation of African tech innovators through comprehensive legal support, mentorship programs, and advocacy."
   },
   {
     image: heroImage4,
-    message: "Creating legal pathways for inclusive fintech solutions that serve underbanked communities while protecting consumer rights and promoting financial inclusion across the continent."
+    message: "We work around HealthTech& SRHR, AgriTech, FinTech & Development"
   },
   {
     image: heroImage6,
-    message: "Supporting smallholder farmers through digital agriculture solutions backed by robust legal frameworks that protect data rights and promote sustainable farming practices."
+    message: "We promote social justice and human rights "
   },
   {
     image: heroImage8,
-    message: "Nurturing the next generation of African tech innovators through comprehensive legal support, mentorship programs, and advocacy for youth-centered digital policies."
+    message: "We Research, Capacitate, Advocate and Innovate"
   }
 ];
 
