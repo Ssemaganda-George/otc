@@ -70,7 +70,7 @@ export function Team() {
               Our Team
             </h2>
             <p className="text-body text-muted-foreground max-w-3xl mx-auto">
-              Meet the innovative minds behind One Tech Connect.
+              Meet the innovative minds behind OneTechConnect.
             </p>
           </div>
 

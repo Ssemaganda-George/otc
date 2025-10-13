@@ -37,7 +37,9 @@ const navItems = [
 			{ name: "Consultancy Services", href: "/products/consultancy" },
 		],
 	},
-	{ name: "News & Updates", href: "/news" },
+	{ 	name: "News & Updates", 
+		href: "/news" },
+		
 	{ name: "Contact Us", href: "/contact" },
 ];
 
