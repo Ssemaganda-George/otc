@@ -70,8 +70,7 @@ export function Team() {
               Our Team
             </h2>
             <p className="text-body text-muted-foreground max-w-3xl mx-auto">
-              Meet the innovative minds behind One Tech Connect. Our diverse team of legal experts, 
-              technologists, and policy makers brings together decades of experience in shaping Africa's digital future.
+              Meet the innovative minds behind OneTechConnect.
             </p>
           </div>
 
