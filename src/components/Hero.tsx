@@ -41,7 +41,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-40 pb-16">
+    <section id="home" className="relative min-h-screen overflow-hidden pt-20">
       {/* Sliding Background Images Container */}
       <div className="absolute inset-0 z-0">
         {heroSlides.map((slide, index) => (
@@ -58,10 +58,21 @@ export function Hero() {
             <img 
               src={slide.image} 
               alt="OTC Innovation Background" 
-              className="w-full h-full object-cover opacity-90"
+              className="w-full h-full object-cover"
               draggable={false}
             />
-            <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/80" />
+            {/* First slide - darker overlay for better readability */}
+            {index === 0 && (
+              <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/80" />
+            )}
+            {/* Other slides - bottom gradient only (fades up from bottom) */}
+            {index > 0 && (
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" 
+                   style={{ 
+                     background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 15%, rgba(0,0,0,0.3) 30%, transparent 50%)'
+                   }} 
+              />
+            )}
           </div>
         ))}
       </div>
@@ -72,69 +83,68 @@ export function Hero() {
       <div className="absolute bottom-32 left-20 w-10 h-10 bg-golden/20 rounded-full animate-float pointer-events-none" style={{ animationDelay: '2s' }} />
 
       {/* Main Content */}
-      <div className="relative z-10 container mx-auto px-6 text-center py-8">
-        <div className="max-w-5xl mx-auto space-y-8">
-          {/* Tagline */}
-          <div className="inline-flex items-center space-x-2 bg-white/80 border border-primary/40 rounded-full px-5 py-2 backdrop-blur-md shadow">
-            <span className="w-2 h-2 bg-golden rounded-full animate-golden-pulse" />
-            <span className="text-primary font-medium text-sm">Championing Digital Justice In Africa</span>
-          </div>
+      <div className="relative z-10 min-h-screen flex items-center">
+        {/* First Slide - Full Design (Centered) */}
+        {current === 0 && (
+          <div className="container mx-auto px-6 py-8">
+            <div className="max-w-5xl mx-auto space-y-8 animate-fade-in-up text-center">
+              {/* Tagline */}
+              <div className="inline-flex items-center space-x-2 bg-white/80 border border-primary/40 rounded-full px-5 py-2 backdrop-blur-md shadow">
+                <span className="w-2 h-2 bg-golden rounded-full animate-golden-pulse" />
+                <span className="text-primary font-medium text-sm">Championing Digital Justice In Africa</span>
+              </div>
 
-          {/* Main Headline */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-bold text-white animate-fade-in-up drop-shadow-lg">
-            Championing Africa's Technological & Digital Justice
-          </h1>
+              {/* Main Headline */}
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-bold text-white drop-shadow-lg">
+                Championing Africa's Technological & Digital Justice
+              </h1>
 
-          {/* Sliding Messages Container */}
-          <div className="relative min-h-[120px] md:min-h-[100px] overflow-hidden">
-            {heroSlides.map((slide, index) => (
-              <p
-                key={index}
-                className={`absolute inset-0 text-sm md:text-base lg:text-lg max-w-4xl mx-auto text-center text-white drop-shadow-md bg-gradient-to-br from-blue-900/90 via-blue-800/90 to-blue-950/90 rounded-xl px-6 py-4 transition-all duration-1000 ease-in-out flex items-center justify-center leading-relaxed ${
-                  index === current 
-                    ? 'translate-x-0 opacity-100' 
-                    : index === (current + 1) % heroSlides.length
-                    ? 'translate-x-full opacity-0'
-                    : 'translate-x-[-100%] opacity-0'
-                }`}
-                style={{ cursor: 'default' }}
-                tabIndex={0}
-              >
-                {slide.message}
+              {/* Message */}
+              <p className="text-sm md:text-base lg:text-lg max-w-4xl mx-auto text-center text-white drop-shadow-md bg-gradient-to-br from-blue-900/90 via-blue-800/90 to-blue-950/90 rounded-xl px-6 py-4 leading-relaxed">
+                {heroSlides[0].message}
               </p>
-            ))}
-          </div>
 
-          {/* Stats Row */}
-          <div className="grid grid-cols-3 gap-4 md:gap-8 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-            <div className="flex flex-col items-center space-y-2 group">
-              <Code className="w-8 h-8 md:w-10 md:h-10 text-golden group-hover:scale-110 transition-transform" />
-              <div className="text-xl md:text-2xl font-bold text-golden group-hover:text-white transition-colors">5+</div>
-              <div className="text-white text-sm md:text-base">Tech Sectors</div>
-            </div>
-            <div className="flex flex-col items-center space-y-2 group">
-              <Scale className="w-8 h-8 md:w-10 md:h-10 text-golden group-hover:scale-110 transition-transform" />
-              <div className="text-xl md:text-2xl font-bold text-golden group-hover:text-white transition-colors">100+</div>
-              <div className="text-white text-sm md:text-base">Legal Frameworks</div>
-            </div>
-            <div className="flex flex-col items-center space-y-2 group">
-              <Globe className="w-8 h-8 md:w-10 md:h-10 text-golden group-hover:scale-110 transition-transform" />
-              <div className="text-xl md:text-2xl font-bold text-golden group-hover:text-white transition-colors">5+</div>
-              <div className="text-white text-sm md:text-base">African Countries</div>
-            </div>
-          </div>
+              {/* Stats Row */}
+              <div className="grid grid-cols-3 gap-4 md:gap-8">
+                <div className="flex flex-col items-center space-y-2 group">
+                  <Code className="w-8 h-8 md:w-10 md:h-10 text-golden group-hover:scale-110 transition-transform" />
+                  <div className="text-xl md:text-2xl font-bold text-golden group-hover:text-white transition-colors">5+</div>
+                  <div className="text-white text-sm md:text-base">Tech Sectors</div>
+                </div>
+                <div className="flex flex-col items-center space-y-2 group">
+                  <Scale className="w-8 h-8 md:w-10 md:h-10 text-golden group-hover:scale-110 transition-transform" />
+                  <div className="text-xl md:text-2xl font-bold text-golden group-hover:text-white transition-colors">100+</div>
+                  <div className="text-white text-sm md:text-base">Legal Frameworks</div>
+                </div>
+                <div className="flex flex-col items-center space-y-2 group">
+                  <Globe className="w-8 h-8 md:w-10 md:h-10 text-golden group-hover:scale-110 transition-transform" />
+                  <div className="text-xl md:text-2xl font-bold text-golden group-hover:text-white transition-colors">5+</div>
+                  <div className="text-white text-sm md:text-base">African Countries</div>
+                </div>
+              </div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-4 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
-            <Button variant="golden" size="lg" className="group transition-transform hover:scale-105">
-              Explore Our Work
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button variant="hero" size="lg" className="transition-transform hover:scale-105" asChild>
-              <a href="/donate">Donate</a>
-            </Button>
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-4">
+                <Button variant="golden" size="lg" className="group transition-transform hover:scale-105">
+                  Explore Our Work
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+                <Button variant="hero" size="lg" className="transition-transform hover:scale-105" asChild>
+                  <a href="/donate">Donate</a>
+                </Button>
+              </div>
+            </div>
           </div>
-        </div>
+        )}
+
+        {/* Slides 2-5 - Text in Bottom Left Corner (Like Afya na Haki) */}
+        {current > 0 && (
+          <div className="absolute bottom-16 md:bottom-20 lg:bottom-24 left-6 md:left-12 lg:left-16 max-w-xl md:max-w-2xl animate-fade-in-up">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white uppercase tracking-tight leading-tight text-left">
+              {heroSlides[current].message}
+            </h2>
+          </div>
+        )}
       </div>
 
       {/* Slide Indicators */}
