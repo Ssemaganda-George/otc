@@ -17,19 +17,6 @@ const teamMembers = [
     }
   },
   {
-    name: "Kalivayo Blair",
-    pronouns: "(He/Him)",
-    position: "Director of Operations",
-    bio: "Blair is the founding Director of Operations, a distinguished corporate lawyer with a profound passion for the intersection of law and ICT. Blair holds a Bachelor of Laws from Makerere University and a Post-Graduate Diploma in Legal Practice, supplemented by several relevant professional training certifications. His expertise is extensive, covering banking, corporate governance, insolvency practice, Mergers and Acquisitions (M&A), Intellectual Property (IP), Technology, Media, and Telecommunications (TMT). Over the years, Blair has been instrumental in the success of numerous start-ups across Uganda, East, and West Africa. His career includes serving with some of Uganda's leading law firms, providing him with a wealth of practical experience. He is a respected member of both the Uganda Law Society and the East African Law Society.",
-    image: "/images/Blair.jpg",
-    expertise: ["Corporate Law", "M&A", "Intellectual Property", "TMT Law"],
-    social: {
-      linkedin: "https://www.linkedin.com/in/blair-kalivayo-748007198/",
-      email: "blair@onetechconnect.org",
-      twitter: "https://x.com/blairekalivayo"
-    }
-  },
-  {
     name: "Nakitende Sauda",
     pronouns: "",
     position: "Head of Research and Development (R&D)",
@@ -40,6 +27,19 @@ const teamMembers = [
       linkedin: "#",
       email: "sauda@onetechconnect.org",
       twitter: "#"
+    }
+  },
+  {
+    name: "Kalivayo Blair",
+    pronouns: "(He/Him)",
+    position: "Director of Operations",
+    bio: "Blair is the founding Director of Operations, a distinguished corporate lawyer with a profound passion for the intersection of law and ICT. Blair holds a Bachelor of Laws from Makerere University and a Post-Graduate Diploma in Legal Practice, supplemented by several relevant professional training certifications. His expertise is extensive, covering banking, corporate governance, insolvency practice, Mergers and Acquisitions (M&A), Intellectual Property (IP), Technology, Media, and Telecommunications (TMT). Over the years, Blair has been instrumental in the success of numerous start-ups across Uganda, East, and West Africa. His career includes serving with some of Uganda's leading law firms, providing him with a wealth of practical experience. He is a respected member of both the Uganda Law Society and the East African Law Society.",
+    image: "/images/Blair.jpg",
+    expertise: ["Corporate Law", "M&A", "Intellectual Property", "TMT Law"],
+    social: {
+      linkedin: "https://www.linkedin.com/in/blair-kalivayo-748007198/",
+      email: "blair@onetechconnect.org",
+      twitter: "https://x.com/blairekalivayo"
     }
   },
   {
