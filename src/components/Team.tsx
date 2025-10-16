@@ -167,7 +167,7 @@ export function Team() {
                     className="w-full shadow-md transition-all duration-200 hover:shadow-lg hover:bg-primary/10 active:scale-95 focus:ring-2 focus:ring-primary focus:outline-none"
                     onClick={() => setExpanded(expanded === index ? null : index)}
                   >
-                    {expanded === index ? "Hide Details" : "View Details"}
+                    {expanded === index ? "Hide Details" : "View Profile"}
                   </Button>
                 </div>
               </div>
