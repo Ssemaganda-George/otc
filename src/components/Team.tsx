@@ -7,7 +7,11 @@ const teamMembers = [
 		name: "Ssekamwa Frank",
 		pronouns: "(He/Him)",
 		position: "Executive Director",
-		bio: "Frank leads OTC as Chief Executive Director, bringing together expertise at the intersection of law, technology, and global health. He holds a Bachelor of Laws from Makerere University, a Postgraduate Diploma in Legal Practice from the Law Development Centre and a Master of Laws (LL.M.) specializing in Digital Health Rights in Low- and Middle-Income Countries. In addition to his academic qualifications, Frank has undertaken professional training in administrative science, climate change, digital health, reproductive health, and project management. His career spans diverse roles with the High Court of Uganda, leading law firms and Afya na Haki Institute equipping him with a unique blend of experience in research, strategic litigation, capacity building, and project leadership. Frank is a Tech Lawyer and Innovator passionate about advancing digital rights and justice in Africa. He is an active member of both the East African Law Society and the Uganda Law Society.",
+		bio: [
+			"Frank leads OTC as Chief Executive Director, bringing together expertise at the intersection of law, technology, and global health. He holds a Bachelor of Laws from Makerere University, a Postgraduate Diploma in Legal Practice from the Law Development Centre and a Master of Laws (LL.M.) specializing in Digital Health Rights in Low- and Middle-Income Countries.",
+			"In addition to his academic qualifications, Frank has undertaken professional training in administrative science, climate change, digital health, reproductive health, and project management. His career spans diverse roles with the High Court of Uganda, leading law firms and Afya na Haki Institute equipping him with a unique blend of experience in research, strategic litigation, capacity building, and project leadership.",
+			"Frank is a Tech Lawyer and Innovator passionate about advancing digital rights and justice in Africa. He is an active member of both the East African Law Society and the Uganda Law Society.",
+		],
 		image: "/images/Frank.jpg",
 		expertise: [
 			"Digital Health Rights",
@@ -25,7 +29,11 @@ const teamMembers = [
 		name: "Nakitende Sauda",
 		pronouns: "",
 		position: "Head of Research and Development (R&D)",
-		bio: "Sauda is the Head of Research and Development at OTC, driven by a passion for ensuring that technological transformation advances the well-being and rights of women, children, and underserved communities across Africa. Sauda holds a Bachelor of Laws (Hons) and a first-class Diploma in Legal Practice. She is currently a master's candidate, where her research explores the criminalization of cyber laws and its impact on the right to freedom of expression in the digital era. With her expertise in research, teaching, project planning, management, monitoring, and reporting, Sauda is instrumental in leading our initiatives. She is a registered member of both the East African Law Society and the Uganda Law Society.",
+		bio: [
+			"Sauda is the Head of Research and Development at OTC, driven by a passion for ensuring that technological transformation advances the well-being and rights of women, children, and underserved communities across Africa. Sauda holds a Bachelor of Laws (Hons) and a first-class Diploma in Legal Practice.",
+			"She is currently a master's candidate, where her research explores the criminalization of cyber laws and its impact on the right to freedom of expression in the digital era. With her expertise in research, teaching, project planning, management, monitoring, and reporting, Sauda is instrumental in leading our initiatives.",
+			"She is a registered member of both the East African Law Society and the Uganda Law Society.",
+		],
 		image: "/images/Sauda.jpg",
 		expertise: ["Research Management", "Program Development", "Cyber Law", "Women's Rights"],
 		social: {
@@ -38,7 +46,11 @@ const teamMembers = [
 		name: "Kalivayo Blair",
 		pronouns: "(He/Him)",
 		position: "Director of Operations",
-		bio: "Blair is the founding Director of Operations, a distinguished corporate lawyer with a profound passion for the intersection of law and ICT. Blair holds a Bachelor of Laws from Makerere University and a Post-Graduate Diploma in Legal Practice, supplemented by several relevant professional training certifications. His expertise is extensive, covering banking, corporate governance, insolvency practice, Mergers and Acquisitions (M&A), Intellectual Property (IP), Technology, Media, and Telecommunications (TMT). Over the years, Blair has been instrumental in the success of numerous start-ups across Uganda, East, and West Africa. His career includes serving with some of Uganda's leading law firms, providing him with a wealth of practical experience. He is a respected member of both the Uganda Law Society and the East African Law Society.",
+		bio: [
+			"Blair is the founding Director of Operations, a distinguished corporate lawyer with a profound passion for the intersection of law and ICT. Blair holds a Bachelor of Laws from Makerere University and a Post-Graduate Diploma in Legal Practice, supplemented by several relevant professional training certifications.",
+			"His expertise is extensive, covering banking, corporate governance, insolvency practice, Mergers and Acquisitions (M&A), Intellectual Property (IP), Technology, Media, and Telecommunications (TMT). Over the years, Blair has been instrumental in the success of numerous start-ups across Uganda, East, and West Africa.",
+			"His career includes serving with some of Uganda's leading law firms, providing him with a wealth of practical experience. He is a respected member of both the Uganda Law Society and the East African Law Society.",
+		],
 		image: "/images/Blair.png",
 		expertise: ["Corporate Law", "M&A", "Intellectual Property", "TMT Law"],
 		social: {
@@ -51,7 +63,10 @@ const teamMembers = [
 		name: "Abomugisha Dorothy",
 		pronouns: "",
 		position: "Head Finance",
-		bio: "Dorothy leads OTC's financial operations, ensuring fiscal responsibility and strategic financial planning that supports our mission of advancing digital transformation across Africa. Her expertise in financial management and accounting helps maintain transparency and accountability in all our operations.",
+		bio: [
+			"Dorothy leads OTC's financial operations, ensuring fiscal responsibility and strategic financial planning that supports our mission of advancing digital transformation across Africa.",
+			"Her expertise in financial management and accounting helps maintain transparency and accountability in all our operations.",
+		],
 		image: "/images/Dorothy.jpg",
 		expertise: [
 			"Financial Management",
@@ -69,7 +84,11 @@ const teamMembers = [
 		name: "Catherine Matama",
 		pronouns: "",
 		position: "Programme Officer, Research & Community Engagement",
-		bio: "Catherine is the Programme Officer for Research and Community Engagement at OTC. She supports the development and coordination of programmes that bridge research, innovation,and advocacy to ensure that digital transformation reflects the voices and needs of communities at the grassroots. She holds a Bachelor’s Degree in Environmental Health Science (Second Class Upper Division)from Makerere University and has professional experience in public research, environmental health and regulatory compliance. Catherine has previously worked as a Researcher, Health and Hygiene Inspector contributing to the enforcement of health, safety and environmental standards for Uganda’s first oil pipeline project. Catherine is passionate about inclusive research, innovation, environmental sustainability and ensuring that digital transformation benefits communities at the last mile.",
+		bio: [
+			"Catherine is the Programme Officer for Research and Community Engagement at OTC. She supports the development and coordination of programmes that bridge research, innovation, and advocacy to ensure that digital transformation reflects the voices and needs of communities at the grassroots.",
+			"She holds a Bachelor's Degree in Environmental Health Science (Second Class Upper Division) from Makerere University and has professional experience in public research, environmental health and regulatory compliance.",
+			"Catherine has previously worked as a Researcher, Health and Hygiene Inspector contributing to the enforcement of health, safety and environmental standards for Uganda's first oil pipeline project. Catherine is passionate about inclusive research, innovation, environmental sustainability and ensuring that digital transformation benefits communities at the last mile.",
+		],
 		image: "/images/Catherine.jpg",
 		expertise: [
 			"Inclusive Research",
@@ -153,9 +172,15 @@ export function Team() {
 										{expanded === index && (
 											<>
 												<div className="max-h-[240px] overflow-y-auto mb-6 pr-2 scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
-													<p className="text-body text-muted-foreground leading-relaxed transition-opacity duration-500">
-														{member.bio}
-													</p>
+													<div className="text-body text-muted-foreground leading-relaxed transition-opacity duration-500 space-y-3">
+														{Array.isArray(member.bio) ? (
+															member.bio.map((paragraph, idx) => (
+																<p key={idx}>{paragraph}</p>
+															))
+														) : (
+															<p>{member.bio}</p>
+														)}
+													</div>
 												</div>
 												<div className="flex flex-wrap gap-2 mb-6">
 													{member.expertise.map((skill) => (
