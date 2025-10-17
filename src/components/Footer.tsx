@@ -49,7 +49,7 @@ export function Footer() {
               </div>
               
               <p className="text-muted-foreground mb-6 leading-relaxed">
-                Advancing Digital Justice through research, advocacy, capacity building, innovation & strategic interest litigation in the areas of HealthTech, FinTech, AgricTec & Développement.
+                Advancing Digital Justice through research, advocacy, capacity building, innovation & strategic interest litigation in the areas of HealthTech, FinTech, AgricTec & Development.
               </p>
 
               {/* Contact Info */}
