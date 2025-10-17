@@ -83,8 +83,8 @@ export function HomeHighlights() {
                 Empowering Africa's Digital Future
               </h2>
               <p className="text-body max-w-3xl mx-auto text-justify sm:text-center text-white drop-shadow-md bg-gradient-to-br from-yellow-900/90 via-yellow-800/90 to-yellow-700/90 rounded-xl px-6 py-4">
-                OneTechConnect (OTC) advances technology, social and legal services across Africa, 
-                focusing on <span className="font-semibold">innovation</span>, <span className="font-semibold">interoperability</span>, <span className="font-semibold">equity</span>, and <span className="font-semibold">human rights</span> in the digital age.
+                OTC (OneTechConnect) advances research, Advocacy, trainings, innovation and strategic litigation in Africa 🌍  
+                focusing on <span className="font-semibold">Equity</span>, and <span className="font-semibold">human rights</span> in the digital age.
               </p>
             </div>
 

@@ -54,6 +54,19 @@ const teamMembers = [
       email: "dorothy@onetechconnect.org",
       twitter: "#"
     }
+  },
+  {
+    name: "Catherine Matama",
+    pronouns: "",
+    position: "Programme Officer, Research & Community Engagement",
+    bio: "Catherine is the Programme Officer for Research and Community Engagement at OTC. She supports the development and coordination of programmes that bridge research, innovation,and advocacy to ensure that digital transformation reflects the voices and needs of communities at the grassroots.Dorothy leads OTC's financial operations, ensuring fiscal responsibility and strategic financial planning that supports our mission of advancing digital transformation across Africa. Her expertise in financial management and accounting helps maintain transparency and accountability in all our operations. She holds a Bachelor’s Degree in Environmental Health Science (Second Class Upper Division)from Makerere University and has professional experience in public research, environmental health and regulatory compliance. Catherine has previously worked as a Researcher, Health and Hygiene Inspector contributing to the enforcement of health, safety and environmental standards for Uganda’s first oil pipeline project. Catherine is passionate about inclusive research, innovation, environmental sustainability and ensuring that digital transformation benefits communities at the last mile.",
+    image: "/images/Catherine.jpg",
+    expertise: ["Inclusive Research", "Innovation", "Environmental Sustainability", "Digital Transformation"],
+    social: {
+      linkedin: "#",
+      email: "dorothy@onetechconnect.org",
+      twitter: "#"
+    }
   }
 ];
 

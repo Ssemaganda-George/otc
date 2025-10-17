@@ -41,9 +41,10 @@ export function HomeAbout() {
               About OneTechConnect
             </h2>
             <p className="text-body text-gray-300 max-w-3xl mx-auto text-justify sm:text-center">
-              OneTechConnect (OTC) is Africa's premier technology law organization, advancing tech, 
-              social and legal services to empower African innovation. We provide real-time legal 
-              and advisory solutions focusing on innovation, interoperability, equity, and human rights.
+              OneTechConnect (OTC) is a Youth-led African Organization that ensures digital transformation 
+              in health, sexual reproductive health, finance, agriculture and Development is advanced while 
+              ensuring respect to fundamental human rights and social justice for every individual and 
+              communities in Africa.
             </p>
           </div>
 

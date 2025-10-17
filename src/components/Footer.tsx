@@ -49,8 +49,7 @@ export function Footer() {
               </div>
               
               <p className="text-muted-foreground mb-6 leading-relaxed">
-                Advancing tech, social and legal services to empower African innovation through 
-                rights-respecting technology solutions.
+                Advancing Digital Justice through research, advocacy, capacity building, innovation & strategic interest litigation in the areas of HealthTech, FinTech, AgricTec & Développement.
               </p>
 
               {/* Contact Info */}
