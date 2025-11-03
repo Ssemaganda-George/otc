@@ -41,7 +41,7 @@ export function HomeAbout() {
               About OneTechConnect
             </h2>
             <p className="text-body text-gray-300 max-w-3xl mx-auto text-justify sm:text-center">
-              OneTechConnect (OTC) is a Youth-led African Organization that ensures digital transformation 
+              OneTechConnect (OTC) is a Youth-led African Organization that advances digital transformation 
               in health, sexual reproductive health, finance, agriculture and Development is advanced while 
               ensuring respect to fundamental human rights and social justice for every individual and 
               communities in Africa.
