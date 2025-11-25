@@ -128,79 +128,79 @@ export default function BiTAPage() {
 
               {/* Library Section */}
               <div className="mb-16">
-                <div className="flex items-center space-x-3 mb-8">
-                  <BookOpen className="w-7 h-7 text-primary" />
-                  <h2 className="text-2xl font-playfair font-bold text-gradient-blue">
+                <div className="flex items-center space-x-4 mb-10">
+                  <BookOpen className="w-8 h-8 text-primary" />
+                  <h2 className="text-3xl font-playfair font-bold text-gradient-blue">
                     BiTA Library & Resources
                   </h2>
                 </div>
-                <p className="text-body text-muted-foreground mb-8 leading-relaxed">
+                <p className="text-body text-muted-foreground mb-10 leading-relaxed text-xl max-w-4xl">
                   Access landmark case documents, research papers, policy documents, and resources on tech accountability, data protection, and digital health in Africa.
                 </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {/* Data Protection and Privacy Act */}
-                  <Card className="border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-blue">
-                    <CardHeader>
-                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                        <FileText className="w-6 h-6 text-primary" />
+                  <Card className="border-2 hover:border-primary/60 transition-all duration-500 hover:shadow-2xl bg-gradient-to-br from-white to-slate-50/50">
+                    <CardHeader className="pb-6">
+                      <div className="w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        <FileText className="w-7 h-7 text-primary" />
                       </div>
-                      <CardTitle className="text-lg text-primary">
+                      <CardTitle className="text-xl text-primary font-bold leading-tight">
                         Data Protection and Privacy Act 2019
                       </CardTitle>
-                      <CardDescription>
+                      <CardDescription className="text-lg text-slate-600 mt-2">
                         Uganda's comprehensive data protection legislation
                       </CardDescription>
                     </CardHeader>
-                    <CardContent>
-                      <p className="text-sm text-muted-foreground mb-4">
+                    <CardContent className="pt-0">
+                      <p className="text-base text-slate-700 mb-6 leading-relaxed">
                         The Data Protection and Privacy Act, 2019 provides for the protection of personal data and privacy of individuals, regulates data processing, and establishes the Personal Data Protection Office.
                       </p>
-                      <div className="flex flex-col space-y-2">
-                        <Button variant="outline" size="sm" className="w-full justify-between group" asChild>
+                      <div className="flex flex-col space-y-4">
+                        <Button variant="outline" size="lg" className="w-full justify-between group shadow-md hover:shadow-lg transition-shadow" asChild>
                           <a href="/documents/Data-Protection-and-Privacy-Act-2019-Uganda (1).pdf" target="_blank" rel="noopener noreferrer">
-                            <span>View Document</span>
-                            <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            <span className="font-semibold">View Document</span>
+                            <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                           </a>
                         </Button>
-                        <Button variant="ghost" size="sm" className="w-full justify-between group" asChild>
+                        <Button variant="ghost" size="lg" className="w-full justify-between group shadow-md hover:shadow-lg transition-shadow" asChild>
                           <a href="/documents/Data-Protection-and-Privacy-Act-2019-Uganda (1).pdf" download>
-                            <span>Download PDF</span>
-                            <Download className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
+                            <span className="font-semibold">Download PDF</span>
+                            <Download className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
                           </a>
                         </Button>
                       </div>
                     </CardContent>
                   </Card>
 
-                  {/* Digital Health Strategic Plan */}
-                  <Card className="border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-blue">
-                    <CardHeader>
-                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                        <FileText className="w-6 h-6 text-primary" />
+                  {/* Health Information & Digital Health Strategic Plan */}
+                  <Card className="border-2 hover:border-primary/60 transition-all duration-500 hover:shadow-2xl bg-gradient-to-br from-white to-slate-50/50">
+                    <CardHeader className="pb-6">
+                      <div className="w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        <FileText className="w-7 h-7 text-primary" />
                       </div>
-                      <CardTitle className="text-lg text-primary">
+                      <CardTitle className="text-xl text-primary font-bold leading-tight">
                         Digital Health Strategic Plan 2025
                       </CardTitle>
-                      <CardDescription>
+                      <CardDescription className="text-lg text-slate-600 mt-2">
                         Health Information & Digital Health framework
                       </CardDescription>
                     </CardHeader>
-                    <CardContent>
-                      <p className="text-sm text-muted-foreground mb-4">
+                    <CardContent className="pt-0">
+                      <p className="text-base text-slate-700 mb-6 leading-relaxed">
                         Strategic plan outlining Uganda's approach to digital health implementation, health information systems, and the integration of technology in healthcare delivery.
                       </p>
-                      <div className="flex flex-col space-y-2">
-                        <Button variant="outline" size="sm" className="w-full justify-between group" asChild>
+                      <div className="flex flex-col space-y-4">
+                        <Button variant="outline" size="lg" className="w-full justify-between group shadow-md hover:shadow-lg transition-shadow" asChild>
                           <a href="/documents/Health-Information-Digital-Health-Strategic-Plan-2025 (1).pdf" target="_blank" rel="noopener noreferrer">
-                            <span>View Document</span>
-                            <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            <span className="font-semibold">View Document</span>
+                            <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                           </a>
                         </Button>
-                        <Button variant="ghost" size="sm" className="w-full justify-between group" asChild>
+                        <Button variant="ghost" size="lg" className="w-full justify-between group shadow-md hover:shadow-lg transition-shadow" asChild>
                           <a href="/documents/Health-Information-Digital-Health-Strategic-Plan-2025 (1).pdf" download>
-                            <span>Download PDF</span>
-                            <Download className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
+                            <span className="font-semibold">Download PDF</span>
+                            <Download className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
                           </a>
                         </Button>
                       </div>
@@ -208,33 +208,33 @@ export default function BiTAPage() {
                   </Card>
 
                   {/* Digital Health Guidelines Compendium */}
-                  <Card className="border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-blue">
-                    <CardHeader>
-                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                        <FileText className="w-6 h-6 text-primary" />
+                  <Card className="border-2 hover:border-primary/60 transition-all duration-500 hover:shadow-2xl bg-gradient-to-br from-white to-slate-50/50">
+                    <CardHeader className="pb-6">
+                      <div className="w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        <FileText className="w-7 h-7 text-primary" />
                       </div>
-                      <CardTitle className="text-lg text-primary">
+                      <CardTitle className="text-xl text-primary font-bold leading-tight">
                         Digital Health Guidelines Compendium
                       </CardTitle>
-                      <CardDescription>
+                      <CardDescription className="text-lg text-slate-600 mt-2">
                         Approved guidelines for digital health implementation
                       </CardDescription>
                     </CardHeader>
-                    <CardContent>
-                      <p className="text-sm text-muted-foreground mb-4">
+                    <CardContent className="pt-0">
+                      <p className="text-base text-slate-700 mb-6 leading-relaxed">
                         Comprehensive compendium of approved digital health guidelines covering standards, protocols, and best practices for digital health solutions in Uganda.
                       </p>
-                      <div className="flex flex-col space-y-2">
-                        <Button variant="outline" size="sm" className="w-full justify-between group" asChild>
+                      <div className="flex flex-col space-y-4">
+                        <Button variant="outline" size="lg" className="w-full justify-between group shadow-md hover:shadow-lg transition-shadow" asChild>
                           <a href="/documents/Compendium-of-Approved-Digital-Health-Guidelines-Combined (2).pdf" target="_blank" rel="noopener noreferrer">
-                            <span>View Document</span>
-                            <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            <span className="font-semibold">View Document</span>
+                            <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                           </a>
                         </Button>
-                        <Button variant="ghost" size="sm" className="w-full justify-between group" asChild>
+                        <Button variant="ghost" size="lg" className="w-full justify-between group shadow-md hover:shadow-lg transition-shadow" asChild>
                           <a href="/documents/Compendium-of-Approved-Digital-Health-Guidelines-Combined (2).pdf" download>
-                            <span>Download PDF</span>
-                            <Download className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
+                            <span className="font-semibold">Download PDF</span>
+                            <Download className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
                           </a>
                         </Button>
                       </div>
@@ -242,33 +242,33 @@ export default function BiTAPage() {
                   </Card>
 
                   {/* Ministry Circular - MDA Registration */}
-                  <Card className="border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-blue">
-                    <CardHeader>
-                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                        <FileText className="w-6 h-6 text-primary" />
+                  <Card className="border-2 hover:border-primary/60 transition-all duration-500 hover:shadow-2xl bg-gradient-to-br from-white to-slate-50/50">
+                    <CardHeader className="pb-6">
+                      <div className="w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                        <FileText className="w-7 h-7 text-primary" />
                       </div>
-                      <CardTitle className="text-lg text-primary">
+                      <CardTitle className="text-xl text-primary font-bold leading-tight">
                         Ministry Circular - MDA Registration
                       </CardTitle>
-                      <CardDescription>
+                      <CardDescription className="text-lg text-slate-600 mt-2">
                         ICT & National Guidance notification requirements
                       </CardDescription>
                     </CardHeader>
-                    <CardContent>
-                      <p className="text-sm text-muted-foreground mb-4">
+                    <CardContent className="pt-0">
+                      <p className="text-base text-slate-700 mb-6 leading-relaxed">
                         Official circular from the Ministry of ICT and National Guidance outlining notification requirements for Ministries, Departments, and Agencies (MDAs) to register.
                       </p>
-                      <div className="flex flex-col space-y-2">
-                        <Button variant="outline" size="sm" className="w-full justify-between group" asChild>
+                      <div className="flex flex-col space-y-4">
+                        <Button variant="outline" size="lg" className="w-full justify-between group shadow-md hover:shadow-lg transition-shadow" asChild>
                           <a href="/documents/Ministry of ICT and National Guidance  Circular &#8211_ Notification of requirement to register MDAs.pdf" target="_blank" rel="noopener noreferrer">
-                            <span>View Document</span>
-                            <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            <span className="font-semibold">View Document</span>
+                            <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                           </a>
                         </Button>
-                        <Button variant="ghost" size="sm" className="w-full justify-between group" asChild>
+                        <Button variant="ghost" size="lg" className="w-full justify-between group shadow-md hover:shadow-lg transition-shadow" asChild>
                           <a href="/documents/Ministry of ICT and National Guidance  Circular &#8211_ Notification of requirement to register MDAs.pdf" download>
-                            <span>Download PDF</span>
-                            <Download className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
+                            <span className="font-semibold">Download PDF</span>
+                            <Download className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
                           </a>
                         </Button>
                       </div>

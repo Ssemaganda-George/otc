@@ -2,8 +2,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { AnimatePresence } from "framer-motion";
 import Index from "./pages/Index";
 import AboutPage from "./pages/AboutPage";
 import WhoWeArePage from "./pages/WhoWeArePage";
@@ -32,61 +33,53 @@ import TSGPage from "./pages/programmes/TSGPage";
 import AiNowPage from "./pages/programmes/AiNowPage";
 import BiTAPage from "./pages/programmes/BiTAPage";
 import EMTPage from "./pages/programmes/EMTPage";
+import { PageTransition } from "@/components/PageTransition";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          
-          {/* About Us Routes */}
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/about/who-we-are" element={<WhoWeArePage />} />
-          <Route path="/about/otc-framework" element={<OTCFrameworkPage />} />
-          <Route path="/about/team" element={<TeamPage />} />
-          <Route path="/about/values" element={<OurValuesPage />} />
-          
-          {/* What We Do Routes */}
-          <Route path="/what-we-do" element={<WhatWeDoPage />} />
-          <Route path="/what-we-do/approach" element={<OurApproachPage />} />
-          <Route path="/what-we-do/focus-areas" element={<FocusAreasPage />} />
-          <Route path="/what-we-do/programmes" element={<ProgrammesPage />} />
-          
-          {/* Programmes Routes */}
-          <Route path="/programmes/tsg" element={<TSGPage />} />
-          <Route path="/programmes/ainow" element={<AiNowPage />} />
-          <Route path="/programmes/bita" element={<BiTAPage />} />
-          <Route path="/programmes/emt" element={<EMTPage />} />
-          
-          {/* Our Products Routes */}
-          <Route path="/our-products" element={<OurProductsPage />} />
-          <Route path="/our-products/overview" element={<ProductsOverviewPage />} />
-          <Route path="/our-products/services" element={<OurServicesPage />} />
-          <Route path="/products/strategic-litigation" element={<StrategicLitigationPage />} />
-          <Route path="/products/innovations" element={<InnovationsPage />} />
-          <Route path="/products/center-for-digital-justice" element={<CenterForDigitalJusticePage />} />
-          <Route path="/products/consultancy" element={<ConsultancyPage />} />
-          <Route path="/products/short-courses" element={<ShortCoursesPage />} />
-          
-          {/* Other Routes */}
-          <Route path="/news" element={<NewsUpdatesPage />} />
-          <Route path="/team" element={<TeamPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/donate" element={<DonatePage />} />
-          <Route path="/newsletter" element={<NewsletterPage />} />
-          
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+function App() {
+  const location = useLocation();
 
-export default App;
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<PageTransition><Index /></PageTransition>} />
+        <Route path="/about" element={<PageTransition><AboutPage /></PageTransition>} />
+        <Route path="/about/who-we-are" element={<PageTransition><WhoWeArePage /></PageTransition>} />
+        <Route path="/about/otc-framework" element={<PageTransition><OTCFrameworkPage /></PageTransition>} />
+        <Route path="/about/team" element={<PageTransition><TeamPage /></PageTransition>} />
+        <Route path="/about/values" element={<PageTransition><OurValuesPage /></PageTransition>} />
+        <Route path="/what-we-do" element={<PageTransition><WhatWeDoPage /></PageTransition>} />
+        <Route path="/what-we-do/approach" element={<PageTransition><OurApproachPage /></PageTransition>} />
+        <Route path="/what-we-do/focus-areas" element={<PageTransition><FocusAreasPage /></PageTransition>} />
+        <Route path="/what-we-do/programmes" element={<PageTransition><ProgrammesPage /></PageTransition>} />
+        <Route path="/programmes/tsg" element={<PageTransition><TSGPage /></PageTransition>} />
+        <Route path="/programmes/ainow" element={<PageTransition><AiNowPage /></PageTransition>} />
+        <Route path="/programmes/bita" element={<PageTransition><BiTAPage /></PageTransition>} />
+        <Route path="/programmes/emt" element={<PageTransition><EMTPage /></PageTransition>} />
+        <Route path="/our-products" element={<PageTransition><OurProductsPage /></PageTransition>} />
+        <Route path="/our-products/overview" element={<PageTransition><ProductsOverviewPage /></PageTransition>} />
+        <Route path="/our-products/services" element={<PageTransition><OurServicesPage /></PageTransition>} />
+        <Route path="/products/strategic-litigation" element={<PageTransition><StrategicLitigationPage /></PageTransition>} />
+        <Route path="/products/innovations" element={<PageTransition><InnovationsPage /></PageTransition>} />
+        <Route path="/products/center-for-digital-justice" element={<PageTransition><CenterForDigitalJusticePage /></PageTransition>} />
+        <Route path="/products/consultancy" element={<PageTransition><ConsultancyPage /></PageTransition>} />
+        <Route path="/products/short-courses" element={<PageTransition><ShortCoursesPage /></PageTransition>} />
+        <Route path="/news" element={<PageTransition><NewsUpdatesPage /></PageTransition>} />
+        <Route path="/team" element={<PageTransition><TeamPage /></PageTransition>} />
+        <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
+        <Route path="/donate" element={<PageTransition><DonatePage /></PageTransition>} />
+        <Route path="/newsletter" element={<PageTransition><NewsletterPage /></PageTransition>} />
+        <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
+      </Routes>
+    </AnimatePresence>
+  );
+}
+
+export default function RootApp() {
+  return (
+    <Router>
+      <App />
+    </Router>
+  );
+}
