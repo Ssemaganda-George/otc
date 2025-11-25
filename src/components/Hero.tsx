@@ -49,12 +49,8 @@ export function Hero() {
 				{heroSlides.map((slide, index) => (
 					<div
 						key={index}
-						className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-							index === current
-								? "translate-x-0 opacity-100"
-								: index === (current + 1) % heroSlides.length
-								? "translate-x-full opacity-0"
-								: "translate-x-[-100%] opacity-0"
+						className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+							index === current ? "opacity-100" : "opacity-0"
 						}`}
 					>
 						<img
