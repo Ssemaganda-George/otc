@@ -136,48 +136,32 @@ export default function NewsUpdatesPage() {
           </div>
         </section>
 
-        {/* More Articles Coming Soon */}
+        {/* More News Coming */}
         <section className="py-24 bg-gradient-to-br from-card/30 to-background">
           <div className="container mx-auto px-6">
-            <div className="max-w-4xl mx-auto text-center">
-              <div className="bg-card border border-border rounded-2xl p-12 shadow-card">
-                <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <Calendar className="w-8 h-8 text-primary" />
-                </div>
-                
-                <h2 className="heading-section text-gradient-blue mb-6">
-                  Coming Soon
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl p-8 md:p-12 border border-primary/20">
+                <h2 className="text-2xl md:text-3xl font-playfair font-semibold text-gradient-blue mb-6 text-center">
+                  More News Coming Soon
                 </h2>
-                
-                <p className="text-body text-muted-foreground leading-relaxed mb-8">
-                  We're working on bringing you the latest news, updates, and insights from OneTechConnect. 
-                  This section will feature our research publications, advocacy wins, partnership announcements, 
-                  and thought leadership on the intersection of technology and human rights in Africa.
-                </p>
-
-                <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg p-6 border border-primary/20 mb-8">
-                  <h3 className="text-xl font-playfair font-semibold text-gradient-blue mb-4">
-                    What to Expect
-                  </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {[
-                      "Research Publications & Findings",
-                      "Strategic Litigation Updates",
-                      "Partnership Announcements",
-                      "Policy & Advocacy Wins",
-                      "Event Coverage & Reports",
-                      "Thought Leadership Articles"
-                    ].map((item, index) => (
-                      <div key={index} className="flex items-center space-x-3">
-                        <div className="w-2 h-2 bg-primary rounded-full" />
-                        <span className="text-base text-muted-foreground">{item}</span>
-                      </div>
-                    ))}
-                  </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {[
+                    "Research Publications & Findings",
+                    "Strategic Litigation Updates",
+                    "Partnership Announcements",
+                    "Policy & Advocacy Wins",
+                    "Event Coverage & Reports",
+                    "Thought Leadership Articles"
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-center space-x-3">
+                      <div className="w-2 h-2 bg-primary rounded-full" />
+                      <span className="text-base text-muted-foreground">{item}</span>
+                    </div>
+                  ))}
                 </div>
 
-                <div className="space-y-4">
-                  <p className="text-muted-foreground">
+                <div className="mt-8 pt-6 border-t border-primary/20 text-center">
+                  <p className="text-muted-foreground mb-6">
                     Want to stay updated on our latest developments?
                   </p>
                   
