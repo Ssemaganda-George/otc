@@ -180,6 +180,7 @@ export function OTCFramework() {
                         "Short courses",
                         "Academic programmes", 
                         "Seminars",
+                        
                         "Master classes",
                         "Webinars"
                       ].map((item, idx) => (
