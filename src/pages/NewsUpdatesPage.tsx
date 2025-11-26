@@ -194,35 +194,18 @@ export default function NewsUpdatesPage() {
               <X className="w-6 h-6" />
             </button>
           </div>
-          <div
-            className="flex-1 flex flex-col items-center justify-center overflow-auto"
-            style={{ WebkitOverflowScrolling: "touch" }}
-          >
-            <div
-              className="w-full h-full flex items-center justify-center"
+          <div className="flex-1 overflow-auto" style={{ WebkitOverflowScrolling: "touch" }}>
+            <iframe
+              src={`${selectedPdf}#zoom=page-fit`}
+              className="w-full h-full border-none"
+              title={pdfTitle}
               style={{
-                // On mobile, constrain width and height, allow scroll/zoom
-                maxWidth: "100vw",
-                maxHeight: "100vh",
-                padding: "0.5rem",
-                boxSizing: "border-box",
+                border: "none",
+                minHeight: "100vh", // Ensure it can scroll if taller than viewport
+                touchAction: "manipulation", // Allow pinch-to-zoom and pan
               }}
-            >
-              <iframe
-                src={selectedPdf}
-                className="w-full h-[60vh] sm:h-full border-none"
-                title={pdfTitle}
-                style={{
-                  border: "none",
-                  width: "100%",
-                  height: "100%",
-                  touchAction: "pan-x pan-y",
-                  // Allow pinch-zoom and scroll on mobile
-                  overflow: "auto",
-                }}
-                allow="fullscreen"
-              />
-            </div>
+              allow="fullscreen"
+            />
             <div className="py-4 flex justify-center bg-black/80 w-full">
               <Button variant="golden" size="lg" asChild>
                 <a href={selectedPdf} download>
