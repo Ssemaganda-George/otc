@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { LinkedinIcon, MailIcon, TwitterIcon, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { motion, AnimatePresence } from "framer-motion";
 
 const teamMembers = [
 	{
@@ -114,7 +115,7 @@ const teamMembers = [
 	},
 
 	{
-		name: "Tracy Rita Acholas",
+		name: "Tracy Rita Achola",
 		pronouns: "",
 		position: "Head of Program",
 		bio: [
@@ -142,22 +143,26 @@ const teamMembers = [
 export function Team() {
 	const [selectedMember, setSelectedMember] = useState<number | null>(null);
 	const [accordionOpen, setAccordionOpen] = useState<string | null>(null);
+	const [direction, setDirection] = useState<'next' | 'prev' | null>(null);
 
 	const openModal = (index: number) => {
 		setSelectedMember(index);
 		setAccordionOpen(null);
+		setDirection(null);
 	};
 
 	const closeModal = () => {
 		setSelectedMember(null);
 		setAccordionOpen(null);
+		setDirection(null);
 	};
 
-	const navigateMember = (direction: 'prev' | 'next') => {
+	const navigateMember = (navDirection: 'prev' | 'next') => {
 		if (selectedMember === null) return;
-		const newIndex = direction === 'next' 
+		const newIndex = navDirection === 'next' 
 			? (selectedMember + 1) % teamMembers.length 
 			: (selectedMember - 1 + teamMembers.length) % teamMembers.length;
+		setDirection(navDirection);
 		setSelectedMember(newIndex);
 		setAccordionOpen(null);
 	};
@@ -199,6 +204,7 @@ export function Team() {
 										animationDelay: `${index * 0.2}s`,
 										animationFillMode: "forwards",
 									}}
+									onClick={() => openModal(index)}
 								>
 									{/* Profile Image */}
 									<div className="relative h-80 bg-gradient-to-br from-secondary/80 to-secondary/60 overflow-hidden">
@@ -227,7 +233,7 @@ export function Team() {
 									{/* Content */}
 									<div className="p-6">
 										{/* Social Links */}
-										<div className="flex items-center space-x-3 mb-4">
+										<div className="flex items-center space-x-3 mb-4" onClick={(e) => e.stopPropagation()}>
 											<Button
 												asChild
 												variant="ghost-golden"
@@ -301,130 +307,139 @@ export function Team() {
 			</section>
 
 			{/* Modal */}
-			{selectedMember !== null && (
-				<div className="fixed inset-0 z-50 bg-yellow-600 flex items-center justify-center">
-					<div className="relative w-full h-full flex flex-col lg:flex-row">
-						{/* Close Button */}
-						<button
-							onClick={closeModal}
-							className="absolute top-4 right-4 z-10 text-white hover:text-gray-200 transition-colors"
-						>
-							<X className="w-8 h-8" />
-						</button>
+			<AnimatePresence>
+				{selectedMember !== null && (
+					<motion.div
+						key={selectedMember}
+						initial={direction === 'next' ? { x: "100%" } : direction === 'prev' ? { x: "-100%" } : { y: "100%" }}
+						animate={{ x: 0, y: 0 }}
+						exit={direction === 'next' ? { x: "-100%" } : direction === 'prev' ? { x: "100%" } : { y: "100%" }}
+						transition={{ duration: 1, ease: "easeOut" }}
+						className="fixed inset-0 z-50 bg-yellow-600 flex items-center justify-center"
+					>
+						<div className="relative w-full h-full flex flex-col lg:flex-row">
+							{/* Close Button */}
+							<button
+								onClick={closeModal}
+								className="absolute top-4 right-4 z-10 text-white hover:text-gray-200 transition-colors"
+							>
+								<X className="w-8 h-8" />
+							</button>
 
-						{/* Image Column */}
-						<div className="w-full lg:w-2/5 h-1/2 lg:h-full relative">
-							<img
-								src={teamMembers[selectedMember].image}
-								alt={teamMembers[selectedMember].name}
-								className="w-full h-full object-cover"
-							/>
-						</div>
+							{/* Image Column */}
+							<div className="w-full lg:w-2/5 h-1/2 lg:h-full relative">
+								<img
+									src={teamMembers[selectedMember].image}
+									alt={teamMembers[selectedMember].name}
+									className="w-full h-full object-cover"
+								/>
+							</div>
 
-						{/* Content Column */}
-						<div className="w-full lg:w-3/5 h-1/2 lg:h-full p-8 lg:p-12 overflow-y-auto text-white">
-							<div className="max-w-2xl mx-auto">
-								<h1 className="text-4xl lg:text-5xl font-playfair font-bold mb-2">
-									{teamMembers[selectedMember].name}
-								</h1>
-								<p className="text-xl lg:text-2xl font-inter font-normal mb-8">
-									{teamMembers[selectedMember].position}
-								</p>
+							{/* Content Column */}
+							<div className="w-full lg:w-3/5 h-1/2 lg:h-full p-8 lg:p-12 overflow-y-auto text-white">
+								<div className="max-w-2xl mx-auto">
+									<h1 className="text-4xl lg:text-5xl font-playfair font-bold mb-2">
+										{teamMembers[selectedMember].name}
+									</h1>
+									<p className="text-xl lg:text-2xl font-inter font-normal mb-8">
+										{teamMembers[selectedMember].position}
+									</p>
 
-								{/* Biography */}
-								<div className="mb-8">
-									{Array.isArray(teamMembers[selectedMember].bio) ? (
-										teamMembers[selectedMember].bio.map((paragraph, idx) => (
-											<p key={idx} className="text-lg leading-relaxed mb-4">
-												{paragraph}
-											</p>
-										))
-									) : (
-										<p className="text-lg leading-relaxed">{teamMembers[selectedMember].bio}</p>
-									)}
-								</div>
-
-								{/* Accordion */}
-								<div className="space-y-4 mb-8">
-									{/* Education */}
-									<div>
-										<button
-											onClick={() => toggleAccordion('education')}
-											className="w-full flex justify-between items-center py-4 border-b border-white/30 text-left"
-										>
-											<span className="text-xl font-semibold uppercase">Education</span>
-											<span className="text-2xl">{accordionOpen === 'education' ? '−' : '+'}</span>
-										</button>
-										{accordionOpen === 'education' && (
-											<div className="py-4 space-y-2">
-												{teamMembers[selectedMember].education?.map((item, idx) => (
-													<p key={idx} className="text-lg">{item}</p>
-												))}
-											</div>
+									{/* Biography */}
+									<div className="mb-8">
+										{Array.isArray(teamMembers[selectedMember].bio) ? (
+											teamMembers[selectedMember].bio.map((paragraph, idx) => (
+												<p key={idx} className="text-lg leading-relaxed mb-4">
+													{paragraph}
+												</p>
+											))
+										) : (
+											<p className="text-lg leading-relaxed">{teamMembers[selectedMember].bio}</p>
 										)}
 									</div>
 
-									{/* Experience */}
-									<div>
-										<button
-											onClick={() => toggleAccordion('experience')}
-											className="w-full flex justify-between items-center py-4 border-b border-white/30 text-left"
-										>
-											<span className="text-xl font-semibold uppercase">Experience</span>
-											<span className="text-2xl">{accordionOpen === 'experience' ? '−' : '+'}</span>
-										</button>
-										{accordionOpen === 'experience' && (
-											<div className="py-4 space-y-2">
-												{teamMembers[selectedMember].experience?.map((item, idx) => (
-													<p key={idx} className="text-lg">{item}</p>
-												))}
-											</div>
-										)}
+									{/* Accordion */}
+									<div className="space-y-4 mb-8">
+										{/* Education */}
+										<div>
+											<button
+												onClick={() => toggleAccordion('education')}
+												className="w-full flex justify-between items-center py-4 border-b border-white/30 text-left"
+											>
+												<span className="text-xl font-semibold uppercase">Education</span>
+												<span className="text-2xl">{accordionOpen === 'education' ? '−' : '+'}</span>
+											</button>
+											{accordionOpen === 'education' && (
+												<div className="py-4 space-y-2">
+													{teamMembers[selectedMember].education?.map((item, idx) => (
+														<p key={idx} className="text-lg">{item}</p>
+													))}
+												</div>
+											)}
+										</div>
+
+										{/* Experience */}
+										<div>
+											<button
+												onClick={() => toggleAccordion('experience')}
+												className="w-full flex justify-between items-center py-4 border-b border-white/30 text-left"
+											>
+												<span className="text-xl font-semibold uppercase">Experience</span>
+												<span className="text-2xl">{accordionOpen === 'experience' ? '−' : '+'}</span>
+											</button>
+											{accordionOpen === 'experience' && (
+												<div className="py-4 space-y-2">
+													{teamMembers[selectedMember].experience?.map((item, idx) => (
+														<p key={idx} className="text-lg">{item}</p>
+													))}
+												</div>
+											)}
+										</div>
+
+										{/* Expertise */}
+										<div>
+											<button
+												onClick={() => toggleAccordion('expertise')}
+												className="w-full flex justify-between items-center py-4 border-b border-white/30 text-left"
+											>
+												<span className="text-xl font-semibold uppercase">Expertise</span>
+												<span className="text-2xl">{accordionOpen === 'expertise' ? '−' : '+'}</span>
+											</button>
+											{accordionOpen === 'expertise' && (
+												<div className="py-4 flex flex-wrap gap-2">
+													{teamMembers[selectedMember].expertise.map((skill) => (
+														<span key={skill} className="px-3 py-1 bg-white/20 rounded-full text-sm">
+															{skill}
+														</span>
+													))}
+												</div>
+											)}
+										</div>
 									</div>
 
-									{/* Expertise */}
-									<div>
+									{/* Navigation */}
+									<div className="flex justify-between items-center">
 										<button
-											onClick={() => toggleAccordion('expertise')}
-											className="w-full flex justify-between items-center py-4 border-b border-white/30 text-left"
+											onClick={() => navigateMember('prev')}
+											className="flex items-center space-x-2 text-white hover:text-gray-200 transition-colors"
 										>
-											<span className="text-xl font-semibold uppercase">Expertise</span>
-											<span className="text-2xl">{accordionOpen === 'expertise' ? '−' : '+'}</span>
+											<ChevronLeft className="w-6 h-6" />
+											<span className="text-lg uppercase">Previous</span>
 										</button>
-										{accordionOpen === 'expertise' && (
-											<div className="py-4 flex flex-wrap gap-2">
-												{teamMembers[selectedMember].expertise.map((skill) => (
-													<span key={skill} className="px-3 py-1 bg-white/20 rounded-full text-sm">
-														{skill}
-													</span>
-												))}
-											</div>
-										)}
+										<button
+											onClick={() => navigateMember('next')}
+											className="flex items-center space-x-2 text-white hover:text-gray-200 transition-colors"
+										>
+											<span className="text-lg uppercase">Next</span>
+											<ChevronRight className="w-6 h-6" />
+										</button>
 									</div>
-								</div>
-
-								{/* Navigation */}
-								<div className="flex justify-between items-center">
-									<button
-										onClick={() => navigateMember('prev')}
-										className="flex items-center space-x-2 text-white hover:text-gray-200 transition-colors"
-									>
-										<ChevronLeft className="w-6 h-6" />
-										<span className="text-lg uppercase">Previous</span>
-									</button>
-									<button
-										onClick={() => navigateMember('next')}
-										className="flex items-center space-x-2 text-white hover:text-gray-200 transition-colors"
-									>
-										<span className="text-lg uppercase">Next</span>
-										<ChevronRight className="w-6 h-6" />
-									</button>
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-			)}
+					</motion.div>
+				)}
+			</AnimatePresence>
 		</>
 	);
 }
