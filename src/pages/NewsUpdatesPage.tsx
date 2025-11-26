@@ -1,7 +1,7 @@
 import { Navigation } from "@/components/ui/navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Calendar, ArrowRight, Newspaper } from "lucide-react";
+import { Calendar, ArrowRight, Newspaper, Download } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function NewsUpdatesPage() {
@@ -28,12 +28,59 @@ export default function NewsUpdatesPage() {
           </div>
         </section>
 
+        {/* Google Case Banner */}
+        <section className="py-16 bg-gradient-to-r from-primary/20 to-primary/10 border-y border-primary/20">
+          <div className="container mx-auto px-6">
+            <div className="max-w-6xl mx-auto">
+              <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+                {/* Flyer Image */}
+                <div className="flex-shrink-0">
+                  <img
+                    src="/images/google-banner.jpg"
+                    alt="Google Case Flyer"
+                    className="w-full max-w-sm mx-auto lg:mx-0 rounded-lg shadow-lg"
+                  />
+                </div>
+                
+                {/* Text Content */}
+                <div className="flex-1 text-center lg:text-left">
+                  <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
+                    <Newspaper className="w-4 h-4" />
+                    Breaking News
+                  </div>
+                  
+                  <h2 className="text-3xl md:text-4xl font-playfair font-bold text-gradient-blue mb-4">
+                    Google LLC Withdraws Appeal in Landmark Ugandan Data Protection Case
+                  </h2>
+                  <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0">
+                    A major breakthrough in digital rights and data protection enforcement as Google agrees to comply with Uganda's Data Protection and Privacy Act.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <Button variant="golden" size="lg" className="group" asChild>
+                      <a href="/documents/Google-Press-Release.pdf" target="_blank" rel="noopener noreferrer">
+                        Read Full Article
+                        <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                      </a>
+                    </Button>
+                    <Button variant="outline" size="lg" className="group" asChild>
+                      <a href="/documents/Court-Release.pdf" target="_blank" rel="noopener noreferrer">
+                        Read Court Release
+                        <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* News & Updates Articles Section */}
         <section className="py-24 bg-background">
           <div className="container mx-auto px-6">
             <div className="max-w-5xl mx-auto">
               {/* Article Card */}
-              <article className="bg-card border border-border rounded-2xl p-8 md:p-12 shadow-card mb-8">
+              <article id="google-case-article" className="bg-card border border-border rounded-2xl p-8 md:p-12 shadow-card mb-8">
                 {/* Article Header */}
                 <div className="mb-6">
                   <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
@@ -55,15 +102,29 @@ export default function NewsUpdatesPage() {
                 </div>
 
                 {/* Download PDF Section */}
-                <div className="bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg p-6 border border-primary/20">
+                <div className="bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg p-6 border border-primary/20 mb-6">
                   <h4 className="text-xl font-semibold text-primary mb-3">Download Full Article</h4>
                   <p className="text-base text-muted-foreground mb-6">
                     Get the complete article in PDF format for offline reading or sharing.
                   </p>
                   <Button variant="outline" size="lg" className="group" asChild>
                     <a href="/documents/Google-Press-Release.pdf" download>
-                      <Newspaper className="w-5 h-5 mr-3" />
+                      <Download className="w-5 h-5 mr-3" />
                       <span>Download PDF</span>
+                    </a>
+                  </Button>
+                </div>
+
+                {/* Second Attachment - Press Release */}
+                <div className="bg-gradient-to-r from-secondary/20 to-secondary/10 rounded-lg p-6 border border-secondary/30">
+                  <h4 className="text-xl font-semibold text-secondary-foreground mb-3">Related Press Release</h4>
+                  <p className="text-base text-muted-foreground mb-6">
+                    Official Court release from OneTechConnect regarding the case outcome and implications.
+                  </p>
+                  <Button variant="outline" size="lg" className="group" asChild>
+                    <a href="/documents/Court-Release.pdf" download>
+                      <Download className="w-5 h-5 mr-3" />
+                      <span>Download Court Release</span>
                     </a>
                   </Button>
                 </div>

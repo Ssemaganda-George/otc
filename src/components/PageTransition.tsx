@@ -15,7 +15,7 @@ const pageTransition = {
   type: "tween" as const,
   ease: "anticipate" as const,
   duration: 0.8, // Slow duration for a deliberate feel
-  delay: 0.5, // Add delay before transition starts
+  delay: 0.7, // Reduced from 1.0 to 0.7 to balance slowness with faster perceived loading (still professional)
 };
 
 export function PageTransition({ children }: PageTransitionProps) {
