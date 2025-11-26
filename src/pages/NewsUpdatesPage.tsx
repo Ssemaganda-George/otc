@@ -195,12 +195,30 @@ export default function NewsUpdatesPage() {
             </button>
           </div>
           <div className="flex-1 flex flex-col">
-            <iframe
-              src={selectedPdf}
-              className="w-full h-full border-none"
-              title={pdfTitle}
-              style={{ border: "none" }}
-            />
+            <div
+              className="flex-1 w-full h-full overflow-auto touch-pan-x touch-pan-y"
+              style={{
+                WebkitOverflowScrolling: "touch",
+                background: "black",
+              }}
+            >
+              <iframe
+                src={selectedPdf}
+                className="w-full h-[70vh] sm:h-full border-none"
+                title={pdfTitle}
+                style={{
+                  border: "none",
+                  minWidth: "320px",
+                  minHeight: "320px",
+                  // Allow pinch zoom and double-tap zoom on mobile
+                  zoom: 1,
+                }}
+                allow="fullscreen"
+              />
+            </div>
+            <div className="py-2 text-center text-xs text-white bg-black/80">
+              Pinch or double-tap to zoom in/out on mobile.
+            </div>
             <div className="py-4 flex justify-center bg-black/80">
               <Button variant="golden" size="lg" asChild>
                 <a href={selectedPdf} download>
