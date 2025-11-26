@@ -64,7 +64,7 @@ export default function NewsUpdatesPage() {
                 
                 {/* Text Content */}
                 <div className="flex-1 text-center lg:text-left">
-                  <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
+                  <div className="flex flex-col sm:flex-row items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
                     <Newspaper className="w-4 h-4" />
                     Breaking News
                   </div>
@@ -188,7 +188,7 @@ export default function NewsUpdatesPage() {
       {/* PDF Preview Modal */}
       {selectedPdf && (
         <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
-          <div className="bg-card rounded-lg shadow-lg max-w-5xl w-full max-h-[95vh] overflow-hidden">
+          <div className="bg-card rounded-lg shadow-lg w-full max-w-5xl max-h-[95vh] overflow-hidden">
             <div className="flex justify-between items-center p-4 border-b">
               <h3 className="text-lg font-semibold">{pdfTitle}</h3>
               <button onClick={closePdfModal} className="text-muted-foreground hover:text-foreground">
@@ -198,7 +198,7 @@ export default function NewsUpdatesPage() {
             <div className="p-4">
               <iframe
                 src={selectedPdf}
-                className="w-full h-[70vh] border rounded"
+                className="w-full h-[50vh] md:h-[70vh] border rounded"
                 title={pdfTitle}
               />
               <div className="mt-4 flex justify-center">
