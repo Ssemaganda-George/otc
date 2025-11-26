@@ -76,7 +76,7 @@ export default function NewsUpdatesPage() {
                     A major breakthrough in digital rights and data protection enforcement as Google agrees to comply with Uganda's Data Protection and Privacy Act.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                    <Button variant="golden" size="lg" className="group" onClick={() => openPdfModal('/documents/Google-Press-Release.pdf')}>
+                    <Button variant="golden" size="lg" className="group" onClick={() => openPdfModal('/documents/OTC-Press-Release.pdf')}>
                       Read Full Article
                       <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                     </Button>
