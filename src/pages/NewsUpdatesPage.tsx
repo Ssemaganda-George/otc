@@ -11,8 +11,8 @@ export default function NewsUpdatesPage() {
 
   const openPdfModal = (pdfUrl: string) => {
     setSelectedPdf(pdfUrl);
-    if (pdfUrl.includes('Google-Press-Release')) {
-      setPdfTitle('Google Press Release');
+    if (pdfUrl.includes('OTC-Press-Release')) {
+      setPdfTitle('OTC Press Release');
     } else if (pdfUrl.includes('Court-Release')) {
       setPdfTitle('Court Release');
     } else {
