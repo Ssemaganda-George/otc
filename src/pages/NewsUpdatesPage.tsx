@@ -187,28 +187,27 @@ export default function NewsUpdatesPage() {
 
       {/* PDF Preview Modal */}
       {selectedPdf && (
-        <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
-          <div className="bg-card rounded-lg shadow-lg w-full max-w-5xl max-h-[95vh] overflow-hidden">
-            <div className="flex justify-between items-center p-4 border-b">
-              <h3 className="text-lg font-semibold">{pdfTitle}</h3>
-              <button onClick={closePdfModal} className="text-muted-foreground hover:text-foreground">
-                <X className="w-6 h-6" />
-              </button>
-            </div>
-            <div className="p-4">
-              <iframe
-                src={selectedPdf}
-                className="w-full h-[50vh] md:h-[70vh] rounded"
-                title={pdfTitle}
-              />
-              <div className="mt-4 flex justify-center">
-                <Button variant="golden" size="lg" asChild>
-                  <a href={selectedPdf} download>
-                    <Download className="w-5 h-5 mr-2" />
-                    Download {pdfTitle}
-                  </a>
-                </Button>
-              </div>
+        <div className="fixed inset-0 z-50 bg-black/80 flex flex-col">
+          <div className="flex justify-between items-center p-4 bg-black/80">
+            <h3 className="text-lg font-semibold text-white">{pdfTitle}</h3>
+            <button onClick={closePdfModal} className="text-white hover:text-primary">
+              <X className="w-6 h-6" />
+            </button>
+          </div>
+          <div className="flex-1 flex flex-col">
+            <iframe
+              src={selectedPdf}
+              className="w-full h-full border-none"
+              title={pdfTitle}
+              style={{ border: "none" }}
+            />
+            <div className="py-4 flex justify-center bg-black/80">
+              <Button variant="golden" size="lg" asChild>
+                <a href={selectedPdf} download>
+                  <Download className="w-5 h-5 mr-2" />
+                  Download {pdfTitle}
+                </a>
+              </Button>
             </div>
           </div>
         </div>
