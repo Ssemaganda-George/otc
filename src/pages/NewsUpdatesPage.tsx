@@ -194,32 +194,36 @@ export default function NewsUpdatesPage() {
               <X className="w-6 h-6" />
             </button>
           </div>
-          <div className="flex-1 flex flex-col">
+          <div
+            className="flex-1 flex flex-col items-center justify-center overflow-auto"
+            style={{ WebkitOverflowScrolling: "touch" }}
+          >
             <div
-              className="flex-1 w-full h-full overflow-auto touch-pan-x touch-pan-y"
+              className="w-full h-full flex items-center justify-center"
               style={{
-                WebkitOverflowScrolling: "touch",
-                background: "black",
+                // On mobile, constrain width and height, allow scroll/zoom
+                maxWidth: "100vw",
+                maxHeight: "100vh",
+                padding: "0.5rem",
+                boxSizing: "border-box",
               }}
             >
               <iframe
                 src={selectedPdf}
-                className="w-full h-[70vh] sm:h-full border-none"
+                className="w-full h-[60vh] sm:h-full border-none"
                 title={pdfTitle}
                 style={{
                   border: "none",
-                  minWidth: "320px",
-                  minHeight: "320px",
-                  // Allow pinch zoom and double-tap zoom on mobile
-                  zoom: 1,
+                  width: "100%",
+                  height: "100%",
+                  touchAction: "pan-x pan-y",
+                  // Allow pinch-zoom and scroll on mobile
+                  overflow: "auto",
                 }}
                 allow="fullscreen"
               />
             </div>
-            <div className="py-2 text-center text-xs text-white bg-black/80">
-              Pinch or double-tap to zoom in/out on mobile.
-            </div>
-            <div className="py-4 flex justify-center bg-black/80">
+            <div className="py-4 flex justify-center bg-black/80 w-full">
               <Button variant="golden" size="lg" asChild>
                 <a href={selectedPdf} download>
                   <Download className="w-5 h-5 mr-2" />
