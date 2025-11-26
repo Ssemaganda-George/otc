@@ -1,10 +1,30 @@
 import { Navigation } from "@/components/ui/navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Calendar, ArrowRight, Newspaper, Download } from "lucide-react";
+import { Calendar, ArrowRight, Newspaper, Download, X } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 export default function NewsUpdatesPage() {
+  const [selectedPdf, setSelectedPdf] = useState<string | null>(null);
+  const [pdfTitle, setPdfTitle] = useState<string>('');
+
+  const openPdfModal = (pdfUrl: string) => {
+    setSelectedPdf(pdfUrl);
+    if (pdfUrl.includes('Google-Press-Release')) {
+      setPdfTitle('Google Press Release');
+    } else if (pdfUrl.includes('Court-Release')) {
+      setPdfTitle('Court Release');
+    } else {
+      setPdfTitle('Document Preview');
+    }
+  };
+
+  const closePdfModal = () => {
+    setSelectedPdf(null);
+    setPdfTitle('');
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -56,17 +76,13 @@ export default function NewsUpdatesPage() {
                     A major breakthrough in digital rights and data protection enforcement as Google agrees to comply with Uganda's Data Protection and Privacy Act.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                    <Button variant="golden" size="lg" className="group" asChild>
-                      <a href="/documents/Google-Press-Release.pdf" target="_blank" rel="noopener noreferrer">
-                        Read Full Article
-                        <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                      </a>
+                    <Button variant="golden" size="lg" className="group" onClick={() => openPdfModal('/documents/Google-Press-Release.pdf')}>
+                      Read Full Article
+                      <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                     </Button>
-                    <Button variant="outline" size="lg" className="group" asChild>
-                      <a href="/documents/Court-Release.pdf" target="_blank" rel="noopener noreferrer">
-                        Read Court Release
-                        <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                      </a>
+                    <Button variant="outline" size="lg" className="group" onClick={() => openPdfModal('/documents/Court-Release.pdf')}>
+                      Read Court Release
+                      <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                     </Button>
                   </div>
                 </div>
@@ -79,57 +95,7 @@ export default function NewsUpdatesPage() {
         <section className="py-24 bg-background">
           <div className="container mx-auto px-6">
             <div className="max-w-5xl mx-auto">
-              {/* Article Card */}
-              <article id="google-case-article" className="bg-card border border-border rounded-2xl p-8 md:p-12 shadow-card mb-8">
-                {/* Article Header */}
-                <div className="mb-6">
-                  <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
-                    <span className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4" />
-                      November 25, 2025
-                    </span>
-                    <span>•</span>
-                    <span>PDF Document</span>
-                  </div>
-                  
-                  <h3 className="text-3xl font-playfair font-bold text-gradient-blue mb-4">
-                    Google LLC Withdraws Appeal in Landmark Ugandan Data Protection Case
-                  </h3>
-                  
-                  <p className="text-lg text-muted-foreground italic">
-                    A major breakthrough in digital rights and data protection enforcement as Google agrees to comply with Uganda's Data Protection and Privacy Act
-                  </p>
-                </div>
-
-                {/* Download PDF Section */}
-                <div className="bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg p-6 border border-primary/20 mb-6">
-                  <h4 className="text-xl font-semibold text-primary mb-3">Download Full Article</h4>
-                  <p className="text-base text-muted-foreground mb-6">
-                    Get the complete article in PDF format for offline reading or sharing.
-                  </p>
-                  <Button variant="outline" size="lg" className="group" asChild>
-                    <a href="/documents/Google-Press-Release.pdf" download>
-                      <Download className="w-5 h-5 mr-3" />
-                      <span>Download PDF</span>
-                    </a>
-                  </Button>
-                </div>
-
-                {/* Second Attachment - Press Release */}
-                <div className="bg-gradient-to-r from-secondary/20 to-secondary/10 rounded-lg p-6 border border-secondary/30">
-                  <h4 className="text-xl font-semibold text-secondary-foreground mb-3">Related Press Release</h4>
-                  <p className="text-base text-muted-foreground mb-6">
-                    Official Court release from OneTechConnect regarding the case outcome and implications.
-                  </p>
-                  <Button variant="outline" size="lg" className="group" asChild>
-                    <a href="/documents/Court-Release.pdf" download>
-                      <Download className="w-5 h-5 mr-3" />
-                      <span>Download Court Release</span>
-                    </a>
-                  </Button>
-                </div>
-              </article>
-              {/* End of Article Card */}
+              {/* Article Card removed as per request */}
             </div>
           </div>
         </section>
@@ -218,6 +184,35 @@ export default function NewsUpdatesPage() {
       </main>
 
       <Footer />
+
+      {/* PDF Preview Modal */}
+      {selectedPdf && (
+        <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
+          <div className="bg-card rounded-lg shadow-lg max-w-5xl w-full max-h-[95vh] overflow-hidden">
+            <div className="flex justify-between items-center p-4 border-b">
+              <h3 className="text-lg font-semibold">{pdfTitle}</h3>
+              <button onClick={closePdfModal} className="text-muted-foreground hover:text-foreground">
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+            <div className="p-4">
+              <iframe
+                src={selectedPdf}
+                className="w-full h-[70vh] border rounded"
+                title={pdfTitle}
+              />
+              <div className="mt-4 flex justify-center">
+                <Button variant="golden" size="lg" asChild>
+                  <a href={selectedPdf} download>
+                    <Download className="w-5 h-5 mr-2" />
+                    Download {pdfTitle}
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
