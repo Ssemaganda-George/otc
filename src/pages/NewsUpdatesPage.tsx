@@ -198,7 +198,7 @@ export default function NewsUpdatesPage() {
             <div className="p-4">
               <iframe
                 src={selectedPdf}
-                className="w-full h-[50vh] md:h-[70vh] border rounded"
+                className="w-full h-[50vh] md:h-[70vh] rounded"
                 title={pdfTitle}
               />
               <div className="mt-4 flex justify-center">
