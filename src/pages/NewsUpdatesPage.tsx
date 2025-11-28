@@ -1,7 +1,7 @@
 import { Navigation } from "@/components/ui/navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Calendar, ArrowRight, Newspaper, Download, X } from "lucide-react";
+import { Calendar, ArrowRight, Newspaper, Download, X, Loader2 } from "lucide-react"; // Added Loader2 for spinner
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
@@ -23,6 +23,47 @@ export default function NewsUpdatesPage() {
   const closePdfModal = () => {
     setSelectedPdf(null);
     setPdfTitle('');
+  };
+
+  // Add state for newsletter subscription
+  const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+
+  // Handle newsletter subscription
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setMessage(null);
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+      setMessage({ type: 'error', text: 'Please enter a valid email address.' });
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      // Replace with your actual API endpoint (e.g., Mailchimp or your backend)
+      const response = await fetch('/api/subscribe', { // Example: POST to your API
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      if (response.ok) {
+        setMessage({ type: 'success', text: 'Thank you for subscribing! You\'ll receive updates soon.' });
+        setEmail(''); // Clear input on success
+      } else {
+        throw new Error('Subscription failed. Please try again.');
+      }
+    } catch (error) {
+      setMessage({ type: 'error', text: 'An error occurred. Please try again later.' });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -77,11 +118,15 @@ export default function NewsUpdatesPage() {
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                     <Button variant="golden" size="lg" className="group" onClick={() => openPdfModal('/documents/OTC-Press-Release.pdf')}>
-                      Read Full Article
+                      Read Press Release
                       <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                     </Button>
                     <Button variant="outline" size="lg" className="group" onClick={() => openPdfModal('/documents/Court-Release.pdf')}>
-                      Read Court Release
+                      Read Withdraw Notice
+                      <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                    <Button variant="outline" size="lg" className="group" onClick={() => openPdfModal('/documents/Ssekamwa-Frank-3-Ors-vs-Google-LLC-PDPO-Decision-18th-July-2024.pdf')}>
+                      Read LLC-PDPO-Decision
                       <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                     </Button>
                   </div>
@@ -161,17 +206,35 @@ export default function NewsUpdatesPage() {
               </p>
               
               <div className="bg-card border border-border rounded-2xl p-8 shadow-card">
-                <form className="flex flex-col sm:flex-row gap-4">
+                <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-4">
                   <input
                     type="email"
                     placeholder="Enter your email address"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     className="flex-1 px-4 py-3 bg-background border border-input rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                    disabled={isLoading}
                   />
-                  <Button variant="golden" className="group">
-                    Subscribe
-                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  <Button variant="golden" type="submit" disabled={isLoading} className="group">
+                    {isLoading ? (
+                      <>
+                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                        Subscribing...
+                      </>
+                    ) : (
+                      <>
+                        Subscribe
+                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                      </>
+                    )}
                   </Button>
                 </form>
+                
+                {message && (
+                  <div className={`mt-4 p-3 rounded-lg text-sm ${message.type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+                    {message.text}
+                  </div>
+                )}
                 
                 <p className="text-xs text-muted-foreground mt-4">
                   By subscribing, you agree to receive updates from OneTechConnect. 
