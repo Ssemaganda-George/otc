@@ -33,6 +33,7 @@ import TSGPage from "./pages/programmes/TSGPage";
 import AiNowPage from "./pages/programmes/AiNowPage";
 import BiTAPage from "./pages/programmes/BiTAPage";
 import EMTPage from "./pages/programmes/EMTPage";
+import ResearchPublicationsPage from "./pages/ResearchPublicationsPage";
 import { PageTransition } from "@/components/PageTransition";
 
 const queryClient = new QueryClient();
@@ -70,6 +71,7 @@ function App() {
         <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
         <Route path="/donate" element={<PageTransition><DonatePage /></PageTransition>} />
         <Route path="/newsletter" element={<PageTransition><NewsletterPage /></PageTransition>} />
+        <Route path="/news/research-publications" element={<PageTransition><ResearchPublicationsPage /></PageTransition>} />
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
     </AnimatePresence>
