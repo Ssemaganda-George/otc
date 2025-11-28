@@ -199,7 +199,7 @@ export function Team() {
 							{teamMembers.map((member, index) => (
 								<div
 									key={member.name}
-									className="group bg-card border border-border overflow-hidden shadow-card hover:shadow-blue transition-all duration-500 card-hover opacity-0 translate-y-8 animate-fade-in"
+									className="group bg-card overflow-hidden shadow-card hover:shadow-blue transition-all duration-500 card-hover opacity-0 translate-y-8 animate-fade-in"
 									style={{
 										animationDelay: `${index * 0.2}s`,
 										animationFillMode: "forwards",
@@ -207,7 +207,7 @@ export function Team() {
 									onClick={() => openModal(index)}
 								>
 									{/* Profile Image */}
-									<div className="relative h-80 bg-gradient-to-br from-secondary/80 to-secondary/60 overflow-hidden">
+									<div className="relative h-96 bg-secondary/80 overflow-hidden"> {/* Removed gradient, changed to solid bg-secondary/80 */}
 										<img
 											src={member.image}
 											alt={member.name}
@@ -215,73 +215,67 @@ export function Team() {
 											className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
 										/>
 										<div className="absolute inset-0 bg-gradient-to-t from-card/90 via-transparent to-transparent" />
-										<div className="absolute bottom-4 left-4 right-4">
-											<h3 className="text-xl font-playfair font-bold text-foreground mb-1">
-												{member.name}{" "}
-												{member.pronouns && (
-													<span className="text-muted-foreground font-normal text-sm">
-														{member.pronouns}
-													</span>
-												)}
-											</h3>
-											<p className="text-primary font-medium">
-												{member.position}
-											</p>
-										</div>
+										{/* Name and position moved to content div */}
 									</div>
 
 									{/* Content */}
-									<div className="p-6">
-										{/* Social Links */}
-										<div className="flex items-center space-x-3 mb-4" onClick={(e) => e.stopPropagation()}>
+									<div className="p-4"> {/* Removed pb-6 */}
+										{/* Name and Position */}
+										<h3 className="text-xl font-playfair font-bold text-foreground mb-1 text-left"> {/* Added text-left */}
+											{member.name}{" "}
+											{member.pronouns && (
+												<span className="text-muted-foreground font-normal text-sm">
+													{member.pronouns}
+												</span>
+											)}
+										</h3>
+										<p className="text-primary font-medium mb-4 text-left"> {/* Added text-left */}
+											{member.position}
+										</p>
+
+										{/* Social Links - Reorganized vertically */}
+										<div className="flex items-center justify-center space-x-2" onClick={(e) => e.stopPropagation()}>
 											<Button
 												asChild
 												variant="ghost-golden"
 												size="icon"
-												className="w-8 h-8"
+												className="w-10 h-10"
 											>
 												<a
 													href={member.social.linkedin}
 													target="_blank"
 													rel="noopener noreferrer"
+													aria-label="LinkedIn"
 												>
-													<LinkedinIcon className="w-4 h-4" />
+													<LinkedinIcon className="w-5 h-5" />
 												</a>
 											</Button>
 											<Button
 												asChild
 												variant="ghost-golden"
 												size="icon"
-												className="w-8 h-8"
+												className="w-10 h-10"
 											>
-												<a href={`mailto:${member.social.email}`}>
-													<MailIcon className="w-4 h-4" />
+												<a href={`mailto:${member.social.email}`} aria-label="Email">
+													<MailIcon className="w-5 h-5" />
 												</a>
 											</Button>
 											<Button
 												asChild
 												variant="ghost-golden"
 												size="icon"
-												className="w-8 h-8"
+												className="w-10 h-10"
 											>
 												<a
 													href={member.social.twitter}
 													target="_blank"
 													rel="noopener noreferrer"
+													aria-label="Twitter"
 												>
-													<TwitterIcon className="w-4 h-4" />
+													<TwitterIcon className="w-5 h-5" />
 												</a>
 											</Button>
 										</div>
-
-										{/* View Profile Button */}
-										<Button
-											variant="outline"
-											className="w-full shadow-md transition-all duration-200 hover:shadow-lg hover:bg-primary/10 active:scale-95 focus:ring-2 focus:ring-primary focus:outline-none"
-											onClick={() => openModal(index)}
-										>
-											View Profile
-										</Button>
 									</div>
 								</div>
 							))}
