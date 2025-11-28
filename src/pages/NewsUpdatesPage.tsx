@@ -9,6 +9,10 @@ export default function NewsUpdatesPage() {
   const [selectedPdf, setSelectedPdf] = useState<string | null>(null);
   const [pdfTitle, setPdfTitle] = useState<string>('');
 
+  // Add state for image modal
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [imageTitle, setImageTitle] = useState<string>('');
+
   const openPdfModal = (pdfUrl: string) => {
     setSelectedPdf(pdfUrl);
     if (pdfUrl.includes('OTC-Press-Release')) {
@@ -23,6 +27,17 @@ export default function NewsUpdatesPage() {
   const closePdfModal = () => {
     setSelectedPdf(null);
     setPdfTitle('');
+  };
+
+  // Add functions for image modal
+  const openImageModal = (imageUrl: string) => {
+    setSelectedImage(imageUrl);
+    setImageTitle('Image Preview');
+  };
+
+  const closeImageModal = () => {
+    setSelectedImage(null);
+    setImageTitle('');
   };
 
   // Add state for newsletter subscription
@@ -127,6 +142,58 @@ export default function NewsUpdatesPage() {
                     </Button>
                     <Button variant="outline" size="lg" className="group" onClick={() => openPdfModal('/documents/Ssekamwa-Frank-3-Ors-vs-Google-LLC-PDPO-Decision-18th-July-2024.pdf')}>
                       Read LLC-PDPO-Decision
+                      <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Placeholder News Banner */}
+        <section className="py-16 bg-gradient-to-r from-secondary/20 to-secondary/10 border-y border-secondary/20">
+          <div className="container mx-auto px-6">
+            <div className="max-w-6xl mx-auto">
+              <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+                {/* Placeholder Image */}
+                <div className="flex-shrink-0 cursor-pointer" onClick={() => openImageModal('/images/DFA-25-Speakers-X-D01-09.jpg')}>
+                  <img
+                    src="/images/DFA-25-Speakers-X-D01-09.jpg"
+                    alt="Placeholder News - Click to view image"
+                    className="w-full max-w-sm mx-auto lg:mx-0 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+                  />
+                </div>
+                
+                {/* Placeholder Text Content */}
+                <div className="flex-1 text-center lg:text-left">
+                  <div className="flex flex-col sm:flex-row items-center gap-2 bg-secondary/10 text-secondary px-4 py-2 rounded-full text-sm font-medium mb-6">
+                    <Newspaper className="w-4 h-4" />
+                    Latest Update
+                  </div>
+                  
+                  <h2 className="text-3xl md:text-4xl font-playfair font-bold text-gradient-blue mb-4">
+                    OTC at DataFest Africa 2025
+                  </h2>
+                  <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0">
+                   
+                       Our Executive Director represented OTC at DataFest Africa 2025, where he participated in the opening panel, "From Data to Power: How Data Is Shaping African Societies Today."
+
+                        During the discussion, he underscored the need to prioritise data justice in Africa's digital revolution, highlighting the critical role of community-based digital rights litigation in strengthening accountability. He also emphasised the importance of decolonising data governance and artificial intelligence, ensuring that local knowledge, values and contexts inform the development and deployment of emerging technologies.
+
+                        A key message from his contribution was the necessity of meaningful community participation, especially the involvement of young people, as custodians of Africa's digital future. Through their leadership, advocacy, and innovation, Africa can build a digital ecosystem grounded in rights, equity and sovereignty.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <Button variant="golden" size="lg" className="group" onClick={() => openImageModal('/images/DJP_5020.jpg')}>
+                      View Attachment
+                      <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                    <Button variant="outline" size="lg" className="group" onClick={() => openImageModal('/images/DJP_5027.jpg')}>
+                      View Attachment
+                      <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                    <Button variant="outline" size="lg" className="group" onClick={() => openImageModal('/images/DJP_5167.jpg')}>
+                      View Attachment
                       <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                     </Button>
                   </div>
@@ -274,6 +341,36 @@ export default function NewsUpdatesPage() {
                 <a href={selectedPdf} download>
                   <Download className="w-5 h-5 mr-2" />
                   Download {pdfTitle}
+                </a>
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Image Preview Modal */}
+      {selectedImage && (
+        <div className="fixed inset-0 z-50 bg-black/80 flex flex-col">
+          <div className="flex justify-between items-center p-4 bg-black/80">
+            <h3 className="text-lg font-semibold text-white">{imageTitle}</h3>
+            <button onClick={closeImageModal} className="text-white hover:text-primary">
+              <X className="w-6 h-6" />
+            </button>
+          </div>
+          <div className="flex-1 flex items-center justify-center overflow-auto" style={{ WebkitOverflowScrolling: "touch" }}>
+            <img
+              src={selectedImage}
+              alt={imageTitle}
+              className="max-w-full max-h-full object-contain"
+              style={{
+                touchAction: "manipulation", // Allow pinch-to-zoom and pan
+              }}
+            />
+            <div className="py-4 flex justify-center bg-black/80 w-full absolute bottom-0">
+              <Button variant="golden" size="lg" asChild>
+                <a href={selectedImage} download>
+                  <Download className="w-5 h-5 mr-2" />
+                  Download {imageTitle}
                 </a>
               </Button>
             </div>
