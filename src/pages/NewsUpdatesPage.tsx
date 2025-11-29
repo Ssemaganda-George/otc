@@ -17,7 +17,6 @@ export default function NewsUpdatesPage() {
 
   // Define gallery images
   const galleryImages = [
-    '/images/google-banner.jpg',
     '/images/DFA-25-Speakers-X-D01-09.jpg',
     '/images/DJP_5020.jpg',
     '/images/DFA-2.jpg',
