@@ -198,15 +198,19 @@ export default function NewsUpdatesPage() {
                   </Button>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                     <Button variant="golden" size="lg" className="group" onClick={() => openImageModal('/images/DJP_5020.jpg')}>
-                      View Attachment
+                      View
+                      <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                    <Button variant="outline" size="lg" className="group" onClick={() => openImageModal('/images/DFA-2.jpg')}>
+                      View
                       <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                     </Button>
                     <Button variant="outline" size="lg" className="group" onClick={() => openImageModal('/images/DJP_5027.jpg')}>
-                      View Attachment
+                      View
                       <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                     </Button>
                     <Button variant="outline" size="lg" className="group" onClick={() => openImageModal('/images/DJP_5167.jpg')}>
-                      View Attachment
+                      View
                       <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                     </Button>
                   </div>
