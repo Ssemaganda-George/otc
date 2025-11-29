@@ -81,6 +81,9 @@ export default function NewsUpdatesPage() {
     }
   };
 
+  // Add state for expandable description
+  const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -175,14 +178,24 @@ export default function NewsUpdatesPage() {
                   <h2 className="text-3xl md:text-4xl font-playfair font-bold text-gradient-blue mb-4">
                     OTC at DataFest Africa 2025
                   </h2>
-                  <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0">
-                   
-                       Our Executive Director represented OTC at DataFest Africa 2025, where he participated in the opening panel, "From Data to Power: How Data Is Shaping African Societies Today."
+                  <p className="text-lg text-muted-foreground mb-4 max-w-2xl mx-auto lg:mx-0">
+                    {isDescriptionExpanded
+                      ? `Our Executive Director represented OTC at DataFest Africa 2025, where he participated in the opening panel, "From Data to Power: How Data Is Shaping African Societies Today."
 
                         During the discussion, he underscored the need to prioritise data justice in Africa's digital revolution, highlighting the critical role of community-based digital rights litigation in strengthening accountability. He also emphasised the importance of decolonising data governance and artificial intelligence, ensuring that local knowledge, values and contexts inform the development and deployment of emerging technologies.
 
-                        A key message from his contribution was the necessity of meaningful community participation, especially the involvement of young people, as custodians of Africa's digital future. Through their leadership, advocacy, and innovation, Africa can build a digital ecosystem grounded in rights, equity and sovereignty.
+                        A key message from his contribution was the necessity of meaningful community participation, especially the involvement of young people, as custodians of Africa's digital future. Through their leadership, advocacy, and innovation, Africa can build a digital ecosystem grounded in rights, equity and sovereignty.`
+                      : `Our Executive Director represented OTC at DataFest Africa 2025, where he participated in the opening panel, "From Data to Power: How Data Is Shaping African Societies Today."`
+                    }
                   </p>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
+                    className="mb-4 text-primary hover:text-primary/80"
+                  >
+                    {isDescriptionExpanded ? 'Read Less' : 'Read More'}
+                  </Button>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                     <Button variant="golden" size="lg" className="group" onClick={() => openImageModal('/images/DJP_5020.jpg')}>
                       View Attachment
