@@ -1,7 +1,7 @@
 import { Navigation } from "@/components/ui/navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Calendar, ArrowRight, Newspaper, Download, X, Loader2 } from "lucide-react"; // Added Loader2 for spinner
+import { Calendar, ArrowRight, Newspaper, Download, X, Loader2, ChevronLeft, ChevronRight } from "lucide-react"; // Added ChevronLeft, ChevronRight
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
@@ -12,6 +12,18 @@ export default function NewsUpdatesPage() {
   // Add state for image modal
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [imageTitle, setImageTitle] = useState<string>('');
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);
+  const [imageOpacity, setImageOpacity] = useState<number>(1);
+
+  // Define gallery images
+  const galleryImages = [
+    '/images/google-banner.jpg',
+    '/images/DFA-25-Speakers-X-D01-09.jpg',
+    '/images/DJP_5020.jpg',
+    '/images/DFA-2.jpg',
+    '/images/DJP_5027.jpg',
+    '/images/DJP_5167.jpg'
+  ];
 
   const openPdfModal = (pdfUrl: string) => {
     setSelectedPdf(pdfUrl);
@@ -31,13 +43,37 @@ export default function NewsUpdatesPage() {
 
   // Add functions for image modal
   const openImageModal = (imageUrl: string) => {
+    const index = galleryImages.indexOf(imageUrl);
     setSelectedImage(imageUrl);
-    setImageTitle('Image Preview');
+    setSelectedImageIndex(index);
+    setImageTitle(`Image Preview (${index + 1} of ${galleryImages.length})`);
   };
 
   const closeImageModal = () => {
     setSelectedImage(null);
     setImageTitle('');
+  };
+
+  const prevImage = () => {
+    setImageOpacity(0);
+    setTimeout(() => {
+      const newIndex = selectedImageIndex > 0 ? selectedImageIndex - 1 : galleryImages.length - 1;
+      setSelectedImageIndex(newIndex);
+      setSelectedImage(galleryImages[newIndex]);
+      setImageTitle(`Image Preview (${newIndex + 1} of ${galleryImages.length})`);
+      setImageOpacity(1);
+    }, 300);
+  };
+
+  const nextImage = () => {
+    setImageOpacity(0);
+    setTimeout(() => {
+      const newIndex = selectedImageIndex < galleryImages.length - 1 ? selectedImageIndex + 1 : 0;
+      setSelectedImageIndex(newIndex);
+      setSelectedImage(galleryImages[newIndex]);
+      setImageTitle(`Image Preview (${newIndex + 1} of ${galleryImages.length})`);
+      setImageOpacity(1);
+    }, 300);
   };
 
   // Add state for newsletter subscription
@@ -220,6 +256,58 @@ export default function NewsUpdatesPage() {
           </div>
         </section>
 
+        {/* Attachments Gallery */}
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-6">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-2xl md:text-3xl font-playfair font-semibold text-gradient-blue mb-8 text-center">
+                News Gallery
+              </h2>
+              <style>
+                {`
+                  @keyframes fadeInFromBack {
+                    0% {
+                      opacity: 0;
+                      transform: scale(0.9) translateZ(-20px);
+                    }
+                    100% {
+                      opacity: 1;
+                      transform: scale(1) translateZ(0);
+                    }
+                  }
+                  .gallery-item {
+                    animation: fadeInFromBack 1s ease-out forwards;
+                    opacity: 0;
+                  }
+                `}
+              </style>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {[
+                  '/images/google-banner.jpg',
+                  '/images/DFA-25-Speakers-X-D01-09.jpg',
+                  '/images/DJP_5020.jpg',
+                  '/images/DFA-2.jpg',
+                  '/images/DJP_5027.jpg',
+                  '/images/DJP_5167.jpg'
+                ].map((imageUrl, index) => (
+                  <div
+                    key={index}
+                    className="cursor-pointer rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow gallery-item"
+                    style={{ animationDelay: `${index * 0.2}s` }}
+                    onClick={() => openImageModal(imageUrl)}
+                  >
+                    <img
+                      src={imageUrl}
+                      alt={`Attachment ${index + 1}`}
+                      className="w-full h-32 md:h-40 object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* News & Updates Articles Section */}
         <section className="py-24 bg-background">
           <div className="container mx-auto px-6">
@@ -380,16 +468,28 @@ export default function NewsUpdatesPage() {
               alt={imageTitle}
               className="max-w-full max-h-full object-contain"
               style={{
+                opacity: imageOpacity,
+                transition: 'opacity 0.3s ease-in-out',
                 touchAction: "manipulation", // Allow pinch-to-zoom and pan
               }}
             />
-            <div className="py-4 flex justify-center bg-black/80 w-full absolute bottom-0">
-              <Button variant="golden" size="lg" asChild>
-                <a href={selectedImage} download>
-                  <Download className="w-5 h-5 mr-2" />
-                  Download {imageTitle}
-                </a>
-              </Button>
+            <div className="absolute bottom-0 w-full bg-black/80 py-4">
+              <div className="flex justify-center items-center gap-4 px-4">
+                <Button variant="outline" size="sm" onClick={prevImage} className="text-white border-white hover:bg-white hover:text-black">
+                  <ChevronLeft className="w-4 h-4" />
+                </Button>
+                <Button variant="outline" size="sm" onClick={nextImage} className="text-white border-white hover:bg-white hover:text-black">
+                  <ChevronRight className="w-4 h-4" />
+                </Button>
+              </div>
+              <div className="flex justify-center mt-2">
+                <Button variant="golden" size="lg" asChild>
+                  <a href={selectedImage} download>
+                    <Download className="w-5 h-5 mr-2" />
+                    Download {imageTitle}
+                  </a>
+                </Button>
+              </div>
             </div>
           </div>
         </div>
