@@ -280,9 +280,8 @@ export default function NewsUpdatesPage() {
                   }
                 `}
               </style>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
-                  '/images/google-banner.jpg',
                   '/images/DFA-25-Speakers-X-D01-09.jpg',
                   '/images/DJP_5020.jpg',
                   '/images/DFA-2.jpg',
@@ -298,7 +297,7 @@ export default function NewsUpdatesPage() {
                     <img
                       src={imageUrl}
                       alt={`Attachment ${index + 1}`}
-                      className="w-full h-32 md:h-40 object-cover"
+                      className="w-full h-64 md:h-80 object-cover"
                     />
                   </div>
                 ))}
