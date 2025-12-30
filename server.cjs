@@ -3,11 +3,15 @@ const path = require('path');
 
 const app = express();
 
+console.log('Current directory:', __dirname);
+console.log('Serving static files from:', path.join(__dirname, 'dist'));
+
 // Serve static files from the dist directory
 app.use(express.static(path.join(__dirname, 'dist')));
 
 // Handle client-side routing - send all requests to index.html
 app.get('*', (req, res) => {
+  console.log('Serving request for:', req.path);
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
