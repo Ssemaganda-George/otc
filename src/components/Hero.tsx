@@ -91,7 +91,7 @@ const HeroSlider = () => {
         } else if (emblaApi) {
           emblaApi.scrollTo(0);
         }
-      }, 12000);
+      }, 9000); // Changed from 12000 to 9000 milliseconds (9 seconds)
 
       return () => clearInterval(autoScrollInterval);
     }
@@ -100,7 +100,7 @@ const HeroSlider = () => {
   useEffect(() => {
     if (slides.length > 0) {
       const progressInterval = setInterval(() => {
-        setSlideProgress(prev => (prev + 100 / 90) % 100);
+        setSlideProgress(prev => (prev + 100 / 90) % 100); // Updates every 100ms for 9 seconds
       }, 100);
 
       return () => clearInterval(progressInterval);
@@ -185,69 +185,69 @@ const HeroSlider = () => {
   const currentSlide = slides[selectedIndex];
 
   return (
-    <section className="relative h-[80vh] flex items-center overflow-hidden">
+    <section className="relative w-full h-[75vh] flex items-center overflow-hidden">
       {/* Progress Bar */}
       <div className="absolute top-0 left-0 right-0 z-30 h-1 bg-white/20">
         <div
           className="h-full transition-all duration-100 ease-linear"
           style={{
             width: `${slideProgress}%`,
-            backgroundColor: currentSlide?.accent_color || 'hsl(217 91% 30%)'
+            backgroundColor: currentSlide?.accent_color || 'hsl(43 89% 38%)' // Default to golden/orange
           }}
         ></div>
       </div>
 
       {/* Embla Carousel */}
-      <div className="embla h-[85vh] overflow-hidden w-full" ref={emblaRef}>
+      <div className="embla w-full h-full overflow-hidden" ref={emblaRef}>
         <div className="embla__container flex h-full">
           {slides.map((slide) => (
             <div key={slide.id} className="embla__slide relative min-w-full h-full flex">
               {/* Content Card - Left Side */}
-              <div className="relative z-10 w-full md:w-4/5 lg:w-3/5 flex items-center">
-                <div className="bg-black bg-opacity-70 p-6 md:p-8 lg:p-10 max-w-5xl mx-auto md:ml-12 lg:ml-24 w-full">
+              <div className="relative z-10 w-full max-w-7xl mx-auto flex items-center px-4 md:px-8">
+                <div className="bg-black/70 backdrop-blur-sm p-2 md:p-4 lg:p-6 max-w-3xl w-full rounded-lg -mt-10">
                   {/* Category Badge */}
                   {slide.category && (
                     <div
-                      className="mb-3 text-sm md:text-base uppercase tracking-wider font-bold inline-block px-3 py-1"
-                      style={{ backgroundColor: slide.accent_color || 'hsl(217 91% 30%)' }}
+                      className="mb-4 text-sm md:text-base uppercase tracking-wider font-bold inline-block px-4 py-2 rounded-md"
+                      style={{ backgroundColor: slide.accent_color || 'hsl(43 89% 38%)' }}
                     >
                       {slide.category}
                     </div>
                   )}
 
                   {/* Title */}
-                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 text-white">
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 text-white leading-tight">
                     {slide.title}
-                    {slide.subtitle && <span className="block mt-1 text-2xl md:text-3xl lg:text-4xl" style={{ color: slide.accent_color || 'hsl(217 91% 30%)' }}>{slide.subtitle}</span>}
+                    {slide.subtitle && <span className="block mt-2 text-2xl md:text-3xl lg:text-4xl xl:text-5xl" style={{ color: slide.accent_color || 'hsl(43 89% 38%)' }}>{slide.subtitle}</span>}
                   </h1>
 
                   {/* Accent Line */}
                   <div
-                    className="h-1.5 w-20 mb-4"
-                    style={{ backgroundColor: slide.accent_color || 'hsl(217 91% 30%)' }}
+                    className="h-1.5 w-24 mb-6 rounded-full"
+                    style={{ backgroundColor: slide.accent_color || 'hsl(43 89% 38%)' }}
                   ></div>
 
                   {/* Description */}
-                  <p className="text-base md:text-lg lg:text-xl mb-6 text-white/90 max-w-2xl font-light">
+                  <p className="text-base md:text-lg lg:text-xl mb-8 text-white/90 max-w-3xl leading-relaxed">
                     {slide.description}
                   </p>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
+                  <div className="flex flex-col sm:flex-row gap-4 md:gap-6">
                     <Link
-                      to={slide.cta_link || "/contact"}
-                      className="flex items-center justify-center w-full sm:w-auto text-white py-2.5 px-5 transition-all duration-300 text-center uppercase tracking-wide text-sm md:text-base font-medium hover:scale-105 hover:shadow-lg min-w-[140px]"
-                      style={{ backgroundColor: slide.accent_color || 'hsl(217 91% 30%)' }}
+                      to={slide.cta_link || "/about"}
+                      className="group flex items-center justify-center w-full sm:w-auto text-white py-4 px-8 rounded-md font-medium transition-all duration-300 text-center uppercase tracking-wide text-sm md:text-base hover:scale-105 hover:shadow-xl min-w-[160px]"
+                      style={{ backgroundColor: slide.accent_color || 'hsl(43 89% 38%)' }}
                     >
                       <span>{slide.cta_text || "Learn More"}</span>
-                      <ArrowRight className="ml-2 w-4 h-4" />
+                      <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </Link>
                     <Link
                       to="/contact"
-                      className="flex items-center justify-center w-full sm:w-auto text-white py-2.5 px-5 transition-all duration-300 text-center uppercase tracking-wide text-sm md:text-base font-medium border-2 border-white/60 hover:bg-white/10 hover:scale-105 min-w-[140px]"
+                      className="group flex items-center justify-center w-full sm:w-auto text-white py-4 px-8 rounded-md font-medium transition-all duration-300 text-center uppercase tracking-wide text-sm md:text-base border-2 border-white/60 hover:bg-white/10 hover:scale-105 min-w-[160px] backdrop-blur-sm"
                     >
                       <span>Contact Us</span>
-                      <ArrowRight className="ml-2 w-4 h-4" />
+                      <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </div>
                 </div>
@@ -269,30 +269,41 @@ const HeroSlider = () => {
       </div>
 
       {/* Navigation */}
-      <div className="absolute bottom-8 right-8 z-20 flex items-center gap-4">
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex items-center gap-6 bg-black/30 backdrop-blur-md rounded-full px-6 py-3">
+        {/* Slide Counter */}
+        <div className="text-white text-sm font-medium">
+          {selectedIndex + 1} / {slides.length}
+        </div>
+
+        {/* Navigation Arrows */}
         <button
           onClick={scrollPrev}
-          className="w-12 h-12 bg-card/80 backdrop-blur-sm border border-border flex items-center justify-center text-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
+          className="w-10 h-10 bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300 rounded-full hover:scale-110"
         >
-          <ChevronLeft className="w-6 h-6" />
+          <ChevronLeft className="w-5 h-5" />
         </button>
-        <div className="flex gap-2">
+
+        {/* Indicators */}
+        <div className="flex gap-3">
           {scrollSnaps.map((_, index) => (
             <button
               key={index}
               onClick={() => scrollTo(index)}
-              className={`w-3 h-3 transition-all ${
-                index === selectedIndex ? "w-8" : "bg-border hover:bg-muted-foreground"
+              className={`transition-all duration-300 rounded-full ${
+                index === selectedIndex 
+                  ? "w-8 h-3" 
+                  : "w-3 h-3 bg-white/40 hover:bg-white/60"
               }`}
-              style={{ backgroundColor: index === selectedIndex ? (currentSlide?.accent_color || 'hsl(217 91% 30%)') : undefined }}
+              style={{ backgroundColor: index === selectedIndex ? (currentSlide?.accent_color || 'hsl(43 89% 38%)') : undefined }}
             />
           ))}
         </div>
+
         <button
           onClick={scrollNext}
-          className="w-12 h-12 bg-card/80 backdrop-blur-sm border border-border flex items-center justify-center text-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
+          className="w-10 h-10 bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300 rounded-full hover:scale-110"
         >
-          <ChevronRight className="w-6 h-6" />
+          <ChevronRight className="w-5 h-5" />
         </button>
       </div>
     </section>

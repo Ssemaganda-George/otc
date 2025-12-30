@@ -90,7 +90,7 @@ const Index = () => {
     <div className="min-h-screen bg-background custom-scrollbar font-poppins">
       <Navigation />
 
-      <main className="pt-20">
+      <main className="pt-6">
         {/* 1. Hero - full viewport height (reuse existing Hero for advanced visuals) */}
         <HeroSlider />
 

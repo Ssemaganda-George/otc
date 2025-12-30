@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
@@ -21,6 +21,11 @@ const buttonVariants = cva(
         golden: "bg-golden text-golden-foreground font-semibold shadow-golden hover:shadow-elegant transition-all duration-300 hover:scale-105",
         hero: "bg-muted/60 text-foreground border border-border hover:bg-muted/80 hover:border-golden/50 backdrop-blur-sm font-semibold transition-all duration-300",
         "ghost-golden": "text-golden hover:bg-golden/10 hover:text-golden-dark transition-all duration-200",
+        // New variants as per requirements
+        primary: "bg-accent hover:bg-accent-hover text-white font-medium transition-all duration-300 hover:scale-105",
+        "secondary-outline": "border-2 border-white text-white hover:bg-white/10 backdrop-blur-sm font-medium transition-all duration-300 hover:scale-105",
+        cta: "py-3 px-8 rounded-md font-medium transition-all duration-300 hover:scale-105",
+        "icon-button": "p-2 hover:scale-110 backdrop-blur-sm transition-all duration-300",
       },
       size: {
         default: "h-10 px-4 py-2",

@@ -48,7 +48,7 @@ export function FocusAreas() {
             {focusAreas.map((area, index) => (
               <div 
                 key={area.title}
-                className="bg-card border border-border rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-300 card-hover"
+                className="bg-card border border-border rounded-none p-8 shadow-card hover:shadow-blue transition-all duration-300 card-hover"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex items-start space-x-4">

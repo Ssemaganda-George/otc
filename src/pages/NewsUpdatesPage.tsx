@@ -318,32 +318,78 @@ export default function NewsUpdatesPage() {
         {/* More News Coming */}
         <section className="py-24 bg-gradient-to-br from-card/30 to-background">
           <div className="container mx-auto px-6">
-            <div className="max-w-4xl mx-auto">
-              <div className="bg-gradient-to-r from-primary/10 to-primary/5 p-8 md:p-12 border border-primary/20">
-                <h2 className="text-2xl md:text-3xl font-playfair font-semibold text-gradient-blue mb-6 text-center">
+            <div className="max-w-6xl mx-auto">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-playfair font-semibold text-gradient-blue mb-4">
                   More News Coming Soon
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {[
-                    "Research Publications & Findings",
-                    "Strategic Litigation Updates",
-                    "Partnership Announcements",
-                    "Policy & Advocacy Wins",
-                    "Event Coverage & Reports",
-                    "Thought Leadership Articles"
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-primary rounded-full" />
-                      <span className="text-base text-muted-foreground">{item}</span>
-                    </div>
-                  ))}
-                </div>
+                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                  We're actively working on bringing you comprehensive coverage of our latest developments and initiatives.
+                </p>
+              </div>
 
-                <div className="mt-8 pt-6 border-t border-primary/20 text-center">
-                  <p className="text-muted-foreground mb-6">
-                    Want to stay updated on our latest developments?
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                {[
+                  {
+                    title: "Research Publications & Findings",
+                    description: "In-depth analysis and findings from our ongoing research initiatives",
+                    icon: "📊"
+                  },
+                  {
+                    title: "Strategic Litigation Updates",
+                    description: "Updates on legal actions and court decisions affecting digital rights",
+                    icon: "⚖️"
+                  },
+                  {
+                    title: "Partnership Announcements",
+                    description: "New collaborations and strategic partnerships for greater impact",
+                    icon: "🤝"
+                  },
+                  {
+                    title: "Policy & Advocacy Wins",
+                    description: "Policy changes and advocacy successes in technology and human rights",
+                    icon: "🏆"
+                  },
+                  {
+                    title: "Event Coverage & Reports",
+                    description: "Comprehensive coverage of conferences, workshops, and key events",
+                    icon: "📅"
+                  },
+                  {
+                    title: "Thought Leadership Articles",
+                    description: "Expert insights and analysis on emerging technology trends",
+                    icon: "💡"
+                  }
+                ].map((item, index) => (
+                  <div
+                    key={index}
+                    className="bg-card border border-border rounded-none p-6 shadow-card hover:shadow-blue transition-all duration-300 card-hover group"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    <div className="text-center">
+                      <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                        {item.icon}
+                      </div>
+                      <h3 className="text-lg font-playfair font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
+                        {item.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="bg-gradient-to-r from-primary/10 to-primary/5 p-8 md:p-12 border border-primary/20 rounded-none">
+                <div className="text-center">
+                  <h3 className="text-2xl font-playfair font-semibold text-gradient-blue mb-4">
+                    Stay Ahead of the Curve
+                  </h3>
+                  <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
+                    Want to stay updated on our latest developments and be the first to know when new content is published?
                   </p>
-                  
+
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Link to="/newsletter">
                       <Button variant="golden" className="group">
@@ -351,7 +397,7 @@ export default function NewsUpdatesPage() {
                         <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                       </Button>
                     </Link>
-                    
+
                     <Button variant="ghost-golden" className="group">
                       Follow @OneTechConnect
                       <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -366,50 +412,65 @@ export default function NewsUpdatesPage() {
         {/* Newsletter Signup */}
         <section className="py-24 bg-gradient-to-br from-card/30 to-background">
           <div className="container mx-auto px-6">
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="heading-section text-gradient-blue mb-6">
-                Stay Connected
-              </h2>
-              <p className="text-body text-muted-foreground mb-8">
-                Be the first to know about our latest research, advocacy wins, and insights on 
-                technology and human rights in Africa.
-              </p>
-              
-              <div className="bg-card border border-border p-8 shadow-card">
-                <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-4">
-                  <input
-                    type="email"
-                    placeholder="Enter your email address"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="flex-1 px-4 py-3 bg-background border border-input rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                    disabled={isLoading}
-                  />
-                  <Button variant="golden" type="submit" disabled={isLoading} className="group">
-                    {isLoading ? (
-                      <>
-                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                        Subscribing...
-                      </>
-                    ) : (
-                      <>
-                        Subscribe
-                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                      </>
-                    )}
-                  </Button>
-                </form>
-                
-                {message && (
-                  <div className={`mt-4 p-3 rounded-lg text-sm ${message.type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
-                    {message.text}
-                  </div>
-                )}
-                
-                <p className="text-xs text-muted-foreground mt-4">
-                  By subscribing, you agree to receive updates from OneTechConnect. 
-                  We respect your privacy and you can unsubscribe at any time.
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-12">
+                <h2 className="heading-section text-gradient-blue mb-4">
+                  Stay Connected
+                </h2>
+                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                  Be the first to know about our latest research, advocacy wins, and insights on
+                  technology and human rights in Africa.
                 </p>
+              </div>
+
+              <div className="bg-card border border-border rounded-none p-8 md:p-12 shadow-card">
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-playfair font-semibold text-foreground mb-4">
+                    Subscribe to Our Newsletter
+                  </h3>
+                  <p className="text-muted-foreground">
+                    Get exclusive access to our latest updates, research findings, and thought leadership content.
+                  </p>
+                </div>
+
+                <form onSubmit={handleSubscribe} className="max-w-md mx-auto">
+                  <div className="flex flex-col sm:flex-row gap-4 mb-6">
+                    <input
+                      type="email"
+                      placeholder="Enter your email address"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="flex-1 px-4 py-3 bg-background border border-input rounded-none text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                      disabled={isLoading}
+                    />
+                    <Button variant="golden" type="submit" disabled={isLoading} className="group rounded-none">
+                      {isLoading ? (
+                        <>
+                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                          Subscribing...
+                        </>
+                      ) : (
+                        <>
+                          Subscribe
+                          <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                        </>
+                      )}
+                    </Button>
+                  </div>
+
+                  {message && (
+                    <div className={`p-4 rounded-none text-sm mb-4 ${message.type === 'success' ? 'bg-green-50 border border-green-200 text-green-800' : 'bg-red-50 border border-red-200 text-red-800'}`}>
+                      {message.text}
+                    </div>
+                  )}
+
+                  <div className="text-center">
+                    <p className="text-xs text-muted-foreground">
+                      By subscribing, you agree to receive updates from OneTechConnect.
+                      We respect your privacy and you can unsubscribe at any time.
+                    </p>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
