@@ -1,10 +1,10 @@
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClient } from "@tanstack/react-query";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-import { ScrollToTop } from "@/components/ScrollToTop";
 import { AnimatePresence } from "framer-motion";
+
 import Index from "./pages/Index";
 import AboutPage from "./pages/AboutPage";
 import WhoWeArePage from "./pages/WhoWeArePage";
@@ -13,7 +13,6 @@ import OurValuesPage from "./pages/OurValuesPage";
 import WhatWeDoPage from "./pages/WhatWeDoPage";
 import OurApproachPage from "./pages/OurApproachPage";
 import FocusAreasPage from "./pages/FocusAreasPage";
-import StrategicPillarsPage from "./pages/StrategicPillarsPage";
 import OurProductsPage from "./pages/OurProductsPage";
 import ProductsOverviewPage from "./pages/ProductsOverviewPage";
 import OurServicesPage from "./pages/OurServicesPage";
@@ -38,7 +37,9 @@ import BiTAPage from "./pages/programmes/BiTAPage";
 import EMTPage from "./pages/programmes/EMTPage";
 import ResearchPublicationsPage from "./pages/ResearchPublicationsPage";
 import RepositoryPage from "./pages/RepositoryPage";
+
 import { PageTransition } from "@/components/PageTransition";
+
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminLogin from "./pages/admin/AdminLogin";
 import ManagePages from "./pages/admin/ManagePages";
@@ -59,6 +60,7 @@ import ManageWhatWeDo from "./pages/admin/ManageWhatWeDo";
 import ManageOurImpact from "./pages/admin/ManageOurImpact";
 import ManageCorePillars from "./pages/admin/ManageCorePillars";
 import ManageRepositories from "./pages/admin/ManageRepositories";
+
 import AdminLayout from "./components/AdminLayout";
 import { AuthProvider } from "./contexts/AuthContext";
 
@@ -71,6 +73,7 @@ function App() {
     <AuthProvider>
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
+          {/* PUBLIC ROUTES */}
           <Route path="/" element={<PageTransition><Index /></PageTransition>} />
           <Route path="/about" element={<PageTransition><AboutPage /></PageTransition>} />
           <Route path="/about/who-we-are" element={<PageTransition><WhoWeArePage /></PageTransition>} />
@@ -84,25 +87,35 @@ function App() {
           <Route path="/what-we-do/approach" element={<PageTransition><OurApproachPage /></PageTransition>} />
           <Route path="/what-we-do/focus-areas" element={<PageTransition><FocusAreasPage /></PageTransition>} />
           <Route path="/what-we-do/programmes" element={<PageTransition><ProgrammesPage /></PageTransition>} />
+
           <Route path="/programmes/tsg" element={<PageTransition><TSGPage /></PageTransition>} />
           <Route path="/programmes/ainow" element={<PageTransition><AiNowPage /></PageTransition>} />
           <Route path="/programmes/bita" element={<PageTransition><BiTAPage /></PageTransition>} />
           <Route path="/programmes/emt" element={<PageTransition><EMTPage /></PageTransition>} />
+
           <Route path="/our-products" element={<PageTransition><OurProductsPage /></PageTransition>} />
           <Route path="/our-products/overview" element={<PageTransition><ProductsOverviewPage /></PageTransition>} />
           <Route path="/our-products/services" element={<PageTransition><OurServicesPage /></PageTransition>} />
+
           <Route path="/products/strategic-litigation" element={<PageTransition><StrategicLitigationPage /></PageTransition>} />
           <Route path="/products/innovations" element={<PageTransition><InnovationsPage /></PageTransition>} />
           <Route path="/products/center-for-digital-justice" element={<PageTransition><CenterForDigitalJusticePage /></PageTransition>} />
           <Route path="/products/consultancy" element={<PageTransition><ConsultancyPage /></PageTransition>} />
           <Route path="/products/short-courses" element={<PageTransition><ShortCoursesPage /></PageTransition>} />
+
           <Route path="/news" element={<PageTransition><NewsUpdatesPage /></PageTransition>} />
+          <Route path="/news/research-publications" element={<PageTransition><ResearchPublicationsPage /></PageTransition>} />
+          <Route path="/news/repository" element={<PageTransition><RepositoryPage /></PageTransition>} />
+
           <Route path="/team" element={<PageTransition><TeamPage /></PageTransition>} />
           <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
           <Route path="/donate" element={<PageTransition><DonatePage /></PageTransition>} />
           <Route path="/newsletter" element={<PageTransition><NewsletterPage /></PageTransition>} />
-          <Route path="/news/research-publications" element={<PageTransition><ResearchPublicationsPage /></PageTransition>} />
-          <Route path="/news/repository" element={<PageTransition><RepositoryPage /></PageTransition>} />
+
+          {/* 🔐 ADMIN LOGIN — MUST COME FIRST */}
+          <Route path="/admin/login" element={<AdminLogin />} />
+
+          {/* 🔐 ADMIN AREA */}
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<AdminDashboard />} />
             <Route path="pages" element={<ManagePages />} />
@@ -124,7 +137,8 @@ function App() {
             <Route path="core-pillars" element={<ManageCorePillars />} />
             <Route path="repositories" element={<ManageRepositories />} />
           </Route>
-          <Route path="/admin/login" element={<AdminLogin />} />
+
+          {/* FALLBACK */}
           <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
         </Routes>
       </AnimatePresence>
