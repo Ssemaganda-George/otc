@@ -1,10 +1,10 @@
 services:
-  # Frontend React Application (Web Service for SPA routing)
+  # Frontend React Application (Static Site with SPA routing)
   - type: web
     name: otc-frontend
-    runtime: node
+    runtime: static
     buildCommand: npm install && npm run build
-    startCommand: node server.cjs
+    staticPublishPath: dist
     envVars:
       - key: NODE_ENV
         value: production
