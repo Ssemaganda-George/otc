@@ -19,10 +19,10 @@
 - [ ] Click "New" → "Static Site"
 - [ ] Connect GitHub repository: `Ssemaganda-George/otc`
 
-### 2. Configure Build Settings
+### 3. Configure Build Settings
 - [ ] **Name**: `otc-frontend` (or your preferred name)
 - [ ] **Branch**: `main` (or your deployment branch)
-- [ ] **Build Command**: `npm run build`
+- [ ] **Build Command**: `bun install && bun run build`
 - [ ] **Publish Directory**: `dist`
 
 ### 3. Environment Variables

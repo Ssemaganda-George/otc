@@ -60,7 +60,7 @@ npm run build
    - Connect your GitHub repository: `https://github.com/Ssemaganda-George/otc`
 
 3. **Configure Build Settings**
-   - **Build Command**: `npm run build`
+   - **Build Command**: `bun install && bun run build`
    - **Publish Directory**: `dist`
    - **Node Version**: 18 or higher
 
@@ -74,7 +74,7 @@ npm run build
 
 5. **Deploy**
    - Click "Create Static Site"
-   - Render will automatically build and deploy your site
+   - Render will automatically install dependencies and build your site
    - Your site will be available at a `.onrender.com` URL
 
 ### Architecture
