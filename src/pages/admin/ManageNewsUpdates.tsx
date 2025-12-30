@@ -239,7 +239,7 @@ export default function ManageNewsUpdates() {
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Manage News & Updates</h1>
+            <h1 className="text-3xl font-bold text-foreground">News & Updates</h1>
             <p className="text-muted-foreground">Add, edit, and manage news articles and updates</p>
           </div>
           <Button

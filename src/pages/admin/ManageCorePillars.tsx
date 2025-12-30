@@ -95,7 +95,7 @@ export default function ManageCorePillars() {
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Manage Core Pillars</h1>
+            <h1 className="text-3xl font-bold text-foreground">Core Pillars</h1>
             <p className="text-muted-foreground">Manage the R, A, T pillars displayed on the home page</p>
           </div>
           <Button onClick={() => setEditingId('new')} className="flex items-center gap-2">

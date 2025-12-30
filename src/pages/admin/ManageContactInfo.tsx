@@ -152,7 +152,7 @@ export default function ManageContactInfo() {
       <div className="max-w-4xl mx-auto">
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Manage Contact Information</h1>
+            <h1 className="text-3xl font-bold text-foreground">Contact Information</h1>
             <p className="text-muted-foreground">Update contact details and social media links</p>
           </div>
         </div>

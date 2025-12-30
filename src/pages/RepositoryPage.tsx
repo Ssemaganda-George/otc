@@ -16,6 +16,7 @@ interface Repository {
   last_updated: string;
   github_url: string;
   demo_url: string;
+  document_url?: string; // URL to downloadable document
   tags: string[];
   thumbnail: string;
   is_active: boolean;
@@ -139,12 +140,29 @@ export default function RepositoryPage() {
         console.warn('Error tracking download:', error);
       }
 
-      // Open the GitHub URL
-      window.open(repo.github_url, '_blank');
+      // Check if there's a document URL to download from
+      if (repo.document_url) {
+        // Create a temporary link to download the document
+        const link = document.createElement('a');
+        link.href = repo.document_url;
+        link.download = `${repo.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_documentation.md`;
+        link.target = '_blank';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } else if (repo.github_url) {
+        // Fallback to GitHub URL
+        window.open(repo.github_url, '_blank');
+      } else {
+        // No download URL available
+        alert('No downloadable document available for this repository.');
+      }
+
+      // Refresh the repositories to update download counts
+      fetchRepositories();
     } catch (error) {
       console.error('Error handling download:', error);
-      // Still open the URL even if tracking fails
-      window.open(repo.github_url, '_blank');
+      alert('Error downloading document. Please try again.');
     }
   };
 

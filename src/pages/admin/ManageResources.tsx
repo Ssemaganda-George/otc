@@ -215,7 +215,7 @@ export default function ManageResources() {
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Manage Resources</h1>
+            <h1 className="text-3xl font-bold text-foreground">Resources</h1>
             <p className="text-muted-foreground">Add, edit, and manage downloadable resources</p>
           </div>
           <Button

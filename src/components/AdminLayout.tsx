@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation, Outlet } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { LogOut, Menu, X, Home, FileText, Users, BookOpen, Briefcase, Image, GraduationCap, Newspaper, File, Phone, Settings, Layout, Target, TrendingUp, Shield, Database } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -10,8 +11,13 @@ export default function AdminLayout() {
   const navigate = useNavigate();
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [showSignOutDialog, setShowSignOutDialog] = useState(false);
 
-  const handleSignOut = async () => {
+  const handleSignOut = () => {
+    setShowSignOutDialog(true);
+  };
+
+  const confirmSignOut = async () => {
     await signOut();
     navigate("/");
   };
@@ -46,7 +52,12 @@ export default function AdminLayout() {
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 flex flex-col`}
       >
-        <div className="flex items-center justify-center h-16 px-4 bg-primary flex-shrink-0">
+        <div className="flex items-center justify-start h-16 px-4 bg-primary flex-shrink-0">
+          <img
+            src="/OTC_logo.png"
+            alt="SAC OTC Logo"
+            className="h-8 w-11 mr-3"
+          />
           <h2 className="text-white font-bold text-lg">Admin Panel</h2>
         </div>
         <nav className="flex-1 mt-8 overflow-y-auto">
@@ -119,6 +130,26 @@ export default function AdminLayout() {
           <Outlet />
         </main>
       </div>
+
+      {/* Sign Out Confirmation Dialog */}
+      <Dialog open={showSignOutDialog} onOpenChange={setShowSignOutDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Confirm Sign Out</DialogTitle>
+            <DialogDescription>
+              Are you sure you want to sign out? You will need to log in again to access the admin panel.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setShowSignOutDialog(false)}>
+              Cancel
+            </Button>
+            <Button variant="destructive" onClick={confirmSignOut}>
+              Sign Out
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

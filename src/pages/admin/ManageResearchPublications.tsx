@@ -234,7 +234,7 @@ export default function ManageResearchPublications() {
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Manage Research Publications</h1>
+            <h1 className="text-3xl font-bold text-foreground">Research Publications</h1>
             <p className="text-muted-foreground">Add, edit, and manage research publications and policy briefs</p>
           </div>
           <Button

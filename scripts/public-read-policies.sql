@@ -17,3 +17,6 @@ CREATE POLICY "Allow public read access to news_updates" ON news_updates FOR SEL
 CREATE POLICY "Allow public read access to what_we_do_focus_areas" ON what_we_do_focus_areas FOR SELECT USING (true);
 CREATE POLICY "Allow public read access to what_we_do_departments" ON what_we_do_departments FOR SELECT USING (true);
 CREATE POLICY "Allow public read access to what_we_do_programmes" ON what_we_do_programmes FOR SELECT USING (true);
+
+-- Allow public read access to repositories
+CREATE POLICY "Allow public read access to repositories" ON repositories FOR SELECT USING (true);

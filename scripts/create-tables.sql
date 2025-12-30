@@ -121,6 +121,7 @@ CREATE TABLE IF NOT EXISTS repositories (
   last_updated DATE,
   github_url TEXT,
   demo_url TEXT,
+  document_url TEXT, -- URL to downloadable document
   tags TEXT[],
   thumbnail TEXT,
   is_active BOOLEAN DEFAULT true,

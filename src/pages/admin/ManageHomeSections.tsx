@@ -222,7 +222,7 @@ export default function ManageHomeSections() {
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Manage About Us, Mission & Vision</h1>
+            <h1 className="text-3xl font-bold text-foreground">About Us, Mission & Vision</h1>
             <p className="text-muted-foreground">Configure the About Us, Mission, and Vision sections of your website</p>
           </div>
           <Button

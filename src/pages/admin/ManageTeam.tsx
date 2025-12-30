@@ -149,7 +149,7 @@ export default function ManageTeam() {
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex items-center justify-between mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Manage Team</h1>
+          <h1 className="text-3xl font-bold text-gray-900">Team Members</h1>
           <Button onClick={() => setEditingId('new')} className="flex items-center space-x-2">
             <Plus className="w-4 h-4" />
             <span>Add Team Member</span>

@@ -3,13 +3,18 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { BarChart3, Settings } from "lucide-react";
+import { BarChart3, Settings, Users, FileText, BookOpen, Briefcase, Database, TrendingUp, Shield, Target, Layout, Newspaper, GraduationCap, Image, Phone, Zap } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 
 interface DashboardStats {
   totalPages: number;
   totalTeamMembers: number;
   totalPrograms: number;
+  totalResearchExperts: number;
+  totalBlogs: number;
+  totalRepositories: number;
+  totalNewsUpdates: number;
+  totalResearchPublications: number;
 }
 
 export default function AdminDashboard() {
@@ -19,26 +24,59 @@ export default function AdminDashboard() {
     totalPages: 0,
     totalTeamMembers: 0,
     totalPrograms: 0,
+    totalResearchExperts: 0,
+    totalBlogs: 0,
+    totalRepositories: 0,
+    totalNewsUpdates: 0,
+    totalResearchPublications: 0,
   });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const [pagesRes, teamRes, programsRes] = await Promise.all([
+        const [
+          pagesRes,
+          teamRes,
+          programsRes,
+          expertsRes,
+          blogsRes,
+          reposRes,
+          newsRes,
+          publicationsRes
+        ] = await Promise.all([
           supabase.from("pages").select("id", { count: "exact" }),
           supabase.from("team_members").select("id", { count: "exact" }),
           supabase.from("programs").select("id", { count: "exact" }),
+          supabase.from("research_experts").select("id", { count: "exact" }),
+          supabase.from("blogs").select("id", { count: "exact" }),
+          supabase.from("repositories").select("id", { count: "exact" }),
+          supabase.from("news_updates").select("id", { count: "exact" }),
+          supabase.from("research_publications").select("id", { count: "exact" }),
         ]);
 
         setStats({
           totalPages: pagesRes.count || 0,
           totalTeamMembers: teamRes.count || 0,
           totalPrograms: programsRes.count || 0,
+          totalResearchExperts: expertsRes.count || 0,
+          totalBlogs: blogsRes.count || 0,
+          totalRepositories: reposRes.count || 0,
+          totalNewsUpdates: newsRes.count || 0,
+          totalResearchPublications: publicationsRes.count || 0,
         });
       } catch (error) {
         console.error("Error fetching stats:", error);
-        setStats({ totalPages: 5, totalTeamMembers: 6, totalPrograms: 4 });
+        setStats({
+          totalPages: 5,
+          totalTeamMembers: 6,
+          totalPrograms: 4,
+          totalResearchExperts: 8,
+          totalBlogs: 12,
+          totalRepositories: 15,
+          totalNewsUpdates: 20,
+          totalResearchPublications: 25
+        });
       } finally {
         setLoading(false);
       }
@@ -48,50 +86,151 @@ export default function AdminDashboard() {
   }, []);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      {/* Stats Overview */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Pages</CardTitle>
-            <div className="h-4 w-4 text-muted-foreground">📄</div>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
-              {loading ? "..." : stats.totalPages}
+    <div className="min-h-screen bg-gray-50">
+      {/* Welcome Header */}
+      <div className="bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">Welcome back, Admin</h1>
+              <p className="mt-2 text-gray-600">Manage your website content and monitor system performance</p>
             </div>
-            <p className="text-xs text-muted-foreground">
-              Website pages managed
-            </p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Team Members</CardTitle>
-            <div className="h-4 w-4 text-muted-foreground">👥</div>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
-              {loading ? "..." : stats.totalTeamMembers}
+            <div className="flex items-center space-x-4">
+              <div className="text-right">
+                <p className="text-sm text-gray-500">Last login</p>
+                <p className="text-sm font-medium text-gray-900">{new Date().toLocaleDateString()}</p>
+              </div>
             </div>
-            <p className="text-xs text-muted-foreground">
-              Active team members
-            </p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Programs</CardTitle>
-            <div className="h-4 w-4 text-muted-foreground">📋</div>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
-              {loading ? "..." : stats.totalPrograms}
-            </div>
-            <p className="text-xs text-muted-foreground">Active programs</p>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Stats Overview */}
+        <div className="mb-8">
+          <h2 className="text-xl font-semibold text-gray-900 mb-6">System Overview</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Card className="border-0 shadow-sm hover:shadow-md transition-shadow">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium text-gray-600">Total Pages</CardTitle>
+                <FileText className="h-5 w-5 text-blue-600" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold text-gray-900">
+                  {loading ? "..." : stats.totalPages}
+                </div>
+                <p className="text-xs text-gray-500 mt-1">
+                  Website pages managed
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-sm hover:shadow-md transition-shadow">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium text-gray-600">Team Members</CardTitle>
+                <Users className="h-5 w-5 text-green-600" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold text-gray-900">
+                  {loading ? "..." : stats.totalTeamMembers}
+                </div>
+                <p className="text-xs text-gray-500 mt-1">
+                  Active team members
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-sm hover:shadow-md transition-shadow">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium text-gray-600">Programs</CardTitle>
+                <BookOpen className="h-5 w-5 text-purple-600" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold text-gray-900">
+                  {loading ? "..." : stats.totalPrograms}
+                </div>
+                <p className="text-xs text-gray-500 mt-1">
+                  Active programs
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-sm hover:shadow-md transition-shadow">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium text-gray-600">Repositories</CardTitle>
+                <Database className="h-5 w-5 text-orange-600" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold text-gray-900">
+                  {loading ? "..." : stats.totalRepositories}
+                </div>
+                <p className="text-xs text-gray-500 mt-1">
+                  Code repositories
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-sm hover:shadow-md transition-shadow">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium text-gray-600">Research Experts</CardTitle>
+                <GraduationCap className="h-5 w-5 text-indigo-600" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold text-gray-900">
+                  {loading ? "..." : stats.totalResearchExperts}
+                </div>
+                <p className="text-xs text-gray-500 mt-1">
+                  Expert profiles
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-sm hover:shadow-md transition-shadow">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium text-gray-600">Blog Posts</CardTitle>
+                <Newspaper className="h-5 w-5 text-red-600" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold text-gray-900">
+                  {loading ? "..." : stats.totalBlogs}
+                </div>
+                <p className="text-xs text-gray-500 mt-1">
+                  Published articles
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-sm hover:shadow-md transition-shadow">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium text-gray-600">News Updates</CardTitle>
+                <TrendingUp className="h-5 w-5 text-teal-600" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold text-gray-900">
+                  {loading ? "..." : stats.totalNewsUpdates}
+                </div>
+                <p className="text-xs text-gray-500 mt-1">
+                  Latest updates
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-sm hover:shadow-md transition-shadow">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium text-gray-600">Publications</CardTitle>
+                <BookOpen className="h-5 w-5 text-cyan-600" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold text-gray-900">
+                  {loading ? "..." : stats.totalResearchPublications}
+                </div>
+                <p className="text-xs text-gray-500 mt-1">
+                  Research papers
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
 
       {/* Quick Actions */}
       <div className="mb-8">
@@ -207,5 +346,6 @@ export default function AdminDashboard() {
         </Card>
       </div>
     </div>
+  </div>
   );
 }
