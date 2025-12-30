@@ -68,7 +68,7 @@ export default function ProgrammesPage() {
             <div className="max-w-6xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {programmes.map((programme) => (
-                  <div key={programme.id} className="bg-card border border-border rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-300">
+                  <div key={programme.id} className="bg-card border border-border p-8 shadow-card hover:shadow-blue transition-all duration-300">
                     <div className="flex items-start space-x-6 mb-6">
                       <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center flex-shrink-0">
                         <programme.icon className="w-8 h-8 text-primary" />

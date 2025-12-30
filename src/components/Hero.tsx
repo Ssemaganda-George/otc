@@ -1,202 +1,302 @@
-import { useState, useEffect } from "react";
-import { ArrowRight, Code, Scale, Globe } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { Link } from "react-router-dom";
+import useEmblaCarousel from 'embla-carousel-react';
+import { ChevronLeft, ChevronRight, ArrowRight, Code, Scale, Globe } from "lucide-react";
+import { supabase } from "@/lib/supabase";
 import { Button } from "@/components/ui/button";
-import heroImage1 from "@/assets/sac7.jpeg";
-import heroImage2 from "@/assets/sac1.png";
-import heroImage4 from "@/assets/sac3.png";
-import heroImage6 from "@/assets/sac5.png";
-import heroImage8 from "@/assets/sac7.png";
 
-const heroSlides = [
-	{
-		image: heroImage1,
-		message:
-			"OTC is a Youth-led African Not for Profit Organization that ensures digital justice in health, sexual reproductive health, finance, agriculture and Development is advanced while ensuring respect to fundamental human rights and social justice for every individual and communities in Africa.",
-	},
-	{
-		image: heroImage2,
-		message:
-			"We nurture the next generation of African tech innovators through comprehensive legal support, mentorship programs, and advocacy.",
-	},
-	{
-		image: heroImage4,
-		message: "We work around HealthTech& SRHR, AgriTech, FinTech & Development.",
-	},
-	{
-		image: heroImage6,
-		message: "We promote social justice and human rights.",
-	},
-	{
-		image: heroImage8,
-		message: "We Research, Capacitate, Advocate and Innovate",
-	},
-];
-
-export function Hero() {
-	const [current, setCurrent] = useState(0);
-
-	useEffect(() => {
-		const interval = setInterval(() => {
-			setCurrent((prev) => (prev + 1) % heroSlides.length);
-		}, 6500);
-		return () => clearInterval(interval);
-	}, []);
-
-	return (
-		<section id="home" className="relative min-h-screen overflow-hidden pt-20">
-			{/* Sliding Background Images Container */}
-			<div className="absolute inset-0 z-0">
-				{heroSlides.map((slide, index) => (
-					<div
-						key={index}
-						className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-							index === current ? "opacity-100" : "opacity-0"
-						}`}
-					>
-						<img
-							src={slide.image}
-							alt="OTC Innovation Background"
-							className="w-full h-full object-cover"
-							draggable={false}
-						/>
-						{/* First slide - darker overlay for better readability */}
-						{index === 0 && (
-							<div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/80" />
-						)}
-						{/* Other slides - bottom gradient only (fades up from bottom) */}
-						{index > 0 && (
-							<div
-								className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"
-								style={{
-									background:
-										"linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 15%, rgba(0,0,0,0.3) 30%, transparent 50%)",
-								}}
-							/>
-						)}
-					</div>
-				))}
-			</div>
-
-			{/* Floating Elements */}
-			<div className="absolute top-32 left-10 w-16 h-16 bg-golden/15 rounded-full animate-float pointer-events-none" />
-			<div
-				className="absolute top-44 right-20 w-12 h-12 bg-primary/15 rounded-full animate-float pointer-events-none"
-				style={{ animationDelay: "1s" }}
-			/>
-			<div
-				className="absolute bottom-32 left-20 w-10 h-10 bg-golden/20 rounded-full animate-float pointer-events-none"
-				style={{ animationDelay: "2s" }}
-			/>
-
-			{/* Main Content */}
-			<div className="relative z-10 min-h-screen flex items-center">
-				{/* First Slide - Full Design (Centered) */}
-				{current === 0 && (
-					<div className="container mx-auto px-6 py-12">
-						<div className="max-w-6xl mx-auto space-y-10 animate-fade-in-up text-center">
-							{/* Tagline */}
-							<div className="inline-flex items-center space-x-3 bg-white/90 border border-primary/30 rounded-full px-6 py-3 backdrop-blur-md shadow-xl">
-								<span className="w-3 h-3 bg-golden rounded-full animate-golden-pulse" />
-								<span className="text-primary font-semibold text-lg">
-									Championing Digital Justice In Africa
-								</span>
-							</div>
-
-							{/* Main Headline */}
-							<h1 className="text-5xl md:text-6xl lg:text-7xl font-playfair font-bold text-white drop-shadow-2xl leading-tight">
-								Championing Africa's Technological & Digital Justice
-							</h1>
-
-							{/* Message */}
-							<p className="text-lg md:text-xl lg:text-2xl max-w-5xl mx-auto text-center text-white drop-shadow-lg bg-gradient-to-br from-blue-900/95 via-blue-800/95 to-blue-950/95 rounded-2xl px-8 py-6 leading-relaxed shadow-2xl border border-white/10">
-								{heroSlides[0].message}
-							</p>
-
-							{/* Stats Row */}
-							<div className="grid grid-cols-3 gap-8 md:gap-12">
-								<div className="flex flex-col items-center space-y-3 group">
-									<div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-lg">
-										<Code className="w-8 h-8 text-golden" />
-									</div>
-									<div className="text-3xl md:text-4xl font-bold text-golden group-hover:text-white transition-colors drop-shadow-lg">
-										5+
-									</div>
-									<div className="text-white text-lg md:text-xl font-medium drop-shadow-md">
-										Tech Sectors
-									</div>
-								</div>
-								<div className="flex flex-col items-center space-y-3 group">
-									<div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-lg">
-										<Scale className="w-8 h-8 text-golden" />
-									</div>
-									<div className="text-3xl md:text-4xl font-bold text-golden group-hover:text-white transition-colors drop-shadow-lg">
-										100+
-									</div>
-									<div className="text-white text-lg md:text-xl font-medium drop-shadow-md">
-										Legal Frameworks
-									</div>
-								</div>
-								<div className="flex flex-col items-center space-y-3 group">
-									<div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-lg">
-										<Globe className="w-8 h-8 text-golden" />
-									</div>
-									<div className="text-3xl md:text-4xl font-bold text-golden group-hover:text-white transition-colors drop-shadow-lg">
-										5+
-									</div>
-									<div className="text-white text-lg md:text-xl font-medium drop-shadow-md">
-										African Countries
-									</div>
-								</div>
-							</div>
-
-							{/* CTA Buttons */}
-							<div className="flex flex-col sm:flex-row items-center justify-center space-y-6 sm:space-y-0 sm:space-x-8">
-								<Button
-									variant="golden"
-									size="lg"
-									className="group transition-all hover:scale-105 shadow-2xl text-xl px-8 py-4"
-								>
-									Explore Our Work
-									<ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform ml-2" />
-								</Button>
-								<Button
-									variant="hero"
-									size="lg"
-									className="transition-all hover:scale-105 shadow-2xl text-xl px-8 py-4"
-									asChild
-								>
-									<a href="/donate">Donate</a>
-								</Button>
-							</div>
-						</div>
-					</div>
-				)}
-
-				{/* Slides 2-5 - Text in Bottom Left Corner (Like Afya na Haki) */}
-				{current > 0 && (
-					<div className="absolute bottom-16 md:bottom-20 lg:bottom-24 left-6 md:left-12 lg:left-16 max-w-xl md:max-w-2xl animate-fade-in-up">
-						<h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white uppercase tracking-tight leading-tight text-left">
-							{heroSlides[current].message}
-						</h2>
-					</div>
-				)}
-			</div>
-
-			{/* Slide Indicators */}
-			<div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
-				{heroSlides.map((_, index) => (
-					<button
-						key={index}
-						onClick={() => setCurrent(index)}
-						title={`Go to slide ${index + 1}`}
-						className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-							index === current
-								? "bg-golden scale-110"
-								: "bg-white/50 hover:bg-white/70"
-						}`}
-					/>
-				))}
-			</div>
-		</section>
-	);
+interface HeroSlide {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string;
+  cta_text: string;
+  cta_link: string;
+  display_order: number;
+  is_active: boolean;
+  category?: string;
+  video_background?: string;
+  accent_color?: string;
 }
+
+const HeroSlider = () => {
+  const [slides, setSlides] = useState<HeroSlide[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+  const [slideProgress, setSlideProgress] = useState(0);
+
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    duration: 50,
+    skipSnaps: false,
+  });
+
+  const fetchHeroSlides = useCallback(async () => {
+    try {
+      const { data, error } = await supabase
+        .from('hero_slides')
+        .select('*')
+        .eq('is_active', true)
+        .order('display_order');
+
+      if (error) {
+        console.error('Error fetching hero slides:', error);
+        // Use fallback data if database fetch fails
+        setSlides(getFallbackSlides());
+        setLoading(false);
+        return;
+      }
+
+      // If no slides from database, use fallback
+      if (!data || data.length === 0) {
+        console.log('No slides found in database, using fallback data');
+        setSlides(getFallbackSlides());
+      } else {
+        setSlides(data);
+      }
+    } catch (error) {
+      console.error('Error fetching hero slides:', error);
+      setSlides(getFallbackSlides());
+    }
+    setLoading(false);
+  }, []);
+
+  useEffect(() => {
+    fetchHeroSlides();
+  }, [fetchHeroSlides]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    const onSelect = () => {
+      setSelectedIndex(emblaApi.selectedScrollSnap());
+      setSlideProgress(0);
+    };
+
+    emblaApi.on('select', onSelect);
+    setScrollSnaps(emblaApi.scrollSnapList());
+
+    return () => {
+      emblaApi.off('select', onSelect);
+    };
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (slides.length > 0) {
+      const autoScrollInterval = setInterval(() => {
+        if (emblaApi && emblaApi.canScrollNext()) {
+          emblaApi.scrollNext();
+        } else if (emblaApi) {
+          emblaApi.scrollTo(0);
+        }
+      }, 12000);
+
+      return () => clearInterval(autoScrollInterval);
+    }
+  }, [emblaApi, slides]);
+
+  useEffect(() => {
+    if (slides.length > 0) {
+      const progressInterval = setInterval(() => {
+        setSlideProgress(prev => (prev + 100 / 90) % 100);
+      }, 100);
+
+      return () => clearInterval(progressInterval);
+    }
+  }, [slides, selectedIndex]);
+
+  const getFallbackSlides = (): HeroSlide[] => [
+    {
+      id: "1",
+      title: "Championing Africa's",
+      subtitle: "Technological & Digital Justice",
+      description: "OTC is a Youth-led African Not for Profit Organization that ensures digital justice in health, sexual reproductive health, finance, agriculture and Development is advanced while ensuring respect to fundamental human rights and social justice for every individual and communities in Africa.",
+      image: "/assets/sac7.jpeg",
+      cta_text: "Learn More",
+      cta_link: "/about",
+      display_order: 1,
+      is_active: true,
+      category: "Digital Justice",
+      accent_color: "hsl(217 91% 30%)"
+    },
+    {
+      id: "2",
+      title: "Nurturing the Next",
+      subtitle: "Generation of African Tech Innovators",
+      description: "We nurture the next generation of African tech innovators through comprehensive legal support, mentorship programs, and advocacy.",
+      image: "/assets/sac1.png",
+      cta_text: "Our Programs",
+      cta_link: "/programmes",
+      display_order: 2,
+      is_active: true,
+      category: "Innovation",
+      accent_color: "hsl(43 89% 38%)"
+    },
+    {
+      id: "3",
+      title: "Working Around",
+      subtitle: "HealthTech & SRHR, AgriTech, FinTech & Development",
+      description: "We work around HealthTech & SRHR, AgriTech, FinTech & Development to ensure technology serves humanity.",
+      image: "/assets/sac3.png",
+      cta_text: "Our Work",
+      cta_link: "/what-we-do",
+      display_order: 3,
+      is_active: true,
+      category: "Technology",
+      accent_color: "hsl(217 91% 8%)"
+    }
+  ];
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
+  const scrollTo = useCallback((index: number) => {
+    if (emblaApi) emblaApi.scrollTo(index);
+  }, [emblaApi]);
+
+  if (loading) {
+    return (
+      <section className="relative min-h-[90vh] flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </section>
+    );
+  }
+
+  if (slides.length === 0) {
+    return (
+      <section className="relative min-h-[90vh] flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-gray-600">No hero slides available.</p>
+        </div>
+      </section>
+    );
+  }
+
+  const currentSlide = slides[selectedIndex];
+
+  return (
+    <section className="relative h-[80vh] flex items-center overflow-hidden">
+      {/* Progress Bar */}
+      <div className="absolute top-0 left-0 right-0 z-30 h-1 bg-white/20">
+        <div
+          className="h-full transition-all duration-100 ease-linear"
+          style={{
+            width: `${slideProgress}%`,
+            backgroundColor: currentSlide?.accent_color || 'hsl(217 91% 30%)'
+          }}
+        ></div>
+      </div>
+
+      {/* Embla Carousel */}
+      <div className="embla h-[85vh] overflow-hidden w-full" ref={emblaRef}>
+        <div className="embla__container flex h-full">
+          {slides.map((slide) => (
+            <div key={slide.id} className="embla__slide relative min-w-full h-full flex">
+              {/* Content Card - Left Side */}
+              <div className="relative z-10 w-full md:w-4/5 lg:w-3/5 flex items-center">
+                <div className="bg-black bg-opacity-70 p-6 md:p-8 lg:p-10 max-w-5xl mx-auto md:ml-12 lg:ml-24 w-full">
+                  {/* Category Badge */}
+                  {slide.category && (
+                    <div
+                      className="mb-3 text-sm md:text-base uppercase tracking-wider font-bold inline-block px-3 py-1"
+                      style={{ backgroundColor: slide.accent_color || 'hsl(217 91% 30%)' }}
+                    >
+                      {slide.category}
+                    </div>
+                  )}
+
+                  {/* Title */}
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 text-white">
+                    {slide.title}
+                    {slide.subtitle && <span className="block mt-1 text-2xl md:text-3xl lg:text-4xl" style={{ color: slide.accent_color || 'hsl(217 91% 30%)' }}>{slide.subtitle}</span>}
+                  </h1>
+
+                  {/* Accent Line */}
+                  <div
+                    className="h-1.5 w-20 mb-4"
+                    style={{ backgroundColor: slide.accent_color || 'hsl(217 91% 30%)' }}
+                  ></div>
+
+                  {/* Description */}
+                  <p className="text-base md:text-lg lg:text-xl mb-6 text-white/90 max-w-2xl font-light">
+                    {slide.description}
+                  </p>
+
+                  {/* Action Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
+                    <Link
+                      to={slide.cta_link || "/contact"}
+                      className="flex items-center justify-center w-full sm:w-auto text-white py-2.5 px-5 transition-all duration-300 text-center uppercase tracking-wide text-sm md:text-base font-medium hover:scale-105 hover:shadow-lg min-w-[140px]"
+                      style={{ backgroundColor: slide.accent_color || 'hsl(217 91% 30%)' }}
+                    >
+                      <span>{slide.cta_text || "Learn More"}</span>
+                      <ArrowRight className="ml-2 w-4 h-4" />
+                    </Link>
+                    <Link
+                      to="/contact"
+                      className="flex items-center justify-center w-full sm:w-auto text-white py-2.5 px-5 transition-all duration-300 text-center uppercase tracking-wide text-sm md:text-base font-medium border-2 border-white/60 hover:bg-white/10 hover:scale-105 min-w-[140px]"
+                    >
+                      <span>Contact Us</span>
+                      <ArrowRight className="ml-2 w-4 h-4" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              {/* Background Image/Video - Right Side */}
+              <div className="absolute inset-0 z-0">
+                {slide.video_background ? (
+                  <video className="w-full h-full object-cover" autoPlay muted loop playsInline>
+                    <source src={slide.video_background} type="video/mp4" />
+                  </video>
+                ) : (
+                  <img src={slide.image} alt={`Slide ${slide.id}`} className="w-full h-full object-cover" />
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Navigation */}
+      <div className="absolute bottom-8 right-8 z-20 flex items-center gap-4">
+        <button
+          onClick={scrollPrev}
+          className="w-12 h-12 bg-card/80 backdrop-blur-sm border border-border flex items-center justify-center text-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
+        >
+          <ChevronLeft className="w-6 h-6" />
+        </button>
+        <div className="flex gap-2">
+          {scrollSnaps.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => scrollTo(index)}
+              className={`w-3 h-3 transition-all ${
+                index === selectedIndex ? "w-8" : "bg-border hover:bg-muted-foreground"
+              }`}
+              style={{ backgroundColor: index === selectedIndex ? (currentSlide?.accent_color || 'hsl(217 91% 30%)') : undefined }}
+            />
+          ))}
+        </div>
+        <button
+          onClick={scrollNext}
+          className="w-12 h-12 bg-card/80 backdrop-blur-sm border border-border flex items-center justify-center text-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
+        >
+          <ChevronRight className="w-6 h-6" />
+        </button>
+      </div>
+    </section>
+  );
+};
+
+export default HeroSlider;

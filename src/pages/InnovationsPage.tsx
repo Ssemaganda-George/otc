@@ -63,7 +63,7 @@ export default function InnovationsPage() {
                     description: "A safe environment for testing and developing innovative tech solutions before full deployment. (Coming Soon)"
                   }
                 ].map((service, index) => (
-                  <div key={index} className="bg-card border border-border rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-300">
+                  <div key={index} className="bg-card border border-border p-8 shadow-card hover:shadow-blue transition-all duration-300">
                     <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
                       <service.icon className="w-6 h-6 text-primary" />
                     </div>
@@ -84,7 +84,7 @@ export default function InnovationsPage() {
         <section className="py-24 bg-secondary/20">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="bg-card border border-border rounded-2xl p-12 shadow-card">
+              <div className="bg-card border border-border p-12 shadow-card">
                 <div className="w-20 h-20 bg-gradient-to-br from-golden/20 to-golden/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Lightbulb className="w-10 h-10 text-golden" />
                 </div>

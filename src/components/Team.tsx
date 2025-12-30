@@ -1,9 +1,25 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { LinkedinIcon, MailIcon, TwitterIcon, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 
-const teamMembers = [
+interface TeamMember {
+  name: string;
+  pronouns?: string;
+  position: string;
+  bio: string[];
+  image: string;
+  expertise: string[];
+  education: string[];
+  experience: string[];
+  social: {
+    linkedin: string;
+    email: string;
+    twitter: string;
+  };
+}
+
+const teamMembers: TeamMember[] = [
 	{
 		name: "Ssekamwa Frank",
 		pronouns: "(He/Him)",
@@ -145,19 +161,19 @@ export function Team() {
 	const [accordionOpen, setAccordionOpen] = useState<string | null>(null);
 	const [direction, setDirection] = useState<'next' | 'prev' | null>(null);
 
-	const openModal = (index: number) => {
+	const openModal = useCallback((index: number) => {
 		setSelectedMember(index);
 		setAccordionOpen(null);
 		setDirection(null);
-	};
+	}, []);
 
-	const closeModal = () => {
+	const closeModal = useCallback(() => {
 		setSelectedMember(null);
 		setAccordionOpen(null);
 		setDirection(null);
-	};
+	}, []);
 
-	const navigateMember = (navDirection: 'prev' | 'next') => {
+	const navigateMember = useCallback((navDirection: 'prev' | 'next') => {
 		if (selectedMember === null) return;
 		const newIndex = navDirection === 'next' 
 			? (selectedMember + 1) % teamMembers.length 
@@ -165,11 +181,11 @@ export function Team() {
 		setDirection(navDirection);
 		setSelectedMember(newIndex);
 		setAccordionOpen(null);
-	};
+	}, [selectedMember]);
 
-	const toggleAccordion = (section: string) => {
+	const toggleAccordion = useCallback((section: string) => {
 		setAccordionOpen(accordionOpen === section ? null : section);
-	};
+	}, [accordionOpen]);
 
 	return (
 		<>
@@ -185,21 +201,26 @@ export function Team() {
 				<div className="container mx-auto px-6">
 					<div className="mx-auto max-w-6xl">
 						{/* Section Header */}
-						<div className="text-center mb-16">
-							<h2 className="heading-section text-gradient-blue mb-6">
+						<div className="text-center mb-20">
+							<div className="inline-flex items-center justify-center w-20 h-20 bg-primary/10 rounded-full mb-8">
+								<span className="text-3xl">👥</span>
+							</div>
+							<h2 className="heading-section text-primary mb-6">
 								Our Team
 							</h2>
-							<p className="text-body text-muted-foreground max-w-3xl mx-auto">
-								Meet the innovative minds behind OneTechConnect.
+							<p className="text-body text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+								Meet the innovative minds behind OneTechConnect - a diverse team of legal experts,
+								technologists, and visionaries committed to advancing digital justice across Africa
+								through cutting-edge solutions and collaborative innovation.
 							</p>
 						</div>
 
 						{/* Team Grid */}
-						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 							{teamMembers.map((member, index) => (
 								<div
 									key={member.name}
-									className="group bg-card overflow-hidden shadow-card hover:shadow-blue transition-all duration-500 card-hover opacity-0 translate-y-8 animate-fade-in"
+									className="group bg-card overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 card-hover opacity-0 translate-y-8 animate-fade-in border border-border/50 hover:border-primary/20"
 									style={{
 										animationDelay: `${index * 0.2}s`,
 										animationFillMode: "forwards",
@@ -207,39 +228,41 @@ export function Team() {
 									onClick={() => openModal(index)}
 								>
 									{/* Profile Image */}
-									<div className="relative h-96 bg-secondary/80 overflow-hidden"> {/* Removed gradient, changed to solid bg-secondary/80 */}
+									<div className="relative h-96 overflow-hidden bg-gradient-to-br from-primary/5 to-primary/10">
 										<img
 											src={member.image}
 											alt={member.name}
 											loading="lazy"
-											className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+											className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
 										/>
-										<div className="absolute inset-0 bg-gradient-to-t from-card/90 via-transparent to-transparent" />
-										{/* Name and position moved to content div */}
+										{/* Subtle overlay for better text contrast */}
+										<div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 									</div>
 
 									{/* Content */}
-									<div className="p-4"> {/* Removed pb-6 */}
+									<div className="p-6">
 										{/* Name and Position */}
-										<h3 className="text-xl font-playfair font-bold text-foreground mb-1 text-left"> {/* Added text-left */}
-											{member.name}{" "}
-											{member.pronouns && (
-												<span className="text-muted-foreground font-normal text-sm">
-													{member.pronouns}
-												</span>
-											)}
-										</h3>
-										<p className="text-primary font-medium mb-4 text-left"> {/* Added text-left */}
-											{member.position}
-										</p>
+										<div className="mb-4">
+											<h3 className="text-xl font-playfair font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+												{member.name}
+												{member.pronouns && (
+													<span className="text-muted-foreground font-normal text-sm ml-2">
+														{member.pronouns}
+													</span>
+												)}
+											</h3>
+											<p className="text-primary font-semibold text-sm uppercase tracking-wide">
+												{member.position}
+											</p>
+										</div>
 
-										{/* Social Links - Reorganized vertically */}
-										<div className="flex items-center justify-center space-x-2" onClick={(e) => e.stopPropagation()}>
+										{/* Social Links */}
+										<div className="flex items-center justify-center space-x-3 pt-2 border-t border-border/50" onClick={(e) => e.stopPropagation()}>
 											<Button
 												asChild
-												variant="ghost-golden"
+												variant="ghost"
 												size="icon"
-												className="w-10 h-10"
+												className="w-9 h-9 hover:bg-primary/10 hover:text-primary transition-colors duration-300"
 											>
 												<a
 													href={member.social.linkedin}
@@ -247,24 +270,24 @@ export function Team() {
 													rel="noopener noreferrer"
 													aria-label="LinkedIn"
 												>
-													<LinkedinIcon className="w-5 h-5" />
+													<LinkedinIcon className="w-4 h-4" />
 												</a>
 											</Button>
 											<Button
 												asChild
-												variant="ghost-golden"
+												variant="ghost"
 												size="icon"
-												className="w-10 h-10"
+												className="w-9 h-9 hover:bg-primary/10 hover:text-primary transition-colors duration-300"
 											>
 												<a href={`mailto:${member.social.email}`} aria-label="Email">
-													<MailIcon className="w-5 h-5" />
+													<MailIcon className="w-4 h-4" />
 												</a>
 											</Button>
 											<Button
 												asChild
-												variant="ghost-golden"
+												variant="ghost"
 												size="icon"
-												className="w-10 h-10"
+												className="w-9 h-9 hover:bg-primary/10 hover:text-primary transition-colors duration-300"
 											>
 												<a
 													href={member.social.twitter}
@@ -272,7 +295,7 @@ export function Team() {
 													rel="noopener noreferrer"
 													aria-label="Twitter"
 												>
-													<TwitterIcon className="w-5 h-5" />
+													<TwitterIcon className="w-4 h-4" />
 												</a>
 											</Button>
 										</div>
@@ -282,18 +305,24 @@ export function Team() {
 						</div>
 
 						{/* Call to Action */}
-						<div className="text-center mt-16">
-							<div className="bg-secondary/60 rounded-2xl p-8 border border-border">
-								<h3 className="heading-card text-gradient-blue mb-4">
-									Join Our Mission
+						<div className="text-center mt-20">
+							<div className="bg-gradient-to-br from-primary/5 to-golden/5 rounded-none p-10 border border-primary/10 shadow-xl max-w-6xl mx-auto">
+								<h3 className="heading-card text-primary mb-4">
+									Join Our Innovative Mission
 								</h3>
-								<p className="text-body text-muted-foreground mb-6 max-w-2xl mx-auto">
+								<p className="text-body text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
 									We're always looking for passionate individuals who share our
-									vision
-									<br className="hidden sm:block" /> of advancing digital Justice
-									in Africa.
+									vision of advancing digital justice in Africa through innovative
+									technology and legal solutions.
 								</p>
-								<Button variant="golden">View Open Positions</Button>
+								<div className="flex flex-col sm:flex-row gap-4 justify-center">
+									<Button variant="golden" size="lg" className="px-8 py-3">
+										View Open Positions
+									</Button>
+									<Button variant="outline" size="lg" className="px-8 py-3 border-primary/20 hover:bg-primary/5">
+										Learn More About Us
+									</Button>
+								</div>
 							</div>
 						</div>
 					</div>

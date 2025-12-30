@@ -83,15 +83,18 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-gradient-to-b from-background to-card/50">
+    <section id="contact" className="py-24 bg-background">
       <div className="container mx-auto px-6">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-full mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="heading-section text-gradient-blue mb-6">
+            <div className="w-20 h-20 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-8">
+              <Send className="w-10 h-10 text-primary" />
+            </div>
+            <h2 className="heading-section text-primary mb-6">
               Partner With Us
             </h2>
-            <p className="text-body text-muted-foreground max-w-4xl mx-auto">
+            <p className="text-body text-muted-foreground max-w-4xl mx-auto leading-relaxed">
               Ready to advance Africa's tech-legal landscape? Join us in creating sustainable, 
               rights-respecting technology solutions that empower innovation across the continent.
             </p>
@@ -101,7 +104,7 @@ export function Contact() {
             {/* Contact Information */}
             <div className="space-y-8">
               <div>
-                <h3 className="heading-card text-gradient-blue mb-6">
+                <h3 className="heading-card text-primary mb-6">
                   Let's Connect
                 </h3>
                 <p className="text-body text-muted-foreground leading-relaxed mb-8">
@@ -158,8 +161,8 @@ export function Contact() {
               </div>
 
               {/* Partnership Opportunities */}
-              <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl p-6 border border-primary/20">
-                <h4 className="font-playfair font-semibold text-gradient-blue mb-4">
+              <div className="bg-secondary/30 rounded-none p-6 border border-primary/10">
+                <h4 className="font-playfair font-bold text-primary mb-4">
                   Partnership Opportunities
                 </h4>
                 <div className="space-y-3">
@@ -171,7 +174,7 @@ export function Contact() {
                     "Innovation funding and support"
                   ].map((opportunity, index) => (
                     <div key={index} className="flex items-center">
-                      <div className="w-2 h-2 bg-primary rounded-full mr-3" />
+                      <div className="w-1.5 h-1.5 bg-primary rounded-full mr-3" />
                       <span className="text-sm text-muted-foreground">{opportunity}</span>
                     </div>
                   ))}
@@ -180,8 +183,8 @@ export function Contact() {
             </div>
 
             {/* Contact Form */}
-            <div className="bg-card border border-border rounded-2xl p-8 shadow-card">
-              <h3 className="heading-card text-gradient-blue mb-6">
+            <div className="bg-card border border-border/50 rounded-none p-8 shadow-lg">
+              <h3 className="heading-card text-primary mb-6">
                 Send Us a Message
               </h3>
               
@@ -249,12 +252,12 @@ export function Contact() {
           </div>
 
           {/* Newsletter Signup */}
-          <div className="mt-16 bg-gradient-to-r from-primary/10 to-primary/5 rounded-3xl p-12 border border-primary/20">
+          <div className="mt-16 bg-secondary/30 rounded-none p-12 border border-primary/10 shadow-sm">
             <div className="text-center max-w-3xl mx-auto">
-              <h3 className="heading-card text-gradient-blue mb-4">
+              <h3 className="heading-card text-primary mb-4">
                 Stay Updated
               </h3>
-              <p className="text-body text-muted-foreground mb-8">
+              <p className="text-body text-muted-foreground mb-8 leading-relaxed">
                 Subscribe to our newsletter for the latest insights on tech law, policy updates, 
                 and innovation opportunities across Africa.
               </p>

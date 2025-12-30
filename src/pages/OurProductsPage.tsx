@@ -65,13 +65,16 @@ export default function OurProductsPage() {
 			
 			<main className="pt-20">
 				{/* Hero Section */}
-				<section className="py-24 bg-gradient-to-br from-primary/10 to-primary/5">
+				<section className="py-24 bg-background">
 					<div className="container mx-auto px-6">
 						<div className="max-w-4xl mx-auto text-center">
-							<h1 className="heading-display text-gradient-blue mb-8">
+							<div className="w-20 h-20 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-8">
+								<Scale className="w-10 h-10 text-primary" />
+							</div>
+							<h1 className="heading-display text-primary mb-8">
 								Our Products
 							</h1>
-							<p className="text-body text-muted-foreground leading-relaxed">
+							<p className="text-body text-muted-foreground leading-relaxed max-w-3xl mx-auto">
 								Innovative solutions and services that drive digital transformation while upholding 
 								human rights and advancing social justice across Africa.
 							</p>
@@ -82,12 +85,12 @@ export default function OurProductsPage() {
 				{/* Strategic Litigation */}
 				<section className="py-24">
 					<div className="container mx-auto px-6">
-						<div className="max-w-7xl mx-auto">
+						<div className="max-w-full mx-auto">
 							<div className="text-center mb-16">
-								<div className="w-20 h-20 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center mx-auto mb-8 shadow-2xl">
-									<Scale className="w-10 h-10 text-background" />
+								<div className="w-20 h-20 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-8">
+									<Scale className="w-10 h-10 text-primary" />
 								</div>
-								<h2 className="heading-section text-gradient-blue mb-8">
+								<h2 className="heading-section text-primary mb-8">
 									Strategic Litigation
 								</h2>
 								<p className="text-body text-muted-foreground max-w-4xl mx-auto text-xl leading-relaxed">
@@ -97,32 +100,32 @@ export default function OurProductsPage() {
 								</p>
 							</div>
 
-							<div className="bg-gradient-to-br from-white to-slate-50/50 border border-slate-200/50 rounded-3xl p-10 shadow-2xl">
-								<h3 className="text-3xl font-playfair font-semibold text-gradient-blue mb-10 text-center">
+							<div className="bg-card border border-border/50 rounded-none p-8 shadow-lg">
+								<h3 className="text-2xl font-playfair font-bold text-primary mb-8 text-center">
 									Litigation Database
 								</h3>
 								
 								<div className="overflow-x-auto">
-									<table className="w-full bg-white rounded-2xl shadow-lg overflow-hidden">
-										<thead className="bg-gradient-to-r from-primary/10 to-primary/5">
+									<table className="w-full bg-card shadow-sm overflow-hidden border border-border/50 rounded-none">
+										<thead className="bg-secondary/50">
 											<tr>
-												<th className="text-left py-6 px-8 text-lg font-semibold text-slate-800">No.</th>
-												<th className="text-left py-6 px-8 text-lg font-semibold text-slate-800">Case Name</th>
-												<th className="text-left py-6 px-8 text-lg font-semibold text-slate-800">Issues</th>
-												<th className="text-left py-6 px-8 text-lg font-semibold text-slate-800">Country</th>
-												<th className="text-left py-6 px-8 text-lg font-semibold text-slate-800">Year of Filing</th>
-												<th className="text-left py-6 px-8 text-lg font-semibold text-slate-800">Status</th>
+												<th className="text-left py-4 px-6 text-sm font-semibold text-foreground border-b border-border/50">No.</th>
+												<th className="text-left py-4 px-6 text-sm font-semibold text-foreground border-b border-border/50">Case Name</th>
+												<th className="text-left py-4 px-6 text-sm font-semibold text-foreground border-b border-border/50">Issues</th>
+												<th className="text-left py-4 px-6 text-sm font-semibold text-foreground border-b border-border/50">Country</th>
+												<th className="text-left py-4 px-6 text-sm font-semibold text-foreground border-b border-border/50">Year of Filing</th>
+												<th className="text-left py-4 px-6 text-sm font-semibold text-foreground border-b border-border/50">Status</th>
 											</tr>
 										</thead>
 										<tbody>
 											{litigationCases.map((case_) => (
-												<tr key={case_.caseNumber} className="border-b border-slate-100 hover:bg-slate-50/50 transition-colors">
-													<td className="py-6 px-8 text-lg text-slate-700 font-medium">{case_.caseNumber}</td>
-													<td className="py-6 px-8 text-lg text-slate-800 font-semibold">{case_.caseName}</td>
-													<td className="py-6 px-8 text-lg text-slate-600">{case_.issues}</td>
-													<td className="py-6 px-8 text-lg text-slate-600">{case_.country}</td>
-													<td className="py-6 px-8 text-lg text-slate-600">{case_.yearFiled}</td>
-													<td className="py-6 px-8 text-lg text-slate-600">{case_.status}</td>
+												<tr key={case_.caseNumber} className="border-b border-border/30 hover:bg-secondary/20 transition-colors">
+													<td className="py-4 px-6 text-sm text-foreground font-medium">{case_.caseNumber}</td>
+													<td className="py-4 px-6 text-sm text-foreground font-semibold">{case_.caseName}</td>
+													<td className="py-4 px-6 text-sm text-muted-foreground">{case_.issues}</td>
+													<td className="py-4 px-6 text-sm text-muted-foreground">{case_.country}</td>
+													<td className="py-4 px-6 text-sm text-muted-foreground">{case_.yearFiled}</td>
+													<td className="py-4 px-6 text-sm text-muted-foreground">{case_.status}</td>
 												</tr>
 											))}
 										</tbody>
@@ -134,17 +137,17 @@ export default function OurProductsPage() {
 				</section>
 
 				{/* Innovations */}
-				<section className="py-24 bg-gradient-to-br from-card/30 to-background">
+				<section className="py-24 bg-secondary/20">
 					<div className="container mx-auto px-6">
-						<div className="max-w-6xl mx-auto">
+						<div className="max-w-full mx-auto">
 							<div className="text-center mb-16">
-								<div className="w-20 h-20 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center mx-auto mb-6">
-									<Lightbulb className="w-10 h-10 text-background" />
+								<div className="w-20 h-20 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-8">
+									<Lightbulb className="w-10 h-10 text-primary" />
 								</div>
-								<h2 className="heading-section text-gradient-blue mb-6">
+								<h2 className="heading-section text-primary mb-6">
 									Innovations
 								</h2>
-								<p className="text-body text-muted-foreground max-w-3xl mx-auto">
+								<p className="text-body text-muted-foreground max-w-3xl mx-auto leading-relaxed">
 									Through our innovation hub, we transform dreams and vision into reality. We offer expert 
 									services in website and mobile app design, coding, development and full-scale rollout.
 								</p>
@@ -152,8 +155,8 @@ export default function OurProductsPage() {
 
 							<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
 								{/* WazaziConnect */}
-								<div className="bg-card border border-border rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-300">
-									<h3 className="text-2xl font-playfair font-semibold text-gradient-blue mb-4">
+								<div className="bg-card border border-border/50 rounded-none p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:border-primary/20">
+									<h3 className="text-xl font-playfair font-bold text-primary mb-4">
 										WazaziConnect
 									</h3>
 									<p className="text-muted-foreground leading-relaxed mb-6">
@@ -166,17 +169,17 @@ export default function OurProductsPage() {
 										<h4 className="font-semibold text-foreground">Guided by principles of:</h4>
 										{["Privacy & Confidentiality", "Gender Equity & Inclusivity", "Human Rights and Ethical Standards"].map((principle, index) => (
 											<div key={index} className="flex items-center space-x-3">
-												<div className="w-2 h-2 bg-primary rounded-full" />
+												<div className="w-1.5 h-1.5 bg-primary rounded-full" />
 												<span className="text-sm text-muted-foreground">{principle}</span>
 											</div>
 										))}
 									</div>
-									<div className="flex space-x-4">
+									<div className="flex flex-col sm:flex-row gap-3">
 										<Button variant="golden" size="sm" className="group">
 											Download App
 											<ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
 										</Button>
-										<Button variant="ghost-golden" size="sm" className="group">
+										<Button variant="outline" size="sm" className="border-primary/20 hover:bg-primary/5">
 											Visit Website
 											<ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
 										</Button>
@@ -184,13 +187,13 @@ export default function OurProductsPage() {
 								</div>
 
 								{/* OTC Records */}
-								<div className="bg-card border border-border rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-300">
+								<div className="bg-card border border-border/50 rounded-none p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:border-primary/20">
 									<div className="flex items-start space-x-4 mb-6">
-										<div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-primary/10 rounded-lg flex items-center justify-center">
+										<div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
 											<Music className="w-6 h-6 text-primary" />
 										</div>
 										<div>
-											<h3 className="text-2xl font-playfair font-semibold text-gradient-blue mb-2">
+											<h3 className="text-xl font-playfair font-bold text-primary mb-2">
 												OTC Records
 											</h3>
 											<p className="text-muted-foreground leading-relaxed">
@@ -203,12 +206,12 @@ export default function OurProductsPage() {
 										<h4 className="font-semibold text-foreground">Our services include:</h4>
 										{["Sound and video recording", "Content creation (songwriting, playwriting)", "Full event planning and management"].map((service, index) => (
 											<div key={index} className="flex items-center space-x-3">
-												<div className="w-2 h-2 bg-primary rounded-full" />
+												<div className="w-1.5 h-1.5 bg-primary rounded-full" />
 												<span className="text-sm text-muted-foreground">{service}</span>
 											</div>
 										))}
 									</div>
-									<Button variant="ghost-golden" className="group">
+									<Button variant="outline" size="sm" className="border-primary/20 hover:bg-primary/5 group">
 										Explore OTC Records
 										<ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
 									</Button>
@@ -220,13 +223,13 @@ export default function OurProductsPage() {
 
 				{/* Consultancy Services */}
 				<section className="py-24">
-					<div className="container mx-auto px-6">
-						<div className="max-w-6xl mx-auto">
+					<div className="container mx-auto px-4">
+						<div className="max-w-full mx-auto">
 							<div className="text-center mb-16">
-								<h2 className="heading-section text-gradient-blue mb-6">
+								<h2 className="heading-section text-primary mb-6">
 									Consultancy Services
 								</h2>
-								<p className="text-body text-muted-foreground max-w-3xl mx-auto">
+								<p className="text-body text-muted-foreground max-w-3xl mx-auto leading-relaxed">
 									Expert consultancy services designed to support innovation and growth across Africa, 
 									available with flexible payment options including legal tender, equity, partnerships, 
 									co-investment, and other in-kind arrangements.
@@ -237,12 +240,12 @@ export default function OurProductsPage() {
 								{consultancyServices.map((service, index) => (
 									<div
 										key={index}
-										className="bg-card border border-border rounded-2xl p-6 shadow-card hover:shadow-blue transition-all duration-300 group"
+										className="bg-card border border-border/50 rounded-none p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:border-primary/20 group"
 									>
-										<div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+										<div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
 											<service.icon className="w-6 h-6 text-primary" />
 										</div>
-										<h3 className="text-lg font-playfair font-semibold text-gradient-blue mb-3">
+										<h3 className="text-lg font-playfair font-bold text-primary mb-3">
 											{service.title}
 										</h3>
 										<p className="text-muted-foreground text-sm leading-relaxed">
@@ -252,8 +255,8 @@ export default function OurProductsPage() {
 								))}
 								
 								{/* Additional Services */}
-								<div className="bg-card border border-border rounded-2xl p-6 shadow-card hover:shadow-blue transition-all duration-300">
-									<h3 className="text-lg font-playfair font-semibold text-gradient-blue mb-3">
+								<div className="bg-card border border-border/50 rounded-none p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:border-primary/20">
+									<h3 className="text-lg font-playfair font-bold text-primary mb-3">
 										Organizational Strategy & Business Finance
 									</h3>
 									<p className="text-muted-foreground text-sm leading-relaxed">
@@ -263,8 +266,8 @@ export default function OurProductsPage() {
 							</div>
 
 							{/* Short Courses */}
-							<div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl p-8 border border-primary/20">
-								<h3 className="text-2xl font-playfair font-semibold text-gradient-blue mb-4">
+							<div className="bg-secondary/30 p-8 border border-primary/10 rounded-none shadow-sm">
+								<h3 className="text-xl font-playfair font-bold text-primary mb-4">
 									Short Courses (Coming Soon)
 								</h3>
 								<p className="text-muted-foreground leading-relaxed mb-6">
@@ -275,11 +278,11 @@ export default function OurProductsPage() {
 									<h4 className="font-semibold text-foreground">Inaugural courses:</h4>
 									<div className="grid grid-cols-1 md:grid-cols-2 gap-3">
 										<div className="flex items-center space-x-3">
-											<div className="w-2 h-2 bg-primary rounded-full" />
+											<div className="w-1.5 h-1.5 bg-primary rounded-full" />
 											<span className="text-sm text-muted-foreground">AI and Health Rights in Africa</span>
 										</div>
 										<div className="flex items-center space-x-3">
-											<div className="w-2 h-2 bg-primary rounded-full" />
+											<div className="w-1.5 h-1.5 bg-primary rounded-full" />
 											<span className="text-sm text-muted-foreground">Data Privacy and Protection in Africa</span>
 										</div>
 									</div>

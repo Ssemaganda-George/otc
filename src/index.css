@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
@@ -10,11 +11,11 @@
   :root {
     /* Core Brand Colors - Light Mode with Grey Backgrounds */
     --background: 0 0% 94%;               /* #F0F0F0 More noticeable grey background */
-    --foreground: 217 91% 20%;            /* Darker navy blue for better contrast */
+    --foreground: 217 91% 8%;             /* #030925 Navy Blue - updated for typography */
 
     /* Card & Surface Colors - Grey Shades */
     --card: 0 0% 98%;                     /* #FAFAFA Very light grey for cards to stand out */
-    --card-foreground: 217 91% 20%;       /* Darker navy blue text on cards */
+    --card-foreground: 217 91% 8%;        /* #030925 Navy Blue text on cards */
     --card-hover: 0 0% 96%;               /* Light grey on hover */
 
     /* Brand Blue for Text and Accents */
@@ -32,7 +33,7 @@
 
     /* Secondary Colors - Grey Variations */
     --secondary: 0 0% 88%;                /* Medium grey for secondary backgrounds */
-    --secondary-foreground: 217 91% 20%;  /* Dark navy blue text */
+    --secondary-foreground: 217 91% 8%;   /* #030925 Navy Blue text */
     --secondary-hover: 0 0% 82%;          /* Darker grey on hover */
 
     /* Accent & Highlights - Blue */
@@ -84,11 +85,11 @@
 
     /* Sidebar - Grey Theme */
     --sidebar-background: 0 0% 90%;
-    --sidebar-foreground: 217 91% 20%;
+    --sidebar-foreground: 217 91% 8%;     /* #030925 Navy Blue */
     --sidebar-primary: 217 91% 30%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 0 0% 86%;
-    --sidebar-accent-foreground: 217 91% 20%;
+    --sidebar-accent-foreground: 217 91% 8%; /* #030925 Navy Blue */
     --sidebar-border: 0 0% 78%;
     --sidebar-ring: 43 89% 38%;
   }
@@ -152,16 +153,15 @@
   animation: fade-in-right 0.6s cubic-bezier(0.4,0,0.2,1) forwards;
 }
 
-
 @layer base {
   * {
     @apply border-border;
   }
 
-    body {
-    @apply bg-background text-foreground font-inter antialiased;
+  body {
+    @apply bg-background text-foreground font-poppins antialiased;
     overflow-x: hidden;
-    font-size: 18px; /* Add this line, or adjust to your preferred size */
+    font-size: 16px; /* Updated to match body text size */
   }
 
   html {
@@ -172,23 +172,39 @@
 @layer components {
   /* Typography Classes */
   .heading-display {
-    @apply font-playfair font-bold text-5xl md:text-7xl lg:text-8xl leading-tight;
+    @apply font-poppins font-black text-[52px] leading-[65px] uppercase text-[#030925];
+  }
+
+  .heading-h1 {
+    @apply font-poppins font-black text-[52px] leading-[65px] uppercase text-[#030925];
+  }
+
+  .heading-h2 {
+    @apply font-poppins font-bold text-[32px] leading-[40px] uppercase text-[#030925];
+  }
+
+  .heading-h3 {
+    @apply font-poppins font-bold text-[14px] leading-[18px] uppercase text-[#030925];
   }
 
   .heading-section {
-    @apply font-playfair font-semibold text-4xl md:text-5xl lg:text-6xl leading-tight;
+    @apply font-poppins font-black text-[52px] leading-[65px] uppercase text-[#030925];
   }
 
   .heading-card {
-    @apply font-playfair font-medium text-2xl md:text-3xl leading-snug;
+    @apply font-poppins font-bold text-[14px] uppercase text-[#030925];
   }
 
   .text-body {
-    @apply font-inter text-lg md:text-xl leading-relaxed;
+    @apply font-poppins font-normal text-[16px] leading-[30px] text-[#030925];
   }
 
   .text-caption {
-    @apply font-inter text-base text-muted-foreground;
+    @apply font-poppins font-normal text-[12px] leading-[18px] text-[#030925];
+  }
+
+  .text-button {
+    @apply font-poppins font-bold text-[14px] leading-[18px] uppercase text-[#030925];
   }
 
   /* Animation Classes */
@@ -402,4 +418,21 @@
   .icon-bg-dark {
     background-color: hsl(var(--golden) / 0.15);
   }
+
+  /* Link/Button Text Utility */
+  .text-link-button {
+    @apply font-poppins font-bold uppercase text-[#030925];
+  }
+}
+
+/* Embla Carousel Styles */
+.embla {
+  overflow: hidden;
+}
+.embla__container {
+  display: flex;
+}
+.embla__slide {
+  flex: 0 0 100%;
+  min-width: 0;
 }

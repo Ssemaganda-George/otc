@@ -139,7 +139,7 @@ export function OTCFramework() {
           </div>
 
           {/* Overall Goal */}
-          <div className="bg-card border border-border rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-300">
+          <div className="bg-card border border-border p-8 shadow-card hover:shadow-blue transition-all duration-300">
             <div className="text-center mb-6">
               <h3 className="heading-card text-gradient-blue mb-4">
                 Our Overall Goal

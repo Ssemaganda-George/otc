@@ -65,7 +65,7 @@ export function AreasOfWork() {
             {areas.map((area, index) => (
               <div 
                 key={area.title}
-                className={`group bg-card border ${area.borderColor} rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-500 card-hover`}
+                className={`group bg-card border ${area.borderColor} p-8 shadow-card hover:shadow-blue transition-all duration-500 card-hover`}
               >
                 {/* Icon and Title */}
                 <div className="flex items-center mb-6">

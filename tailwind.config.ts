@@ -19,10 +19,23 @@ export default {
 		},
 		extend: {
 			fontFamily: {
+				poppins: ['Poppins', 'sans-serif'],
 				inter: ['Inter', 'sans-serif'],
 				playfair: ['Playfair Display', 'serif'],
 				aptos: ['Aptos', 'sans-serif'],
-				sans: ['Aptos', 'Inter', 'sans-serif'],
+				sans: ['Poppins', 'Inter', 'sans-serif'],
+			},
+			fontSize: {
+				'12': ['12px', { lineHeight: '18px' }],
+				'14': ['14px', { lineHeight: '18px' }],
+				'16': ['16px', { lineHeight: '30px' }],
+				'32': ['32px', { lineHeight: '40px' }],
+				'52': ['52px', { lineHeight: '65px' }],
+			},
+			fontWeight: {
+				normal: '400',
+				bold: '700',
+				black: '900',
 			},
 			colors: {
 				border: 'hsl(var(--border))',

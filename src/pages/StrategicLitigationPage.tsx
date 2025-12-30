@@ -89,7 +89,7 @@ export default function StrategicLitigationPage() {
                     description: "Professional opinions on tax compliance and tech-related legal matters"
                   }
                 ].map((service, index) => (
-                  <div key={index} className="bg-card border border-border rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-300 text-center">
+                  <div key={index} className="bg-card border border-border p-8 shadow-card hover:shadow-blue transition-all duration-300 text-center">
                     <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
                       <service.icon className="w-8 h-8 text-primary" />
                     </div>
@@ -119,7 +119,7 @@ export default function StrategicLitigationPage() {
                 </p>
               </div>
 
-              <div className="bg-card border border-border rounded-2xl overflow-hidden shadow-card">
+              <div className="bg-card border border-border overflow-hidden shadow-card">
                 <div className="overflow-x-auto">
                   <table className="w-full">
                     <thead className="bg-primary/5 border-b border-border">

@@ -4,12 +4,12 @@ import { Input } from "@/components/ui/input";
 
 export function HomeNewsletter() {
   return (
-    <section className="py-24 bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10">
+    <section className="py-24 bg-primary/5">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             {/* Newsletter Icon */}
-            <div className="w-20 h-20 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+            <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
               <Mail className="w-10 h-10 text-background" />
             </div>
             

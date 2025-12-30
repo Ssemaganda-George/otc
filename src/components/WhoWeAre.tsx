@@ -2,12 +2,12 @@ import { Target, Eye, Heart, Users, Briefcase, Lightbulb, Globe } from "lucide-r
 
 export function WhoWeAre() {
   return (
-    <section id="who-we-are" className="py-24 bg-secondary/40">
+    <section id="who-we-are" className="py-24 bg-secondary/40" aria-labelledby="who-we-are-title">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="heading-section text-gradient-blue mb-6">
+            <h2 id="who-we-are-title" className="heading-section text-gradient-blue mb-6">
               Who We Are
             </h2>
             <p className="text-body text-muted-foreground max-w-3xl mx-auto text-justify sm:text-center">
@@ -24,7 +24,7 @@ export function WhoWeAre() {
             <div className="bg-card border border-border rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-300 card-hover">
               <div className="flex items-center mb-6">
                 <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mr-4">
-                  <Target className="w-6 h-6 text-primary" />
+                  <Target className="w-6 h-6 text-primary" aria-hidden="true" />
                 </div>
                 <h3 className="heading-card text-gradient-blue">Our Mission</h3>
               </div>
@@ -37,7 +37,7 @@ export function WhoWeAre() {
             <div className="bg-card border border-border rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-300 card-hover">
               <div className="flex items-center mb-6">
                 <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mr-4">
-                  <Eye className="w-6 h-6 text-primary" />
+                  <Eye className="w-6 h-6 text-primary" aria-hidden="true" />
                 </div>
                 <h3 className="heading-card text-gradient-blue">Our Vision</h3>
               </div>

@@ -180,7 +180,7 @@ export default function ResearchPublicationsPage() {
 								{visiblePublications.map((pub) => (
 									<div
 										key={pub.id}
-										className="bg-card border border-border rounded-2xl overflow-hidden shadow-card hover:shadow-blue transition-all duration-300"
+										className="bg-card border border-border overflow-hidden shadow-card hover:shadow-blue transition-all duration-300"
 									>
 										<div className="h-48 bg-secondary/20 flex items-center justify-center">
 											<img

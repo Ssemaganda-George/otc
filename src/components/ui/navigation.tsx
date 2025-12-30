@@ -10,16 +10,18 @@ const navItems = [
 		href: "/about",
 		dropdown: [
 			{ name: "Who We Are", href: "/about/who-we-are" },
-			{ name: "OTC Framework", href: "/about/otc-framework" },
+			{ name: "Vision/Mission/Objectives", href: "/about/vision-mission" },
+			{ name: "Our Philosophy", href: "/about/philosophy" },
 			{ name: "Our Team", href: "/about/team" },
-			{ name: "Our Values", href: "/about/values" },
+			{ name: "Research Experts", href: "/about/research-experts" },
 		],
 	},
 	{
 		name: "What We Do",
 		href: "/what-we-do",
 		dropdown: [
-			{ name: "Departments", href: "/what-we-do/approach" },
+			{ name: "Overview", href: "/what-we-do" },
+			{ name: "Our Approach", href: "/what-we-do/approach" },
 			{ name: "Focus Areas", href: "/what-we-do/focus-areas" },
 			{ name: "Programmes", href: "/what-we-do/programmes" },
 		],
@@ -28,6 +30,7 @@ const navItems = [
 		name: "Our Products",
 		href: "/our-products",
 		dropdown: [
+			{ name: "Overview", href: "/our-products" },
 			{ name: "Strategic Litigation", href: "/products/strategic-litigation" },
 			{ name: "Innovation Hub", href: "/products/innovations" },
 			{
@@ -42,197 +45,181 @@ const navItems = [
 		href: "/news",
 		dropdown: [
 			{ name: "News", href: "/news" },
-			{ name: "Cases", href: "/products/strategic-litigation" },
 			{ name: "Research Publications", href: "/news/research-publications" },
-			{ name: "Blogs", href: "/news/blogs" },
-			{ name: "Laws", href: "/news/laws" },	
+			{ name: "Repository", href: "/news/repository" },
 		],
 	},
 	{ name: "Contact Us", href: "/contact" },
 ];
 
 export function Navigation() {
-	const [isScrolled, setIsScrolled] = useState(false);
-	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-	const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-	const location = useLocation();
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-	useEffect(() => {
-		const handleScroll = () => {
-			setIsScrolled(window.scrollY > 20);
-		};
-		window.addEventListener("scroll", handleScroll);
-		return () => window.removeEventListener("scroll", handleScroll);
-	}, []);
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-	const isActive = (path: string) => {
-		return location.pathname === path || location.pathname.startsWith(path + "/");
-	};
+  return (
+    <nav 
+      className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-background/95 backdrop-blur-md shadow-lg border-b border-border/50' 
+          : 'bg-background'
+      }`}
+      role="navigation"
+      aria-label="Main navigation"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-[90px]">
+          {/* Logo */}
+          <Link to="/" className="flex-shrink-0" aria-label="OneTechConnect Home">
+            <img 
+              src="/OTC_logo.png" 
+              alt="OneTechConnect Logo" 
+              className="h-16 w-auto transition-all duration-300 hover:scale-105"
+            />
+          </Link>
 
-	const handleDropdownToggle = (itemName: string) => {
-		setActiveDropdown(activeDropdown === itemName ? null : itemName);
-	};
+          {/* Desktop Navigation */}
+          <div className="hidden md:block">
+            <div className="ml-10 flex items-baseline space-x-8">
+              <Link 
+                to="/" 
+                className="font-poppins font-bold text-[16px] text-foreground hover:text-primary transition-colors duration-200"
+              >
+                Home
+              </Link>
+              <div className="relative group">
+                <button className="font-poppins font-bold text-[16px] text-foreground hover:text-primary transition-colors duration-200 flex items-center">
+                  About Us
+                  <ChevronDown className="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" />
+                </button>
+                <div className="absolute left-0 mt-2 w-[280px] min-w-[280px] bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border-t-4 border-t-primary border border-gray-200">
+                  <div className="py-2">
+                    <Link to="/about/who-we-are" className="block px-4 py-3 text-sm font-poppins font-bold text-foreground hover:text-primary hover:bg-gray-50 transition-colors border-b border-gray-100">Who We Are</Link>
+                    <Link to="/about/vision-mission" className="block px-4 py-3 text-sm font-poppins font-bold text-foreground hover:text-primary hover:bg-gray-50 transition-colors border-b border-gray-100">Vision/Mission/Objectives</Link>
+                    <Link to="/about/philosophy" className="block px-4 py-3 text-sm font-poppins font-bold text-foreground hover:text-primary hover:bg-gray-50 transition-colors border-b border-gray-100">Our Philosophy</Link>
+                    <Link to="/about/team" className="block px-4 py-3 text-sm font-poppins font-bold text-foreground hover:text-primary hover:bg-gray-50 transition-colors border-b border-gray-100">Our Team</Link>
+                    <Link to="/about/research-experts" className="block px-4 py-3 text-sm font-poppins font-bold text-foreground hover:text-primary hover:bg-gray-50 transition-colors">Research Experts</Link>
+                  </div>
+                </div>
+              </div>
+              <div className="relative group">
+                <button className="font-poppins font-bold text-[16px] text-foreground hover:text-primary transition-colors duration-200 flex items-center">
+                  What We Do
+                  <ChevronDown className="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" />
+                </button>
+                <div className="absolute left-0 mt-2 w-[240px] min-w-[240px] bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border-t-4 border-t-primary border border-gray-200">
+                  <div className="py-1">
+                    <Link to="/what-we-do" className="block px-4 py-2 text-sm font-poppins font-bold text-foreground hover:text-primary hover:bg-gray-50 transition-colors">Overview</Link>
+                    <Link to="/what-we-do/approach" className="block px-4 py-2 text-sm font-poppins font-bold text-foreground hover:text-primary hover:bg-gray-50 transition-colors">Our Approach</Link>
+                    <Link to="/what-we-do/focus-areas" className="block px-4 py-2 text-sm font-poppins font-bold text-foreground hover:text-primary hover:bg-gray-50 transition-colors">Focus Areas</Link>
+                    <Link to="/what-we-do/programmes" className="block px-4 py-2 text-sm font-poppins font-bold text-foreground hover:text-primary hover:bg-gray-50 transition-colors">Programmes</Link>
+                  </div>
+                </div>
+              </div>
+              <div className="relative group">
+                <button className="font-poppins font-bold text-[16px] text-foreground hover:text-primary transition-colors duration-200 flex items-center">
+                  Our Products
+                  <ChevronDown className="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" />
+                </button>
+                <div className="absolute left-0 mt-2 w-[240px] min-w-[240px] bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border-t-4 border-t-primary border border-gray-200">
+                  <div className="py-1">
+                    <Link to="/our-products" className="block px-4 py-2 text-sm font-poppins font-bold text-foreground hover:text-primary hover:bg-gray-50 transition-colors">Overview</Link>
+                    <Link to="/products/strategic-litigation" className="block px-4 py-2 text-sm font-poppins font-bold text-foreground hover:text-primary hover:bg-gray-50 transition-colors">Strategic Litigation</Link>
+                    <Link to="/products/innovations" className="block px-4 py-2 text-sm font-poppins font-bold text-foreground hover:text-primary hover:bg-gray-50 transition-colors">Innovation Hub</Link>
+                    <Link to="/products/center-for-digital-justice" className="block px-4 py-2 text-sm font-poppins font-bold text-foreground hover:text-primary hover:bg-gray-50 transition-colors">Center for Digital Justice</Link>
+                    <Link to="/products/consultancy" className="block px-4 py-2 text-sm font-poppins font-bold text-foreground hover:text-primary hover:bg-gray-50 transition-colors">Consultancy Services</Link>
+                  </div>
+                </div>
+              </div>
+              <div className="relative group">
+                <button className="font-poppins font-bold text-[16px] text-foreground hover:text-primary transition-colors duration-200 flex items-center">
+                  News & Updates
+                  <ChevronDown className="ml-1 h-4 w-4 transition-transform group-hover:rotate-180" />
+                </button>
+                <div className="absolute left-0 mt-2 w-[240px] min-w-[240px] bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border-t-4 border-t-primary border border-gray-200">
+                  <div className="py-1">
+                    <Link to="/news" className="block px-4 py-2 text-sm font-poppins font-bold text-foreground hover:text-primary hover:bg-gray-50 transition-colors">News</Link>
+                    <Link to="/news/research-publications" className="block px-4 py-2 text-sm font-poppins font-bold text-foreground hover:text-primary hover:bg-gray-50 transition-colors">Research Publications</Link>
+                    <Link to="/news/repository" className="block px-4 py-2 text-sm font-poppins font-bold text-foreground hover:text-primary hover:bg-gray-50 transition-colors">Repository</Link>
+                  </div>
+                </div>
+              </div>
+              <Link 
+                to="/contact" 
+                className="font-poppins font-bold text-[16px] text-foreground hover:text-primary transition-colors duration-200"
+              >
+                Contact Us
+              </Link>
+            </div>
+          </div>
 
-	return (
-		<nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white border-b border-border shadow-card">
-			<div className="px-2 py-4">
-				<div className="flex items-center justify-between">
-					{/* Logo */}
-					<Link to="/" className="flex items-center ml-2">
-						<img
-							src="/OTC_logo.png"
-							alt="OneTechConnect Logo"
-							className="h-14 w-auto"
-						/>
-					</Link>
+          {/* CTA Button */}
+          <div className="hidden md:block">
+            <Button asChild variant="golden" size="sm">
+              <Link to="/donate">Donate</Link>
+            </Button>
+          </div>
 
-					{/* Desktop Navigation */}
-					<div className="hidden lg:flex items-center space-x-8 mr-6">
-						{navItems.map((item) => (
-							<div key={item.name} className="relative group">
-								{item.dropdown ? (
-									<>
-										<button
-											className={`flex items-center space-x-1 font-medium transition-colors duration-200 ${
-												isActive(item.href)
-													? "text-golden"
-													: "text-blue-700 hover:text-golden"
-											}`}
-											onMouseEnter={() => setActiveDropdown(item.name)}
-											onMouseLeave={() => setActiveDropdown(null)}
-										>
-											<span>{item.name}</span>
-											<ChevronDown
-												size={16}
-												className="transition-transform duration-200 group-hover:rotate-180"
-											/>
-										</button>
+          {/* Mobile menu button */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="inline-flex items-center justify-center p-2 text-foreground hover:text-primary hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
+              aria-expanded="false"
+              aria-label="Toggle main menu"
+            >
+              {isOpen ? <X className="block h-6 w-6" /> : <Menu className="block h-6 w-6" />}
+            </button>
+          </div>
+        </div>
+      </div>
 
-										{/* Dropdown Menu */}
-										<div
-											className={`absolute top-full left-0 mt-2 w-56 bg-card border border-border rounded-xl shadow-lg transition-all duration-200 ${
-												activeDropdown === item.name
-													? "opacity-100 visible translate-y-0"
-													: "opacity-0 invisible -translate-y-2"
-											}`}
-											onMouseEnter={() => setActiveDropdown(item.name)}
-											onMouseLeave={() => setActiveDropdown(null)}
-										>
-											<div className="py-2">
-												{item.dropdown.map((dropdownItem) => (
-													<Link
-														key={dropdownItem.name}
-														to={dropdownItem.href}
-														className="block px-4 py-3 text-lg font-bold text-blue-700 hover:text-golden hover:bg-secondary/50 transition-colors duration-200"
-													>
-														{dropdownItem.name}
-													</Link>
-												))}
-											</div>
-										</div>
-									</>
-								) : (
-									<Link
-										to={item.href}
-										className={`font-medium transition-colors duration-200 ${
-											isActive(item.href)
-												? "text-golden"
-												: "text-blue-700 hover:text-golden"
-										}`}
-									>
-										{item.name}
-									</Link>
-								)}
-							</div>
-						))}
-						<Link to="/donate">
-							<Button variant="golden" size="sm">
-								Donate
-							</Button>
-						</Link>
-					</div>
-
-					{/* Mobile Menu Button */}
-					<button
-						className="lg:hidden p-2 text-blue-700 hover:text-golden transition-colors"
-						onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-					>
-						{isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-					</button>
-				</div>
-
-				{/* Mobile Navigation */}
-				{isMobileMenuOpen && (
-					<div className="lg:hidden mt-4 pb-4 border-t border-border bg-white/95 backdrop-blur-md rounded-lg mx-4 shadow-lg">
-						<div className="flex flex-col space-y-2 pt-4 px-4">
-							{navItems.map((item) => (
-								<div key={item.name}>
-									{item.dropdown ? (
-										<>
-											<button
-												className={`flex items-center justify-between w-full font-medium py-2 transition-colors duration-200 ${
-													isActive(item.href)
-														? "text-golden"
-														: "text-blue-700 hover:text-golden"
-												}`}
-												onClick={() => handleDropdownToggle(item.name)}
-											>
-												<span>{item.name}</span>
-												<ChevronDown
-													size={16}
-													className={`transition-transform duration-200 ${
-														activeDropdown === item.name ? "rotate-180" : ""
-													}`}
-												/>
-											</button>
-
-											{/* Mobile Dropdown */}
-											{activeDropdown === item.name && (
-												<div className="ml-4 mt-2 space-y-2 bg-secondary/30 rounded-lg p-3">
-													{item.dropdown.map((dropdownItem) => (
-														<Link
-															key={dropdownItem.name}
-															to={dropdownItem.href}
-															className="block py-2 text-lg font-bold text-blue-700 hover:text-golden transition-colors duration-200"
-															onClick={() => {
-																setIsMobileMenuOpen(false);
-																setActiveDropdown(null);
-															}}
-														>
-															{dropdownItem.name}
-														</Link>
-													))}
-												</div>
-											)}
-										</>
-									) : (
-										<Link
-											to={item.href}
-											className={`font-medium py-2 transition-colors duration-200 ${
-												isActive(item.href)
-													? "text-golden"
-													: "text-blue-700 hover:text-golden"
-											}`}
-											onClick={() => setIsMobileMenuOpen(false)}
-										>
-											{item.name}
-										</Link>
-									)}
-								</div>
-							))}
-							<Link to="/donate">
-								<Button
-									variant="golden"
-									size="sm"
-									className="self-start mt-4"
-								>
-									Donate
-								</Button>
-							</Link>
-						</div>
-					</div>
-				)}
-			</div>
-		</nav>
-	);
+      {/* Mobile Navigation */}
+      {isOpen && (
+        <div className="md:hidden bg-background/95 backdrop-blur-md border-t border-border/50">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <Link to="/" className="mobile-nav-link" onClick={() => setIsOpen(false)}>Home</Link>
+            <div className="space-y-1 pl-4">
+              <Link to="/about/who-we-are" className="mobile-nav-link" onClick={() => setIsOpen(false)}>Who We Are</Link>
+              <Link to="/about/vision-mission" className="mobile-nav-link" onClick={() => setIsOpen(false)}>Vision/Mission/Objectives</Link>
+              <Link to="/about/philosophy" className="mobile-nav-link" onClick={() => setIsOpen(false)}>Our Philosophy</Link>
+              <Link to="/about/team" className="mobile-nav-link" onClick={() => setIsOpen(false)}>Our Team</Link>
+              <Link to="/about/research-experts" className="mobile-nav-link" onClick={() => setIsOpen(false)}>Research Experts</Link>
+            </div>
+            <div className="space-y-1 pl-4">
+              <Link to="/what-we-do" className="mobile-nav-link" onClick={() => setIsOpen(false)}>What We Do</Link>
+              <Link to="/what-we-do/approach" className="mobile-nav-link" onClick={() => setIsOpen(false)}>Our Approach</Link>
+              <Link to="/what-we-do/focus-areas" className="mobile-nav-link" onClick={() => setIsOpen(false)}>Focus Areas</Link>
+              <Link to="/what-we-do/programmes" className="mobile-nav-link" onClick={() => setIsOpen(false)}>Programmes</Link>
+            </div>
+            <div className="space-y-1 pl-4">
+              <Link to="/our-products" className="mobile-nav-link" onClick={() => setIsOpen(false)}>Our Products</Link>
+              <Link to="/products/strategic-litigation" className="mobile-nav-link" onClick={() => setIsOpen(false)}>Strategic Litigation</Link>
+              <Link to="/products/innovations" className="mobile-nav-link" onClick={() => setIsOpen(false)}>Innovation Hub</Link>
+              <Link to="/products/center-for-digital-justice" className="mobile-nav-link" onClick={() => setIsOpen(false)}>Center for Digital Justice</Link>
+              <Link to="/products/consultancy" className="mobile-nav-link" onClick={() => setIsOpen(false)}>Consultancy Services</Link>
+            </div>
+            <div className="space-y-1 pl-4">
+              <Link to="/news" className="mobile-nav-link" onClick={() => setIsOpen(false)}>News & Updates</Link>
+              <Link to="/news/research-publications" className="mobile-nav-link" onClick={() => setIsOpen(false)}>Research Publications</Link>
+              <Link to="/news/repository" className="mobile-nav-link" onClick={() => setIsOpen(false)}>Repository</Link>
+            </div>
+            <Link to="/contact" className="mobile-nav-link" onClick={() => setIsOpen(false)}>Contact Us</Link>
+            <div className="pt-4">
+              <Button asChild variant="golden" size="sm" className="w-full">
+                <Link to="/donate" onClick={() => setIsOpen(false)}>Donate</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+    </nav>
+  );
 }

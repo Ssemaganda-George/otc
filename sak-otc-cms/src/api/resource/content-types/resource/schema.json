@@ -1,0 +1,103 @@
+{
+  "kind": "collectionType",
+  "collectionName": "resources",
+  "info": {
+    "displayName": "Resource",
+    "singularName": "resource",
+    "pluralName": "resources",
+    "description": "Downloadable resources, documents, and e-library content"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    },
+    "file": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["files", "images"]
+    },
+    "thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "research-paper",
+        "policy-brief",
+        "case-study",
+        "report",
+        "guide",
+        "toolkit",
+        "presentation",
+        "publication",
+        "legal-document",
+        "training-material"
+      ],
+      "required": true
+    },
+    "tags": {
+      "type": "json",
+      "required": false
+    },
+    "author": {
+      "type": "string",
+      "required": false
+    },
+    "publishDate": {
+      "type": "datetime",
+      "required": true
+    },
+    "fileSize": {
+      "type": "string",
+      "required": false
+    },
+    "downloadCount": {
+      "type": "integer",
+      "default": 0,
+      "required": false
+    },
+    "isPublic": {
+      "type": "boolean",
+      "default": true,
+      "required": false
+    },
+    "accessLevel": {
+      "type": "enumeration",
+      "enum": [
+        "public",
+        "registered",
+        "premium"
+      ],
+      "default": "public",
+      "required": true
+    },
+    "language": {
+      "type": "string",
+      "default": "English",
+      "required": false
+    },
+    "relatedResources": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::resource.resource"
+    }
+  }
+}

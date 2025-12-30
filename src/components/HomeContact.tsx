@@ -82,7 +82,7 @@ export function HomeContact() {
               </div>
 
               {/* Quick Services */}
-              <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl p-6 border border-primary/20">
+              <div className="bg-gradient-to-r from-primary/10 to-primary/5 p-6 border border-primary/20">
                 <h4 className="font-playfair font-semibold text-gradient-blue mb-4">
                   How We Can Help
                 </h4>
@@ -104,7 +104,7 @@ export function HomeContact() {
             </div>
 
             {/* Contact Form */}
-            <div className="bg-card border border-border rounded-2xl p-8 shadow-card">
+            <div className="bg-card border border-border p-8 shadow-card">
               <h3 className="heading-card text-gradient-blue mb-6">
                 Send Us a Message
               </h3>

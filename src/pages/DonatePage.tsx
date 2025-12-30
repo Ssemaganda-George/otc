@@ -142,7 +142,7 @@ const DonatePage = () => {
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-2xl font-playfair font-bold text-gradient-blue mb-6">Your Impact</h2>
             <p className="text-body text-muted-foreground leading-relaxed mb-8">Your donation supports our work in strategic litigation, innovation programs, digital rights advocacy, and capacity building across Africa. Together, we're creating a more just and innovative digital future.</p>
-            <div className="bg-card border border-border rounded-2xl p-6 shadow-card">
+            <div className="bg-card border border-border p-6 shadow-card">
               <p className="text-body text-muted-foreground">All donations are used to directly fund our programs and initiatives. We maintain full transparency and provide regular impact reports to our supporters.</p>
             </div>
           </div>

@@ -1,0 +1,66 @@
+{
+  "kind": "singleType",
+  "collectionName": "contact_infos",
+  "info": {
+    "displayName": "Contact Info",
+    "singularName": "contact-info",
+    "pluralName": "contact-infos",
+    "description": "Contact information for OneTechConnect"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "Contact Us"
+    },
+    "subtitle": {
+      "type": "string",
+      "default": "Get in touch with our team"
+    },
+    "description": {
+      "type": "richtext",
+      "required": false
+    },
+    "address": {
+      "type": "text",
+      "required": true
+    },
+    "phone": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "website": {
+      "type": "string",
+      "required": false
+    },
+    "socialMedia": {
+      "type": "json",
+      "required": false
+    },
+    "officeHours": {
+      "type": "text",
+      "required": false
+    },
+    "mapEmbed": {
+      "type": "text",
+      "required": false
+    },
+    "contactFormEnabled": {
+      "type": "boolean",
+      "default": true,
+      "required": false
+    },
+    "departments": {
+      "type": "json",
+      "required": false
+    }
+  }
+}

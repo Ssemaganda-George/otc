@@ -78,7 +78,7 @@ export function OurApproach() {
             {departments.map((department, index) => (
               <div 
                 key={department.title}
-                className="bg-card border border-border rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-300 card-hover"
+                className="bg-card border border-border p-8 shadow-card hover:shadow-blue transition-all duration-300 card-hover"
               >
                 <div className="flex items-start mb-6">
                   <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mr-6 flex-shrink-0">
@@ -120,7 +120,7 @@ export function OurApproach() {
           </div>
 
           {/* Connectivity Statement */}
-          <div className="bg-gradient-to-r from-golden/10 to-golden/5 border-2 border-golden/20 rounded-2xl p-8 text-center">
+          <div className="bg-gradient-to-r from-golden/10 to-golden/5 border-2 border-golden/20 p-8 text-center">
             <div className="flex items-center justify-center mb-4">
               <div className="w-12 h-12 bg-golden/20 rounded-lg flex items-center justify-center mr-4">
                 <Lightbulb className="w-6 h-6 text-golden" />

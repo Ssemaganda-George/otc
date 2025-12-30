@@ -1,0 +1,74 @@
+{
+  "kind": "singleType",
+  "collectionName": "footers",
+  "info": {
+    "displayName": "Footer",
+    "singularName": "footer",
+    "pluralName": "footers",
+    "description": "Footer content and configuration"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "organizationName": {
+      "type": "string",
+      "required": true,
+      "default": "OneTechConnect"
+    },
+    "organizationDescription": {
+      "type": "richtext",
+      "required": true
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "socialMediaLinks": {
+      "type": "json",
+      "required": false
+    },
+    "quickLinks": {
+      "type": "json",
+      "required": false
+    },
+    "servicesLinks": {
+      "type": "json",
+      "required": false
+    },
+    "contactInfo": {
+      "type": "json",
+      "required": false
+    },
+    "newsletterTitle": {
+      "type": "string",
+      "required": true,
+      "default": "Stay Updated"
+    },
+    "newsletterDescription": {
+      "type": "richtext",
+      "required": true
+    },
+    "newsletterEnabled": {
+      "type": "boolean",
+      "default": true,
+      "required": false
+    },
+    "copyrightText": {
+      "type": "string",
+      "required": true,
+      "default": "© 2025 OneTechConnect. All rights reserved."
+    },
+    "legalLinks": {
+      "type": "json",
+      "required": false
+    },
+    "additionalSections": {
+      "type": "json",
+      "required": false
+    }
+  }
+}

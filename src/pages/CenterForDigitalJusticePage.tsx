@@ -63,7 +63,7 @@ export default function CenterForDigitalJusticePage() {
                     description: "Specialized programs for lawyers, policymakers, and advocates"
                   }
                 ].map((program, index) => (
-                  <div key={index} className="bg-card border border-border rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-300">
+                  <div key={index} className="bg-card border border-border p-8 shadow-card hover:shadow-blue transition-all duration-300">
                     <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
                       <program.icon className="w-6 h-6 text-primary" />
                     </div>

@@ -30,7 +30,7 @@ export default function TSGPage() {
         <section className="py-24">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
-              <div className="bg-card border border-border rounded-2xl p-8 shadow-card mb-16">
+              <div className="bg-card border border-border p-8 shadow-card mb-16">
                 <h2 className="text-2xl font-playfair font-bold text-gradient-blue mb-6">
                   About the Programme
                 </h2>
@@ -40,7 +40,7 @@ export default function TSGPage() {
               </div>
 
               {/* Goal */}
-              <div className="bg-gradient-to-br from-golden/10 to-golden/5 border border-golden/20 rounded-2xl p-8 shadow-card mb-16">
+              <div className="bg-gradient-to-br from-golden/10 to-golden/5 border border-golden/20 p-8 shadow-card mb-16">
                 <div className="flex items-center space-x-3 mb-4">
                   <Target className="w-6 h-6 text-golden" />
                   <h2 className="text-2xl font-playfair font-bold text-golden">
@@ -80,7 +80,7 @@ export default function TSGPage() {
                       description: "Innovation aimed at supporting the design and deployment of inclusive, ethical, and rights-respecting digital solutions for SRHR."
                     }
                   ].map((objective, index) => (
-                    <div key={index} className="bg-card border border-border rounded-2xl p-6 shadow-card hover:shadow-blue transition-all duration-300">
+                    <div key={index} className="bg-card border border-border p-6 shadow-card hover:shadow-blue transition-all duration-300">
                       <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
                         <objective.icon className="w-6 h-6 text-primary" />
                       </div>
@@ -96,7 +96,7 @@ export default function TSGPage() {
               </div>
 
               {/* Key Focus Areas */}
-              <div className="bg-secondary/20 rounded-2xl p-8 mb-16">
+              <div className="bg-secondary/20 p-8 mb-16">
                 <h2 className="text-2xl font-playfair font-bold text-gradient-blue mb-6 text-center">
                   Key Focus Areas
                 </h2>

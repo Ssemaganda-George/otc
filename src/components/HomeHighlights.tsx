@@ -53,7 +53,7 @@ export function HomeHighlights() {
 
   return (
     <section
-      className="relative py-24 bg-gradient-to-b from-card/30 to-background overflow-hidden"
+      className="relative py-24 bg-card/30 overflow-hidden"
       style={{
         minHeight: 600,
       }}
@@ -82,18 +82,18 @@ export function HomeHighlights() {
               <h2 className="heading-section text-gradient-blue mb-6">
                 Empowering Africa's Digital Future
               </h2>
-              <p className="text-body max-w-3xl mx-auto text-justify sm:text-center text-white drop-shadow-md bg-gradient-to-br from-yellow-900/90 via-yellow-800/90 to-yellow-700/90 rounded-xl px-6 py-4">
+              <p className="text-body max-w-3xl mx-auto text-justify sm:text-center text-white drop-shadow-md bg-yellow-800/90 rounded-xl px-6 py-4">
                 OTC (OneTechConnect) advances research, Advocacy, trainings, innovation and strategic litigation in Africa 🌍  
                 focusing on <span className="font-semibold">Equity</span> and <span className="font-semibold">human rights</span> in the digital age.
               </p>
             </div>
 
-            {/* Highlights Grid */}
+            {/* Highlights Grid - Card Layout */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
               {highlights.map((highlight, index) => (
                 <div 
                   key={highlight.title}
-                  className="group bg-card border border-border rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-500 card-hover"
+                  className="group bg-card border border-border p-8 shadow-card hover:shadow-blue transition-all duration-500 card-hover"
                 >
                   <div className="flex items-start mb-6">
                     <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">

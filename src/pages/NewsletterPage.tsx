@@ -131,7 +131,7 @@ const NewsletterPage = () => {
                 innovation programs, and opportunities across Africa. Stay connected with groundbreaking developments 
                 and be the first to know about our programs and events.
               </p>
-              <div className="bg-card border border-border rounded-2xl p-6 shadow-card">
+              <div className="bg-card border border-border p-6 shadow-card">
                 <p className="text-body text-muted-foreground">
                   We send our newsletter monthly, ensuring you stay informed without overwhelming your inbox. 
                   We respect your privacy and will never sell or share your email address.

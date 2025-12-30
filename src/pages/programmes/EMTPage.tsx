@@ -30,7 +30,7 @@ export default function EMTPage() {
         <section className="py-24">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
-              <div className="bg-card border border-border rounded-2xl p-8 shadow-card mb-16">
+              <div className="bg-card border border-border p-8 shadow-card mb-16">
                 <h2 className="text-2xl font-playfair font-bold text-gradient-blue mb-6">
                   About the Programme
                 </h2>
@@ -40,7 +40,7 @@ export default function EMTPage() {
               </div>
 
               {/* Goal */}
-              <div className="bg-gradient-to-br from-golden/10 to-golden/5 border border-golden/20 rounded-2xl p-8 shadow-card mb-16">
+              <div className="bg-gradient-to-br from-golden/10 to-golden/5 border border-golden/20 p-8 shadow-card mb-16">
                 <div className="flex items-center space-x-3 mb-4">
                   <Target className="w-6 h-6 text-golden" />
                   <h2 className="text-2xl font-playfair font-bold text-golden">
@@ -75,7 +75,7 @@ export default function EMTPage() {
                       description: "Amplify voices of underrepresented groups in shaping digital futures."
                     }
                   ].map((objective, index) => (
-                    <div key={index} className="bg-card border border-border rounded-2xl p-6 shadow-card hover:shadow-blue transition-all duration-300 flex items-start space-x-4">
+                    <div key={index} className="bg-card border border-border p-6 shadow-card hover:shadow-blue transition-all duration-300 flex items-start space-x-4">
                       <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
                         <objective.icon className="w-6 h-6 text-primary" />
                       </div>
@@ -93,7 +93,7 @@ export default function EMTPage() {
               </div>
 
               {/* Expected Outcomes */}
-              <div className="bg-secondary/20 rounded-2xl p-8 mb-16">
+              <div className="bg-secondary/20 p-8 mb-16">
                 <h2 className="text-2xl font-playfair font-bold text-gradient-blue mb-6">
                   Expected Outcomes
                 </h2>
@@ -103,7 +103,7 @@ export default function EMTPage() {
               </div>
 
               {/* Outputs & Activities */}
-              <div className="bg-card border border-border rounded-2xl p-8 shadow-card mb-16">
+              <div className="bg-card border border-border p-8 shadow-card mb-16">
                 <h2 className="text-2xl font-playfair font-bold text-gradient-blue mb-6">
                   Outputs & Activities
                 </h2>
@@ -113,7 +113,7 @@ export default function EMTPage() {
               </div>
 
               {/* Target Groups */}
-              <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-8 mb-16">
+              <div className="bg-gradient-to-br from-primary/5 to-primary/10 p-8 mb-16">
                 <h2 className="text-2xl font-playfair font-bold text-gradient-blue mb-6 text-center">
                   Who We Serve
                 </h2>
@@ -133,7 +133,7 @@ export default function EMTPage() {
               </div>
 
               {/* Sectors */}
-              <div className="bg-gradient-to-br from-golden/5 to-golden/10 rounded-2xl p-8 mb-16">
+              <div className="bg-gradient-to-br from-golden/5 to-golden/10 p-8 mb-16">
                 <h2 className="text-2xl font-playfair font-bold text-gradient-blue mb-6 text-center">
                   Focus Sectors
                 </h2>

@@ -1,55 +1,83 @@
+import { useState, useEffect } from 'react';
 import { Navigation } from "@/components/ui/navigation";
 import { Footer } from "@/components/Footer";
 import { Shield, Target, Search, Users, BookOpen, Gavel, ArrowRight, FileText, Download, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { supabase } from '@/lib/supabase';
+
+interface BiTAPageData {
+  heroTitle: string;
+  heroDescription: string;
+  programmeOverview: string;
+  goal: string;
+  objectives: { title: string; description: string }[]; // Updated to match original structure
+  // Add more fields as needed
+}
 
 export default function BiTAPage() {
+  const [data, setData] = useState<BiTAPageData | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data: pageData, error } = await supabase
+        .from('pages')
+        .select('*')
+        .eq('slug', 'bita')
+        .single();
+      if (error) console.error(error);
+      else setData(pageData as BiTAPageData); // Type assertion if needed
+    };
+    fetchData();
+  }, []);
+
+  if (!data) return <div>Loading...</div>;
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      <main className="pt-20">
+      <main className="pt-20" role="main">
         {/* Hero Section */}
-        <section className="py-24 bg-gradient-to-br from-primary/10 to-primary/5">
+        <section className="py-24 bg-gradient-to-br from-primary/10 to-primary/5" aria-labelledby="bita-hero-title">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto text-center">
               <div className="w-20 h-20 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Shield className="w-10 h-10 text-background" />
+                <Shield className="w-10 h-10 text-background" aria-hidden="true" />
               </div>
-              <h1 className="heading-section text-gradient-blue mb-8">
-                BigTech Africa (BiTA)
+              <h1 id="bita-hero-title" className="heading-section text-gradient-blue mb-8">
+                {data.heroTitle}
               </h1>
               <p className="text-body text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-                Holding technology actors accountable while promoting innovation that respects rights and justice across Africa
+                {data.heroDescription}
               </p>
             </div>
           </div>
         </section>
 
         {/* Programme Overview */}
-        <section className="py-24">
+        <section className="py-24" aria-labelledby="programme-overview">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
-              <div className="bg-card border border-border rounded-2xl p-8 shadow-card mb-16">
-                <h2 className="text-2xl font-playfair font-bold text-gradient-blue mb-6">
+              <div className="bg-card border border-border p-8 shadow-card mb-16">
+                <h2 id="programme-overview" className="text-2xl font-playfair font-bold text-gradient-blue mb-6">
                   About the Programme
                 </h2>
                 <p className="text-body text-muted-foreground leading-relaxed mb-6">
-                  BiTA examines the role and impact of big tech, small and medium tech companies, and governments operating across health, agriculture, finance, and development sectors. We explore how their operations intersect with fundamental rights such as the right to health, privacy, expression, property, a decent environment and development.
+                  {data.programmeOverview}
                 </p>
               </div>
 
               {/* Goal */}
-              <div className="bg-gradient-to-br from-golden/10 to-golden/5 border border-golden/20 rounded-2xl p-8 shadow-card mb-16">
+              <div className="bg-gradient-to-br from-golden/10 to-golden/5 border border-golden/20 p-8 shadow-card mb-16">
                 <div className="flex items-center space-x-3 mb-4">
-                  <Target className="w-6 h-6 text-golden" />
+                  <Target className="w-6 h-6 text-golden" aria-hidden="true" />
                   <h2 className="text-2xl font-playfair font-bold text-golden">
                     Goal
                   </h2>
                 </div>
                 <p className="text-body text-foreground leading-relaxed">
-                  To hold technology & innovation actors accountable while promoting innovation that respects rights and justice.
+                  {data.goal}
                 </p>
               </div>
 
@@ -59,26 +87,10 @@ export default function BiTAPage() {
                   Objectives
                 </h2>
                 <div className="grid grid-cols-1 gap-6">
-                  {[
-                    {
-                      icon: Search,
-                      title: "Analyse Tech Business Models",
-                      description: "Analyse how tech business models affect rights in Africa."
-                    },
-                    {
-                      icon: Shield,
-                      title: "Strengthen Regulatory Responses",
-                      description: "Strengthen regulatory responses to the risks of digital monopolies."
-                    },
-                    {
-                      icon: Users,
-                      title: "Build Public Awareness",
-                      description: "Build public awareness on the implications of tech practices for human rights."
-                    }
-                  ].map((objective, index) => (
-                    <div key={index} className="bg-card border border-border rounded-2xl p-6 shadow-card hover:shadow-blue transition-all duration-300 flex items-start space-x-4">
+                  {data.objectives.map((objective, index) => (
+                    <div key={index} className="bg-card border border-border p-6 shadow-card hover:shadow-blue transition-all duration-300 flex items-start space-x-4">
                       <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <objective.icon className="w-6 h-6 text-primary" />
+                        <Search className="w-6 h-6 text-primary" aria-hidden="true" />
                       </div>
                       <div>
                         <h3 className="text-lg font-playfair font-semibold text-gradient-blue mb-2">
@@ -94,7 +106,7 @@ export default function BiTAPage() {
               </div>
 
               {/* Strategic Litigation Highlight */}
-              <div className="bg-gradient-to-br from-golden/10 to-golden/5 border border-golden/20 rounded-2xl p-8 shadow-card mb-16">
+              <div className="bg-gradient-to-br from-golden/10 to-golden/5 border border-golden/20 p-8 shadow-card mb-16">
                 <div className="flex items-center space-x-3 mb-4">
                   <Gavel className="w-6 h-6 text-golden" />
                   <h2 className="text-2xl font-playfair font-bold text-golden">
@@ -129,7 +141,7 @@ export default function BiTAPage() {
               {/* Library Section */}
               <div className="mb-16">
                 <div className="flex items-center space-x-4 mb-10">
-                  <BookOpen className="w-8 h-8 text-primary" />
+                  <BookOpen className="w-8 h-8 text-primary" aria-hidden="true" />
                   <h2 className="text-3xl font-playfair font-bold text-gradient-blue">
                     BiTA Library & Resources
                   </h2>
@@ -142,8 +154,8 @@ export default function BiTAPage() {
                   {/* Data Protection and Privacy Act */}
                   <Card className="border-2 hover:border-primary/60 transition-all duration-500 hover:shadow-2xl bg-gradient-to-br from-white to-slate-50/50">
                     <CardHeader className="pb-6">
-                      <div className="w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
-                        <FileText className="w-7 h-7 text-primary" />
+                      <div className="w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mb-6 shadow-lg">
+                        <FileText className="w-7 h-7 text-primary" aria-hidden="true" />
                       </div>
                       <CardTitle className="text-xl text-primary font-bold leading-tight">
                         Data Protection and Privacy Act 2019
@@ -158,15 +170,15 @@ export default function BiTAPage() {
                       </p>
                       <div className="flex flex-col space-y-4">
                         <Button variant="outline" size="lg" className="w-full justify-between group shadow-md hover:shadow-lg transition-shadow" asChild>
-                          <a href="/documents/Data-Protection-and-Privacy-Act-2019-Uganda (1).pdf" target="_blank" rel="noopener noreferrer">
+                          <a href="/documents/Data-Protection-and-Privacy-Act-2019-Uganda (1).pdf" target="_blank" rel="noopener noreferrer" aria-label="View Data Protection and Privacy Act 2019 document">
                             <span className="font-semibold">View Document</span>
-                            <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                            <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                           </a>
                         </Button>
                         <Button variant="ghost" size="lg" className="w-full justify-between group shadow-md hover:shadow-lg transition-shadow" asChild>
-                          <a href="/documents/Data-Protection-and-Privacy-Act-2019-Uganda (1).pdf" download>
+                          <a href="/documents/Data-Protection-and-Privacy-Act-2019-Uganda (1).pdf" download aria-label="Download Data Protection and Privacy Act 2019 PDF">
                             <span className="font-semibold">Download PDF</span>
-                            <Download className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
+                            <Download className="w-5 h-5 group-hover:translate-y-1 transition-transform" aria-hidden="true" />
                           </a>
                         </Button>
                       </div>
@@ -176,8 +188,8 @@ export default function BiTAPage() {
                   {/* Health Information & Digital Health Strategic Plan */}
                   <Card className="border-2 hover:border-primary/60 transition-all duration-500 hover:shadow-2xl bg-gradient-to-br from-white to-slate-50/50">
                     <CardHeader className="pb-6">
-                      <div className="w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
-                        <FileText className="w-7 h-7 text-primary" />
+                      <div className="w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mb-6 shadow-lg">
+                        <FileText className="w-7 h-7 text-primary" aria-hidden="true" />
                       </div>
                       <CardTitle className="text-xl text-primary font-bold leading-tight">
                         Digital Health Strategic Plan 2025
@@ -192,15 +204,15 @@ export default function BiTAPage() {
                       </p>
                       <div className="flex flex-col space-y-4">
                         <Button variant="outline" size="lg" className="w-full justify-between group shadow-md hover:shadow-lg transition-shadow" asChild>
-                          <a href="/documents/Health-Information-Digital-Health-Strategic-Plan-2025 (1).pdf" target="_blank" rel="noopener noreferrer">
+                          <a href="/documents/Health-Information-Digital-Health-Strategic-Plan-2025 (1).pdf" target="_blank" rel="noopener noreferrer" aria-label="View Digital Health Strategic Plan 2025 document">
                             <span className="font-semibold">View Document</span>
-                            <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                            <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                           </a>
                         </Button>
                         <Button variant="ghost" size="lg" className="w-full justify-between group shadow-md hover:shadow-lg transition-shadow" asChild>
-                          <a href="/documents/Health-Information-Digital-Health-Strategic-Plan-2025 (1).pdf" download>
+                          <a href="/documents/Health-Information-Digital-Health-Strategic-Plan-2025 (1).pdf" download aria-label="Download Digital Health Strategic Plan 2025 PDF">
                             <span className="font-semibold">Download PDF</span>
-                            <Download className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
+                            <Download className="w-5 h-5 group-hover:translate-y-1 transition-transform" aria-hidden="true" />
                           </a>
                         </Button>
                       </div>
@@ -210,8 +222,8 @@ export default function BiTAPage() {
                   {/* Digital Health Guidelines Compendium */}
                   <Card className="border-2 hover:border-primary/60 transition-all duration-500 hover:shadow-2xl bg-gradient-to-br from-white to-slate-50/50">
                     <CardHeader className="pb-6">
-                      <div className="w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
-                        <FileText className="w-7 h-7 text-primary" />
+                      <div className="w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mb-6 shadow-lg">
+                        <FileText className="w-7 h-7 text-primary" aria-hidden="true" />
                       </div>
                       <CardTitle className="text-xl text-primary font-bold leading-tight">
                         Digital Health Guidelines Compendium
@@ -226,15 +238,15 @@ export default function BiTAPage() {
                       </p>
                       <div className="flex flex-col space-y-4">
                         <Button variant="outline" size="lg" className="w-full justify-between group shadow-md hover:shadow-lg transition-shadow" asChild>
-                          <a href="/documents/Compendium-of-Approved-Digital-Health-Guidelines-Combined (2).pdf" target="_blank" rel="noopener noreferrer">
+                          <a href="/documents/Compendium-of-Approved-Digital-Health-Guidelines-Combined (2).pdf" target="_blank" rel="noopener noreferrer" aria-label="View Digital Health Guidelines Compendium document">
                             <span className="font-semibold">View Document</span>
-                            <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                            <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                           </a>
                         </Button>
                         <Button variant="ghost" size="lg" className="w-full justify-between group shadow-md hover:shadow-lg transition-shadow" asChild>
-                          <a href="/documents/Compendium-of-Approved-Digital-Health-Guidelines-Combined (2).pdf" download>
+                          <a href="/documents/Compendium-of-Approved-Digital-Health-Guidelines-Combined (2).pdf" download aria-label="Download Digital Health Guidelines Compendium PDF">
                             <span className="font-semibold">Download PDF</span>
-                            <Download className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
+                            <Download className="w-5 h-5 group-hover:translate-y-1 transition-transform" aria-hidden="true" />
                           </a>
                         </Button>
                       </div>
@@ -244,8 +256,8 @@ export default function BiTAPage() {
                   {/* Ministry Circular - MDA Registration */}
                   <Card className="border-2 hover:border-primary/60 transition-all duration-500 hover:shadow-2xl bg-gradient-to-br from-white to-slate-50/50">
                     <CardHeader className="pb-6">
-                      <div className="w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
-                        <FileText className="w-7 h-7 text-primary" />
+                      <div className="w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mb-6 shadow-lg">
+                        <FileText className="w-7 h-7 text-primary" aria-hidden="true" />
                       </div>
                       <CardTitle className="text-xl text-primary font-bold leading-tight">
                         Ministry Circular - MDA Registration
@@ -260,15 +272,15 @@ export default function BiTAPage() {
                       </p>
                       <div className="flex flex-col space-y-4">
                         <Button variant="outline" size="lg" className="w-full justify-between group shadow-md hover:shadow-lg transition-shadow" asChild>
-                          <a href="/documents/Ministry of ICT and National Guidance  Circular &#8211_ Notification of requirement to register MDAs.pdf" target="_blank" rel="noopener noreferrer">
+                          <a href="/documents/Ministry of ICT and National Guidance  Circular &#8211_ Notification of requirement to register MDAs.pdf" target="_blank" rel="noopener noreferrer" aria-label="View Ministry Circular - MDA Registration document">
                             <span className="font-semibold">View Document</span>
-                            <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                            <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                           </a>
                         </Button>
                         <Button variant="ghost" size="lg" className="w-full justify-between group shadow-md hover:shadow-lg transition-shadow" asChild>
-                          <a href="/documents/Ministry of ICT and National Guidance  Circular &#8211_ Notification of requirement to register MDAs.pdf" download>
+                          <a href="/documents/Ministry of ICT and National Guidance  Circular &#8211_ Notification of requirement to register MDAs.pdf" download aria-label="Download Ministry Circular - MDA Registration PDF">
                             <span className="font-semibold">Download PDF</span>
-                            <Download className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
+                            <Download className="w-5 h-5 group-hover:translate-y-1 transition-transform" aria-hidden="true" />
                           </a>
                         </Button>
                       </div>
@@ -277,7 +289,7 @@ export default function BiTAPage() {
                 </div>
 
                 {/* Google Case Reference */}
-                <div className="mt-8 bg-gradient-to-br from-golden/10 to-golden/5 border border-golden/20 rounded-2xl p-6">
+                <div className="mt-8 bg-gradient-to-br from-golden/10 to-golden/5 border border-golden/20 p-6">
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-golden/20 rounded-lg flex items-center justify-center flex-shrink-0">
                       <Gavel className="w-6 h-6 text-golden" />
@@ -318,7 +330,7 @@ export default function BiTAPage() {
               </div>
 
               {/* Expected Outcomes */}
-              <div className="bg-secondary/20 rounded-2xl p-8 mb-16">
+              <div className="bg-secondary/20 p-8 mb-16">
                 <h2 className="text-2xl font-playfair font-bold text-gradient-blue mb-6">
                   Expected Outcomes
                 </h2>
@@ -328,7 +340,7 @@ export default function BiTAPage() {
               </div>
 
               {/* Outputs & Activities */}
-              <div className="bg-card border border-border rounded-2xl p-8 shadow-card mb-16">
+              <div className="bg-card border border-border p-8 shadow-card mb-16">
                 <h2 className="text-2xl font-playfair font-bold text-gradient-blue mb-6">
                   Outputs & Activities
                 </h2>
@@ -338,7 +350,7 @@ export default function BiTAPage() {
               </div>
 
               {/* Key Focus Areas */}
-              <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-8 mb-16">
+              <div className="bg-gradient-to-br from-primary/5 to-primary/10 p-8 mb-16">
                 <h2 className="text-2xl font-playfair font-bold text-gradient-blue mb-6 text-center">
                   Rights & Sectors We Address
                 </h2>

@@ -126,7 +126,7 @@ export default function ShortCoursesPage() {
                     description: "Courses developed by leading practitioners and researchers"
                   }
                 ].map((feature, index) => (
-                  <div key={index} className="bg-card border border-border rounded-2xl p-6 shadow-card hover:shadow-blue transition-all duration-300 text-center">
+                  <div key={index} className="bg-card border border-border p-6 shadow-card hover:shadow-blue transition-all duration-300 text-center">
                     <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
                       <feature.icon className="w-6 h-6 text-primary" />
                     </div>
@@ -158,7 +158,7 @@ export default function ShortCoursesPage() {
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
                 {upcomingCourses.map((course, index) => (
-                  <div key={course.id} className="bg-card border border-border rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-300">
+                  <div key={course.id} className="bg-card border border-border p-8 shadow-card hover:shadow-blue transition-all duration-300">
                     <div className="flex items-center mb-6">
                       <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mr-6">
                         <course.icon className="w-8 h-8 text-primary" />
@@ -221,7 +221,7 @@ export default function ShortCoursesPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
                 {targetAudience.map((audience, index) => (
-                  <div key={index} className="bg-card border border-border rounded-2xl p-6 shadow-card hover:shadow-blue transition-all duration-300 text-center">
+                  <div key={index} className="bg-card border border-border p-6 shadow-card hover:shadow-blue transition-all duration-300 text-center">
                     <div className="w-12 h-12 bg-golden/20 rounded-xl flex items-center justify-center mx-auto mb-4">
                       <audience.icon className="w-6 h-6 text-golden" />
                     </div>

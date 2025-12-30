@@ -319,7 +319,7 @@ export default function NewsUpdatesPage() {
         <section className="py-24 bg-gradient-to-br from-card/30 to-background">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
-              <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl p-8 md:p-12 border border-primary/20">
+              <div className="bg-gradient-to-r from-primary/10 to-primary/5 p-8 md:p-12 border border-primary/20">
                 <h2 className="text-2xl md:text-3xl font-playfair font-semibold text-gradient-blue mb-6 text-center">
                   More News Coming Soon
                 </h2>
@@ -375,7 +375,7 @@ export default function NewsUpdatesPage() {
                 technology and human rights in Africa.
               </p>
               
-              <div className="bg-card border border-border rounded-2xl p-8 shadow-card">
+              <div className="bg-card border border-border p-8 shadow-card">
                 <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-4">
                   <input
                     type="email"

@@ -96,53 +96,60 @@ export default function ConsultancyPage() {
 
 			<main className="pt-20">
 				{/* Hero Section */}
-				<section className="py-24 bg-gradient-to-br from-primary/10 to-primary/5">
+				<section className="py-24 bg-background">
 					<div className="container mx-auto px-6">
 						<div className="max-w-4xl mx-auto text-center">
-							<div className="w-20 h-20 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center mx-auto mb-6">
-								<Briefcase className="w-10 h-10 text-background" />
+							<div className="w-20 h-20 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-8">
+								<Briefcase className="w-10 h-10 text-primary" />
 							</div>
-							<h1 className="heading-section text-gradient-blue mb-8">
+							<h1 className="heading-section text-primary mb-8">
 								Consultancy Services
 							</h1>
+							<p className="text-body text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+								Expert consultancy services designed to support innovation and growth across Africa,
+								delivering comprehensive solutions for technology, legal, and business development needs.
+							</p>
 						</div>
 					</div>
 				</section>
 
 				{/* Services Grid */}
 				<section className="py-24">
-					<div className="container mx-auto px-6">
-						<div className="max-w-6xl mx-auto">
+					<div className="container mx-auto px-4">
+						<div className="max-w-full mx-auto">
 							<div className="text-center mb-16">
-								<p className="text-body text-muted-foreground max-w-3xl mx-auto">
+								<h2 className="heading-section text-primary mb-6">
+									Our Expertise Areas
+								</h2>
+								<p className="text-body text-muted-foreground max-w-3xl mx-auto leading-relaxed">
 									Comprehensive expertise across all aspects of technology,
-									innovation, and business development
+									innovation, and business development in Africa
 								</p>
 							</div>
 
-							<div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+							<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 								{consultancyServices.map((service, index) => (
 									<div
 										key={index}
-										className="bg-gradient-to-br from-white to-slate-50/50 border border-slate-200/50 rounded-3xl p-10 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.02]"
+										className="bg-card border border-border/50 rounded-none p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:border-primary/20"
 									>
-										<div className="flex items-start mb-8">
-											<div className="w-18 h-18 bg-gradient-to-br from-primary/20 to-primary/10 rounded-3xl flex items-center justify-center mr-8 flex-shrink-0 shadow-lg">
-												<service.icon className="w-9 h-9 text-primary" />
+										<div className="flex items-start mb-6">
+											<div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mr-6 flex-shrink-0">
+												<service.icon className="w-8 h-8 text-primary" />
 											</div>
-											<div>
-												<h3 className="text-2xl font-playfair font-semibold text-gradient-blue mb-4">
+											<div className="flex-1">
+												<h3 className="text-xl font-playfair font-bold text-foreground mb-3">
 													{service.title}
 												</h3>
-												<p className="text-body text-slate-600 leading-relaxed mb-6 text-lg">
+												<p className="text-muted-foreground leading-relaxed mb-6">
 													{service.description}
 												</p>
 											</div>
 										</div>
 
-										<div className="ml-26">
+										<div>
 											<button
-												className="mb-6 px-6 py-3 rounded-full bg-golden text-golden-foreground text-lg font-semibold shadow-xl hover:bg-golden-dark hover:scale-105 transition-all duration-300"
+												className="mb-4 px-6 py-2 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors duration-200"
 												onClick={() => handleToggle(index)}
 											>
 												{openDetails[index]
@@ -151,18 +158,18 @@ export default function ConsultancyPage() {
 											</button>
 											{openDetails[index] && (
 												<>
-													<h4 className="font-semibold text-slate-800 mb-4 text-xl">
+													<h4 className="font-semibold text-foreground mb-4">
 														Key Features:
 													</h4>
-													<ul className="space-y-3">
+													<ul className="space-y-2">
 														{service.features.map(
 															(feature, featureIndex) => (
 																<li
 																	key={featureIndex}
-																	className="flex items-start space-x-4"
+																	className="flex items-start space-x-3"
 																>
-																	<div className="w-2 h-2 bg-primary rounded-full mt-3 flex-shrink-0"></div>
-																	<span className="text-lg text-slate-700 leading-relaxed">
+																	<div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+																	<span className="text-muted-foreground leading-relaxed">
 																		{feature}
 																	</span>
 																</li>
@@ -180,22 +187,22 @@ export default function ConsultancyPage() {
 				</section>
 
 				{/* CTA Section */}
-				<section className="py-24 bg-gradient-to-r from-primary/10 to-primary/5">
+				<section className="py-24 bg-secondary/30">
 					<div className="container mx-auto px-6">
 						<div className="max-w-4xl mx-auto text-center">
-							<h2 className="heading-section text-gradient-blue mb-6">
+							<h2 className="heading-section text-primary mb-6">
 								Ready to Get Started?
 							</h2>
-							<p className="text-body text-muted-foreground mb-8 leading-relaxed">
+							<p className="text-body text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto">
 								Contact us today to discuss how our consultancy services can
 								support your organization's growth and innovation objectives
 								across Africa.
 							</p>
-							<div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+							<div className="flex flex-col sm:flex-row items-center justify-center gap-4">
 								<Button variant="golden" size="lg">
 									Start Consultation
 								</Button>
-								<Button variant="hero" size="lg">
+								<Button variant="outline" size="lg" className="border-primary/20 hover:bg-primary/5">
 									Learn More
 								</Button>
 							</div>
