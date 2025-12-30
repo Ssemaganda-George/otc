@@ -32,51 +32,55 @@ npm run build
 - **TypeScript**: Type-safe JavaScript
 - **React**: UI library
 - **shadcn-ui**: Component library
+## Technologies Used
+- **Vite**: Fast build tool
+- **TypeScript**: Type-safe JavaScript
+- **React**: UI library
+- **shadcn-ui**: Component library
 - **Tailwind CSS**: Utility-first CSS
-- **Strapi**: Headless CMS
-- **Supabase**: Database and backend services
+- **Supabase**: Database, Auth, and API backend
 
-## Deployment to Render
+## Deployment to Render (Static Site)
 
 ### Prerequisites
 - Render account
-- Supabase project (for database)
-- GitHub repository
+- Supabase project (for database and backend services)
 
 ### Deploy Steps
 
-1. **Connect Repository**
+1. **Set up Supabase**
+   - Create project at https://supabase.com
+   - Run the SQL scripts from `supabase-tables.sql` in Supabase SQL Editor
+   - Insert sample data using scripts in `/scripts` folder
+   - Get project URL and anon key from Settings > API
+
+2. **Connect Repository**
    - Go to [Render Dashboard](https://dashboard.render.com)
-   - Click "New" → "Blueprint"
+   - Click "New" → "Static Site"
    - Connect your GitHub repository: `https://github.com/Ssemaganda-George/otc`
 
-2. **Environment Variables**
-   Set these in your Render dashboard:
+3. **Configure Build Settings**
+   - **Build Command**: `npm run build`
+   - **Publish Directory**: `dist`
+   - **Node Version**: 18 or higher
 
-   **Frontend (otc-frontend):**
+4. **Environment Variables**
+   Set these in your Render dashboard:
    ```
+   NODE_ENV=production
    VITE_SUPABASE_URL=your_supabase_project_url
    VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
    ```
 
-   **Backend (otc-cms):**
-   ```
-   DATABASE_URL=your_postgresql_connection_string
-   ```
+5. **Deploy**
+   - Click "Create Static Site"
+   - Render will automatically build and deploy your site
+   - Your site will be available at a `.onrender.com` URL
 
-3. **Deploy**
-   - Render will automatically detect the `render.yaml` file
-   - Deploy all services (frontend, backend, database)
-   - The frontend will be available at a `.onrender.com` URL
-   - The CMS will be available at `your-app.onrender.com:1337/admin`
-
-### Manual Deployment (Alternative)
-
-If you prefer separate deployments:
-
-1. **Frontend**: Deploy as Static Site
-2. **Backend**: Deploy as Web Service
-3. **Database**: Use Render PostgreSQL or external database
+### Architecture
+- **Frontend**: React + TypeScript (Static Site)
+- **Backend**: Supabase (Database + Auth + API)
+- **Deployment**: Render Static Site hosting
 
 ## Deployment
 Use Lovable's publish feature or deploy to Vercel/Netlify.
