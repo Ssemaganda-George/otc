@@ -4,7 +4,7 @@ services:
     name: otc-frontend
     runtime: static
     buildCommand: bun install && bun run build
-    staticPublishPath: ./dist
+    staticPublishPath: dist
     envVars:
       - key: NODE_ENV
         value: production
