@@ -4,7 +4,7 @@ services:
     name: otc-frontend
     runtime: node
     buildCommand: bun install && bun run build
-    startCommand: node server.js
+    startCommand: node server.cjs
     envVars:
       - key: NODE_ENV
         value: production
