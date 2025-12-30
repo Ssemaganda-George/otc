@@ -37,9 +37,10 @@ Render will automatically detect the `render.yaml` configuration:
 - [ ] Build Command: `npm run build`
 - [ ] Start Command: `npm run start`
 
-**Database (otc-database):**
-- [ ] Service type: PostgreSQL
-- [ ] Will be created automatically
+**Database Setup (Separate):**
+- [ ] Go to Render Dashboard → New → PostgreSQL
+- [ ] Create database named `otc-database`
+- [ ] Copy the connection string for use in backend environment variables
 
 ### 3. Environment Variables
 
@@ -53,6 +54,7 @@ Render will automatically detect the `render.yaml` configuration:
 - [ ] `HOST`: `0.0.0.0`
 - [ ] `PORT`: `1337`
 - [ ] `DATABASE_URL`: PostgreSQL connection string (from Render database)
+- [ ] `FRONTEND_URL`: Frontend URL (e.g., `https://otc-frontend.onrender.com`)
 - [ ] Other Strapi keys will be auto-generated
 
 ### 4. Deploy
@@ -84,7 +86,8 @@ Render will automatically detect the `render.yaml` configuration:
 - Build failures: Check build logs in Render dashboard
 - Environment variables: Ensure all required vars are set
 - Database connection: Verify DATABASE_URL format
-- CORS issues: Configure allowed origins in Strapi
+- CORS issues: FRONTEND_URL should match your deployed frontend URL
+- Strapi admin build: Configuration files are now properly set up
 
 ### Useful Commands:
 ```bash
