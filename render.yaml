@@ -1,0 +1,51 @@
+services:
+  # Frontend React Application
+  - type: web
+    name: otc-frontend
+    runtime: node
+    buildCommand: npm run build
+    startCommand: npm run preview
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: VITE_SUPABASE_URL
+        sync: false
+      - key: VITE_SUPABASE_ANON_KEY
+        sync: false
+
+  # Backend Strapi CMS
+  - type: web
+    name: otc-cms
+    runtime: node
+    rootDir: sak-otc-cms
+    buildCommand: npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: HOST
+        value: 0.0.0.0
+      - key: PORT
+        value: 1337
+      - key: APP_KEYS
+        generateValue: true
+      - key: API_TOKEN_SALT
+        generateValue: true
+      - key: ADMIN_JWT_SECRET
+        generateValue: true
+      - key: TRANSFER_TOKEN_SALT
+        generateValue: true
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ENCRYPTION_KEY
+        generateValue: true
+      - key: DATABASE_CLIENT
+        value: postgres
+      - key: DATABASE_URL
+        sync: false
+
+  # PostgreSQL Database
+  - type: pserv
+    name: otc-database
+    runtime: postgres
+    ipAllowList: [] # Only accessible by other services in this project
