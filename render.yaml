@@ -3,7 +3,7 @@ services:
   - type: web
     name: otc-frontend
     runtime: node
-    buildCommand: bun install && bun run build
+    buildCommand: npm install && npm run build
     startCommand: node server.cjs
     envVars:
       - key: NODE_ENV
