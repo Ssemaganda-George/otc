@@ -330,7 +330,9 @@ CREATE POLICY "Allow authenticated users to manage resources" ON resources FOR A
 CREATE POLICY "Allow authenticated users to manage contact_info" ON contact_info FOR ALL USING (auth.role() = 'authenticated');
 CREATE POLICY "Allow authenticated users to manage footer" ON footer FOR ALL USING (auth.role() = 'authenticated');
 CREATE POLICY "Allow authenticated users to manage home_sections" ON home_sections FOR ALL USING (auth.role() = 'authenticated');
+CREATE POLICY "Allow public to read home_sections" ON home_sections FOR SELECT USING (is_active = true);
 CREATE POLICY "Allow authenticated users to manage core_values" ON core_values FOR ALL USING (auth.role() = 'authenticated');
+CREATE POLICY "Allow public to read core_values" ON core_values FOR SELECT USING (is_active = true);
 CREATE POLICY "Allow authenticated users to manage news_updates" ON news_updates FOR ALL USING (auth.role() = 'authenticated');
 CREATE POLICY "Allow authenticated users to manage research_publications" ON research_publications FOR ALL USING (auth.role() = 'authenticated');
 CREATE POLICY "Allow authenticated users to manage what_we_do_focus_areas" ON what_we_do_focus_areas FOR ALL USING (auth.role() = 'authenticated');

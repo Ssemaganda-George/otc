@@ -174,14 +174,14 @@ const Index = () => {
             <h3 className="text-2xl font-bold text-foreground mb-8">What We Do</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {corePillars.map((pillar) => (
-                <div key={pillar.id} className="bg-golden text-golden-foreground p-6 shadow-lg border border-golden/20 hover:shadow-golden/30 transition-all duration-300">
+                <div key={pillar.id} className="bg-foreground text-white p-6 shadow-lg border border-gray-800 hover:shadow-card transition-all duration-300">
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-primary flex items-center justify-center text-white font-bold">
                       {pillar.letter}
                     </div>
                     <div>
                       <h4 className="text-lg font-bold">{pillar.title}</h4>
-                      <p className="text-sm text-golden-foreground/90 mt-2">{pillar.description}</p>
+                      <p className="text-sm text-white/90 mt-2">{pillar.description}</p>
                     </div>
                   </div>
                 </div>
