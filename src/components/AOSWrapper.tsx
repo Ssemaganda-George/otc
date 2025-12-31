@@ -13,7 +13,7 @@ const AOSWrapper: React.FC<AOSWrapperProps> = ({
   children,
   animation = 'fade-up',
   delay = 0,
-  duration = 800,
+  duration = 1200,
   className
 }) => {
   return (

@@ -6,7 +6,7 @@ import 'aos/dist/aos.css'
 
 // Initialize AOS
 AOS.init({
-  duration: 800,
+  duration: 1200,
   easing: 'ease-out-cubic',
   once: true,
   offset: 50,
