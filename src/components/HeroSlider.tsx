@@ -177,7 +177,7 @@ const HeroSlider = () => {
   const currentSlide = slides[selectedIndex];
 
   return (
-    <section className="relative h-[80vh] flex items-center overflow-hidden">
+    <section className="relative h-[60vh] md:h-[80vh] flex items-center overflow-hidden">
       {/* Progress Bar */}
       <div className="absolute top-0 left-0 right-0 z-30 h-1 bg-white/20">
         <div
@@ -190,7 +190,7 @@ const HeroSlider = () => {
       </div>
 
       {/* Embla Carousel */}
-      <div className="embla h-[85vh] overflow-hidden w-full" ref={emblaRef}>
+      <div className="embla h-[65vh] md:h-[85vh] overflow-hidden w-full" ref={emblaRef}>
         <div className="embla__container flex h-full">
           {slides.map((slide) => (
             <div key={slide.id} className="embla__slide relative min-w-full h-full flex">
@@ -256,12 +256,12 @@ const HeroSlider = () => {
       </div>
 
       {/* Navigation */}
-      <div className="absolute bottom-8 right-8 z-20 flex items-center gap-4">
+      <div className="absolute bottom-4 right-4 md:bottom-8 md:right-8 z-20 flex items-center gap-4">
         <button
           onClick={scrollPrev}
-          className="w-12 h-12 rounded-full bg-card/80 backdrop-blur-sm border border-border flex items-center justify-center text-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
+          className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-card/80 backdrop-blur-sm border border-border flex items-center justify-center text-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
         >
-          <ChevronLeft className="w-6 h-6" />
+          <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
         </button>
         <div className="flex gap-2">
           {scrollSnaps.map((_, index) => (
@@ -277,9 +277,9 @@ const HeroSlider = () => {
         </div>
         <button
           onClick={scrollNext}
-          className="w-12 h-12 rounded-full bg-card/80 backdrop-blur-sm border border-border flex items-center justify-center text-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
+          className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-card/80 backdrop-blur-sm border border-border flex items-center justify-center text-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
         >
-          <ChevronRight className="w-6 h-6" />
+          <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
         </button>
       </div>
     </section>
