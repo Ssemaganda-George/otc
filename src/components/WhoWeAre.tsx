@@ -2,55 +2,55 @@ import { Target, Eye, Heart, Users, Briefcase, Lightbulb, Globe } from "lucide-r
 
 export function WhoWeAre() {
   return (
-    <section id="who-we-are" className="py-24 bg-secondary/40" aria-labelledby="who-we-are-title">
+    <section id="who-we-are" className="py-32 bg-secondary/40" aria-labelledby="who-we-are-title">
       <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 id="who-we-are-title" className="heading-section text-gradient-blue mb-6">
+          <div className="text-center mb-20">
+            <h2 id="who-we-are-title" className="text-5xl md:text-6xl lg:text-7xl font-bold font-poppins text-gradient-blue mb-8 leading-tight">
               Who We Are
             </h2>
-            <p className="text-body text-muted-foreground max-w-3xl mx-auto text-justify sm:text-center">
-              OneTechConnect (OTC) is a Youth-led African Organization that ensures digital transformation 
-              in health, sexual reproductive health, finance, agriculture and Development is advanced while 
-              ensuring respect to fundamental human rights and social justice for every individual and 
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto text-justify sm:text-center leading-relaxed font-inter">
+              OneTechConnect (OTC) is a Youth-led African Organization that ensures digital transformation
+              in health, sexual reproductive health, finance, agriculture and Development is advanced while
+              ensuring respect to fundamental human rights and social justice for every individual and
               communities in Africa.
             </p>
           </div>
 
           {/* Mission, Vision Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
             {/* Mission */}
-            <div className="bg-card border border-border rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-300 card-hover">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mr-4">
-                  <Target className="w-6 h-6 text-primary" aria-hidden="true" />
+            <div className="bg-card border border-border p-12 shadow-card hover:shadow-blue transition-all duration-300 card-hover">
+              <div className="flex items-center mb-8">
+                <div className="w-16 h-16 bg-primary/10 flex items-center justify-center mr-6">
+                  <Target className="w-8 h-8 text-primary" aria-hidden="true" />
                 </div>
-                <h3 className="heading-card text-gradient-blue">Our Mission</h3>
+                <h3 className="text-3xl md:text-4xl font-bold font-poppins text-gradient-blue">Our Mission</h3>
               </div>
-              <p className="text-body text-muted-foreground leading-relaxed">
+              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-inter">
                 To drive inclusive digital transformation in health, sexual and reproductive health, finance, agriculture, and development across Africa while safeguarding fundamental human rights and advancing social justice through research, training, advocacy, and innovation.
               </p>
             </div>
 
             {/* Vision */}
-            <div className="bg-card border border-border rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-300 card-hover">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mr-4">
-                  <Eye className="w-6 h-6 text-primary" aria-hidden="true" />
+            <div className="bg-card border border-border p-12 shadow-card hover:shadow-blue transition-all duration-300 card-hover">
+              <div className="flex items-center mb-8">
+                <div className="w-16 h-16 bg-primary/10 flex items-center justify-center mr-6">
+                  <Eye className="w-8 h-8 text-primary" aria-hidden="true" />
                 </div>
-                <h3 className="heading-card text-gradient-blue">Our Vision</h3>
+                <h3 className="text-3xl md:text-4xl font-bold font-poppins text-gradient-blue">Our Vision</h3>
               </div>
-              <p className="text-body text-muted-foreground leading-relaxed">
+              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-inter">
                 An Africa where innovation and digital transformation advance human rights and leave no one behind.
               </p>
             </div>
           </div>
 
           {/* About Description */}
-          <div className="text-center max-w-4xl mx-auto">
-            <h3 className="heading-card text-gradient-blue mb-8">Our Story</h3>
-            <div className="space-y-6 text-body text-muted-foreground leading-relaxed text-justify sm:text-left">
+          <div className="text-center max-w-5xl mx-auto mb-24">
+            <h3 className="text-4xl md:text-5xl font-bold font-poppins text-gradient-blue mb-12">Our Story</h3>
+            <div className="space-y-8 text-lg md:text-xl text-muted-foreground leading-relaxed font-inter text-justify sm:text-left">
               <p>
                 OneTechConnect (OTC) is a youth-led African centre advancing digital justice on the continent. We believe technology should empower communities, protect rights and promote equity, not deepen inequality.
 
@@ -68,15 +68,15 @@ export function WhoWeAre() {
           </div>
 
           {/* Strategic Pillars */}
-          <div className="mt-20">
-            <div className="text-center mb-12">
-              <h3 className="heading-card text-gradient-blue mb-4">Our Strategic Pillars</h3>
-              <p className="text-body text-muted-foreground max-w-2xl mx-auto">
+          <div className="mt-24">
+            <div className="text-center mb-16">
+              <h3 className="text-4xl md:text-5xl font-bold font-poppins text-gradient-blue mb-6">Our Strategic Pillars</h3>
+              <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto font-inter">
                 We deliver our work through four strategic pillars that drive inclusive digital transformation.
               </p>
             </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
                 {
                   icon: Briefcase,
@@ -99,16 +99,27 @@ export function WhoWeAre() {
                   description: "Creating solutions that harness technology for inclusive development"
                 }
               ].map((pillar, index) => (
-                <div key={index} className="text-center group">
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <pillar.icon className="w-8 h-8 text-primary" />
+                <div key={index} className="group">
+                  <div className={`bg-white border-2 ${(index === 1 || index === 2) ? 'border-golden hover:border-golden/80' : 'border-primary hover:border-primary/80'} p-8 shadow-lg hover:shadow-xl transition-all duration-300 h-full`}>
+                    
+                    {/* Icon */}
+                    <div className={`w-20 h-20 ${(index === 1 || index === 2) ? 'bg-golden/10' : 'bg-primary/10'} flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                      <pillar.icon className={`w-10 h-10 ${(index === 1 || index === 2) ? 'text-golden' : 'text-primary'}`} />
+                    </div>
+                    
+                    {/* Title */}
+                    <h4 className="text-xl md:text-2xl font-bold font-poppins text-center mb-4 text-foreground">
+                      {pillar.title}
+                    </h4>
+                    
+                    {/* Description */}
+                    <p className="text-base md:text-lg text-muted-foreground leading-relaxed font-inter text-center">
+                      {pillar.description}
+                    </p>
+                    
+                    {/* Bottom accent */}
+                    <div className={`w-full h-1 ${(index === 1 || index === 2) ? 'bg-golden' : 'bg-primary'} mt-6 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500`}></div>
                   </div>
-                  <h4 className="text-xl font-playfair font-semibold text-gradient-blue mb-2">
-                    {pillar.title}
-                  </h4>
-                  <p className="text-base text-muted-foreground leading-relaxed">
-                    {pillar.description}
-                  </p>
                 </div>
               ))}
             </div>

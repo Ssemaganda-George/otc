@@ -104,7 +104,7 @@ export default function ManageNewsUpdates() {
     const filePath = `${folder}/${fileName}`;
 
     const { error: uploadError } = await supabase.storage
-      .from('images')
+      .from('news-updates')
       .upload(filePath, file);
 
     if (uploadError) {
@@ -112,7 +112,7 @@ export default function ManageNewsUpdates() {
     }
 
     const { data } = supabase.storage
-      .from('images')
+      .from('news-updates')
       .getPublicUrl(filePath);
 
     return data.publicUrl;

@@ -92,7 +92,7 @@ export default function ManageBlogs() {
     const filePath = `blogs/${fileName}`;
 
     const { error: uploadError } = await supabase.storage
-      .from('images')
+      .from('blogs')
       .upload(filePath, file);
 
     if (uploadError) {
@@ -100,7 +100,7 @@ export default function ManageBlogs() {
     }
 
     const { data } = supabase.storage
-      .from('images')
+      .from('blogs')
       .getPublicUrl(filePath);
 
     return data.publicUrl;
@@ -205,56 +205,68 @@ export default function ManageBlogs() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background p-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center">Loading blogs...</div>
+      <div className="min-h-screen bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="flex items-center justify-center min-h-[400px]">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+              <p className="text-gray-600">Loading blog posts...</p>
+            </div>
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background p-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-center mb-8">
-          <div>
-            <h1 className="text-3xl font-bold text-foreground">Blog Posts</h1>
-            <p className="text-muted-foreground">Add, edit, and manage blog posts</p>
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Header Section */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">Blog Posts</h1>
+              <p className="text-gray-600 mt-1">Manage and organize your blog content</p>
+            </div>
+            <Button
+              onClick={() => setEditingId('new')}
+              className="flex items-center gap-2 bg-primary hover:bg-primary/90 transition-all duration-200"
+            >
+              <Plus className="w-4 h-4" />
+              Add Blog Post
+            </Button>
           </div>
-          <Button
-            onClick={() => setEditingId('new')}
-            className="flex items-center gap-2"
-          >
-            <Plus className="w-4 h-4" />
-            Add Blog Post
-          </Button>
         </div>
 
-        {/* Form */}
+        {/* Form Section */}
         {(editingId === 'new' || editingId) && (
-          <Card className="mb-8">
-            <CardHeader>
-              <CardTitle>{editingId === 'new' ? 'Add New Blog Post' : 'Edit Blog Post'}</CardTitle>
-              <CardDescription>
-                Fill in the details for the blog post
+          <Card className="mb-8 border-0 shadow-sm">
+            <CardHeader className="bg-gray-50 border-b border-gray-200">
+              <CardTitle className="text-xl text-gray-900">
+                {editingId === 'new' ? 'Add New Blog Post' : 'Edit Blog Post'}
+              </CardTitle>
+              <CardDescription className="text-gray-600">
+                {editingId === 'new' ? 'Create a new blog post with all necessary details' : 'Update the blog post information'}
               </CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="p-6">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label htmlFor="title">Title *</Label>
+                    <Label htmlFor="title" className="text-sm font-medium text-gray-700">Title *</Label>
                     <Input
                       id="title"
                       name="title"
                       value={formData.title}
                       onChange={handleInputChange}
                       required
+                      className="border-gray-300 focus:border-primary focus:ring-primary"
+                      placeholder="Enter blog post title"
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="slug">Slug *</Label>
+                    <Label htmlFor="slug" className="text-sm font-medium text-gray-700">Slug *</Label>
                     <Input
                       id="slug"
                       name="slug"
@@ -375,13 +387,21 @@ export default function ManageBlogs() {
                   )}
                 </div>
 
-                <div className="flex gap-4">
-                  <Button type="submit" className="flex items-center gap-2">
+                <div className="flex gap-4 pt-6 border-t border-gray-200">
+                  <Button
+                    type="submit"
+                    className="flex items-center gap-2 bg-primary hover:bg-primary/90 transition-all duration-200"
+                  >
                     <Save className="w-4 h-4" />
                     {editingId === 'new' ? 'Create Blog Post' : 'Update Blog Post'}
                   </Button>
-                  <Button type="button" variant="outline" onClick={resetForm}>
-                    <X className="w-4 h-4 mr-2" />
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={resetForm}
+                    className="flex items-center gap-2 border-gray-300 hover:bg-gray-50 transition-all duration-200"
+                  >
+                    <X className="w-4 h-4" />
                     Cancel
                   </Button>
                 </div>
@@ -391,59 +411,66 @@ export default function ManageBlogs() {
         )}
 
         {/* Blogs List */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {blogs.map((blog) => (
-            <Card key={blog.id} className="hover:shadow-lg transition-shadow">
-              <CardHeader className="text-center">
-                <div className="w-20 h-20 bg-primary rounded-lg mx-auto mb-4 flex items-center justify-center">
-                  {blog.featured_image ? (
-                    <img
-                      src={blog.featured_image}
-                      alt={blog.title}
-                      className="w-full h-full rounded-lg object-cover"
-                    />
-                  ) : (
-                    <span className="text-white text-2xl">📝</span>
-                  )}
-                </div>
-                <CardTitle className="text-lg">{blog.title}</CardTitle>
-                <CardDescription>{blog.category} • {blog.author}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
-                  {blog.excerpt}
-                </p>
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <h2 className="text-xl font-semibold text-gray-900 mb-6">All Blog Posts</h2>
+          {blogs.length === 0 ? (
+            <div className="text-center py-12">
+              <div className="text-6xl mb-4">📝</div>
+              <h3 className="text-lg font-medium text-gray-900 mb-2">No blog posts yet</h3>
+              <p className="text-gray-600">Get started by creating your first blog post</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {blogs.map((blog) => (
+                <Card key={blog.id} className="border border-gray-200 hover:shadow-md hover:border-primary/20 transition-all duration-200">
+                  <CardHeader className="pb-3">
+                    <div className="w-full h-32 bg-gray-100 rounded-lg mb-3 flex items-center justify-center overflow-hidden">
+                      {blog.featured_image ? (
+                        <img
+                          src={blog.featured_image}
+                          alt={blog.title}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="text-4xl">📝</div>
+                      )}
+                    </div>
+                    <CardTitle className="text-lg text-gray-900 line-clamp-2">{blog.title}</CardTitle>
+                    <CardDescription className="text-gray-600">
+                      {blog.category} • {blog.author} • {blog.read_time} min read
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+                      {blog.excerpt}
+                    </p>
 
-                <div className="flex gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => handleEdit(blog)}
-                    className="flex-1"
-                  >
-                    <Edit className="w-3 h-3 mr-1" />
-                    Edit
-                  </Button>
-                  <Button
-                    variant="destructive"
-                    size="sm"
-                    onClick={() => handleDelete(blog.id)}
-                    className="flex-1"
-                  >
-                    <Trash2 className="w-3 h-3 mr-1" />
-                    Delete
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+                    <div className="flex gap-2">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => handleEdit(blog)}
+                        className="flex-1 border-gray-300 hover:bg-gray-50 transition-all duration-200"
+                      >
+                        <Edit className="w-3 h-3 mr-1" />
+                        Edit
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => handleDelete(blog.id)}
+                        className="flex-1 border-red-300 text-red-600 hover:bg-red-50 hover:border-red-400 transition-all duration-200"
+                      >
+                        <Trash2 className="w-3 h-3 mr-1" />
+                        Delete
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
         </div>
-
-        {blogs.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-muted-foreground">No blog posts found. Add your first blog post!</p>
-          </div>
-        )}
       </div>
     </div>
   );

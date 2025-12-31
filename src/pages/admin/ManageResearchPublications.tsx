@@ -99,7 +99,7 @@ export default function ManageResearchPublications() {
     const filePath = `${folder}/${fileName}`;
 
     const { error: uploadError } = await supabase.storage
-      .from('images')
+      .from('research-publications')
       .upload(filePath, file);
 
     if (uploadError) {
@@ -107,7 +107,7 @@ export default function ManageResearchPublications() {
     }
 
     const { data } = supabase.storage
-      .from('images')
+      .from('research-publications')
       .getPublicUrl(filePath);
 
     return data.publicUrl;

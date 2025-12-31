@@ -118,7 +118,7 @@ export default function ManageFooter() {
     const filePath = `logos/${fileName}`;
 
     const { error: uploadError } = await supabase.storage
-      .from('images')
+      .from('footer')
       .upload(filePath, file);
 
     if (uploadError) {
@@ -126,7 +126,7 @@ export default function ManageFooter() {
     }
 
     const { data } = supabase.storage
-      .from('images')
+      .from('footer')
       .getPublicUrl(filePath);
 
     return data.publicUrl;

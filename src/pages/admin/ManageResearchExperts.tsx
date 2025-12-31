@@ -25,6 +25,7 @@ interface ResearchExpert {
     twitter: string;
     researchgate: string;
   };
+  display_order: number;
   created_at: string;
 }
 
@@ -46,7 +47,8 @@ export default function ManageResearchExperts() {
     linkedin: "",
     email: "",
     twitter: "",
-    researchgate: ""
+    researchgate: "",
+    display_order: ""
   });
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
@@ -63,7 +65,7 @@ export default function ManageResearchExperts() {
       const { data, error } = await supabase
         .from('research_experts')
         .select('*')
-        .order('created_at', { ascending: false });
+        .order('display_order');
 
       if (error) {
         console.error('Error fetching research experts:', error);
@@ -100,7 +102,7 @@ export default function ManageResearchExperts() {
     const filePath = `research-experts/${fileName}`;
 
     const { error: uploadError } = await supabase.storage
-      .from('images')
+      .from('research-experts')
       .upload(filePath, file);
 
     if (uploadError) {
@@ -108,7 +110,7 @@ export default function ManageResearchExperts() {
     }
 
     const { data } = supabase.storage
-      .from('images')
+      .from('research-experts')
       .getPublicUrl(filePath);
 
     return data.publicUrl;
@@ -138,7 +140,8 @@ export default function ManageResearchExperts() {
           email: formData.email,
           twitter: formData.twitter,
           researchgate: formData.researchgate
-        }
+        },
+        display_order: parseInt(formData.display_order) || 0
       };
 
       if (editingId) {
@@ -178,7 +181,8 @@ export default function ManageResearchExperts() {
       linkedin: expert.social.linkedin,
       email: expert.social.email,
       twitter: expert.social.twitter,
-      researchgate: expert.social.researchgate
+      researchgate: expert.social.researchgate,
+      display_order: expert.display_order.toString()
     });
   };
 
@@ -214,7 +218,8 @@ export default function ManageResearchExperts() {
       linkedin: "",
       email: "",
       twitter: "",
-      researchgate: ""
+      researchgate: "",
+      display_order: ""
     });
     setSelectedFile(null);
   };
@@ -277,6 +282,20 @@ export default function ManageResearchExperts() {
                       value={formData.position}
                       onChange={handleInputChange}
                       required
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="display_order">Display Order *</Label>
+                    <Input
+                      id="display_order"
+                      name="display_order"
+                      type="number"
+                      value={formData.display_order}
+                      onChange={handleInputChange}
+                      required
+                      placeholder="Enter display order (1, 2, 3...)"
+                      min="1"
                     />
                   </div>
                 </div>
@@ -450,6 +469,11 @@ export default function ManageResearchExperts() {
                       {expert.name.split(' ').map(n => n[0]).join('').toUpperCase()}
                     </span>
                   )}
+                </div>
+                <div className="flex items-center justify-between mb-2">
+                  <div className="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded">
+                    Order: {expert.display_order}
+                  </div>
                 </div>
                 <CardTitle className="text-lg">{expert.name}</CardTitle>
                 <CardDescription>{expert.position}</CardDescription>

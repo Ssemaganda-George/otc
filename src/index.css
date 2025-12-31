@@ -372,6 +372,51 @@
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     @apply bg-primary/50;
   }
+
+  /* Heavy Scroll Behavior */
+  .scroll-smooth {
+    scroll-behavior: smooth;
+    scroll-padding: 1rem;
+  }
+
+  /* Enhanced scrollbar for heavy feel */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted));
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+    transition: all 0.3s ease;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary));
+    background-clip: content-box;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  /* Momentum scrolling for better feel */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Smooth transitions for scrollable areas */
+  .overflow-y-auto {
+    scroll-behavior: smooth;
+    overscroll-behavior: contain;
+  }
   
   /* Dark Section Utilities */
   .section-dark-navy {

@@ -1,165 +1,69 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { LinkedinIcon, MailIcon, TwitterIcon, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
+import { supabase } from "@/lib/supabase";
 
 interface TeamMember {
+  id: string;
   name: string;
-  pronouns?: string;
   position: string;
-  bio: string[];
+  bio: string;
   image: string;
-  expertise: string[];
-  education: string[];
-  experience: string[];
-  social: {
+  expertise?: string[];
+  education?: string[];
+  experience?: string[];
+  social?: {
     linkedin: string;
     email: string;
     twitter: string;
   };
+  display_order?: number;
 }
 
-const teamMembers: TeamMember[] = [
-	{
-		name: "Ssekamwa Frank",
-		pronouns: "(He/Him)",
-		position: "Executive Director",
-		bio: [
-			"Frank leads OTC as Chief Executive Director, bringing together expertise at the intersection of law, technology, and global health. He holds a Bachelor of Laws from Makerere University, a Postgraduate Diploma in Legal Practice from the Law Development Centre and a Master of Laws (LL.M.) specializing in Digital Health Rights in Low- and Middle-Income Countries.",
-			"In addition to his academic qualifications, Frank has undertaken professional training in administrative science, climate change, digital health, reproductive health, and project management. His career spans diverse roles with the High Court of Uganda, leading law firms and Afya na Haki Institute equipping him with a unique blend of experience in research, strategic litigation, capacity building, and project leadership.",
-			"Frank is a Tech Lawyer and Innovator passionate about advancing digital rights and justice in Africa. He is an active member of both the East African Law Society and the Uganda Law Society.",
-		],
-		image: "/images/Frank.jpg",
-		expertise: [
-			"Digital Health Rights",
-			"Tech Law",
-			"Strategic Litigation",
-			"Project Leadership",
-		],
-		education: ["Bachelor of Laws - Makerere University", "Postgraduate Diploma in Legal Practice - Law Development Centre", "Master of Laws (LL.M.) - Digital Health Rights"],
-		experience: ["High Court of Uganda", "Leading Law Firms", "Afya na Haki Institute"],
-		social: {
-			linkedin: "https://www.linkedin.com/in/ssekamwa-frank-451b6920b/",
-			email: "frank@onetechconnect.org",
-			twitter: "https://x.com/ssekamwafrank",
-		},
-	},
-	{
-		name: "Nakitende Sauda",
-		pronouns: "",
-		position: "Head of Research and Development (R&D)",
-		bio: [
-			"Sauda is the Head of Research and Development at OTC, driven by a passion for ensuring that technological transformation advances the well-being and rights of women, children, and underserved communities across Africa. Sauda holds a Bachelor of Laws (Hons) and a first-class Diploma in Legal Practice.",
-			"She is currently a master's candidate, where her research explores the criminalization of cyber laws and its impact on the right to freedom of expression in the digital era. With her expertise in research, teaching, project planning, management, monitoring, and reporting, Sauda is instrumental in leading our initiatives.",
-			"She is a registered member of both the East African Law Society and the Uganda Law Society.",
-		],
-		image: "/images/Sauda.jpg",
-		expertise: ["Research Management", "Program Development", "Cyber Law", "Women's Rights"],
-		education: ["Bachelor of Laws (Hons)", "Diploma in Legal Practice - Law Development Centre"],
-		experience: ["Researcher", "Health and Hygiene Inspector"],
-		social: {
-			linkedin: "#",
-			email: "sauda@onetechconnect.org",
-			twitter: "#",
-		},
-	},
-	{
-		name: "Kalivayo Blair",
-		pronouns: "(He/Him)",
-		position: "Director of Operations",
-		bio: [
-			"Blair is the founding Director of Operations, a distinguished corporate lawyer with a profound passion for the intersection of law and ICT. Blair holds a Bachelor of Laws from Makerere University and a Post-Graduate Diploma in Legal Practice, supplemented by several relevant professional training certifications.",
-			"His expertise is extensive, covering banking, corporate governance, insolvency practice, Mergers and Acquisitions (M&A), Intellectual Property (IP), Technology, Media, and Telecommunications (TMT). Over the years, Blair has been instrumental in the success of numerous start-ups across Uganda, East, and West Africa.",
-			"His career includes serving with some of Uganda's leading law firms, providing him with a wealth of practical experience. He is a respected member of both the Uganda Law Society and the East African Law Society.",
-		],
-		image: "/images/Blair.png",
-		expertise: ["Corporate Law", "M&A", "Intellectual Property", "TMT Law"],
-		education: ["Bachelor of Laws - Makerere University", "Post-Graduate Diploma in Legal Practice"],
-		experience: ["Corporate Lawyer", "Director of Operations"],
-		social: {
-			linkedin: "https://www.linkedin.com/in/blair-kalivayo-748007198/",
-			email: "blair@onetechconnect.org",
-			twitter: "https://x.com/blairekalivayo",
-		},
-	},
-	{
-		name: "Abomugisha Dorothy",
-		pronouns: "",
-		position: "Head Finance",
-		bio: [
-			"Dorothy leads OTC's financial operations, ensuring fiscal responsibility and strategic financial planning that supports our mission of advancing digital transformation across Africa.",
-			"Her expertise in financial management and accounting helps maintain transparency and accountability in all our operations.",
-		],
-		image: "/images/Dorothy.jpg",
-		expertise: [
-			"Financial Management",
-			"Strategic Planning",
-			"Accounting",
-			"Budget Management",
-		],
-		education: ["Bachelor's Degree in Commerce", "Master's Degree in Business Administration"],
-		experience: ["Finance Manager", "Accountant"],
-		social: {
-			linkedin: "#",
-			email: "dorothy@onetechconnect.org",
-			twitter: "#",
-		},
-	},
-	{
-		name: "Catherine Matama",
-		pronouns: "",
-		position: "Programme Officer, Research & Community Engagement",
-		bio: [
-			"Catherine is the Programme Officer for Research and Community Engagement at OTC. She supports the development and coordination of programmes that bridge research, innovation, and advocacy to ensure that digital transformation reflects the voices and needs of communities at the grassroots.",
-			"She holds a Bachelor's Degree in Environmental Health Science (Second Class Upper Division) from Makerere University and has professional experience in public research, environmental health and regulatory compliance.",
-			"Catherine has previously worked as a Researcher, Health and Hygiene Inspector contributing to the enforcement of health, safety and environmental standards for Uganda's first oil pipeline project. Catherine is passionate about inclusive research, innovation, environmental sustainability and ensuring that digital transformation benefits communities at the last mile.",
-		],
-		image: "/images/Catherine.jpg",
-		expertise: [
-			"Inclusive Research",
-			"Innovation",
-			"Environmental Sustainability",
-			"Digital Transformation",
-		],
-		education: ["Bachelor's Degree in Environmental Health Science - Makerere University"],
-		experience: ["Programme Officer", "Researcher", "Health and Hygiene Inspector"],
-		social: {
-			linkedin: "#",
-			email: "catherine@onetechconnect.org",
-			twitter: "#",
-		},
-	},
-
-	{
-		name: "Tracy Rita Achola",
-		pronouns: "",
-		position: "Head of Program",
-		bio: [
-			"Tracy is a lawyer and Advocate of the High Court of Uganda, holding a Bachelor of Laws from Makerere University and a Postgraduate Diploma in Legal Practice from the Law Development Centre. She also holds a Post Graduate Diploma in Project Management and is currently pursuing a Master of Business Administration (MBA).",
-			"Management and is currently pursuing a Master of Business Administration (MBA). Tracy has extensive experience in public health, sexual and reproductive health and rights (SRHR), strategic public interest litigation and program design and implementation. ",
-			"She is deeply committed to advancing digital justice leveraging the law, research, litigation, advocacy and management to promote an equitable and just society.",
-		],
-		image: "/images/Rita.jpg",
-		expertise: [
-			"Inclusive Research",
-			"Innovation",
-			"Environmental Sustainability",
-			"Digital Transformation",
-		],
-		education: ["Bachelor of Laws - Makerere University", "Postgraduate Diploma in Legal Practice - Law Development Centre", "Post Graduate Diploma in Project Management"],
-		experience: ["Lawyer", "Advocate of the High Court of Uganda", "Head of Program"],
-		social: {
-			linkedin: "https://www.linkedin.com/in/tracy-rita-achola-09aaa1140/ ",
-			email: "rita@onetechconnect.org",
-			twitter: "https://x.com/AcholaRita ",
-		},
-	},
-];
-
 export function Team() {
+	const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState<string | null>(null);
 	const [selectedMember, setSelectedMember] = useState<number | null>(null);
 	const [accordionOpen, setAccordionOpen] = useState<string | null>(null);
 	const [direction, setDirection] = useState<'next' | 'prev' | null>(null);
+
+	useEffect(() => {
+		const fetchTeamMembers = async () => {
+			try {
+				const { data, error } = await supabase
+					.from('team_members')
+					.select('*')
+					.order('display_order');
+
+				if (error) {
+					console.error('Error fetching team members:', error);
+					setError('Failed to load team members');
+					return;
+				}
+
+				// Transform the data to match the expected format
+				const transformedData = (data || []).map(member => ({
+					...member,
+					// Arrays are already arrays in the database, social is JSONB
+					expertise: Array.isArray(member.expertise) ? member.expertise : [],
+					education: Array.isArray(member.education) ? member.education : [],
+					experience: Array.isArray(member.experience) ? member.experience : [],
+					social: member.social || { linkedin: '', email: '', twitter: '' }
+				}));
+
+				setTeamMembers(transformedData);
+			} catch (err) {
+				console.error('Error fetching team members:', err);
+				setError('Failed to load team members');
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		fetchTeamMembers();
+	}, []);
 
 	const openModal = useCallback((index: number) => {
 		setSelectedMember(index);
@@ -181,7 +85,7 @@ export function Team() {
 		setDirection(navDirection);
 		setSelectedMember(newIndex);
 		setAccordionOpen(null);
-	}, [selectedMember]);
+	}, [selectedMember, teamMembers.length]);
 
 	const toggleAccordion = useCallback((section: string) => {
 		setAccordionOpen(accordionOpen === section ? null : section);
@@ -216,40 +120,51 @@ export function Team() {
 						</div>
 
 						{/* Team Grid */}
-						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-							{teamMembers.map((member, index) => (
-								<div
-									key={member.name}
-									className="group bg-card overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 card-hover opacity-0 translate-y-8 animate-fade-in border border-border/50 hover:border-primary/20"
-									style={{
-										animationDelay: `${index * 0.2}s`,
-										animationFillMode: "forwards",
-									}}
-									onClick={() => openModal(index)}
-								>
-									{/* Profile Image */}
-									<div className="relative h-96 overflow-hidden bg-gradient-to-br from-primary/5 to-primary/10">
-										<img
-											src={member.image}
-											alt={member.name}
-											loading="lazy"
-											className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
-										/>
-										{/* Subtle overlay for better text contrast */}
-										<div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-									</div>
+						{loading ? (
+							<div className="flex justify-center items-center py-12">
+								<div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+							</div>
+						) : error ? (
+							<div className="text-center py-12">
+								<p className="text-red-500 mb-4">{error}</p>
+								<Button onClick={() => window.location.reload()} variant="outline">
+									Try Again
+								</Button>
+							</div>
+						) : teamMembers.length === 0 ? (
+							<div className="text-center py-12">
+								<p className="text-muted-foreground">No team members found.</p>
+							</div>
+						) : (
+							<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+								{teamMembers.map((member, index) => (
+									<div
+										key={member.id || member.name}
+										className="group bg-card overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 card-hover opacity-0 translate-y-8 animate-fade-in border border-border/50 hover:border-primary/20"
+										style={{
+											animationDelay: `${index * 0.2}s`,
+											animationFillMode: "forwards",
+										}}
+										onClick={() => openModal(index)}
+									>
+										{/* Profile Image */}
+										<div className="relative h-96 overflow-hidden bg-gradient-to-br from-primary/5 to-primary/10">
+											<img
+												src={member.image}
+												alt={member.name}
+												loading="lazy"
+												className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
+											/>
+											{/* Subtle overlay for better text contrast */}
+											<div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+										</div>
 
-									{/* Content */}
-									<div className="p-6">
-										{/* Name and Position */}
-										<div className="mb-4">
-											<h3 className="text-xl font-playfair font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+										{/* Content */}
+										<div className="p-6">
+											{/* Name and Position */}
+											<div className="mb-4">
+												<h3 className="text-xl font-playfair font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
 												{member.name}
-												{member.pronouns && (
-													<span className="text-muted-foreground font-normal text-sm ml-2">
-														{member.pronouns}
-													</span>
-												)}
 											</h3>
 											<p className="text-primary font-semibold text-sm uppercase tracking-wide">
 												{member.position}
@@ -303,6 +218,7 @@ export function Team() {
 								</div>
 							))}
 						</div>
+						)}
 
 						{/* Call to Action */}
 						<div className="text-center mt-20">
@@ -331,7 +247,7 @@ export function Team() {
 
 			{/* Modal */}
 			<AnimatePresence>
-				{selectedMember !== null && (
+				{selectedMember !== null && selectedMember < teamMembers.length && (
 					<motion.div
 						key={selectedMember}
 						initial={direction === 'next' ? { x: "100%" } : direction === 'prev' ? { x: "-100%" } : { y: "100%" }}

@@ -10,7 +10,7 @@ const navItems = [
 		href: "/about",
 		dropdown: [
 			{ name: "Who We Are", href: "/about/who-we-are" },
-			{ name: "Vision/Mission/Objectives", href: "/about/vision-mission" },
+			{ name: "Vision/Mission/Core Values", href: "/about/vision-mission" },
 			{ name: "Our Philosophy", href: "/about/philosophy" },
 			{ name: "Our Team", href: "/about/team" },
 			{ name: "Research Experts", href: "/about/research-experts" },

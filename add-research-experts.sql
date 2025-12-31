@@ -1,0 +1,8 @@
+-- Insert research experts data
+INSERT INTO research_experts (name, position, bio, display_order, expertise, education, experience, publications) VALUES
+('Dr. Jane Doe', 'Digital Rights Researcher', 'Specializes in privacy law and digital rights advocacy with over 10 years of experience in African policy development.', 1, ARRAY[]::TEXT[], ARRAY[]::TEXT[], ARRAY[]::TEXT[], ARRAY[]::TEXT[]),
+('Prof. Michael Kim', 'AI Ethics Specialist', 'Leading researcher in artificial intelligence ethics, focusing on bias mitigation and responsible AI development in African contexts.', 2, ARRAY[]::TEXT[], ARRAY[]::TEXT[], ARRAY[]::TEXT[], ARRAY[]::TEXT[]),
+('Dr. Sarah Adebayo', 'Data Protection Expert', 'Expert in data protection regulations and privacy frameworks, with extensive experience in policy development and compliance.', 3, ARRAY[]::TEXT[], ARRAY[]::TEXT[], ARRAY[]::TEXT[], ARRAY[]::TEXT[]),
+('Dr. Thomas Okafor', 'Cybersecurity Researcher', 'Specializes in cybersecurity threats and digital infrastructure protection, with a focus on developing African cybersecurity frameworks.', 4, ARRAY[]::TEXT[], ARRAY[]::TEXT[], ARRAY[]::TEXT[], ARRAY[]::TEXT[]),
+('Dr. Linda Njoroge', 'Digital Inclusion Specialist', 'Researcher focused on digital inclusion and accessibility, working to ensure technology benefits all segments of society.', 5, ARRAY[]::TEXT[], ARRAY[]::TEXT[], ARRAY[]::TEXT[], ARRAY[]::TEXT[]),
+('Prof. Robert Mthembu', 'Policy & Governance Expert', 'Leading expert in technology policy and governance, advising governments on digital transformation strategies.', 6, ARRAY[]::TEXT[], ARRAY[]::TEXT[], ARRAY[]::TEXT[], ARRAY[]::TEXT[]);

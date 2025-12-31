@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo "To create the 'images' storage bucket in Supabase, follow these steps:"
+echo ""
+echo "1. Go to your Supabase Dashboard: https://supabase.com/dashboard"
+echo "2. Select your project (uokhrvetwffiyapivjjf)"
+echo "3. Go to Storage in the left sidebar"
+echo "4. Click 'Create bucket'"
+echo "5. Name it: images"
+echo "6. Make it public (check the box)"
+echo "7. Click 'Create bucket'"
+echo ""
+echo "Once created, you can upload team member images through the admin panel."
+echo ""
+echo "For now, you can still add team members without images by leaving the image field empty."

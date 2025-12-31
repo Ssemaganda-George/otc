@@ -95,34 +95,63 @@ export default function ManagePrograms() {
     });
   };
 
-  if (loading) return <div className="p-8">Loading...</div>;
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="flex items-center justify-center min-h-[400px]">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+              <p className="text-gray-600">Loading programs...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex items-center justify-between mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Programs</h1>
-          <Button onClick={() => setEditingId('new')} className="flex items-center space-x-2">
-            <Plus className="w-4 h-4" />
-            <span>Add Program</span>
-          </Button>
+        {/* Header Section */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">Programs</h1>
+              <p className="text-gray-600 mt-1">Manage and organize your program offerings</p>
+            </div>
+            <Button
+              onClick={() => setEditingId('new')}
+              className="flex items-center gap-2 bg-primary hover:bg-primary/90 transition-all duration-200"
+            >
+              <Plus className="w-4 h-4" />
+              Add Program
+            </Button>
+          </div>
         </div>
 
-        {/* Form */}
+        {/* Form Section */}
         {(editingId === 'new' || editingId) && (
-          <Card className="mb-8">
-            <CardHeader>
-              <CardTitle>{editingId === 'new' ? 'Add New Program' : 'Edit Program'}</CardTitle>
+          <Card className="mb-8 border-0 shadow-sm">
+            <CardHeader className="bg-gray-50 border-b border-gray-200">
+              <CardTitle className="text-xl text-gray-900">
+                {editingId === 'new' ? 'Add New Program' : 'Edit Program'}
+              </CardTitle>
+              <CardDescription className="text-gray-600">
+                {editingId === 'new' ? 'Create a new program with all necessary details' : 'Update the program information'}
+              </CardDescription>
             </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <Label htmlFor="title">Title</Label>
+            <CardContent className="p-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="space-y-2">
+                  <Label htmlFor="title" className="text-sm font-medium text-gray-700">Title *</Label>
                   <Input
                     id="title"
                     value={formData.title}
                     onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                     required
+                    className="border-gray-300 focus:border-primary focus:ring-primary"
+                    placeholder="Enter program title"
                   />
                 </div>
                 <div>

@@ -53,11 +53,11 @@ export default function ManageProducts() {
     const fileExt = file.name.split('.').pop();
     const fileName = `${Date.now()}.${fileExt}`;
     const { data, error } = await supabase.storage
-      .from('images')
+      .from('products')
       .upload(`products/${fileName}`, file);
     if (error) throw error;
     const { data: { publicUrl } } = supabase.storage
-      .from('images')
+      .from('products')
       .getPublicUrl(`products/${fileName}`);
     return publicUrl;
   };

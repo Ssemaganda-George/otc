@@ -53,6 +53,11 @@ CREATE TABLE IF NOT EXISTS team_members (
   position TEXT NOT NULL,
   bio TEXT,
   image TEXT,
+  expertise TEXT[],
+  education TEXT[],
+  experience TEXT[],
+  social JSONB,
+  display_order INTEGER DEFAULT 0,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
@@ -79,6 +84,7 @@ CREATE TABLE IF NOT EXISTS research_experts (
   experience TEXT[],
   publications TEXT[],
   social JSONB,
+  display_order INTEGER DEFAULT 0,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
@@ -186,6 +192,17 @@ CREATE TABLE IF NOT EXISTS home_sections (
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
+-- Core values table
+CREATE TABLE IF NOT EXISTS core_values (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  title TEXT NOT NULL,
+  description TEXT,
+  display_order INTEGER DEFAULT 0,
+  is_active BOOLEAN DEFAULT true,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
 -- News updates table
 CREATE TABLE IF NOT EXISTS news_updates (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
@@ -274,6 +291,7 @@ ALTER TABLE resources ENABLE ROW LEVEL SECURITY;
 ALTER TABLE contact_info ENABLE ROW LEVEL SECURITY;
 ALTER TABLE footer ENABLE ROW LEVEL SECURITY;
 ALTER TABLE home_sections ENABLE ROW LEVEL SECURITY;
+ALTER TABLE core_values ENABLE ROW LEVEL SECURITY;
 ALTER TABLE news_updates ENABLE ROW LEVEL SECURITY;
 ALTER TABLE research_publications ENABLE ROW LEVEL SECURITY;
 ALTER TABLE what_we_do_focus_areas ENABLE ROW LEVEL SECURITY;
@@ -312,6 +330,7 @@ CREATE POLICY "Allow authenticated users to manage resources" ON resources FOR A
 CREATE POLICY "Allow authenticated users to manage contact_info" ON contact_info FOR ALL USING (auth.role() = 'authenticated');
 CREATE POLICY "Allow authenticated users to manage footer" ON footer FOR ALL USING (auth.role() = 'authenticated');
 CREATE POLICY "Allow authenticated users to manage home_sections" ON home_sections FOR ALL USING (auth.role() = 'authenticated');
+CREATE POLICY "Allow authenticated users to manage core_values" ON core_values FOR ALL USING (auth.role() = 'authenticated');
 CREATE POLICY "Allow authenticated users to manage news_updates" ON news_updates FOR ALL USING (auth.role() = 'authenticated');
 CREATE POLICY "Allow authenticated users to manage research_publications" ON research_publications FOR ALL USING (auth.role() = 'authenticated');
 CREATE POLICY "Allow authenticated users to manage what_we_do_focus_areas" ON what_we_do_focus_areas FOR ALL USING (auth.role() = 'authenticated');

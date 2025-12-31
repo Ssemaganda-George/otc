@@ -92,7 +92,7 @@ export default function ManageResources() {
     const filePath = `${folder}/${fileName}`;
 
     const { error: uploadError } = await supabase.storage
-      .from('images')
+      .from('resources')
       .upload(filePath, file);
 
     if (uploadError) {
@@ -100,7 +100,7 @@ export default function ManageResources() {
     }
 
     const { data } = supabase.storage
-      .from('images')
+      .from('resources')
       .getPublicUrl(filePath);
 
     return data.publicUrl;

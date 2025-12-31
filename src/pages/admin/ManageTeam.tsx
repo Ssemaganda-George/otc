@@ -23,6 +23,7 @@ interface TeamMember {
     email: string;
     twitter: string;
   };
+  display_order: number;
 }
 
 export default function ManageTeam() {
@@ -41,7 +42,8 @@ export default function ManageTeam() {
     experience: "",
     linkedin: "",
     email: "",
-    twitter: ""
+    twitter: "",
+    display_order: ""
   });
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
@@ -54,9 +56,23 @@ export default function ManageTeam() {
   }, [user, navigate]);
 
   const fetchTeamMembers = async () => {
-    const { data, error } = await supabase.from('team_members').select('*').order('name');
-    if (error) console.error(error);
-    else setTeamMembers(data || []);
+    const { data, error } = await supabase.from('team_members').select('*').order('display_order');
+    if (error) {
+      console.error('Error fetching team members:', error);
+      setLoading(false);
+      return;
+    }
+
+    // Parse data from database (arrays are already arrays, social is JSONB)
+    const parsedData = (data || []).map(member => ({
+      ...member,
+      expertise: Array.isArray(member.expertise) ? member.expertise : [],
+      education: Array.isArray(member.education) ? member.education : [],
+      experience: Array.isArray(member.experience) ? member.experience : [],
+      social: member.social || { linkedin: '', email: '', twitter: '' }
+    }));
+
+    setTeamMembers(parsedData);
     setLoading(false);
   };
 
@@ -67,48 +83,92 @@ export default function ManageTeam() {
   };
 
   const uploadFile = async (file: File): Promise<string> => {
-    const fileExt = file.name.split('.').pop();
-    const fileName = `${Date.now()}.${fileExt}`;
-    const { data, error } = await supabase.storage
-      .from('images')
-      .upload(`team-members/${fileName}`, file);
-    if (error) throw error;
-    const { data: { publicUrl } } = supabase.storage
-      .from('images')
-      .getPublicUrl(`team-members/${fileName}`);
-    return publicUrl;
+    try {
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${Date.now()}.${fileExt}`;
+      const { data, error } = await supabase.storage
+        .from('team-members')
+        .upload(`${fileName}`, file);
+
+      if (error) {
+        console.error('Storage upload error:', error);
+        throw new Error(`Failed to upload image: ${error.message}`);
+      }
+
+      const { data: { publicUrl } } = supabase.storage
+        .from('team-members')
+        .getPublicUrl(`${fileName}`);
+      return publicUrl;
+    } catch (error) {
+      console.error('Image upload failed:', error);
+      throw error;
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    let imageUrl = formData.image;
-    if (selectedFile) {
-      imageUrl = await uploadFile(selectedFile);
-    }
-    const memberData = {
-      ...formData,
-      image: imageUrl,
-      expertise: formData.expertise.split(',').map(s => s.trim()),
-      education: formData.education.split(',').map(s => s.trim()),
-      experience: formData.experience.split(',').map(s => s.trim()),
-      social: {
-        linkedin: formData.linkedin,
-        email: formData.email,
-        twitter: formData.twitter
+    try {
+      let imageUrl = formData.image;
+
+      // Only attempt to upload if a file is selected
+      if (selectedFile) {
+        try {
+          imageUrl = await uploadFile(selectedFile);
+        } catch (uploadError) {
+          console.error('Image upload failed, proceeding without image:', uploadError);
+          alert('Warning: Image upload failed, but team member will be saved without an image. You can add the image URL manually or set up storage later.');
+          // Continue with the form submission but keep the original image URL or empty string
+          imageUrl = formData.image || '';
+        }
       }
-    };
-    if (editingId) {
-      await supabase.from('team_members').update(memberData).eq('id', editingId);
-    } else {
-      await supabase.from('team_members').insert([memberData]);
+
+      const memberData = {
+        name: formData.name,
+        position: formData.position,
+        bio: formData.bio,
+        image: imageUrl,
+        // Store arrays directly (not as JSON strings)
+        expertise: formData.expertise.split(',').map(s => s.trim()).filter(s => s.length > 0),
+        education: formData.education.split(',').map(s => s.trim()).filter(s => s.length > 0),
+        experience: formData.experience.split(',').map(s => s.trim()).filter(s => s.length > 0),
+        social: {
+          linkedin: formData.linkedin,
+          email: formData.email,
+          twitter: formData.twitter
+        },
+        display_order: parseInt(formData.display_order) || 0
+      };
+
+      console.log('Attempting to save team member:', memberData);
+
+      let result;
+      if (editingId && editingId !== 'new') {
+        result = await supabase.from('team_members').update(memberData).eq('id', editingId);
+      } else {
+        result = await supabase.from('team_members').insert([memberData]);
+      }
+
+      console.log('Save result:', result);
+
+      if (result.error) {
+        console.error('Database error:', result.error);
+        alert(`Error saving team member: ${result.error.message}`);
+        return;
+      }
+
+      // Reset form
+      setFormData({
+        name: "", position: "", bio: "", image: "", expertise: "", education: "", experience: "",
+        linkedin: "", email: "", twitter: "", display_order: ""
+      });
+      setEditingId(null);
+      setSelectedFile(null);
+      fetchTeamMembers();
+      alert('Team member saved successfully!');
+    } catch (error) {
+      console.error('Unexpected error:', error);
+      alert(`Unexpected error: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
-    setFormData({
-      name: "", position: "", bio: "", image: "", expertise: "", education: "", experience: "",
-      linkedin: "", email: "", twitter: ""
-    });
-    setEditingId(null);
-    setSelectedFile(null);
-    fetchTeamMembers();
   };
 
   const handleEdit = (member: TeamMember) => {
@@ -118,12 +178,13 @@ export default function ManageTeam() {
       position: member.position,
       bio: member.bio,
       image: member.image,
-      expertise: member.expertise.join(', '),
-      education: member.education.join(', '),
-      experience: member.experience.join(', '),
-      linkedin: member.social.linkedin,
-      email: member.social.email,
-      twitter: member.social.twitter
+      expertise: Array.isArray(member.expertise) ? member.expertise.join(', ') : '',
+      education: Array.isArray(member.education) ? member.education.join(', ') : '',
+      experience: Array.isArray(member.experience) ? member.experience.join(', ') : '',
+      linkedin: member.social?.linkedin || '',
+      email: member.social?.email || '',
+      twitter: member.social?.twitter || '',
+      display_order: member.display_order?.toString() || '0'
     });
   };
 
@@ -138,49 +199,95 @@ export default function ManageTeam() {
     setEditingId(null);
     setFormData({
       name: "", position: "", bio: "", image: "", expertise: "", education: "", experience: "",
-      linkedin: "", email: "", twitter: ""
+      linkedin: "", email: "", twitter: "", display_order: ""
     });
     setSelectedFile(null);
   };
 
-  if (loading) return <div className="p-8">Loading...</div>;
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="flex items-center justify-center min-h-[400px]">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+              <p className="text-gray-600">Loading team members...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex items-center justify-between mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Team Members</h1>
-          <Button onClick={() => setEditingId('new')} className="flex items-center space-x-2">
-            <Plus className="w-4 h-4" />
-            <span>Add Team Member</span>
-          </Button>
+        {/* Header Section */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">Team Members</h1>
+              <p className="text-gray-600 mt-1">Manage and organize your team profiles</p>
+            </div>
+            <Button
+              onClick={() => setEditingId('new')}
+              className="flex items-center gap-2 bg-primary hover:bg-primary/90 transition-all duration-200"
+            >
+              <Plus className="w-4 h-4" />
+              Add Team Member
+            </Button>
+          </div>
         </div>
 
-        {/* Form */}
+        {/* Form Section */}
         {(editingId === 'new' || editingId) && (
-          <Card className="mb-8">
-            <CardHeader>
-              <CardTitle>{editingId === 'new' ? 'Add New Team Member' : 'Edit Team Member'}</CardTitle>
+          <Card className="mb-8 border-0 shadow-sm">
+            <CardHeader className="bg-gray-50 border-b border-gray-200">
+              <CardTitle className="text-xl text-gray-900">
+                {editingId === 'new' ? 'Add New Team Member' : 'Edit Team Member'}
+              </CardTitle>
+              <CardDescription className="text-gray-600">
+                {editingId === 'new' ? 'Create a new team member profile with all necessary details' : 'Update the team member information'}
+              </CardDescription>
             </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="name">Name</Label>
+            <CardContent className="p-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="name" className="text-sm font-medium text-gray-700">Name *</Label>
                     <Input
                       id="name"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       required
+                      className="border-gray-300 focus:border-primary focus:ring-primary"
+                      placeholder="Enter full name"
                     />
                   </div>
-                  <div>
-                    <Label htmlFor="position">Position</Label>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="position" className="text-sm font-medium text-gray-700">Position *</Label>
                     <Input
                       id="position"
                       value={formData.position}
                       onChange={(e) => setFormData({ ...formData, position: e.target.value })}
                       required
+                      className="border-gray-300 focus:border-primary focus:ring-primary"
+                      placeholder="Enter job position"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="display_order" className="text-sm font-medium text-gray-700">Display Order *</Label>
+                    <Input
+                      id="display_order"
+                      type="number"
+                      value={formData.display_order}
+                      onChange={(e) => setFormData({ ...formData, display_order: e.target.value })}
+                      required
+                      className="border-gray-300 focus:border-primary focus:ring-primary"
+                      placeholder="Enter display order (1, 2, 3...)"
+                      min="1"
                     />
                   </div>
                 </div>
@@ -203,9 +310,24 @@ export default function ManageTeam() {
                     onChange={handleFileChange}
                     required={!editingId}
                   />
+                  <p className="text-sm text-gray-500 mt-1">
+                    Upload an image file or provide a URL below. If upload fails, you can manually enter an image URL.
+                  </p>
                   {formData.image && (
                     <img src={formData.image} alt="Preview" className="mt-2 w-32 h-32 object-cover" />
                   )}
+                </div>
+                <div>
+                  <Label htmlFor="imageUrl">Or enter Image URL</Label>
+                  <Input
+                    id="imageUrl"
+                    value={formData.image}
+                    onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+                    placeholder="https://example.com/image.jpg"
+                  />
+                  <p className="text-sm text-gray-500 mt-1">
+                    Alternative: paste an image URL if upload doesn't work
+                  </p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
@@ -281,8 +403,15 @@ export default function ManageTeam() {
           {teamMembers.map((member) => (
             <Card key={member.id}>
               <CardHeader>
-                <CardTitle className="text-lg">{member.name}</CardTitle>
-                <CardDescription>{member.position}</CardDescription>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle className="text-lg">{member.name}</CardTitle>
+                    <CardDescription>{member.position}</CardDescription>
+                  </div>
+                  <div className="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded">
+                    Order: {member.display_order}
+                  </div>
+                </div>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-gray-600 mb-4 line-clamp-3">{member.bio}</p>

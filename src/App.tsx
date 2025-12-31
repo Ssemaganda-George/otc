@@ -54,8 +54,8 @@ import ManageContactInfo from "./pages/admin/ManageContactInfo";
 import ManageFooter from "./pages/admin/ManageFooter";
 import ManageNewsUpdates from "./pages/admin/ManageNewsUpdates";
 import ManageResearchPublications from "./pages/admin/ManageResearchPublications";
-import ManageHomeSections from "./pages/admin/ManageHomeSections";
 import ManageAboutUs from "./pages/admin/ManageAboutUs";
+import ManageCoreValues from "./pages/admin/ManageCoreValues";
 import ManageWhatWeDo from "./pages/admin/ManageWhatWeDo";
 import ManageOurImpact from "./pages/admin/ManageOurImpact";
 import ManageCorePillars from "./pages/admin/ManageCorePillars";
@@ -130,8 +130,8 @@ function App() {
             <Route path="footer" element={<ManageFooter />} />
             <Route path="news-updates" element={<ManageNewsUpdates />} />
             <Route path="research-publications" element={<ManageResearchPublications />} />
-            <Route path="home-sections" element={<ManageHomeSections />} />
             <Route path="about-us" element={<ManageAboutUs />} />
+            <Route path="core-values" element={<ManageCoreValues />} />
             <Route path="what-we-do" element={<ManageWhatWeDo />} />
             <Route path="our-impact" element={<ManageOurImpact />} />
             <Route path="core-pillars" element={<ManageCorePillars />} />

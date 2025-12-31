@@ -69,12 +69,12 @@ export default function ManageHeroSlides() {
     const fileExt = file.name.split('.').pop();
     const fileName = `${Date.now()}.${fileExt}`;
     const { data, error } = await supabase.storage
-      .from('images')
-      .upload(`hero-slides/${fileName}`, file);
+      .from('hero-slides')
+      .upload(`${fileName}`, file);
     if (error) throw error;
     const { data: { publicUrl } } = supabase.storage
-      .from('images')
-      .getPublicUrl(`hero-slides/${fileName}`);
+      .from('hero-slides')
+      .getPublicUrl(`${fileName}`);
     return publicUrl;
   };
 

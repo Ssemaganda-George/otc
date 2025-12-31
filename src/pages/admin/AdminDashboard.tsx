@@ -88,17 +88,20 @@ export default function AdminDashboard() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Welcome Header */}
-      <div className="bg-white border-b border-gray-200">
+      <div className="bg-white border-b border-gray-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
             <div>
               <h1 className="text-3xl font-bold text-gray-900">Welcome back, Admin</h1>
               <p className="mt-2 text-gray-600">Manage your website content and monitor system performance</p>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-6">
               <div className="text-right">
                 <p className="text-sm text-gray-500">Last login</p>
                 <p className="text-sm font-medium text-gray-900">{new Date().toLocaleDateString()}</p>
+              </div>
+              <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+                <span className="text-white font-semibold text-lg">A</span>
               </div>
             </div>
           </div>
@@ -107,7 +110,7 @@ export default function AdminDashboard() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Stats Overview */}
-        <div className="mb-8">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
           <h2 className="text-xl font-semibold text-gray-900 mb-6">System Overview</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Card className="border-0 shadow-sm hover:shadow-md transition-shadow">
@@ -232,12 +235,10 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-      {/* Quick Actions */}
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">
-          Quick Actions
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Quick Actions */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
+          <h2 className="text-xl font-semibold text-gray-900 mb-6">Quick Actions</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
             {
               title: "Manage Pages",
@@ -279,19 +280,19 @@ export default function AdminDashboard() {
               </CardContent>
             </Card>
           ))}
+          </div>
         </div>
-      </div>
 
-      {/* Recent Activity and System Status */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <BarChart3 className="w-5 h-5" />
+        {/* Recent Activity and System Status */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <Card className="border-0 shadow-sm">
+          <CardHeader className="bg-gray-50 border-b border-gray-200">
+            <CardTitle className="flex items-center space-x-2 text-gray-900">
+              <BarChart3 className="w-5 h-5 text-primary" />
               <span>Recent Activity</span>
             </CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="p-6">
             <div className="space-y-4">
               {[
                 { action: "Updated About page", time: "2 hours ago", type: "page" },
@@ -316,14 +317,14 @@ export default function AdminDashboard() {
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <Settings className="w-5 h-5" />
+        <Card className="border-0 shadow-sm">
+          <CardHeader className="bg-gray-50 border-b border-gray-200">
+            <CardTitle className="flex items-center space-x-2 text-gray-900">
+              <Settings className="w-5 h-5 text-primary" />
               <span>System Status</span>
             </CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="p-6">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <span className="text-sm">Website Status</span>

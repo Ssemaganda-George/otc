@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useLocation, Outlet } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { LogOut, Menu, X, Home, FileText, Users, BookOpen, Briefcase, Image, GraduationCap, Newspaper, File, Phone, Settings, Layout, Target, TrendingUp, Shield, Database } from "lucide-react";
+import { LogOut, Menu, X, Home, FileText, Users, BookOpen, Briefcase, Image, GraduationCap, Newspaper, File, Phone, Settings, Layout, Target, TrendingUp, Shield, Database, Heart } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
@@ -37,8 +37,8 @@ export default function AdminLayout() {
     { name: "Manage News Updates", path: "/admin/news-updates", icon: Newspaper },
     { name: "Manage Research Publications", path: "/admin/research-publications", icon: BookOpen },
     { name: "Manage Repositories", path: "/admin/repositories", icon: Database },
-    { name: "Manage Home Sections", path: "/admin/home-sections", icon: Layout },
     { name: "Manage About Us", path: "/admin/about-us", icon: Layout },
+    { name: "Manage Core Values", path: "/admin/core-values", icon: Heart },
     { name: "Manage What We Do", path: "/admin/what-we-do", icon: Target },
     { name: "Manage Our Impact", path: "/admin/our-impact", icon: TrendingUp },
     { name: "Manage Core Pillars", path: "/admin/core-pillars", icon: Shield },
@@ -48,35 +48,39 @@ export default function AdminLayout() {
     <div className="flex h-screen bg-gray-50">
       {/* Sidebar */}
       <div
-        className={`fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform ${
+        className={`fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-xl transform ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 flex flex-col`}
+        } transition-all duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 flex flex-col border-r border-gray-200`}
       >
         <div className="flex items-center justify-start h-16 px-4 bg-primary flex-shrink-0">
           <img
             src="/OTC_logo.png"
             alt="SAC OTC Logo"
-            className="h-8 w-11 mr-3"
+            className="h-8 w-11 mr-3 transition-transform duration-300 ease-in-out hover:scale-110"
           />
-          <h2 className="text-white font-bold text-lg">Admin Panel</h2>
+          <h2 className="text-white font-bold text-lg transition-all duration-300 ease-in-out">Admin Panel</h2>
         </div>
-        <nav className="flex-1 mt-8 overflow-y-auto">
-          <div className="px-4 space-y-2 pb-4">
+        <nav className="flex-1 mt-8 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent hover:scrollbar-thumb-gray-400 scrollbar-thumb-rounded-full scroll-smooth">
+          <div className="px-4 space-y-1 pb-4">
             {sidebarItems.map((item) => {
               const isActive = location.pathname === item.path;
               return (
                 <Link
                   key={item.name}
                   to={item.path}
-                  className={`flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors ${
+                  className={`group flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200 ease-in-out transform ${
                     isActive
-                      ? "bg-primary text-white"
-                      : "text-gray-700 hover:bg-gray-100"
+                      ? "bg-primary text-white shadow-md scale-105"
+                      : "text-gray-700 hover:bg-gray-100 hover:text-gray-900 hover:scale-102 hover:shadow-sm"
                   }`}
                   onClick={() => setSidebarOpen(false)}
                 >
-                  <item.icon className="w-5 h-5 mr-3" />
-                  {item.name}
+                  <item.icon className={`w-5 h-5 mr-3 transition-colors duration-200 ${
+                    isActive ? "text-white" : "text-gray-500 group-hover:text-primary"
+                  }`} />
+                  <span className="transition-transform duration-200 group-hover:translate-x-1">
+                    {item.name}
+                  </span>
                 </Link>
               );
             })}
@@ -86,9 +90,9 @@ export default function AdminLayout() {
           <Button
             variant="outline"
             onClick={handleSignOut}
-            className="w-full flex items-center space-x-2"
+            className="w-full flex items-center space-x-2 transition-all duration-200 ease-in-out transform hover:scale-102 hover:shadow-sm active:scale-98"
           >
-            <LogOut className="w-4 h-4" />
+            <LogOut className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
             <span>Sign Out</span>
           </Button>
         </div>
@@ -97,26 +101,26 @@ export default function AdminLayout() {
       {/* Overlay for mobile */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 z-40 bg-black bg-opacity-50 lg:hidden"
+          className="fixed inset-0 z-40 bg-black bg-opacity-50 lg:hidden transition-opacity duration-300 ease-in-out"
           onClick={() => setSidebarOpen(false)}
         ></div>
       )}
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col overflow-hidden transition-all duration-300 ease-in-out">
         {/* Header */}
-        <header className="bg-white shadow-sm border-b lg:pl-0">
+        <header className="bg-white shadow-sm border-b lg:pl-0 transition-all duration-300 ease-in-out">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <button
                   onClick={() => setSidebarOpen(true)}
-                  className="lg:hidden mr-4 p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                  className="lg:hidden mr-4 p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-all duration-200 ease-in-out transform hover:scale-105 active:scale-95"
                 >
-                  <Menu className="w-6 h-6" />
+                  <Menu className="w-6 h-6 transition-transform duration-200" />
                 </button>
                 <div>
-                  <h1 className="text-3xl font-bold text-gray-900">
+                  <h1 className="text-3xl font-bold text-gray-900 transition-all duration-300 ease-in-out">
                     {sidebarItems.find(item => item.path === location.pathname)?.name || "Admin"}
                   </h1>
                 </div>
@@ -126,8 +130,10 @@ export default function AdminLayout() {
         </header>
 
         {/* Page Content */}
-        <main className="flex-1 overflow-y-auto">
-          <Outlet />
+        <main className="flex-1 overflow-y-auto transition-all duration-300 ease-in-out scroll-smooth scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 hover:scrollbar-thumb-gray-500 scrollbar-thumb-rounded-full">
+          <div className="scroll-smooth">
+            <Outlet />
+          </div>
         </main>
       </div>
 

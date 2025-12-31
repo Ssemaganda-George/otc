@@ -1,7 +1,60 @@
 import { Navigation } from "@/components/ui/navigation";
 import { Footer } from "@/components/Footer";
+import { useState, useEffect } from "react";
+import { supabase } from "@/lib/supabase";
+
+interface ResearchExpert {
+  id: string;
+  name: string;
+  position: string;
+  bio: string;
+  image: string;
+  display_order: number;
+}
 
 const ResearchExpertsPage = () => {
+  const [experts, setExperts] = useState<ResearchExpert[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchExperts = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('research_experts')
+          .select('*')
+          .order('display_order');
+
+        if (error) {
+          console.error('Error fetching research experts:', error);
+          return;
+        }
+
+        setExperts(data || []);
+      } catch (error) {
+        console.error('Error fetching research experts:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchExperts();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background custom-scrollbar">
+        <Navigation />
+        <div className="pt-20 flex items-center justify-center min-h-[50vh]">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+            <p className="text-gray-600">Loading research experts...</p>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-background custom-scrollbar">
       {/* Fixed Navigation Bar */}
@@ -33,78 +86,35 @@ const ResearchExpertsPage = () => {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Expert 1 */}
-              <div className="bg-white p-6 shadow-lg border border-gray-200 text-center">
-                <div className="w-24 h-24 bg-primary rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-white text-2xl font-bold">JD</span>
+              {experts.map((expert) => (
+                <div key={expert.id} className="bg-white p-6 shadow-lg border border-gray-200 text-center">
+                  <div className="w-24 h-24 bg-primary rounded-full mx-auto mb-4 flex items-center justify-center">
+                    {expert.image ? (
+                      <img
+                        src={expert.image}
+                        alt={expert.name}
+                        className="w-full h-full rounded-full object-cover"
+                      />
+                    ) : (
+                      <span className="text-white text-2xl font-bold">
+                        {expert.name.split(' ').map(n => n[0]).join('').toUpperCase()}
+                      </span>
+                    )}
+                  </div>
+                  <h3 className="text-xl font-bold font-poppins text-foreground mb-2">{expert.name}</h3>
+                  <p className="text-primary font-semibold mb-3">{expert.position}</p>
+                  <p className="text-gray-600 text-sm">
+                    {expert.bio}
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold font-poppins text-foreground mb-2">Dr. Jane Doe</h3>
-                <p className="text-primary font-semibold mb-3">Digital Rights Researcher</p>
-                <p className="text-gray-600 text-sm">
-                  Specializes in privacy law and digital rights advocacy with over 10 years of experience in African policy development.
-                </p>
-              </div>
-
-              {/* Expert 2 */}
-              <div className="bg-white p-6 shadow-lg border border-gray-200 text-center">
-                <div className="w-24 h-24 bg-primary rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-white text-2xl font-bold">MK</span>
-                </div>
-                <h3 className="text-xl font-bold font-poppins text-foreground mb-2">Prof. Michael Kim</h3>
-                <p className="text-primary font-semibold mb-3">AI Ethics Specialist</p>
-                <p className="text-gray-600 text-sm">
-                  Leading researcher in artificial intelligence ethics, focusing on bias mitigation and responsible AI development in African contexts.
-                </p>
-              </div>
-
-              {/* Expert 3 */}
-              <div className="bg-white p-6 shadow-lg border border-gray-200 text-center">
-                <div className="w-24 h-24 bg-primary rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-white text-2xl font-bold">SA</span>
-                </div>
-                <h3 className="text-xl font-bold font-poppins text-foreground mb-2">Dr. Sarah Adebayo</h3>
-                <p className="text-primary font-semibold mb-3">Data Protection Expert</p>
-                <p className="text-gray-600 text-sm">
-                  Expert in data protection regulations and privacy frameworks, with extensive experience in policy development and compliance.
-                </p>
-              </div>
-
-              {/* Expert 4 */}
-              <div className="bg-white p-6 shadow-lg border border-gray-200 text-center">
-                <div className="w-24 h-24 bg-primary rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-white text-2xl font-bold">TO</span>
-                </div>
-                <h3 className="text-xl font-bold font-poppins text-foreground mb-2">Dr. Thomas Okafor</h3>
-                <p className="text-primary font-semibold mb-3">Cybersecurity Researcher</p>
-                <p className="text-gray-600 text-sm">
-                  Specializes in cybersecurity threats and digital infrastructure protection, with a focus on developing African cybersecurity frameworks.
-                </p>
-              </div>
-
-              {/* Expert 5 */}
-              <div className="bg-white p-6 shadow-lg border border-gray-200 text-center">
-                <div className="w-24 h-24 bg-primary rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-white text-2xl font-bold">LN</span>
-                </div>
-                <h3 className="text-xl font-bold font-poppins text-foreground mb-2">Dr. Linda Njoroge</h3>
-                <p className="text-primary font-semibold mb-3">Digital Inclusion Specialist</p>
-                <p className="text-gray-600 text-sm">
-                  Researcher focused on digital inclusion and accessibility, working to ensure technology benefits all segments of society.
-                </p>
-              </div>
-
-              {/* Expert 6 */}
-              <div className="bg-white p-6 shadow-lg border border-gray-200 text-center">
-                <div className="w-24 h-24 bg-primary rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-white text-2xl font-bold">RM</span>
-                </div>
-                <h3 className="text-xl font-bold font-poppins text-foreground mb-2">Prof. Robert Mthembu</h3>
-                <p className="text-primary font-semibold mb-3">Policy & Governance Expert</p>
-                <p className="text-gray-600 text-sm">
-                  Leading expert in technology policy and governance, advising governments on digital transformation strategies.
-                </p>
-              </div>
+              ))}
             </div>
+
+            {experts.length === 0 && (
+              <div className="text-center py-12">
+                <p className="text-gray-600">No research experts found. Please add experts through the admin panel.</p>
+              </div>
+            )}
           </div>
         </section>
       </main>

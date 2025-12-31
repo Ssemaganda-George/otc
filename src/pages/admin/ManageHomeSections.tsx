@@ -12,7 +12,7 @@ import { Plus, Edit, Trash2, Save, X, Upload, Eye, EyeOff } from "lucide-react";
 
 interface HomeSection {
   id: string;
-  section_type: 'about_us' | 'mission' | 'vision';
+  section_type: 'about_us' | 'mission' | 'vision' | 'objectives';
   title: string;
   subtitle: string;
   content: string;
@@ -31,7 +31,7 @@ export default function ManageHomeSections() {
   const [loading, setLoading] = useState(true);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [formData, setFormData] = useState({
-    section_type: 'about_us' as 'about_us' | 'mission' | 'vision',
+    section_type: 'about_us' as 'about_us' | 'mission' | 'vision' | 'objectives',
     title: "",
     subtitle: "",
     content: "",
@@ -99,7 +99,7 @@ export default function ManageHomeSections() {
     const filePath = `home-sections/${fileName}`;
 
     const { error: uploadError } = await supabase.storage
-      .from('images')
+      .from('home-sections')
       .upload(filePath, file);
 
     if (uploadError) {
@@ -107,7 +107,7 @@ export default function ManageHomeSections() {
     }
 
     const { data } = supabase.storage
-      .from('images')
+      .from('home-sections')
       .getPublicUrl(filePath);
 
     return data.publicUrl;
@@ -222,8 +222,8 @@ export default function ManageHomeSections() {
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">About Us, Mission & Vision</h1>
-            <p className="text-muted-foreground">Configure the About Us, Mission, and Vision sections of your website</p>
+            <h1 className="text-3xl font-bold text-foreground">About Us, Mission, Vision & Objectives</h1>
+            <p className="text-muted-foreground">Configure the About Us, Mission, Vision, and Objectives sections of your website</p>
           </div>
           <Button
             onClick={() => setEditingId('new')}
@@ -240,7 +240,7 @@ export default function ManageHomeSections() {
             <CardHeader>
               <CardTitle>{editingId === 'new' ? 'Add New Section' : 'Edit Section'}</CardTitle>
               <CardDescription>
-                Configure the content for About Us, Mission, or Vision sections
+                Configure the content for About Us, Mission, Vision, or Objectives sections
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -248,7 +248,7 @@ export default function ManageHomeSections() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <Label htmlFor="section_type">Section Type *</Label>
-                    <Select value={formData.section_type} onValueChange={(value: 'about_us' | 'mission' | 'vision') => handleSelectChange('section_type', value)}>
+                    <Select value={formData.section_type} onValueChange={(value: 'about_us' | 'mission' | 'vision' | 'objectives') => handleSelectChange('section_type', value)}>
                       <SelectTrigger>
                         <SelectValue placeholder="Select section type" />
                       </SelectTrigger>
@@ -256,6 +256,7 @@ export default function ManageHomeSections() {
                         <SelectItem value="about_us">About Us</SelectItem>
                         <SelectItem value="mission">Mission</SelectItem>
                         <SelectItem value="vision">Vision</SelectItem>
+                        <SelectItem value="objectives">Objectives</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -398,12 +399,12 @@ export default function ManageHomeSections() {
                     />
                   ) : (
                     <span className="text-white text-2xl font-bold">
-                      {section.section_type === 'about_us' ? 'A' : section.section_type === 'mission' ? 'M' : 'V'}
+                      {section.section_type === 'about_us' ? 'A' : section.section_type === 'mission' ? 'M' : section.section_type === 'vision' ? 'V' : 'O'}
                     </span>
                   )}
                 </div>
                 <CardTitle className="text-lg">
-                  {section.title || (section.section_type === 'about_us' ? 'About Us' : section.section_type === 'mission' ? 'Mission' : 'Vision')}
+                  {section.title || (section.section_type === 'about_us' ? 'About Us' : section.section_type === 'mission' ? 'Mission' : section.section_type === 'vision' ? 'Vision' : 'Objectives')}
                 </CardTitle>
                 <CardDescription>
                   {section.section_type.replace('_', ' ').toUpperCase()} • Order: {section.display_order}

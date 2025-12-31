@@ -28,19 +28,19 @@ interface CorePillar {
   is_active: boolean;
 }
 
-interface NewsItem {
+interface CoreValue {
   id: string;
   title: string;
-  excerpt: string;
-  featured_image?: string;
-  category?: string;
-  publish_date: string;
+  description: string;
+  display_order: number;
+  is_active: boolean;
 }
 
 const Index = () => {
   const [homeSections, setHomeSections] = useState<HomeSection[]>([]);
   const [impactStats, setImpactStats] = useState<ImpactStat[]>([]);
   const [corePillars, setCorePillars] = useState<CorePillar[]>([]);
+  const [coreValues, setCoreValues] = useState<CoreValue[]>([]);
   const [latestNews, setLatestNews] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -50,16 +50,18 @@ const Index = () => {
 
   const fetchData = async () => {
     try {
-      const [sectionsRes, statsRes, pillarsRes, newsRes] = await Promise.all([
+      const [sectionsRes, statsRes, pillarsRes, valuesRes, newsRes] = await Promise.all([
         supabase.from('home_sections').select('*').eq('is_active', true).order('display_order'),
         supabase.from('our_impact_stats').select('*').order('created_at'),
         supabase.from('core_pillars').select('*').eq('is_active', true).order('display_order'),
+        supabase.from('core_values').select('*').eq('is_active', true).order('display_order'),
         supabase.from('news_updates').select('id, title, excerpt, featured_image, category, publish_date').eq('is_featured', true).order('publish_date', { ascending: false }).limit(3)
       ]);
 
       if (sectionsRes.data) setHomeSections(sectionsRes.data);
       if (statsRes.data) setImpactStats(statsRes.data);
       if (pillarsRes.data) setCorePillars(pillarsRes.data);
+      if (valuesRes.data) setCoreValues(valuesRes.data);
       if (newsRes.data) setLatestNews(newsRes.data);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -137,20 +139,49 @@ const Index = () => {
           </div>
         </section>
 
+        {/* 2.5. Our Values */}
+        <section className="py-16 bg-gradient-to-br from-gray-50 to-white">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 font-poppins">
+                Our Values
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                The principles that guide our work and shape our commitment to Africa's digital transformation.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+              {coreValues.map((value, index) => (
+                <div key={value.id} className="group">
+                  <div className="bg-white p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 h-full">
+                    <div className="flex items-center justify-center w-12 h-12 bg-primary text-white font-bold text-lg mb-4 mx-auto group-hover:scale-110 transition-transform duration-300">
+                      {index + 1}
+                    </div>
+                    <h3 className="text-lg font-bold text-foreground text-center mb-3 font-poppins">
+                      {value.title}
+                    </h3>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* 3. Core Pillars (What We Do) */}
         <section className="py-16 bg-gray-50">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <h3 className="text-2xl font-bold text-foreground mb-8">What We Do</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {corePillars.map((pillar) => (
-                <div key={pillar.id} className="bg-foreground text-white p-6 shadow-lg border border-gray-800">
+                <div key={pillar.id} className="bg-golden text-golden-foreground p-6 shadow-lg border border-golden/20 hover:shadow-golden/30 transition-all duration-300">
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-primary flex items-center justify-center text-white font-bold">
                       {pillar.letter}
                     </div>
                     <div>
                       <h4 className="text-lg font-bold">{pillar.title}</h4>
-                      <p className="text-sm text-white/90 mt-2">{pillar.description}</p>
+                      <p className="text-sm text-golden-foreground/90 mt-2">{pillar.description}</p>
                     </div>
                   </div>
                 </div>
