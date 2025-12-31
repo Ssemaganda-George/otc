@@ -32,7 +32,7 @@ export default function AdminLogin() {
     <div className="min-h-screen flex items-center justify-center bg-background">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle>SAC-OTC Admin Login</CardTitle>
+          <CardTitle>OTC Admin Login</CardTitle>
           <CardDescription>Enter your credentials to access the admin dashboard.</CardDescription>
         </CardHeader>
         <CardContent>
