@@ -3,7 +3,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { BarChart3, Settings, Users, FileText, BookOpen, Briefcase, Database, TrendingUp, Shield, Target, Layout, Newspaper, GraduationCap, Image, Phone, Zap } from "lucide-react";
+import { BarChart3, Settings, Users, FileText, BookOpen, Briefcase, Database, TrendingUp, Shield, Target, Layout, Newspaper, GraduationCap, Image, Phone, Zap, Download } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 
 interface DashboardStats {
@@ -15,6 +15,9 @@ interface DashboardStats {
   totalRepositories: number;
   totalNewsUpdates: number;
   totalResearchPublications: number;
+  totalVisitors: number;
+  visitorActivity: number;
+  totalDownloads: number;
 }
 
 export default function AdminDashboard() {
@@ -29,6 +32,9 @@ export default function AdminDashboard() {
     totalRepositories: 0,
     totalNewsUpdates: 0,
     totalResearchPublications: 0,
+    totalVisitors: 0,
+    visitorActivity: 0,
+    totalDownloads: 0,
   });
   const [loading, setLoading] = useState(true);
 
@@ -43,7 +49,9 @@ export default function AdminDashboard() {
           blogsRes,
           reposRes,
           newsRes,
-          publicationsRes
+          publicationsRes,
+          visitorsRes,
+          downloadsRes
         ] = await Promise.all([
           supabase.from("pages").select("id", { count: "exact" }),
           supabase.from("team_members").select("id", { count: "exact" }),
@@ -53,6 +61,8 @@ export default function AdminDashboard() {
           supabase.from("repositories").select("id", { count: "exact" }),
           supabase.from("news_updates").select("id", { count: "exact" }),
           supabase.from("research_publications").select("id", { count: "exact" }),
+          supabase.from("visitor_sessions").select("id", { count: "exact" }),
+          supabase.from("repository_downloads").select("id", { count: "exact" }),
         ]);
 
         setStats({
@@ -64,6 +74,9 @@ export default function AdminDashboard() {
           totalRepositories: reposRes.count || 0,
           totalNewsUpdates: newsRes.count || 0,
           totalResearchPublications: publicationsRes.count || 0,
+          totalVisitors: visitorsRes.count || 0,
+          visitorActivity: 89, // This would need to be calculated from page views
+          totalDownloads: downloadsRes.count || 0,
         });
       } catch (error) {
         console.error("Error fetching stats:", error);
@@ -75,7 +88,10 @@ export default function AdminDashboard() {
           totalBlogs: 12,
           totalRepositories: 15,
           totalNewsUpdates: 20,
-          totalResearchPublications: 25
+          totalResearchPublications: 25,
+          totalVisitors: 0,
+          visitorActivity: 0,
+          totalDownloads: 0,
         });
       } finally {
         setLoading(false);
@@ -109,6 +125,57 @@ export default function AdminDashboard() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Website Statistics */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
+          <h2 className="text-xl font-semibold text-gray-900 mb-6">Website Statistics</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Card className="border-0 shadow-sm hover:shadow-md transition-shadow cursor-pointer" onClick={() => navigate('/admin/analytics/visitors/demographics')}>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium text-gray-600">Site Visitors</CardTitle>
+                <Users className="h-5 w-5 text-blue-600" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold text-gray-900">
+                  {loading ? "..." : stats.totalVisitors.toLocaleString()}
+                </div>
+                <p className="text-xs text-gray-500 mt-1">
+                  Unique visitors tracked
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-sm hover:shadow-md transition-shadow cursor-pointer" onClick={() => navigate('/admin/analytics/activity')}>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium text-gray-600">Visitor Activity</CardTitle>
+                <TrendingUp className="h-5 w-5 text-green-600" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold text-gray-900">
+                  {loading ? "..." : `${stats.visitorActivity}%`}
+                </div>
+                <p className="text-xs text-gray-500 mt-1">
+                  Engagement rate
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-sm hover:shadow-md transition-shadow cursor-pointer" onClick={() => navigate('/admin/analytics/downloads')}>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium text-gray-600">Downloads</CardTitle>
+                <Download className="h-5 w-5 text-purple-600" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold text-gray-900">
+                  {loading ? "..." : stats.totalDownloads.toLocaleString()}
+                </div>
+                <p className="text-xs text-gray-500 mt-1">
+                  Resource downloads
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
         {/* Stats Overview */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
           <h2 className="text-xl font-semibold text-gray-900 mb-6">System Overview</h2>
@@ -232,54 +299,6 @@ export default function AdminDashboard() {
                 </p>
               </CardContent>
             </Card>
-          </div>
-        </div>
-
-        {/* Quick Actions */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
-          <h2 className="text-xl font-semibold text-gray-900 mb-6">Quick Actions</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[
-            {
-              title: "Manage Pages",
-              description: "Edit website content and pages",
-              path: "/admin/pages",
-            },
-            {
-              title: "Manage Team",
-              description: "Add and edit team members",
-              path: "/admin/team",
-            },
-            {
-              title: "Manage Programs",
-              description: "Update program information",
-              path: "/admin/programs",
-            },
-            {
-              title: "Manage Research Experts",
-              description: "Add and edit research experts",
-              path: "/admin/research-experts",
-            },
-          ].map((action) => (
-            <Card
-              key={action.title}
-              className="hover:shadow-lg transition-shadow cursor-pointer"
-              onClick={() => navigate(action.path)}
-            >
-              <CardHeader>
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                  <div className="w-6 h-6 text-primary">📄</div>
-                </div>
-                <CardTitle className="text-lg">{action.title}</CardTitle>
-                <CardDescription>{action.description}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button className="w-full" variant="outline">
-                  Go to {action.title}
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
           </div>
         </div>
 

@@ -39,6 +39,7 @@ import ResearchPublicationsPage from "./pages/ResearchPublicationsPage";
 import RepositoryPage from "./pages/RepositoryPage";
 
 import { PageTransition } from "@/components/PageTransition";
+import { AnalyticsTracker } from "@/components/AnalyticsTracker";
 
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminLogin from "./pages/admin/AdminLogin";
@@ -60,6 +61,8 @@ import ManageWhatWeDo from "./pages/admin/ManageWhatWeDo";
 import ManageOurImpact from "./pages/admin/ManageOurImpact";
 import ManageCorePillars from "./pages/admin/ManageCorePillars";
 import ManageRepositories from "./pages/admin/ManageRepositories";
+import VisitorAnalyticsPage from "./pages/admin/VisitorAnalyticsPage";
+import DownloadsAnalyticsPage from "./pages/admin/DownloadsAnalyticsPage";
 
 import AdminLayout from "./components/AdminLayout";
 import { AuthProvider } from "./contexts/AuthContext";
@@ -71,6 +74,7 @@ function App() {
 
   return (
     <AuthProvider>
+      <AnalyticsTracker />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           {/* PUBLIC ROUTES */}
@@ -136,6 +140,8 @@ function App() {
             <Route path="our-impact" element={<ManageOurImpact />} />
             <Route path="core-pillars" element={<ManageCorePillars />} />
             <Route path="repositories" element={<ManageRepositories />} />
+            <Route path="analytics/visitors/demographics" element={<VisitorAnalyticsPage />} />
+            <Route path="analytics/downloads" element={<DownloadsAnalyticsPage />} />
           </Route>
 
           {/* FALLBACK */}

@@ -139,6 +139,42 @@ CREATE TABLE IF NOT EXISTS repository_downloads (
   downloaded_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
+-- Visitor analytics tables
+CREATE TABLE IF NOT EXISTS visitor_sessions (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  session_id TEXT UNIQUE NOT NULL,
+  ip_address INET,
+  user_agent TEXT,
+  referrer TEXT,
+  country TEXT,
+  city TEXT,
+  device_type TEXT,
+  browser TEXT,
+  os TEXT,
+  screen_resolution TEXT,
+  language TEXT,
+  first_visit TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  last_visit TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  visit_count INTEGER DEFAULT 1,
+  total_page_views INTEGER DEFAULT 1
+);
+
+CREATE TABLE IF NOT EXISTS page_views (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  session_id TEXT REFERENCES visitor_sessions(session_id) ON DELETE CASCADE,
+  page_path TEXT NOT NULL,
+  page_title TEXT,
+  referrer TEXT,
+  time_on_page INTEGER, -- in seconds
+  viewed_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- Create indexes for better performance
+CREATE INDEX IF NOT EXISTS idx_visitor_sessions_last_visit ON visitor_sessions(last_visit);
+CREATE INDEX IF NOT EXISTS idx_page_views_session_id ON page_views(session_id);
+CREATE INDEX IF NOT EXISTS idx_page_views_viewed_at ON page_views(viewed_at);
+CREATE INDEX IF NOT EXISTS idx_page_views_page_path ON page_views(page_path);
+
 -- Blogs/News table
 CREATE TABLE IF NOT EXISTS blogs (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
@@ -272,8 +308,8 @@ ALTER TABLE contact_info ENABLE ROW LEVEL SECURITY;
 ALTER TABLE footer ENABLE ROW LEVEL SECURITY;
 ALTER TABLE home_sections ENABLE ROW LEVEL SECURITY;
 ALTER TABLE news_updates ENABLE ROW LEVEL SECURITY;
-ALTER TABLE research_publications ENABLE ROW LEVEL SECURITY;
-ALTER TABLE home_sections ENABLE ROW LEVEL SECURITY;
+ALTER TABLE visitor_sessions ENABLE ROW LEVEL SECURITY;
+ALTER TABLE page_views ENABLE ROW LEVEL SECURITY;
 
 -- Drop existing policies for CMS tables
 DROP POLICY IF EXISTS "Allow authenticated users to manage pages" ON pages;
@@ -312,7 +348,10 @@ CREATE POLICY "Allow authenticated users to manage contact_info" ON contact_info
 CREATE POLICY "Allow authenticated users to manage footer" ON footer FOR ALL USING (auth.role() = 'authenticated');
 CREATE POLICY "Allow authenticated users to manage home_sections" ON home_sections FOR ALL USING (auth.role() = 'authenticated');
 CREATE POLICY "Allow authenticated users to manage news_updates" ON news_updates FOR ALL USING (auth.role() = 'authenticated');
-CREATE POLICY "Allow authenticated users to manage research_publications" ON research_publications FOR ALL USING (auth.role() = 'authenticated');
+CREATE POLICY "Allow public to insert visitor sessions" ON visitor_sessions FOR INSERT WITH CHECK (true);
+CREATE POLICY "Allow authenticated users to read visitor sessions" ON visitor_sessions FOR SELECT USING (auth.role() = 'authenticated');
+CREATE POLICY "Allow public to insert page views" ON page_views FOR INSERT WITH CHECK (true);
+CREATE POLICY "Allow authenticated users to read page views" ON page_views FOR SELECT USING (auth.role() = 'authenticated');
 
 -- What We Do - Focus Areas table
 CREATE TABLE IF NOT EXISTS what_we_do_focus_areas (
