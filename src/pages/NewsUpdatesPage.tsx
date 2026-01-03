@@ -297,13 +297,13 @@ export default function NewsUpdatesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background custom-scrollbar font-poppins">
       <Navigation />
       
-      <main className="pt-20">
+      <main className="pt-6">
         {/* Hero Section */}
         <section className="py-12 md:py-24 bg-gradient-to-br from-primary/10 to-primary/5">
-          <div className="container mx-auto px-4 sm:px-6">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
               <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6">
                 <Newspaper className="w-8 h-8 md:w-10 md:h-10 text-background" />
@@ -321,7 +321,7 @@ export default function NewsUpdatesPage() {
 
         {/* News & Updates Articles Section */}
         <section className="py-12 md:py-24 bg-background">
-          <div className="container mx-auto px-4 sm:px-6">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
               <div className="text-center mb-8 md:mb-12">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair font-semibold text-gradient-blue mb-3 md:mb-4 px-4">
@@ -493,7 +493,7 @@ export default function NewsUpdatesPage() {
 
         {/* Newsletter Subscription */}
         <section className="py-12 md:py-24 bg-gradient-to-br from-card/30 to-background">
-          <div className="container mx-auto px-4 sm:px-6">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair font-semibold text-gradient-blue mb-3 md:mb-4 px-4">
                 Stay Updated
@@ -534,7 +534,7 @@ export default function NewsUpdatesPage() {
 
         {/* Newsletter Signup */}
         <section className="py-12 md:py-24 bg-gradient-to-br from-card/30 to-background">
-          <div className="container mx-auto px-4 sm:px-6">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-8 md:mb-12">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair font-semibold text-gradient-blue mb-3 md:mb-4 px-4">

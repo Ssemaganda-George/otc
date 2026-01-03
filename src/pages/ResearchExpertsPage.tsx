@@ -56,11 +56,11 @@ const ResearchExpertsPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background custom-scrollbar">
+    <div className="min-h-screen bg-background custom-scrollbar font-poppins">
       {/* Fixed Navigation Bar */}
       <Navigation />
 
-      <main className="pt-20">
+      <main className="pt-6">
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-primary to-primary-dark text-white py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

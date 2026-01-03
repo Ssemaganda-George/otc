@@ -40,13 +40,13 @@ export default function ProgrammesPage() {
   const [expanded, setExpanded] = useState<number | null>(null);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background custom-scrollbar font-poppins">
       <Navigation />
       
-      <main className="pt-20">
+      <main className="pt-6">
         {/* Hero Section */}
         <section className="py-24 bg-gradient-to-br from-primary/10 to-primary/5">
-          <div className="container mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
               <div className="w-20 h-20 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Target className="w-10 h-10 text-background" />
@@ -64,7 +64,7 @@ export default function ProgrammesPage() {
 
         {/* Programmes Overview */}
         <section className="py-24">
-          <div className="container mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="max-w-6xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {programmes.map((programme) => (
@@ -99,7 +99,7 @@ export default function ProgrammesPage() {
 
         {/* Impact Areas */}
         <section className="py-24 bg-secondary/20">
-          <div className="container mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-16">
                 <h2 className="heading-section text-gradient-blue mb-6">
@@ -136,7 +136,7 @@ export default function ProgrammesPage() {
 
         {/* Call to Action */}
         <section className="py-24 bg-gradient-to-r from-primary/10 to-primary/5">
-          <div className="container mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="heading-section text-gradient-blue mb-6">
                 Get Involved in Our Programmes

@@ -7,13 +7,13 @@ import { Heart, Phone, Mail, Building } from "lucide-react";
 
 const DonatePage = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background custom-scrollbar font-poppins">
       <Navigation />
       
-      <main className="pt-32">
+      <main className="pt-6">
         {/* Hero Section */}
         <section className="py-24 bg-gradient-to-br from-primary/10 to-primary/5">
-          <div className="container mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
               <div className="w-20 h-20 bg-gradient-to-br from-golden to-golden/80 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Heart className="w-10 h-10 text-background" />
@@ -30,7 +30,7 @@ const DonatePage = () => {
 
         {/* Main Donation Section */}
         <section className="py-24">
-          <div className="container mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="max-w-3xl mx-auto">
               <Card className="border-2 border-blue-200 shadow-xl">
                 <CardHeader className="text-center bg-blue-50">
@@ -81,7 +81,7 @@ const DonatePage = () => {
 
       {/* Payment Information */}
       <section className="py-24 bg-secondary/20">
-        <div className="container mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl font-playfair font-bold text-gradient-blue mb-8 text-center">How to Donate</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -138,7 +138,7 @@ const DonatePage = () => {
 
       {/* Impact Statement */}
       <section className="py-24">
-        <div className="container mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-2xl font-playfair font-bold text-gradient-blue mb-6">Your Impact</h2>
             <p className="text-body text-muted-foreground leading-relaxed mb-8">Your donation supports our work in strategic litigation, innovation programs, digital rights advocacy, and capacity building across Africa. Together, we're creating a more just and innovative digital future.</p>

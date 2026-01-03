@@ -4,9 +4,9 @@ import { Footer } from "@/components/Footer";
 
 const ContactPage = () => {
   return (
-    <div className="min-h-screen bg-background custom-scrollbar">
+    <div className="min-h-screen bg-background custom-scrollbar font-poppins">
       <Navigation />
-      <main className="pt-20">
+      <main className="pt-6">
         <Contact />
       </main>
       <Footer />

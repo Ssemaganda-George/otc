@@ -49,13 +49,13 @@ const NewsletterPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background custom-scrollbar font-poppins">
       <Navigation />
       
-      <main className="pt-32">
+      <main className="pt-6">
         {/* Hero Section */}
         <section className="py-24 bg-gradient-to-br from-primary/10 to-primary/5">
-          <div className="container mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
               <div className="w-20 h-20 bg-gradient-to-br from-golden to-golden/80 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Mail className="w-10 h-10 text-background" />
@@ -72,7 +72,7 @@ const NewsletterPage = () => {
 
         {/* Main Subscription Form */}
         <section className="py-24">
-          <div className="container mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="max-w-2xl mx-auto">
               <Card className="border-2 border-primary/20 shadow-card">
                 <CardHeader className="text-center">
@@ -121,7 +121,7 @@ const NewsletterPage = () => {
 
         {/* Simple Info Section */}
         <section className="py-24 bg-secondary/20">
-          <div className="container mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-2xl font-playfair font-bold text-gradient-blue mb-6">
                 What You'll Receive

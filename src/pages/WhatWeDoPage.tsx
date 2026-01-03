@@ -77,9 +77,9 @@ export default function WhatWeDoPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background custom-scrollbar font-poppins">
         <Navigation />
-        <main className="pt-20 flex items-center justify-center min-h-[50vh]">
+        <main className="pt-6 flex items-center justify-center min-h-[50vh]">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
             <p className="text-muted-foreground">Loading...</p>
@@ -90,14 +90,14 @@ export default function WhatWeDoPage() {
     );
   }
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background custom-scrollbar font-poppins">
       <Navigation />
       
-      <main className="pt-20">
+      <main className="pt-6">
         {/* Hero Section */}
         <AOSWrapper animation="fade-up">
           <section className="py-24 bg-gradient-to-br from-primary/10 to-primary/5">
-            <div className="container mx-auto px-6">
+            <div className="max-w-7xl mx-auto px-6 lg:px-8">
               <div className="max-w-4xl mx-auto text-center">
                 <h1 className="heading-display text-gradient-blue mb-8">
                   What We Do
@@ -114,7 +114,7 @@ export default function WhatWeDoPage() {
         {/* Focus Areas */}
         <AOSWrapper animation="fade-up" delay={100}>
           <section className="py-24">
-            <div className="container mx-auto px-6">
+            <div className="max-w-7xl mx-auto px-6 lg:px-8">
               <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-16">
                   <h2 className="heading-section text-gradient-blue mb-6">
@@ -158,7 +158,7 @@ export default function WhatWeDoPage() {
         {/* Departments */}
         <AOSWrapper animation="fade-up" delay={200}>
           <section className="py-24 bg-gradient-to-br from-card/30 to-background">
-            <div className="container mx-auto px-6">
+            <div className="max-w-7xl mx-auto px-6 lg:px-8">
               <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-16">
                   <h2 className="heading-section text-gradient-blue mb-6">
@@ -198,7 +198,7 @@ export default function WhatWeDoPage() {
         {/* Programmes */}
         <AOSWrapper animation="fade-up" delay={300}>
           <section className="py-24">
-            <div className="container mx-auto px-6">
+            <div className="max-w-7xl mx-auto px-6 lg:px-8">
               <div className="max-w-6xl mx-auto">
                 <div className="text-center mb-16">
                   <h2 className="heading-section text-gradient-blue mb-6">

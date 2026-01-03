@@ -330,7 +330,7 @@ export default function RepositoryPage() {
   return (
     <>
       <Navigation />
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background custom-scrollbar font-poppins">
         {loading ? (
           <div className="flex items-center justify-center min-h-screen">
             <div className="text-lg">Loading repositories...</div>
@@ -339,7 +339,7 @@ export default function RepositoryPage() {
           <>
             {/* Hero Section */}
             <section className="pt-24 pb-16 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
-              <div className="container mx-auto px-6">
+              <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <div className="max-w-4xl mx-auto text-center">
                   <h1 className="text-4xl md:text-5xl font-playfair font-bold text-gradient-blue mb-6">
                     Repository
@@ -353,7 +353,7 @@ export default function RepositoryPage() {
 
       {/* Search and Filter Section */}
       <section className="py-8 bg-white border-b">
-        <div className="container mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
             <div className="flex flex-col md:flex-row gap-4 mb-6">
               {/* Search Bar */}
@@ -393,7 +393,7 @@ export default function RepositoryPage() {
 
       {/* Repository Table */}
       <section className="py-12">
-        <div className="container mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="overflow-x-auto bg-white shadow-lg rounded-lg">
               <table className="w-full">
@@ -562,7 +562,7 @@ export default function RepositoryPage() {
       {/* Pagination */}
       <section className="py-8">
         {totalPages > 1 ? (
-          <div className="container mx-auto px-6">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
               <div className="flex justify-center">
                 <div className="flex items-center gap-2">

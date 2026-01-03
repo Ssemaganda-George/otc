@@ -240,13 +240,13 @@ export default function ResearchPublicationsPage() {
 	};
 
 	return (
-		<div className="min-h-screen bg-background">
+		<div className="min-h-screen bg-background custom-scrollbar font-poppins">
 			<Navigation />
 
-			<main className="pt-20">
+			<main className="pt-6">
 				{/* Hero Section */}
 				<section className="py-24 bg-gradient-to-br from-primary/10 to-primary/5">
-					<div className="container mx-auto px-6">
+					<div className="max-w-7xl mx-auto px-6 lg:px-8">
 						<div className="max-w-4xl mx-auto text-center">
 							<div className="w-20 h-20 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center mx-auto mb-6">
 								<Search className="w-10 h-10 text-background" />
@@ -262,7 +262,7 @@ export default function ResearchPublicationsPage() {
 
 				{/* Filters Section */}
 				<section className="py-12 bg-card">
-					<div className="container mx-auto px-6">
+					<div className="max-w-7xl mx-auto px-6 lg:px-8">
 						<div className="max-w-4xl mx-auto">
 							<div className="flex flex-col md:flex-row gap-4 items-center justify-between">
 								<div className="relative flex-1">
@@ -296,7 +296,7 @@ export default function ResearchPublicationsPage() {
 
 				{/* Publications Grid */}
 				<section className="py-24 bg-background">
-					<div className="container mx-auto px-6">
+					<div className="max-w-7xl mx-auto px-6 lg:px-8">
 						<div className="max-w-6xl mx-auto">
 							{loading ? (
 								<div className="text-center py-12">
