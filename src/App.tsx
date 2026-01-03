@@ -43,7 +43,6 @@ import { AnalyticsTracker } from "@/components/AnalyticsTracker";
 
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminLogin from "./pages/admin/AdminLogin";
-import ManagePages from "./pages/admin/ManagePages";
 import ManageTeam from "./pages/admin/ManageTeam";
 import ManagePrograms from "./pages/admin/ManagePrograms";
 import ManageProducts from "./pages/admin/ManageProducts";
@@ -52,7 +51,6 @@ import ManageResearchExperts from "./pages/admin/ManageResearchExperts";
 import ManageBlogs from "./pages/admin/ManageBlogs";
 import ManageResources from "./pages/admin/ManageResources";
 import ManageContactInfo from "./pages/admin/ManageContactInfo";
-import ManageFooter from "./pages/admin/ManageFooter";
 import ManageNewsUpdates from "./pages/admin/ManageNewsUpdates";
 import ManageResearchPublications from "./pages/admin/ManageResearchPublications";
 import ManageAboutUs from "./pages/admin/ManageAboutUs";
@@ -122,7 +120,6 @@ function App() {
           {/* 🔐 ADMIN AREA */}
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<AdminDashboard />} />
-            <Route path="pages" element={<ManagePages />} />
             <Route path="team" element={<ManageTeam />} />
             <Route path="research-experts" element={<ManageResearchExperts />} />
             <Route path="programs" element={<ManagePrograms />} />
@@ -131,7 +128,6 @@ function App() {
             <Route path="blogs" element={<ManageBlogs />} />
             <Route path="resources" element={<ManageResources />} />
             <Route path="contact-info" element={<ManageContactInfo />} />
-            <Route path="footer" element={<ManageFooter />} />
             <Route path="news-updates" element={<ManageNewsUpdates />} />
             <Route path="research-publications" element={<ManageResearchPublications />} />
             <Route path="about-us" element={<ManageAboutUs />} />

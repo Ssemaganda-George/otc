@@ -24,7 +24,6 @@ export default function AdminLayout() {
 
   const sidebarItems = [
     { name: "Dashboard", path: "/admin", icon: Home },
-    { name: "Manage Pages", path: "/admin/pages", icon: FileText },
     { name: "Manage Team", path: "/admin/team", icon: Users },
     { name: "Manage Research Experts", path: "/admin/research-experts", icon: GraduationCap },
     { name: "Manage Programs", path: "/admin/programs", icon: BookOpen },
@@ -33,7 +32,6 @@ export default function AdminLayout() {
     { name: "Manage Blogs", path: "/admin/blogs", icon: Newspaper },
     { name: "Manage Resources", path: "/admin/resources", icon: File },
     { name: "Manage Contact Info", path: "/admin/contact-info", icon: Phone },
-    { name: "Manage Footer", path: "/admin/footer", icon: Settings },
     { name: "Manage News Updates", path: "/admin/news-updates", icon: Newspaper },
     { name: "Manage Research Publications", path: "/admin/research-publications", icon: BookOpen },
     { name: "Manage Repositories", path: "/admin/repositories", icon: Database },

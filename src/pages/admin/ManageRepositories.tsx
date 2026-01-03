@@ -20,6 +20,7 @@ interface Repository {
   last_updated: string;
   github_url: string;
   demo_url: string;
+  document_url?: string; // URL to downloadable document
   tags: string[];
   thumbnail: string;
   is_active: boolean;
@@ -33,6 +34,8 @@ export default function ManageRepositories() {
   const [repositories, setRepositories] = useState<Repository[]>([]);
   const [loading, setLoading] = useState(true);
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [uploading, setUploading] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -43,6 +46,7 @@ export default function ManageRepositories() {
     last_updated: "",
     github_url: "",
     demo_url: "",
+    document_url: "",
     tags: "",
     thumbnail: "",
     is_active: true
@@ -99,23 +103,46 @@ export default function ManageRepositories() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    const repositoryData = {
-      title: formData.title,
-      description: formData.description,
-      category: formData.category,
-      language: formData.language,
-      stars: parseInt(formData.stars) || 0,
-      forks: parseInt(formData.forks) || 0,
-      last_updated: formData.last_updated || null,
-      github_url: formData.github_url,
-      demo_url: formData.demo_url,
-      tags: formData.tags ? formData.tags.split(',').map(tag => tag.trim()) : [],
-      thumbnail: formData.thumbnail,
-      is_active: formData.is_active
-    };
+    setUploading(true);
 
     try {
+      let documentUrl = formData.document_url;
+
+      // Upload file if selected
+      if (selectedFile) {
+        const fileExt = selectedFile.name.split('.').pop();
+        const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
+        const filePath = `repositories/${fileName}`;
+
+        const { error: uploadError } = await supabase.storage
+          .from('documents')
+          .upload(filePath, selectedFile);
+
+        if (uploadError) throw uploadError;
+
+        const { data: { publicUrl } } = supabase.storage
+          .from('documents')
+          .getPublicUrl(filePath);
+
+        documentUrl = publicUrl;
+      }
+
+      const repositoryData = {
+        title: formData.title,
+        description: formData.description,
+        category: formData.category,
+        language: formData.language,
+        stars: parseInt(formData.stars) || 0,
+        forks: parseInt(formData.forks) || 0,
+        last_updated: formData.last_updated || null,
+        github_url: formData.github_url,
+        demo_url: formData.demo_url,
+        document_url: documentUrl,
+        tags: formData.tags ? formData.tags.split(',').map(tag => tag.trim()) : [],
+        thumbnail: formData.thumbnail,
+        is_active: formData.is_active
+      };
+
       if (editingId) {
         const { error } = await supabase
           .from('repositories')
@@ -135,6 +162,8 @@ export default function ManageRepositories() {
       fetchRepositories();
     } catch (error) {
       console.error('Error saving repository:', error);
+    } finally {
+      setUploading(false);
     }
   };
 
@@ -150,6 +179,7 @@ export default function ManageRepositories() {
       last_updated: repository.last_updated || "",
       github_url: repository.github_url || "",
       demo_url: repository.demo_url || "",
+      document_url: repository.document_url || "",
       tags: repository.tags ? repository.tags.join(', ') : "",
       thumbnail: repository.thumbnail || "",
       is_active: repository.is_active
@@ -174,6 +204,7 @@ export default function ManageRepositories() {
 
   const resetForm = () => {
     setEditingId(null);
+    setSelectedFile(null);
     setFormData({
       title: "",
       description: "",
@@ -184,6 +215,7 @@ export default function ManageRepositories() {
       last_updated: "",
       github_url: "",
       demo_url: "",
+      document_url: "",
       tags: "",
       thumbnail: "",
       is_active: true
@@ -268,6 +300,20 @@ export default function ManageRepositories() {
                 />
               </div>
               <div>
+                <Label htmlFor="document">Document File</Label>
+                <Input
+                  id="document"
+                  type="file"
+                  accept=".pdf,.doc,.docx,.txt,.md"
+                  onChange={(e) => setSelectedFile(e.target.files?.[0] || null)}
+                />
+                {formData.document_url && (
+                  <p className="text-sm text-gray-500 mt-1">
+                    Current file: {formData.document_url.split('/').pop()}
+                  </p>
+                )}
+              </div>
+              <div>
                 <Label htmlFor="stars">Stars</Label>
                 <Input
                   id="stars"
@@ -323,9 +369,9 @@ export default function ManageRepositories() {
               <Label htmlFor="is_active">Active</Label>
             </div>
             <div className="flex gap-2">
-              <Button type="submit">
+              <Button type="submit" disabled={uploading}>
                 <Save className="w-4 h-4 mr-2" />
-                {editingId ? 'Update' : 'Add'} Repository
+                {uploading ? 'Uploading...' : (editingId ? 'Update' : 'Add') + ' Repository'}
               </Button>
               {editingId && (
                 <Button type="button" variant="outline" onClick={resetForm}>

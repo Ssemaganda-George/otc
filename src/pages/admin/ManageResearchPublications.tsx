@@ -21,6 +21,9 @@ interface ResearchPublication {
   download_url: string;
   view_url: string;
   citation_count: number;
+  download_count: number;
+  like_count: number;
+  reshare_count: number;
   tags: string[];
   created_at: string;
 }
@@ -42,10 +45,15 @@ export default function ManageResearchPublications() {
     download_url: "",
     view_url: "",
     citation_count: "",
+    download_count: "",
+    like_count: "",
+    reshare_count: "",
     tags: ""
   });
   const [selectedThumbnail, setSelectedThumbnail] = useState<File | null>(null);
   const [selectedDocument, setSelectedDocument] = useState<File | null>(null);
+  const [uploading, setUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState<string>('');
 
   useEffect(() => {
     if (!user) {
@@ -94,31 +102,63 @@ export default function ManageResearchPublications() {
   };
 
   const uploadFile = async (file: File, folder: string): Promise<string> => {
+    // Validate file size (10MB limit)
+    const maxSize = 10 * 1024 * 1024; // 10MB
+    if (file.size > maxSize) {
+      throw new Error(`File size too large. Maximum size is 10MB.`);
+    }
+
+    // Validate file type
+    const allowedImageTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
+    const allowedDocTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+
+    if (folder === 'thumbnails' && !allowedImageTypes.includes(file.type)) {
+      throw new Error('Invalid file type. Please upload a valid image file (JPEG, PNG, GIF, WebP).');
+    }
+
+    if (folder === 'publications' && !allowedDocTypes.includes(file.type)) {
+      throw new Error('Invalid file type. Please upload a PDF or Word document.');
+    }
+
     const fileExt = file.name.split('.').pop();
     const fileName = `${Date.now()}.${fileExt}`;
     const filePath = `${folder}/${fileName}`;
 
-    const { error: uploadError } = await supabase.storage
-      .from('research-publications')
-      .upload(filePath, file);
+    setUploadProgress(`Uploading ${file.name}...`);
 
-    if (uploadError) {
-      throw uploadError;
+    try {
+      const { error: uploadError } = await supabase.storage
+        .from('research-publications')
+        .upload(filePath, file);
+
+      if (uploadError) {
+        throw new Error(`Upload failed: ${uploadError.message}`);
+      }
+
+      const { data } = supabase.storage
+        .from('research-publications')
+        .getPublicUrl(filePath);
+
+      if (!data.publicUrl) {
+        throw new Error('Failed to get public URL for uploaded file');
+      }
+
+      setUploadProgress('');
+      return data.publicUrl;
+    } catch (error) {
+      setUploadProgress('');
+      throw error;
     }
-
-    const { data } = supabase.storage
-      .from('research-publications')
-      .getPublicUrl(filePath);
-
-    return data.publicUrl;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setUploading(true);
 
     try {
       let thumbnailUrl = formData.thumbnail;
       let downloadUrl = formData.download_url;
+      let viewUrl = formData.view_url;
 
       if (selectedThumbnail) {
         thumbnailUrl = await uploadFile(selectedThumbnail, 'thumbnails');
@@ -126,6 +166,8 @@ export default function ManageResearchPublications() {
 
       if (selectedDocument) {
         downloadUrl = await uploadFile(selectedDocument, 'publications');
+        // Automatically set view_url to the same URL as download_url for document preview
+        viewUrl = downloadUrl;
       }
 
       const publicationData = {
@@ -137,31 +179,39 @@ export default function ManageResearchPublications() {
         abstract: formData.abstract,
         thumbnail: thumbnailUrl,
         download_url: downloadUrl,
-        view_url: formData.view_url,
+        view_url: viewUrl,
         citation_count: formData.citation_count ? parseInt(formData.citation_count) : 0,
+        download_count: formData.download_count ? parseInt(formData.download_count) : 0,
+        like_count: formData.like_count ? parseInt(formData.like_count) : 0,
+        reshare_count: formData.reshare_count ? parseInt(formData.reshare_count) : 0,
         tags: formData.tags ? formData.tags.split(',').map(tag => tag.trim()) : []
       };
 
-      if (editingId) {
+      if (editingId === 'new') {
+        const { error } = await supabase
+          .from('research_publications')
+          .insert([publicationData]);
+
+        if (error) throw error;
+        alert('Publication created successfully!');
+      } else {
         const { error } = await supabase
           .from('research_publications')
           .update(publicationData)
           .eq('id', editingId);
 
         if (error) throw error;
-      } else {
-        const { error } = await supabase
-          .from('research_publications')
-          .insert([publicationData]);
-
-        if (error) throw error;
+        alert('Publication updated successfully!');
       }
 
       resetForm();
       fetchPublications();
-    } catch (error) {
-      console.error('Error saving research publication:', error);
-      alert('Error saving research publication. Please try again.');
+    } catch (error: any) {
+      console.error('Error saving publication:', error);
+      alert(`Error saving publication: ${error.message}`);
+    } finally {
+      setUploading(false);
+      setUploadProgress('');
     }
   };
 
@@ -178,6 +228,9 @@ export default function ManageResearchPublications() {
       download_url: publication.download_url,
       view_url: publication.view_url,
       citation_count: publication.citation_count?.toString() || "",
+      download_count: publication.download_count?.toString() || "",
+      like_count: publication.like_count?.toString() || "",
+      reshare_count: publication.reshare_count?.toString() || "",
       tags: publication.tags?.join(', ') || ""
     });
   };
@@ -213,6 +266,9 @@ export default function ManageResearchPublications() {
       download_url: "",
       view_url: "",
       citation_count: "",
+      download_count: "",
+      like_count: "",
+      reshare_count: "",
       tags: ""
     });
     setSelectedThumbnail(null);
@@ -304,7 +360,7 @@ export default function ManageResearchPublications() {
                   />
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
                   <div className="space-y-2">
                     <Label htmlFor="category">Category</Label>
                     <Input
@@ -334,6 +390,41 @@ export default function ManageResearchPublications() {
                       name="citation_count"
                       type="number"
                       value={formData.citation_count}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="download_count">Download Count</Label>
+                    <Input
+                      id="download_count"
+                      name="download_count"
+                      type="number"
+                      value={formData.download_count}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="like_count">Like Count</Label>
+                    <Input
+                      id="like_count"
+                      name="like_count"
+                      type="number"
+                      value={formData.like_count}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="reshare_count">Reshare Count</Label>
+                    <Input
+                      id="reshare_count"
+                      name="reshare_count"
+                      type="number"
+                      value={formData.reshare_count}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -378,7 +469,21 @@ export default function ManageResearchPublications() {
                         </div>
                       </div>
                       {selectedThumbnail && (
-                        <p className="text-sm text-muted-foreground">Selected: {selectedThumbnail.name}</p>
+                        <div className="mt-2">
+                          <p className="text-sm text-muted-foreground mb-2">
+                            Selected: {selectedThumbnail.name} ({(selectedThumbnail.size / 1024 / 1024).toFixed(2)} MB)
+                          </p>
+                          <p className="text-xs text-muted-foreground mb-2">
+                            Supported formats: JPEG, PNG, GIF, WebP (Max: 10MB)
+                          </p>
+                          <div className="w-20 h-20 border border-border rounded-lg overflow-hidden">
+                            <img
+                              src={URL.createObjectURL(selectedThumbnail)}
+                              alt="Thumbnail preview"
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                        </div>
                       )}
                     </div>
 
@@ -407,7 +512,14 @@ export default function ManageResearchPublications() {
                         </div>
                       </div>
                       {selectedDocument && (
-                        <p className="text-sm text-muted-foreground">Selected: {selectedDocument.name}</p>
+                        <div className="mt-2">
+                          <p className="text-sm text-muted-foreground">
+                            Selected: {selectedDocument.name} ({(selectedDocument.size / 1024 / 1024).toFixed(2)} MB)
+                          </p>
+                          <p className="text-xs text-muted-foreground mt-1">
+                            Supported formats: PDF, DOC, DOCX (Max: 10MB)
+                          </p>
+                        </div>
                       )}
                     </div>
                   </div>
@@ -419,21 +531,30 @@ export default function ManageResearchPublications() {
                       name="view_url"
                       value={formData.view_url}
                       onChange={handleInputChange}
-                      placeholder="URL to view the publication online"
+                      placeholder="Auto-populated when document is uploaded, or enter custom URL"
                     />
+                    <p className="text-xs text-muted-foreground">
+                      When you upload a document above, this field will be automatically filled with the document URL for preview.
+                    </p>
                   </div>
                 </div>
 
                 <div className="flex gap-4">
-                  <Button type="submit" className="flex items-center gap-2">
+                  <Button type="submit" disabled={uploading} className="flex items-center gap-2">
                     <Save className="w-4 h-4" />
-                    {editingId === 'new' ? 'Create Publication' : 'Update Publication'}
+                    {uploading ? 'Saving...' : (editingId === 'new' ? 'Create Publication' : 'Update Publication')}
                   </Button>
-                  <Button type="button" variant="outline" onClick={resetForm}>
+                  <Button type="button" variant="outline" onClick={resetForm} disabled={uploading}>
                     <X className="w-4 h-4 mr-2" />
                     Cancel
                   </Button>
                 </div>
+
+                {uploadProgress && (
+                  <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                    <p className="text-sm text-blue-700">{uploadProgress}</p>
+                  </div>
+                )}
               </form>
             </CardContent>
           </Card>

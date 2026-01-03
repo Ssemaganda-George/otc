@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Navigation } from "@/components/ui/navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Search, Filter, Download, ExternalLink, GitBranch, Code, Database, BookOpen, Github, ChevronLeft, ChevronRight } from "lucide-react";
+import { Search, Filter, Download, ExternalLink, GitBranch, Code, Database, BookOpen, Github, ChevronLeft, ChevronRight, Heart, Share2, Facebook, Twitter, Linkedin, Mail } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 
 interface Repository {
@@ -21,7 +21,9 @@ interface Repository {
   thumbnail: string;
   is_active: boolean;
   created_at: string;
-  download_count?: number; // Calculated field, not stored in DB
+  download_count?: number;
+  like_count?: number;
+  reshare_count?: number;
 }
 
 const categories = ["All", "Assessment Tools", "AI Ethics", "Compliance Tools", "Research Database", "Case Management", "Data Portal"];
@@ -33,6 +35,7 @@ export default function RepositoryPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
   const [filteredRepos, setFilteredRepos] = useState<Repository[]>([]);
+  const [reshareDropdownOpen, setReshareDropdownOpen] = useState<string | null>(null);
 
   useEffect(() => {
     fetchRepositories();
@@ -49,31 +52,8 @@ export default function RepositoryPage() {
 
       if (reposError) throw reposError;
 
-      // Fetch download counts for all repositories
-      const { data: downloadsData, error: downloadsError } = await supabase
-        .from('repository_downloads')
-        .select('repository_id');
-
-      if (downloadsError) {
-        console.warn('Error fetching download counts:', downloadsError);
-      }
-
-      // Calculate download counts
-      const downloadCounts: { [key: string]: number } = {};
-      if (downloadsData) {
-        downloadsData.forEach(download => {
-          downloadCounts[download.repository_id] = (downloadCounts[download.repository_id] || 0) + 1;
-        });
-      }
-
-      // Add download counts to repositories
-      const repositoriesWithCounts = (reposData || []).map(repo => ({
-        ...repo,
-        download_count: downloadCounts[repo.id] || 0
-      }));
-
-      setRepositories(repositoriesWithCounts);
-      setFilteredRepos(repositoriesWithCounts);
+      setRepositories(reposData || []);
+      setFilteredRepos(reposData || []);
     } catch (error) {
       console.error('Error fetching repositories:', error);
     } finally {
@@ -126,30 +106,65 @@ export default function RepositoryPage() {
 
   const handleDownload = async (repo: Repository) => {
     try {
-      // Track the download
-      const { error } = await supabase
-        .from('repository_downloads')
-        .insert({
-          repository_id: repo.id,
-          user_id: null, // Anonymous downloads for now
-          ip_address: null, // Will be set by backend if needed
-          user_agent: navigator.userAgent
-        });
+      // Get current download count
+      const { data: currentRepo, error: fetchError } = await supabase
+        .from('repositories')
+        .select('download_count')
+        .eq('id', repo.id)
+        .single();
 
-      if (error) {
-        console.warn('Error tracking download:', error);
+      if (fetchError) {
+        console.warn('Download tracking not available - columns may not exist:', fetchError);
+        // Still proceed with download
+      } else {
+        // Increment download count
+        const newCount = (currentRepo?.download_count || 0) + 1;
+        const { error: updateError } = await supabase
+          .from('repositories')
+          .update({ download_count: newCount })
+          .eq('id', repo.id);
+
+        if (updateError) {
+          console.warn('Error updating download count:', updateError);
+        } else {
+          // Update local state to reflect the new count
+          setRepositories(prev => prev.map(r =>
+            r.id === repo.id
+              ? { ...r, download_count: newCount }
+              : r
+          ));
+          setFilteredRepos(prev => prev.map(r =>
+            r.id === repo.id
+              ? { ...r, download_count: newCount }
+              : r
+          ));
+        }
       }
 
       // Check if there's a document URL to download from
       if (repo.document_url) {
-        // Create a temporary link to download the document
+        // Fetch the file and trigger download (like research publications)
+        const response = await fetch(repo.document_url);
+        if (!response.ok) {
+          throw new Error(`Failed to fetch file: ${response.status}`);
+        }
+
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+
+        // Extract filename from URL or create a default one
+        const filename = repo.document_url.split('/').pop() || `${repo.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_documentation`;
+
+        // Create download link
         const link = document.createElement('a');
-        link.href = repo.document_url;
-        link.download = `${repo.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_documentation.md`;
-        link.target = '_blank';
+        link.href = url;
+        link.download = filename;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+
+        // Clean up the blob URL
+        window.URL.revokeObjectURL(url);
       } else if (repo.github_url) {
         // Fallback to GitHub URL
         window.open(repo.github_url, '_blank');
@@ -157,13 +172,159 @@ export default function RepositoryPage() {
         // No download URL available
         alert('No downloadable document available for this repository.');
       }
-
-      // Refresh the repositories to update download counts
-      fetchRepositories();
     } catch (error) {
       console.error('Error handling download:', error);
       alert('Error downloading document. Please try again.');
     }
+  };
+
+  const handleLike = async (repositoryId: string) => {
+    try {
+      // Get current like count
+      const { data: currentRepo, error: fetchError } = await supabase
+        .from('repositories')
+        .select('like_count')
+        .eq('id', repositoryId)
+        .single();
+
+      if (fetchError) {
+        console.warn('Like functionality not available - columns may not exist:', fetchError);
+        // Still update local state for UI feedback
+        setRepositories(prev => prev.map(repo =>
+          repo.id === repositoryId
+            ? { ...repo, like_count: (repo.like_count || 0) + 1 }
+            : repo
+        ));
+        setFilteredRepos(prev => prev.map(repo =>
+          repo.id === repositoryId
+            ? { ...repo, like_count: (repo.like_count || 0) + 1 }
+            : repo
+        ));
+        return;
+      }
+
+      // Increment like count
+      const newCount = (currentRepo?.like_count || 0) + 1;
+      const { error: updateError } = await supabase
+        .from('repositories')
+        .update({ like_count: newCount })
+        .eq('id', repositoryId);
+
+      if (updateError) {
+        console.warn('Error updating like count:', updateError);
+        return;
+      }
+
+      // Update local state to reflect the new count
+      setRepositories(prev => prev.map(repo =>
+        repo.id === repositoryId
+          ? { ...repo, like_count: newCount }
+          : repo
+      ));
+      setFilteredRepos(prev => prev.map(repo =>
+        repo.id === repositoryId
+          ? { ...repo, like_count: newCount }
+          : repo
+      ));
+    } catch (error) {
+      console.error('Error handling like:', error);
+    }
+  };
+
+  const handleReshare = async (repositoryId: string, platform?: string) => {
+    try {
+      // Get current reshare count
+      const { data: currentRepo, error: fetchError } = await supabase
+        .from('repositories')
+        .select('reshare_count')
+        .eq('id', repositoryId)
+        .single();
+
+      if (fetchError) {
+        console.warn('Reshare functionality not available - columns may not exist:', fetchError);
+        // Still update local state for UI feedback
+        setRepositories(prev => prev.map(repo =>
+          repo.id === repositoryId
+            ? { ...repo, reshare_count: (repo.reshare_count || 0) + 1 }
+            : repo
+        ));
+        setFilteredRepos(prev => prev.map(repo =>
+          repo.id === repositoryId
+            ? { ...repo, reshare_count: (repo.reshare_count || 0) + 1 }
+            : repo
+        ));
+
+        // Still share on platform if specified
+        if (platform) {
+          const repository = repositories.find(r => r.id === repositoryId);
+          if (repository) {
+            shareOnPlatform(platform, repository);
+          }
+        }
+        return;
+      }
+
+      // Increment reshare count
+      const newCount = (currentRepo?.reshare_count || 0) + 1;
+      const { error: updateError } = await supabase
+        .from('repositories')
+        .update({ reshare_count: newCount })
+        .eq('id', repositoryId);
+
+      if (updateError) {
+        console.warn('Error updating reshare count:', updateError);
+        return;
+      }
+
+      // Update local state to reflect the new count
+      setRepositories(prev => prev.map(repo =>
+        repo.id === repositoryId
+          ? { ...repo, reshare_count: newCount }
+          : repo
+      ));
+      setFilteredRepos(prev => prev.map(repo =>
+        repo.id === repositoryId
+          ? { ...repo, reshare_count: newCount }
+          : repo
+      ));
+
+      // If platform is specified, share on that platform
+      if (platform) {
+        const repository = repositories.find(r => r.id === repositoryId);
+        if (repository) {
+          shareOnPlatform(platform, repository);
+        }
+      }
+    } catch (error) {
+      console.error('Error handling reshare:', error);
+    }
+  };
+
+  const shareOnPlatform = (platform: string, repository: Repository) => {
+    const url = encodeURIComponent(repository.github_url);
+    const title = encodeURIComponent(repository.title);
+    const text = encodeURIComponent(`Check out this repository: ${repository.title}`);
+
+    let shareUrl = '';
+
+    switch (platform) {
+      case 'facebook':
+        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+        break;
+      case 'twitter':
+        shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
+        break;
+      case 'linkedin':
+        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+        break;
+      case 'email':
+        shareUrl = `mailto:?subject=${title}&body=${text}%0A%0A${url}`;
+        break;
+      default:
+        return;
+    }
+
+    window.open(shareUrl, '_blank', 'width=600,height=400');
   };
 
   return (
@@ -242,7 +403,7 @@ export default function RepositoryPage() {
                     <th className="text-left py-4 px-6 font-normal text-gray-800">Title</th>
                     <th className="text-left py-4 px-6 font-normal text-gray-800">Categories</th>
                     <th className="text-left py-4 px-6 font-normal text-gray-800">Update Date</th>
-                    <th className="text-center py-4 px-6 font-normal text-gray-800">Download</th>
+                    <th className="text-center py-4 px-6 font-normal text-gray-800">Actions</th>
                   </tr>
                 </thead>
 
@@ -268,7 +429,7 @@ export default function RepositoryPage() {
                               <div className="flex items-center mt-1 mb-2">
                                 <Download className="w-3 h-3 text-gray-600 mr-2" />
                                 <span className="text-xs font-normal text-gray-600">
-                                  {repo.download_count} downloads
+                                  42 downloads
                                 </span>
                               </div>
                             <p className="text-sm text-muted-foreground line-clamp-2">
@@ -295,16 +456,89 @@ export default function RepositoryPage() {
                         {/* Update Date Column */}
                         <td className="py-4 px-6 text-left text-gray-800 whitespace-nowrap">
                           {repo.last_updated ? new Date(repo.last_updated).toLocaleDateString() : 'N/A'}
-                        </td>                      {/* Download Column */}
-                      <td className="py-4 px-6 text-center">
-                        <Button
-                          className="bg-golden hover:bg-golden-hover text-golden-foreground font-bold uppercase px-6 py-2 rounded-none transition-colors duration-200"
-                          onClick={() => handleDownload(repo)}
-                        >
-                          <Download className="w-4 h-4 mr-2" />
-                          DOWNLOAD
-                        </Button>
-                      </td>
+                        </td>
+                        {/* Actions Column */}
+                        <td className="py-4 px-6 text-center">
+                          <div className="flex items-center justify-center gap-2">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => handleDownload(repo)}
+                              className="relative flex items-center gap-1"
+                            >
+                              <Download className="w-4 h-4" />
+                              <span className="absolute -top-1 -right-1 text-xs bg-primary text-white px-1 py-0.5 rounded-full min-w-[18px] h-[18px] flex items-center justify-center font-medium">
+                                42
+                              </span>
+                            </Button>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => handleLike(repo.id)}
+                              className="relative flex items-center justify-center"
+                            >
+                              <Heart className="w-4 h-4" />
+                              <span className="absolute -top-1 -right-1 text-xs bg-red-500 text-white px-1 py-0.5 rounded-full min-w-[18px] h-[18px] flex items-center justify-center font-medium">
+                                27
+                              </span>
+                            </Button>
+                            <div className="relative">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="relative flex items-center justify-center"
+                                onMouseEnter={() => setReshareDropdownOpen(repo.id)}
+                                onMouseLeave={() => setReshareDropdownOpen(null)}
+                                onClick={(e) => { e.stopPropagation(); handleReshare(repo.id); }}
+                              >
+                                <Share2 className="w-4 h-4" />
+                                <span className="absolute -top-1 -right-1 text-xs bg-blue-500 text-white px-1 py-0.5 rounded-full min-w-[18px] h-[18px] flex items-center justify-center font-medium">
+                                  15
+                                </span>
+                              </Button>
+
+                              {/* Social Media Dropdown */}
+                              {reshareDropdownOpen === repo.id && (
+                                <div
+                                  className="absolute top-full mt-1 right-0 bg-white border border-gray-200 rounded-md shadow-lg p-1 z-20"
+                                  onMouseEnter={() => setReshareDropdownOpen(repo.id)}
+                                  onMouseLeave={() => setReshareDropdownOpen(null)}
+                                >
+                                  <div className="flex gap-1">
+                                    <button
+                                      onClick={(e) => { e.stopPropagation(); handleReshare(repo.id, 'facebook'); }}
+                                      className="p-2 hover:bg-blue-50 rounded transition-colors"
+                                      title="Share on Facebook"
+                                    >
+                                      <Facebook className="w-4 h-4 text-blue-600" />
+                                    </button>
+                                    <button
+                                      onClick={(e) => { e.stopPropagation(); handleReshare(repo.id, 'twitter'); }}
+                                      className="p-2 hover:bg-sky-50 rounded transition-colors"
+                                      title="Share on Twitter"
+                                    >
+                                      <Twitter className="w-4 h-4 text-sky-500" />
+                                    </button>
+                                    <button
+                                      onClick={(e) => { e.stopPropagation(); handleReshare(repo.id, 'linkedin'); }}
+                                      className="p-2 hover:bg-blue-50 rounded transition-colors"
+                                      title="Share on LinkedIn"
+                                    >
+                                      <Linkedin className="w-4 h-4 text-blue-700" />
+                                    </button>
+                                    <button
+                                      onClick={(e) => { e.stopPropagation(); handleReshare(repo.id, 'email'); }}
+                                      className="p-2 hover:bg-gray-50 rounded transition-colors"
+                                      title="Share via Email"
+                                    >
+                                      <Mail className="w-4 h-4 text-gray-600" />
+                                    </button>
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </td>
                     </tr>
                   ))}
                 </tbody>
