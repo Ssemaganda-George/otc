@@ -1,0 +1,65 @@
+-- Insert the hardcoded news content that was removed from the NewsUpdatesPage
+INSERT INTO news_updates (
+  title,
+  slug,
+  excerpt,
+  content,
+  featured_image,
+  pdf_url,
+  gallery_images,
+  publish_date,
+  is_featured,
+  category,
+  tags
+) VALUES 
+-- Google Case Banner
+('Landmark Google Case Decision: Implications for Digital Rights in Africa', 
+ 'landmark-google-case-decision-digital-rights-africa',
+ 'A comprehensive analysis of the recent Google case decision and its implications for digital rights, data privacy, and technology governance across African jurisdictions.',
+ 'OneTechConnect has conducted an in-depth analysis of the landmark Google case decision that has significant implications for digital rights and data governance in Africa. This case represents a critical milestone in the ongoing struggle to ensure that technology companies respect African data sovereignty and human rights standards. Our legal team has prepared a detailed briefing document examining the case precedents, regulatory implications, and recommendations for African policymakers and civil society organizations.',
+ '/images/google-case-banner.jpg',
+ '/documents/google-case-decision.pdf',
+ ARRAY['/images/DFA-25-Speakers-X-D01-09.jpg', '/images/DJP_5020.jpg', '/images/DFA-2.jpg'],
+ '2024-11-15',
+ true,
+ 'Legal Analysis',
+ ARRAY['google', 'digital-rights', 'data-privacy', 'africa', 'case-law']),
+
+-- DataFest Announcement
+('DataFest 2025: Africa''s Premier Data Innovation Festival Returns', 
+ 'datafest-2025-africa-data-innovation-festival',
+ 'Join us for DataFest 2025, Africa''s premier data innovation festival featuring workshops, hackathons, and networking opportunities for data professionals and innovators.',
+ 'OneTechConnect is proud to announce the return of DataFest 2025, Africa''s premier data innovation festival. This year''s event will bring together data scientists, policymakers, entrepreneurs, and civil society representatives to explore the transformative potential of data-driven solutions for African development. The festival will feature keynote presentations from leading African data experts, hands-on workshops on emerging technologies, and a showcase of innovative data solutions addressing pressing challenges in health, agriculture, finance, and governance.',
+ '/images/datafest-2025-banner.jpg',
+ '/documents/datafest-2025-program.pdf',
+ ARRAY['/images/DJP_5027.jpg', '/images/DJP_5167.jpg', '/images/DFA-25-Speakers-X-D01-09.jpg'],
+ '2024-12-01',
+ true,
+ 'Events',
+ ARRAY['datafest', 'innovation', 'festival', 'africa', 'data', 'hackathon']),
+
+-- Gallery/Event Coverage
+('OTC Annual Conference 2024: Highlights and Key Takeaways', 
+ 'otc-annual-conference-2024-highlights-takeaways',
+ 'A comprehensive overview of OneTechConnect''s annual conference featuring discussions on digital transformation, human rights, and technological innovation across Africa.',
+ 'OneTechConnect''s Annual Conference 2024 brought together over 200 participants from across Africa to discuss the future of digital transformation on the continent. The conference featured panels on emerging technologies, regulatory frameworks, and the intersection of technology with human rights and social justice. Attendees engaged in workshops on digital literacy, policy advocacy, and technological innovation. The event showcased successful case studies from our various programs and provided networking opportunities for stakeholders working at the intersection of technology and development.',
+ '/images/otc-conference-2024.jpg',
+ '/documents/otc-conference-2024-report.pdf',
+ ARRAY['/images/DFA-25-Speakers-X-D01-09.jpg', '/images/DJP_5020.jpg', '/images/DFA-2.jpg', '/images/DJP_5027.jpg', '/images/DJP_5167.jpg'],
+ '2024-10-20',
+ true,
+ 'Events',
+ ARRAY['conference', 'annual', 'networking', 'digital-transformation', 'africa']),
+
+-- More News Coming Soon placeholder (but as actual content)
+('Upcoming: Digital Rights Training Program Launch', 
+ 'upcoming-digital-rights-training-program-launch',
+ 'OneTechConnect is preparing to launch a comprehensive digital rights training program designed to equip African civil society organizations with essential skills and knowledge.',
+ 'In response to the growing need for digital rights expertise across Africa, OneTechConnect is developing a comprehensive training program that will equip civil society organizations, legal professionals, and policymakers with the knowledge and skills needed to navigate the complex landscape of digital rights and technology governance. The program will cover topics including data privacy, algorithmic accountability, digital security, and policy advocacy. Stay tuned for more details on program dates, curriculum, and registration information.',
+ '/images/training-program-preview.jpg',
+ NULL,
+ NULL,
+ '2024-12-20',
+ false,
+ 'Training',
+ ARRAY['training', 'digital-rights', 'capacity-building', 'education', 'upcoming']);

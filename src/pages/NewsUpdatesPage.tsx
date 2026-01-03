@@ -1,9 +1,29 @@
 import { Navigation } from "@/components/ui/navigation";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Calendar, ArrowRight, Newspaper, Download, X, Loader2, ChevronLeft, ChevronRight } from "lucide-react"; // Added ChevronLeft, ChevronRight
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { ArrowRight, Newspaper, Download, X, Loader2, ChevronLeft, ChevronRight, Heart, Share2, Facebook, Twitter, Linkedin, Mail } from "lucide-react";
+import { useState, useEffect } from "react";
+import { supabase } from "@/lib/supabase";
+
+interface NewsUpdate {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: string;
+  featured_image: string;
+  pdf_url: string;
+  gallery_images: string[];
+  publish_date: string;
+  is_featured: boolean;
+  category: string;
+  tags: string[];
+  display_order: number;
+  download_count: number;
+  like_count: number;
+  reshare_count: number;
+  created_at: string;
+}
 
 export default function NewsUpdatesPage() {
   const [selectedPdf, setSelectedPdf] = useState<string | null>(null);
@@ -15,6 +35,11 @@ export default function NewsUpdatesPage() {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);
   const [imageOpacity, setImageOpacity] = useState<number>(1);
 
+  // Add state for news updates
+  const [newsUpdates, setNewsUpdates] = useState<NewsUpdate[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [reshareDropdownOpen, setReshareDropdownOpen] = useState<string | null>(null);
+
   // Define gallery images
   const galleryImages = [
     '/images/DFA-25-Speakers-X-D01-09.jpg',
@@ -23,6 +48,161 @@ export default function NewsUpdatesPage() {
     '/images/DJP_5027.jpg',
     '/images/DJP_5167.jpg'
   ];
+
+  useEffect(() => {
+    fetchNewsUpdates();
+  }, []);
+
+  // Close reshare dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (reshareDropdownOpen && !(event.target as Element).closest('.reshare-dropdown')) {
+        setReshareDropdownOpen(null);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [reshareDropdownOpen]);
+
+  const fetchNewsUpdates = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('news_updates')
+        .select('*')
+        .order('display_order', { ascending: true })
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        console.error('Error fetching news updates:', error);
+        setNewsUpdates([]);
+      } else {
+        // Ensure engagement columns exist with defaults
+        const processedData = (data || []).map(item => ({
+          ...item,
+          download_count: item.download_count ?? 0,
+          like_count: item.like_count ?? 0,
+          reshare_count: item.reshare_count ?? 0,
+          display_order: item.display_order ?? 0
+        }));
+        setNewsUpdates(processedData);
+      }
+    } catch (error) {
+      console.error('Error fetching news updates:', error);
+      setNewsUpdates([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleDownload = async (newsUpdate: NewsUpdate) => {
+    try {
+      // Try to update download count, but don't fail if column doesn't exist
+      try {
+        const { error } = await supabase
+          .from('news_updates')
+          .update({ download_count: newsUpdate.download_count + 1 })
+          .eq('id', newsUpdate.id);
+
+        if (!error) {
+          // Update local state
+          setNewsUpdates(prev => prev.map(item =>
+            item.id === newsUpdate.id
+              ? { ...item, download_count: item.download_count + 1 }
+              : item
+          ));
+        }
+      } catch (dbError) {
+        console.warn('Database update failed, continuing with download:', dbError);
+      }
+
+      // Handle download
+      if (newsUpdate.pdf_url) {
+        const link = document.createElement('a');
+        link.href = newsUpdate.pdf_url;
+        link.download = `${newsUpdate.slug}.pdf`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    } catch (error) {
+      console.error('Error handling download:', error);
+    }
+  };
+
+  const handleLike = async (newsUpdate: NewsUpdate) => {
+    try {
+      // Try to update like count, but don't fail if column doesn't exist
+      try {
+        const { error } = await supabase
+          .from('news_updates')
+          .update({ like_count: newsUpdate.like_count + 1 })
+          .eq('id', newsUpdate.id);
+
+        if (!error) {
+          setNewsUpdates(prev => prev.map(item =>
+            item.id === newsUpdate.id
+              ? { ...item, like_count: item.like_count + 1 }
+              : item
+          ));
+        }
+      } catch (dbError) {
+        console.warn('Database update failed, continuing with like:', dbError);
+      }
+    } catch (error) {
+      console.error('Error handling like:', error);
+    }
+  };
+
+  const handleReshare = async (newsUpdate: NewsUpdate, platform: string) => {
+    try {
+      // Try to update reshare count, but don't fail if column doesn't exist
+      try {
+        const { error } = await supabase
+          .from('news_updates')
+          .update({ reshare_count: newsUpdate.reshare_count + 1 })
+          .eq('id', newsUpdate.id);
+
+        if (!error) {
+          setNewsUpdates(prev => prev.map(item =>
+            item.id === newsUpdate.id
+              ? { ...item, reshare_count: item.reshare_count + 1 }
+              : item
+          ));
+        }
+      } catch (dbError) {
+        console.warn('Database update failed, continuing with reshare:', dbError);
+      }
+
+      // Handle social sharing
+      const url = `${window.location.origin}/news/${newsUpdate.slug}`;
+      const text = `Check out this news update: ${newsUpdate.title}`;
+
+      let shareUrl = '';
+      switch (platform) {
+        case 'facebook':
+          shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+          break;
+        case 'twitter':
+          shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+          break;
+        case 'linkedin':
+          shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+          break;
+        case 'email':
+          shareUrl = `mailto:?subject=${encodeURIComponent(newsUpdate.title)}&body=${encodeURIComponent(`${text}\n\n${url}`)}`;
+          break;
+      }
+
+      if (shareUrl) {
+        window.open(shareUrl, '_blank', 'width=600,height=400');
+      }
+
+      setReshareDropdownOpen(null);
+    } catch (error) {
+      console.error('Error handling reshare:', error);
+    }
+  };
 
   const openPdfModal = (pdfUrl: string) => {
     setSelectedPdf(pdfUrl);
@@ -116,334 +296,276 @@ export default function NewsUpdatesPage() {
     }
   };
 
-  // Add state for expandable description
-  const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
-
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="py-24 bg-gradient-to-br from-primary/10 to-primary/5">
-          <div className="container mx-auto px-6">
+        <section className="py-12 md:py-24 bg-gradient-to-br from-primary/10 to-primary/5">
+          <div className="container mx-auto px-4 sm:px-6">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="w-20 h-20 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Newspaper className="w-10 h-10 text-background" />
+              <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6">
+                <Newspaper className="w-8 h-8 md:w-10 md:h-10 text-background" />
               </div>
-              <h1 className="heading-section text-gradient-blue mb-8">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair font-semibold text-gradient-blue mb-6 md:mb-8 px-4">
                 News & Updates
               </h1>
-              <p className="text-body text-muted-foreground leading-relaxed">
-                Stay informed about OTC's latest developments, research findings, advocacy wins, 
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto px-4">
+                Stay informed about OTC's latest developments, research findings, advocacy wins,
                 and insights on technology, human rights, and digital transformation across Africa.
               </p>
             </div>
           </div>
         </section>
 
-        {/* Google Case Banner */}
-        <section className="py-16 bg-gradient-to-r from-primary/20 to-primary/10 border-y border-primary/20">
-          <div className="container mx-auto px-6">
-            <div className="max-w-6xl mx-auto">
-              <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
-                {/* Flyer Image */}
-                <div className="flex-shrink-0">
-                  <img
-                    src="/images/google-banner.jpg"
-                    alt="Google Case Flyer"
-                    className="w-full max-w-sm mx-auto lg:mx-0 rounded-lg shadow-lg"
-                  />
-                </div>
-                
-                {/* Text Content */}
-                <div className="flex-1 text-center lg:text-left">
-                  <div className="flex flex-col sm:flex-row items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
-                    <Newspaper className="w-4 h-4" />
-                    Breaking News
-                  </div>
-                  
-                  <h2 className="text-3xl md:text-4xl font-playfair font-bold text-gradient-blue mb-4">
-                    Google LLC Withdraws Appeal in Landmark Ugandan Data Protection Case
-                  </h2>
-                  <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0">
-                    A major breakthrough in digital rights and data protection enforcement as Google agrees to comply with Uganda's Data Protection and Privacy Act.
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                    <Button variant="golden" size="lg" className="group" onClick={() => openPdfModal('/documents/OTC-Press-Release.pdf')}>
-                      Read Press Release
-                      <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                    <Button variant="outline" size="lg" className="group" onClick={() => openPdfModal('/documents/Court-Release.pdf')}>
-                      Read Withdraw Notice
-                      <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                    <Button variant="outline" size="lg" className="group" onClick={() => openPdfModal('/documents/Ssekamwa-Frank-3-Ors-vs-Google-LLC-PDPO-Decision-18th-July-2024.pdf')}>
-                      Read LLC-PDPO-Decision
-                      <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Placeholder News Banner */}
-        <section className="py-16 bg-gradient-to-r from-secondary/20 to-secondary/10 border-y border-secondary/20">
-          <div className="container mx-auto px-6">
-            <div className="max-w-6xl mx-auto">
-              <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
-                {/* Placeholder Image */}
-                <div className="flex-shrink-0 cursor-pointer" onClick={() => openImageModal('/images/DFA-25-Speakers-X-D01-09.jpg')}>
-                  <img
-                    src="/images/DFA-25-Speakers-X-D01-09.jpg"
-                    alt="Placeholder News - Click to view image"
-                    className="w-full max-w-sm mx-auto lg:mx-0 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
-                  />
-                </div>
-                
-                {/* Placeholder Text Content */}
-                <div className="flex-1 text-center lg:text-left">
-                  <div className="flex flex-col sm:flex-row items-center gap-2 bg-secondary/10 text-secondary px-4 py-2 rounded-full text-sm font-medium mb-6">
-                    <Newspaper className="w-4 h-4" />
-                    Latest Update
-                  </div>
-                  
-                  <h2 className="text-3xl md:text-4xl font-playfair font-bold text-gradient-blue mb-4">
-                    OTC at DataFest Africa 2025
-                  </h2>
-                  <p className="text-lg text-muted-foreground mb-4 max-w-2xl mx-auto lg:mx-0">
-                    {isDescriptionExpanded
-                      ? `Our Executive Director represented OTC at DataFest Africa 2025, where he participated in the opening panel, "From Data to Power: How Data Is Shaping African Societies Today."
-
-                        During the discussion, he underscored the need to prioritise data justice in Africa's digital revolution, highlighting the critical role of community-based digital rights litigation in strengthening accountability. He also emphasised the importance of decolonising data governance and artificial intelligence, ensuring that local knowledge, values and contexts inform the development and deployment of emerging technologies.
-
-                        A key message from his contribution was the necessity of meaningful community participation, especially the involvement of young people, as custodians of Africa's digital future. Through their leadership, advocacy, and innovation, Africa can build a digital ecosystem grounded in rights, equity and sovereignty.`
-                      : `Our Executive Director represented OTC at DataFest Africa 2025, where he participated in the opening panel, "From Data to Power: How Data Is Shaping African Societies Today."`
-                    }
-                  </p>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
-                    className="mb-4 text-primary hover:text-primary/80"
-                  >
-                    {isDescriptionExpanded ? 'Read Less' : 'Read More'}
-                  </Button>
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                    <Button variant="golden" size="lg" className="group" onClick={() => openImageModal('/images/DJP_5020.jpg')}>
-                      View
-                      <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                    <Button variant="outline" size="lg" className="group" onClick={() => openImageModal('/images/DFA-2.jpg')}>
-                      View
-                      <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                    <Button variant="outline" size="lg" className="group" onClick={() => openImageModal('/images/DJP_5027.jpg')}>
-                      View
-                      <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                    <Button variant="outline" size="lg" className="group" onClick={() => openImageModal('/images/DJP_5167.jpg')}>
-                      View
-                      <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Attachments Gallery */}
-        <section className="py-16 bg-background">
-          <div className="container mx-auto px-6">
-            <div className="max-w-6xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-playfair font-semibold text-gradient-blue mb-8 text-center">
-                News Gallery
-              </h2>
-              <style>
-                {`
-                  @keyframes fadeInFromBack {
-                    0% {
-                      opacity: 0;
-                      transform: scale(0.9) translateZ(-20px);
-                    }
-                    100% {
-                      opacity: 1;
-                      transform: scale(1) translateZ(0);
-                    }
-                  }
-                  .gallery-item {
-                    animation: fadeInFromBack 1s ease-out forwards;
-                    opacity: 0;
-                  }
-                `}
-              </style>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {[
-                  '/images/DFA-25-Speakers-X-D01-09.jpg',
-                  '/images/DJP_5020.jpg',
-                  '/images/DFA-2.jpg',
-                  '/images/DJP_5027.jpg',
-                  '/images/DJP_5167.jpg'
-                ].map((imageUrl, index) => (
-                  <div
-                    key={index}
-                    className="cursor-pointer rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow gallery-item"
-                    style={{ animationDelay: `${index * 0.2}s` }}
-                    onClick={() => openImageModal(imageUrl)}
-                  >
-                    <img
-                      src={imageUrl}
-                      alt={`Attachment ${index + 1}`}
-                      className="w-full h-64 md:h-80 object-cover"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* News & Updates Articles Section */}
-        <section className="py-24 bg-background">
-          <div className="container mx-auto px-6">
-            <div className="max-w-5xl mx-auto">
-              {/* Article Card removed as per request */}
-            </div>
-          </div>
-        </section>
-
-        {/* More News Coming */}
-        <section className="py-24 bg-gradient-to-br from-card/30 to-background">
-          <div className="container mx-auto px-6">
-            <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-playfair font-semibold text-gradient-blue mb-4">
-                  More News Coming Soon
+        <section className="py-12 md:py-24 bg-background">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="max-w-7xl mx-auto">
+              <div className="text-center mb-8 md:mb-12">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair font-semibold text-gradient-blue mb-3 md:mb-4 px-4">
+                  Latest News & Updates
                 </h2>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  We're actively working on bringing you comprehensive coverage of our latest developments and initiatives.
+                <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto px-4 leading-relaxed">
+                  Stay informed about OTC's latest developments, research findings, advocacy wins, and insights on technology, human rights, and digital transformation across Africa.
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                {[
-                  {
-                    title: "Research Publications & Findings",
-                    description: "In-depth analysis and findings from our ongoing research initiatives",
-                    icon: "📊"
-                  },
-                  {
-                    title: "Strategic Litigation Updates",
-                    description: "Updates on legal actions and court decisions affecting digital rights",
-                    icon: "⚖️"
-                  },
-                  {
-                    title: "Partnership Announcements",
-                    description: "New collaborations and strategic partnerships for greater impact",
-                    icon: "🤝"
-                  },
-                  {
-                    title: "Policy & Advocacy Wins",
-                    description: "Policy changes and advocacy successes in technology and human rights",
-                    icon: "🏆"
-                  },
-                  {
-                    title: "Event Coverage & Reports",
-                    description: "Comprehensive coverage of conferences, workshops, and key events",
-                    icon: "📅"
-                  },
-                  {
-                    title: "Thought Leadership Articles",
-                    description: "Expert insights and analysis on emerging technology trends",
-                    icon: "💡"
-                  }
-                ].map((item, index) => (
-                  <div
-                    key={index}
-                    className="bg-card border border-border rounded-none p-6 shadow-card hover:shadow-blue transition-all duration-300 card-hover group"
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                  >
-                    <div className="text-center">
-                      <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                        {item.icon}
-                      </div>
-                      <h3 className="text-lg font-playfair font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
-                        {item.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="bg-gradient-to-r from-primary/10 to-primary/5 p-8 md:p-12 border border-primary/20 rounded-none">
-                <div className="text-center">
-                  <h3 className="text-2xl font-playfair font-semibold text-gradient-blue mb-4">
-                    Stay Ahead of the Curve
-                  </h3>
-                  <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-                    Want to stay updated on our latest developments and be the first to know when new content is published?
-                  </p>
-
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Link to="/newsletter">
-                      <Button variant="golden" className="group">
-                        Subscribe to Newsletter
-                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                      </Button>
-                    </Link>
-
-                    <Button variant="ghost-golden" className="group">
-                      Follow @OneTechConnect
-                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                  </div>
+              {loading ? (
+                <div className="flex flex-col items-center justify-center py-16 md:py-24">
+                  <Loader2 className="w-8 h-8 md:w-12 md:h-12 animate-spin text-primary mb-4" />
+                  <span className="text-base md:text-lg text-muted-foreground">Loading news updates...</span>
                 </div>
-              </div>
+              ) : newsUpdates.length > 0 ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                  {newsUpdates.map((newsUpdate) => (
+                    <article key={newsUpdate.id} className="bg-card rounded-none shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2">
+                      {/* Featured Image */}
+                      {newsUpdate.featured_image && (
+                        <div className="relative overflow-hidden aspect-[4/3] sm:aspect-[16/10]">
+                          <img
+                            src={newsUpdate.featured_image}
+                            alt={newsUpdate.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            loading="lazy"
+                          />
+                          {newsUpdate.is_featured && (
+                            <div className="absolute top-3 left-3 md:top-4 md:left-4 bg-primary text-primary-foreground px-2 py-1 md:px-3 md:py-1 rounded-full text-xs md:text-sm font-medium shadow-lg">
+                              Featured
+                            </div>
+                          )}
+                        </div>
+                      )}
+
+                      <div className="p-4 md:p-6">
+                        {/* Category Badge */}
+                        <div className="flex items-center gap-2 mb-3">
+                          <div className="bg-secondary/10 text-secondary px-2 py-1 md:px-3 md:py-1 rounded-full text-xs md:text-sm font-medium">
+                            {newsUpdate.category || 'News'}
+                          </div>
+                        </div>
+
+                        {/* Title */}
+                        <h3 className="text-lg md:text-xl font-bold text-foreground mb-3 line-clamp-2 group-hover:text-primary transition-colors leading-tight">
+                          {newsUpdate.title}
+                        </h3>
+
+                        {/* Excerpt */}
+                        {newsUpdate.excerpt && (
+                          <p className="text-sm md:text-base text-muted-foreground mb-4 line-clamp-3 leading-relaxed">
+                            {newsUpdate.excerpt}
+                          </p>
+                        )}
+
+                        {/* Engagement Badges */}
+                        <div className="flex items-center justify-between mb-4">
+                          <div className="flex items-center gap-2 md:gap-4">
+                            {/* Download Badge */}
+                            <button
+                              onClick={() => handleDownload(newsUpdate)}
+                              className="flex items-center gap-1 bg-blue-50 hover:bg-blue-100 text-blue-600 px-2 py-1 md:px-3 md:py-1 rounded-full text-xs md:text-sm font-medium transition-colors touch-manipulation min-h-[32px]"
+                              aria-label={`Download ${newsUpdate.title}`}
+                            >
+                              <Download className="w-3 h-3 flex-shrink-0" />
+                              <span className="hidden sm:inline">{newsUpdate.download_count}</span>
+                            </button>
+
+                            {/* Like Badge */}
+                            <button
+                              onClick={() => handleLike(newsUpdate)}
+                              className="flex items-center gap-1 bg-red-50 hover:bg-red-100 text-red-600 px-2 py-1 md:px-3 md:py-1 rounded-full text-xs md:text-sm font-medium transition-colors touch-manipulation min-h-[32px]"
+                              aria-label={`Like ${newsUpdate.title}`}
+                            >
+                              <Heart className="w-3 h-3 flex-shrink-0" />
+                              <span className="hidden sm:inline">{newsUpdate.like_count}</span>
+                            </button>
+
+                            {/* Reshare Badge with Dropdown */}
+                            <div className="relative">
+                              <button
+                                onClick={() => setReshareDropdownOpen(reshareDropdownOpen === newsUpdate.id ? null : newsUpdate.id)}
+                                className="flex items-center gap-1 bg-green-50 hover:bg-green-100 text-green-600 px-2 py-1 md:px-3 md:py-1 rounded-full text-xs md:text-sm font-medium transition-colors touch-manipulation min-h-[32px]"
+                                aria-label={`Share ${newsUpdate.title}`}
+                              >
+                                <Share2 className="w-3 h-3 flex-shrink-0" />
+                                <span className="hidden sm:inline">{newsUpdate.reshare_count}</span>
+                              </button>
+
+                              {/* Reshare Dropdown */}
+                              {reshareDropdownOpen === newsUpdate.id && (
+                                <div className="reshare-dropdown absolute bottom-full mb-2 left-0 bg-white border border-gray-200 rounded-lg shadow-lg p-2 z-10 min-w-[140px] md:min-w-[160px]">
+                                  <button
+                                    onClick={() => handleReshare(newsUpdate, 'facebook')}
+                                    className="flex items-center gap-2 w-full px-3 py-2 text-sm hover:bg-gray-50 rounded transition-colors touch-manipulation"
+                                  >
+                                    <Facebook className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                                    Facebook
+                                  </button>
+                                  <button
+                                    onClick={() => handleReshare(newsUpdate, 'twitter')}
+                                    className="flex items-center gap-2 w-full px-3 py-2 text-sm hover:bg-gray-50 rounded transition-colors touch-manipulation"
+                                  >
+                                    <Twitter className="w-4 h-4 text-blue-400 flex-shrink-0" />
+                                    Twitter
+                                  </button>
+                                  <button
+                                    onClick={() => handleReshare(newsUpdate, 'linkedin')}
+                                    className="flex items-center gap-2 w-full px-3 py-2 text-sm hover:bg-gray-50 rounded transition-colors touch-manipulation"
+                                  >
+                                    <Linkedin className="w-4 h-4 text-blue-700 flex-shrink-0" />
+                                    LinkedIn
+                                  </button>
+                                  <button
+                                    onClick={() => handleReshare(newsUpdate, 'email')}
+                                    className="flex items-center gap-2 w-full px-3 py-2 text-sm hover:bg-gray-50 rounded transition-colors touch-manipulation"
+                                  >
+                                    <Mail className="w-4 h-4 text-gray-600 flex-shrink-0" />
+                                    Email
+                                  </button>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+
+                          {/* Date */}
+                          <div className="text-xs md:text-sm text-muted-foreground whitespace-nowrap">
+                            {new Date(newsUpdate.publish_date).toLocaleDateString()}
+                          </div>
+                        </div>
+
+                        {/* Action Buttons */}
+                        <div className="flex flex-col sm:flex-row gap-2">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="flex-1 touch-manipulation min-h-[40px] text-sm"
+                            onClick={() => window.open(`/news/${newsUpdate.slug}`, '_blank')}
+                          >
+                            Read More
+                            <ArrowRight className="w-4 h-4 ml-2 flex-shrink-0" />
+                          </Button>
+                          {newsUpdate.pdf_url && (
+                            <Button
+                              variant="golden"
+                              size="sm"
+                              className="touch-manipulation min-h-[40px] px-3"
+                              onClick={() => handleDownload(newsUpdate)}
+                            >
+                              <Download className="w-4 h-4 flex-shrink-0" />
+                            </Button>
+                          )}
+                        </div>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-16 md:py-24">
+                  <Newspaper className="w-12 h-12 md:w-16 md:h-16 text-muted-foreground mx-auto mb-4" />
+                  <h3 className="text-lg md:text-xl font-semibold text-muted-foreground mb-2">No News Updates Yet</h3>
+                  <p className="text-sm md:text-base text-muted-foreground max-w-md mx-auto">Check back soon for the latest updates from OTC.</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+
+        {/* Newsletter Subscription */}
+        <section className="py-12 md:py-24 bg-gradient-to-br from-card/30 to-background">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair font-semibold text-gradient-blue mb-3 md:mb-4 px-4">
+                Stay Updated
+              </h2>
+              <p className="text-base md:text-lg text-muted-foreground mb-6 md:mb-8 max-w-3xl mx-auto px-4 leading-relaxed">
+                Subscribe to our newsletter to receive the latest news, research updates, and advocacy insights directly in your inbox.
+              </p>
+
+              <form onSubmit={handleSubscribe} className="max-w-md mx-auto px-4">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-2">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email address"
+                    className="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-base touch-manipulation min-h-[48px]"
+                    required
+                  />
+                  <Button type="submit" disabled={isLoading} className="px-6 py-3 touch-manipulation min-h-[48px] text-base">
+                    {isLoading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
+                    {isLoading ? 'Subscribing...' : 'Subscribe'}
+                  </Button>
+                </div>
+
+                {message && (
+                  <div className={`mt-4 p-3 rounded-lg text-sm ${
+                    message.type === 'success'
+                      ? 'bg-green-50 text-green-800 border border-green-200'
+                      : 'bg-red-50 text-red-800 border border-red-200'
+                  }`}>
+                    {message.text}
+                  </div>
+                )}
+              </form>
             </div>
           </div>
         </section>
 
         {/* Newsletter Signup */}
-        <section className="py-24 bg-gradient-to-br from-card/30 to-background">
-          <div className="container mx-auto px-6">
+        <section className="py-12 md:py-24 bg-gradient-to-br from-card/30 to-background">
+          <div className="container mx-auto px-4 sm:px-6">
             <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-12">
-                <h2 className="heading-section text-gradient-blue mb-4">
+              <div className="text-center mb-8 md:mb-12">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair font-semibold text-gradient-blue mb-3 md:mb-4 px-4">
                   Stay Connected
                 </h2>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  Be the first to know about our latest research, advocacy wins, and insights on
-                  technology and human rights in Africa.
+                <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto px-4 leading-relaxed">
+                  Be the first to know about our latest research, advocacy wins, and insights on technology and human rights in Africa.
                 </p>
               </div>
 
-              <div className="bg-card border border-border rounded-none p-8 md:p-12 shadow-card">
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-playfair font-semibold text-foreground mb-4">
+              <div className="bg-card border border-border rounded-none p-6 md:p-8 lg:p-12 shadow-card max-w-2xl mx-auto">
+                <div className="text-center mb-6 md:mb-8">
+                  <h3 className="text-xl md:text-2xl font-playfair font-semibold text-foreground mb-3 md:mb-4">
                     Subscribe to Our Newsletter
                   </h3>
-                  <p className="text-muted-foreground">
+                  <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
                     Get exclusive access to our latest updates, research findings, and thought leadership content.
                   </p>
                 </div>
 
                 <form onSubmit={handleSubscribe} className="max-w-md mx-auto">
-                  <div className="flex flex-col sm:flex-row gap-4 mb-6">
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-4 md:mb-6">
                     <input
                       type="email"
                       placeholder="Enter your email address"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="flex-1 px-4 py-3 bg-background border border-input rounded-none text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                      className="flex-1 px-4 py-3 bg-background border border-input rounded-none text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base touch-manipulation min-h-[48px]"
                       disabled={isLoading}
                     />
-                    <Button variant="golden" type="submit" disabled={isLoading} className="group rounded-none">
+                    <Button variant="golden" type="submit" disabled={isLoading} className="group rounded-none touch-manipulation min-h-[48px] px-4 md:px-6 text-base">
                       {isLoading ? (
                         <>
                           <Loader2 className="w-4 h-4 mr-2 animate-spin" />
@@ -459,13 +581,13 @@ export default function NewsUpdatesPage() {
                   </div>
 
                   {message && (
-                    <div className={`p-4 rounded-none text-sm mb-4 ${message.type === 'success' ? 'bg-green-50 border border-green-200 text-green-800' : 'bg-red-50 border border-red-200 text-red-800'}`}>
+                    <div className={`p-3 md:p-4 rounded-none text-sm mb-4 ${message.type === 'success' ? 'bg-green-50 border border-green-200 text-green-800' : 'bg-red-50 border border-red-200 text-red-800'}`}>
                       {message.text}
                     </div>
                   )}
 
                   <div className="text-center">
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-xs text-muted-foreground leading-relaxed">
                       By subscribing, you agree to receive updates from OneTechConnect.
                       We respect your privacy and you can unsubscribe at any time.
                     </p>

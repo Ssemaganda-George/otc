@@ -217,6 +217,10 @@ CREATE TABLE IF NOT EXISTS news_updates (
   is_featured BOOLEAN DEFAULT false,
   category TEXT,
   tags TEXT[],
+  display_order INTEGER DEFAULT 0,
+  download_count INTEGER DEFAULT 0,
+  like_count INTEGER DEFAULT 0,
+  reshare_count INTEGER DEFAULT 0,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );

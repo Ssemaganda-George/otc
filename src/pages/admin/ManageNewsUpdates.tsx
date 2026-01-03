@@ -22,6 +22,10 @@ interface NewsUpdate {
   is_featured: boolean;
   category: string;
   tags: string[];
+  display_order: number;
+  download_count: number;
+  like_count: number;
+  reshare_count: number;
   created_at: string;
 }
 
@@ -42,7 +46,8 @@ export default function ManageNewsUpdates() {
     publish_date: "",
     is_featured: false,
     category: "",
-    tags: ""
+    tags: "",
+    display_order: 0
   });
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [selectedPdf, setSelectedPdf] = useState<File | null>(null);
@@ -60,6 +65,7 @@ export default function ManageNewsUpdates() {
       const { data, error } = await supabase
         .from('news_updates')
         .select('*')
+        .order('display_order', { ascending: true })
         .order('created_at', { ascending: false });
 
       if (error) {
@@ -144,7 +150,8 @@ export default function ManageNewsUpdates() {
         publish_date: formData.publish_date ? new Date(formData.publish_date).toISOString() : new Date().toISOString(),
         is_featured: formData.is_featured,
         category: formData.category,
-        tags: formData.tags ? formData.tags.split(',').map(tag => tag.trim()) : []
+        tags: formData.tags ? formData.tags.split(',').map(tag => tag.trim()) : [],
+        display_order: formData.display_order || 0
       };
 
       if (editingId) {
@@ -183,7 +190,8 @@ export default function ManageNewsUpdates() {
       publish_date: newsItem.publish_date ? new Date(newsItem.publish_date).toISOString().split('T')[0] : "",
       is_featured: newsItem.is_featured,
       category: newsItem.category,
-      tags: newsItem.tags?.join(', ') || ""
+      tags: newsItem.tags?.join(', ') || "",
+      display_order: newsItem.display_order || 0
     });
   };
 
@@ -218,7 +226,8 @@ export default function ManageNewsUpdates() {
       publish_date: "",
       is_featured: false,
       category: "",
-      tags: ""
+      tags: "",
+      display_order: 0
     });
     setSelectedImage(null);
     setSelectedPdf(null);
@@ -322,14 +331,17 @@ export default function ManageNewsUpdates() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="publish_date">Publish Date</Label>
+                    <Label htmlFor="display_order">Display Order</Label>
                     <Input
-                      id="publish_date"
-                      name="publish_date"
-                      type="date"
-                      value={formData.publish_date}
+                      id="display_order"
+                      name="display_order"
+                      type="number"
+                      value={formData.display_order}
                       onChange={handleInputChange}
+                      placeholder="0"
+                      min="0"
                     />
+                    <p className="text-xs text-muted-foreground">Lower numbers appear first (0 = highest priority)</p>
                   </div>
                 </div>
 
