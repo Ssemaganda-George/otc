@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/lib/supabase";
 
 export function Contact() {
   const { toast } = useToast();
@@ -18,24 +19,30 @@ export function Contact() {
     const formData = new FormData(form);
 
     try {
-      const response = await fetch("https://formspree.io/f/mnnggjok", {
-        method: "POST",
-        body: formData,
-        headers: {
-          Accept: "application/json",
-        },
-      });
+      const contactData = {
+        first_name: formData.get('firstName') as string,
+        last_name: formData.get('lastName') as string,
+        email: formData.get('email') as string,
+        organization: formData.get('organization') as string || null,
+        subject: formData.get('subject') as string,
+        message: formData.get('message') as string,
+      };
 
-      if (response.ok) {
-        toast({
-          title: "Message sent successfully!",
-          description: "We'll get back to you within 24 hours.",
-        });
-        form.reset();
-      } else {
-        throw new Error("Failed to send message");
+      const { error } = await supabase
+        .from('contact_messages')
+        .insert([contactData]);
+
+      if (error) {
+        throw error;
       }
+
+      toast({
+        title: "Message sent successfully!",
+        description: "We'll get back to you within 24 hours.",
+      });
+      form.reset();
     } catch (error) {
+      console.error('Error saving contact message:', error);
       toast({
         title: "Failed to send message",
         description: "Please try again or contact us directly via email.",

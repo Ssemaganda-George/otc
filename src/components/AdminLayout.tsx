@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useLocation, Outlet } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { LogOut, Menu, X, Home, FileText, Users, BookOpen, Briefcase, Image, GraduationCap, Newspaper, File, Phone, Settings, Layout, Target, TrendingUp, Shield, Database, Heart } from "lucide-react";
+import { LogOut, Menu, X, Home, FileText, Users, BookOpen, Briefcase, Image, GraduationCap, Newspaper, File, Phone, Settings, Layout, Target, TrendingUp, Shield, Database, Heart, Mail } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
@@ -35,6 +35,7 @@ export default function AdminLayout() {
     { name: "Manage News Updates", path: "/admin/news-updates", icon: Newspaper },
     { name: "Manage Research Publications", path: "/admin/research-publications", icon: BookOpen },
     { name: "Manage Repositories", path: "/admin/repositories", icon: Database },
+    { name: "Manage Messages", path: "/admin/messages", icon: Mail },
     { name: "Manage About Us", path: "/admin/about-us", icon: Layout },
     { name: "Manage Core Values", path: "/admin/core-values", icon: Heart },
     { name: "Manage What We Do", path: "/admin/what-we-do", icon: Target },

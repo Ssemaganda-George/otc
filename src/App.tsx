@@ -61,6 +61,7 @@ import ManageCorePillars from "./pages/admin/ManageCorePillars";
 import ManageRepositories from "./pages/admin/ManageRepositories";
 import VisitorAnalyticsPage from "./pages/admin/VisitorAnalyticsPage";
 import DownloadsAnalyticsPage from "./pages/admin/DownloadsAnalyticsPage";
+import ManageMessages from "./pages/admin/ManageMessages";
 
 import AdminLayout from "./components/AdminLayout";
 import { AuthProvider } from "./contexts/AuthContext";
@@ -136,6 +137,7 @@ function App() {
             <Route path="our-impact" element={<ManageOurImpact />} />
             <Route path="core-pillars" element={<ManageCorePillars />} />
             <Route path="repositories" element={<ManageRepositories />} />
+            <Route path="messages" element={<ManageMessages />} />
             <Route path="analytics/visitors/demographics" element={<VisitorAnalyticsPage />} />
             <Route path="analytics/downloads" element={<DownloadsAnalyticsPage />} />
           </Route>
