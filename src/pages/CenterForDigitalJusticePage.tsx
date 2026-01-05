@@ -1,9 +1,63 @@
+import { useState, useEffect } from "react";
 import { Navigation } from "@/components/ui/navigation";
 import { Footer } from "@/components/Footer";
 import { Scale, BookOpen, Users, Shield, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { supabase } from "@/lib/supabase";
+
+interface DigitalJusticeService {
+  id: string;
+  title: string;
+  description: string;
+  icon_name: string;
+  features: string[];
+}
+
+const iconMap = {
+  BookOpen,
+  Shield,
+  Users,
+  Scale,
+};
 
 export default function CenterForDigitalJusticePage() {
+  const [services, setServices] = useState<DigitalJusticeService[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchServices();
+  }, []);
+
+  const fetchServices = async () => {
+    const { data, error } = await supabase
+      .from('digital_justice_services')
+      .select('*')
+      .order('display_order', { ascending: true });
+
+    if (error) {
+      console.error('Error fetching digital justice services:', error);
+    } else {
+      setServices(data || []);
+    }
+    setLoading(false);
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navigation />
+        <main className="pt-20">
+          <div className="container mx-auto px-6 py-24">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+              <p className="mt-4 text-muted-foreground">Loading digital justice services...</p>
+            </div>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -41,40 +95,35 @@ export default function CenterForDigitalJusticePage() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-                {[
-                  {
-                    icon: BookOpen,
-                    title: "Digital Rights Training",
-                    description: "Building capacity on digital rights, privacy, and data protection across Africa"
-                  },
-                  {
-                    icon: Shield,
-                    title: "Tech Governance Courses",
-                    description: "Training on AI ethics, platform governance, and regulatory frameworks"
-                  },
-                  {
-                    icon: Users,
-                    title: "Community Programs",
-                    description: "Grassroots education on digital literacy and online safety"
-                  },
-                  {
-                    icon: Scale,
-                    title: "Legal Professionals Training",
-                    description: "Specialized programs for lawyers, policymakers, and advocates"
-                  }
-                ].map((program, index) => (
-                  <div key={index} className="bg-card border border-border p-8 shadow-card hover:shadow-blue transition-all duration-300">
-                    <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
-                      <program.icon className="w-6 h-6 text-primary" />
+                {services.map((service) => {
+                  const IconComponent = iconMap[service.icon_name as keyof typeof iconMap] || Shield;
+                  return (
+                    <div key={service.id} className="bg-card border border-border p-8 shadow-card hover:shadow-blue transition-all duration-300">
+                      <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
+                        <IconComponent className="w-6 h-6 text-primary" />
+                      </div>
+                      <h3 className="text-xl font-playfair font-semibold text-gradient-blue mb-3">
+                        {service.title}
+                      </h3>
+                      <p className="text-body text-muted-foreground leading-relaxed mb-4">
+                        {service.description}
+                      </p>
+                      {service.features && service.features.length > 0 && (
+                        <div className="mt-4">
+                          <h4 className="text-sm font-semibold text-foreground mb-2">Key Features:</h4>
+                          <ul className="text-sm text-muted-foreground space-y-1">
+                            {service.features.map((feature, idx) => (
+                              <li key={idx} className="flex items-start">
+                                <span className="text-primary mr-2">•</span>
+                                {feature}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
                     </div>
-                    <h3 className="text-xl font-playfair font-semibold text-gradient-blue mb-3">
-                      {program.title}
-                    </h3>
-                    <p className="text-body text-muted-foreground leading-relaxed">
-                      {program.description}
-                    </p>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>

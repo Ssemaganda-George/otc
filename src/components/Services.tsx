@@ -1,5 +1,36 @@
+import { useState, useEffect } from "react";
 import { Trophy, Scale, BookOpen, Megaphone, Users, Shield, CheckCircle, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { supabase } from "@/lib/supabase";
+
+interface ServiceOffering {
+  id: string;
+  title: string;
+  description: string;
+  icon_name: string;
+  features: string[];
+  benefits: string[];
+  color: string;
+  border_color: string;
+}
+
+interface ServiceHighlight {
+  id: string;
+  title: string;
+  description: string;
+  icon_name: string;
+}
+
+const iconMap = {
+  Trophy,
+  Scale,
+  BookOpen,
+  Megaphone,
+  Users,
+  Shield,
+  CheckCircle,
+  Star
+};
 
 const services = [
   {
@@ -84,6 +115,42 @@ const highlights = [
 ];
 
 export function Services() {
+  const [services, setServices] = useState<ServiceOffering[]>([]);
+  const [highlights, setHighlights] = useState<ServiceHighlight[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const [servicesRes, highlightsRes] = await Promise.all([
+        supabase.from('services_offerings').select('*').order('display_order'),
+        supabase.from('service_highlights').select('*').order('display_order')
+      ]);
+
+      if (servicesRes.data) setServices(servicesRes.data);
+      if (highlightsRes.data) setHighlights(highlightsRes.data);
+    } catch (error) {
+      console.error('Error fetching services data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <section id="services" className="py-24 bg-gradient-to-b from-card/30 to-background">
+        <div className="container mx-auto px-6">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+            <p className="text-muted-foreground">Loading services...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
   return (
     <section id="services" className="py-24 bg-gradient-to-b from-card/30 to-background">
       <div className="container mx-auto px-6">
@@ -101,51 +168,54 @@ export function Services() {
 
           {/* Services Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-20">
-            {services.map((service, index) => (
-              <div 
-                key={service.title}
-                className={`group bg-card border ${service.borderColor} rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-500 card-hover`}
-              >
-                {/* Header */}
-                <div className="flex items-center mb-6">
-                  <div className={`w-16 h-16 bg-gradient-to-br ${service.color} rounded-2xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300`}>
-                    <service.icon className="w-8 h-8 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-playfair font-semibold text-gradient-blue mb-2">
-                      {service.title}
-                    </h3>
-                  </div>
-                </div>
-
-                {/* Description */}
-                <p className="text-body text-muted-foreground mb-6 leading-relaxed">
-                  {service.description}
-                </p>
-
-                {/* Features */}
-                <div className="space-y-3 mb-6">
-                  {service.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-start">
-                      <div className="w-2 h-2 bg-primary rounded-full mr-3 mt-2 flex-shrink-0" />
-                      <span className="text-sm text-muted-foreground">{feature}</span>
+            {services.map((service, index) => {
+              const IconComponent = iconMap[service.icon_name as keyof typeof iconMap] || Trophy;
+              return (
+                <div
+                  key={service.id}
+                  className={`group bg-card border ${service.border_color} rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-500 card-hover`}
+                >
+                  {/* Header */}
+                  <div className="flex items-center mb-6">
+                    <div className={`w-16 h-16 bg-gradient-to-br ${service.color} rounded-2xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300`}>
+                      <IconComponent className="w-8 h-8 text-primary" />
                     </div>
-                  ))}
-                </div>
+                    <div>
+                      <h3 className="text-xl font-playfair font-semibold text-gradient-blue mb-2">
+                        {service.title}
+                      </h3>
+                    </div>
+                  </div>
 
-                {/* Benefits */}
-                <div className="border-t border-border pt-6">
-                  <h4 className="font-semibold text-foreground mb-3">Key Benefits:</h4>
-                  <div className="grid grid-cols-2 gap-2">
-                    {service.benefits.map((benefit, idx) => (
-                      <span key={idx} className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full border border-primary/20">
-                        {benefit}
-                      </span>
+                  {/* Description */}
+                  <p className="text-body text-muted-foreground mb-6 leading-relaxed">
+                    {service.description}
+                  </p>
+
+                  {/* Features */}
+                  <div className="space-y-3 mb-6">
+                    {service.features?.map((feature, idx) => (
+                      <div key={idx} className="flex items-start">
+                        <div className="w-2 h-2 bg-primary rounded-full mr-3 mt-2 flex-shrink-0" />
+                        <span className="text-sm text-muted-foreground">{feature}</span>
+                      </div>
                     ))}
                   </div>
+
+                  {/* Benefits */}
+                  <div className="border-t border-border pt-6">
+                    <h4 className="font-semibold text-foreground mb-3">Key Benefits:</h4>
+                    <div className="grid grid-cols-2 gap-2">
+                      {service.benefits?.map((benefit, idx) => (
+                        <span key={idx} className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full border border-primary/20">
+                          {benefit}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Service Highlights */}
@@ -155,21 +225,24 @@ export function Services() {
                 Why Choose OTC?
               </h3>
               <p className="text-body text-muted-foreground max-w-2xl mx-auto">
-                Our unique combination of legal expertise, technological understanding, and African context 
+                Our unique combination of legal expertise, technological understanding, and African context
                 makes us the ideal partner for your innovation journey.
               </p>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {highlights.map((highlight, index) => (
-                <div key={highlight.title} className="text-center group">
-                  <div className="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <highlight.icon className="w-6 h-6 text-primary" />
+              {highlights.map((highlight, index) => {
+                const IconComponent = iconMap[highlight.icon_name as keyof typeof iconMap] || Users;
+                return (
+                  <div key={highlight.id} className="text-center group">
+                    <div className="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <IconComponent className="w-6 h-6 text-primary" />
+                    </div>
+                    <h4 className="font-semibold text-foreground mb-2">{highlight.title}</h4>
+                    <p className="text-sm text-muted-foreground">{highlight.description}</p>
                   </div>
-                  <h4 className="font-semibold text-foreground mb-2">{highlight.title}</h4>
-                  <p className="text-sm text-muted-foreground">{highlight.description}</p>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 

@@ -1,4 +1,23 @@
+import { useState, useEffect } from "react";
 import { BookOpen, Users, Shield, Building, TrendingUp, Scale } from "lucide-react";
+import { supabase } from "@/lib/supabase";
+
+interface Service {
+  id: string;
+  title: string;
+  description: string;
+  icon_name: string;
+  services: string[];
+}
+
+const iconMap = {
+  BookOpen,
+  Users,
+  Shield,
+  Building,
+  TrendingUp,
+  Scale
+};
 
 const consultancyServices = [
   {
@@ -7,7 +26,7 @@ const consultancyServices = [
     icon: BookOpen,
     services: [
       "Feasibility studies",
-      "Impact assessments", 
+      "Impact assessments",
       "Legislative scrutiny",
       "Policy analysis",
       "Market research",
@@ -82,6 +101,39 @@ const consultancyServices = [
 ];
 
 export function ServicesComponent() {
+  const [services, setServices] = useState<Service[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchServices();
+  }, []);
+
+  const fetchServices = async () => {
+    const { data, error } = await supabase
+      .from('our_services')
+      .select('*')
+      .order('display_order', { ascending: true });
+
+    if (error) {
+      console.error('Error fetching services:', error);
+    } else {
+      setServices(data || []);
+    }
+    setLoading(false);
+  };
+
+  if (loading) {
+    return (
+      <section className="py-24 bg-secondary/40">
+        <div className="container mx-auto px-6">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+            <p className="text-muted-foreground">Loading services...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
   return (
     <section className="py-24 bg-secondary/40">
       <div className="container mx-auto px-6">
@@ -99,37 +151,40 @@ export function ServicesComponent() {
 
           {/* Services Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {consultancyServices.map((service, index) => (
-              <div 
-                key={service.title}
-                className="bg-card border border-border rounded-2xl p-6 shadow-card hover:shadow-blue transition-all duration-300 card-hover"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="text-center mb-6">
-                  <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <service.icon className="w-8 h-8 text-primary" />
+            {services.map((service, index) => {
+              const IconComponent = iconMap[service.icon_name as keyof typeof iconMap] || BookOpen;
+              return (
+                <div
+                  key={service.id}
+                  className="bg-card border border-border rounded-2xl p-6 shadow-card hover:shadow-blue transition-all duration-300 card-hover"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className="text-center mb-6">
+                    <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                      <IconComponent className="w-8 h-8 text-primary" />
+                    </div>
+                    <h3 className="text-lg font-playfair font-semibold text-primary mb-3">
+                      {service.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {service.description}
+                    </p>
                   </div>
-                  <h3 className="text-lg font-playfair font-semibold text-primary mb-3">
-                    {service.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {service.description}
-                  </p>
-                </div>
 
-                <div className="border-t border-border pt-4">
-                  <h4 className="font-semibold text-foreground text-sm mb-3">Services Include:</h4>
-                  <ul className="space-y-2">
-                    {service.services.map((item, itemIndex) => (
-                      <li key={itemIndex} className="flex items-start space-x-2">
-                        <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="text-xs text-muted-foreground leading-relaxed">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="border-t border-border pt-4">
+                    <h4 className="font-semibold text-foreground text-sm mb-3">Services Include:</h4>
+                    <ul className="space-y-2">
+                      {service.services?.map((item, itemIndex) => (
+                        <li key={itemIndex} className="flex items-start space-x-2">
+                          <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-xs text-muted-foreground leading-relaxed">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Contact Section */}

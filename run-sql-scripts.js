@@ -1,6 +1,8 @@
-require('dotenv').config();
-const { createClient } = require('@supabase/supabase-js');
-const fs = require('fs');
+import dotenv from 'dotenv';
+import { createClient } from '@supabase/supabase-js';
+import fs from 'fs';
+
+dotenv.config();
 
 const supabase = createClient(process.env.VITE_SUPABASE_URL, process.env.VITE_SUPABASE_ANON_KEY);
 
@@ -31,8 +33,7 @@ async function runSQLFromFile(filePath) {
 }
 
 async function main() {
-  await runSQLFromFile('./create-repository-likes-table.sql');
-  await runSQLFromFile('./create-repository-reshares-table.sql');
+  await runSQLFromFile('./supabase-tables.sql');
   console.log('✅ All SQL files executed');
 }
 

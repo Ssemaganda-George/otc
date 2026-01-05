@@ -1,39 +1,60 @@
+import { useState, useEffect } from "react";
 import { Navigation } from "@/components/ui/navigation";
 import { Footer } from "@/components/Footer";
 import { Scale, ExternalLink, Calendar, MapPin, FileText, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { supabase } from "@/lib/supabase";
 
-const litigationCases = [
-  {
-    no: 1,
-    caseName: "Ssekamwa Frank & 3 Others v Google LLC",
-    issues: "Privacy violation & non-compliance, access to justice, distress, cross border transfer & Data Sovereignty",
-    country: "Uganda",
-    yearFiled: "November 2024",
-    status: "Successful decision issued by the PDPO",
-    statusType: "success"
-  },
-  {
-    no: 2,
-    caseName: "Google LLC v Ssekamwa Frank & 3 Others",
-    issues: "Time jurisdiction & Extraterritorial application of Uganda's data law",
-    country: "Uganda",
-    yearFiled: "August 2025",
-    status: "Appeal by Google LLC before the Minister for ICT&NG",
-    statusType: "pending"
-  },
-  {
-    no: 3,
-    caseName: "OneTechConnect (OTC) & 3 Others v Google LLC",
-    issues: "Privacy Ruling Enforcement, DPIAs and Administrative fines",
-    country: "Uganda",
-    yearFiled: "Pending",
-    status: "Hearing before the PDPO",
-    statusType: "active"
-  }
-];
+interface LitigationCase {
+  id: string;
+  case_number: number;
+  case_name: string;
+  issues: string;
+  country: string;
+  year_filed: string;
+  status: string;
+  status_type: string;
+}
 
 export default function StrategicLitigationPage() {
+  const [litigationCases, setLitigationCases] = useState<LitigationCase[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchLitigationCases();
+  }, []);
+
+  const fetchLitigationCases = async () => {
+    const { data, error } = await supabase
+      .from('strategic_litigation_cases')
+      .select('*')
+      .order('display_order', { ascending: true });
+
+    if (error) {
+      console.error('Error fetching litigation cases:', error);
+    } else {
+      setLitigationCases(data || []);
+    }
+    setLoading(false);
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navigation />
+        <main className="pt-20">
+          <div className="container mx-auto px-6 py-24">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+              <p className="mt-4 text-muted-foreground">Loading litigation cases...</p>
+            </div>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -134,12 +155,12 @@ export default function StrategicLitigationPage() {
                     </thead>
                     <tbody>
                       {litigationCases.map((case_item, index) => (
-                        <tr key={index} className="border-b border-border hover:bg-secondary/10 transition-colors">
+                        <tr key={case_item.id} className="border-b border-border hover:bg-secondary/10 transition-colors">
                           <td className="p-4">
-                            <span className="font-medium text-primary">{case_item.no}</span>
+                            <span className="font-medium text-primary">{case_item.case_number}</span>
                           </td>
                           <td className="p-4">
-                            <span className="font-medium text-foreground">{case_item.caseName}</span>
+                            <span className="font-medium text-foreground">{case_item.case_name}</span>
                           </td>
                           <td className="p-4">
                             <span className="text-muted-foreground text-sm leading-relaxed">{case_item.issues}</span>
@@ -153,13 +174,13 @@ export default function StrategicLitigationPage() {
                           <td className="p-4">
                             <div className="flex items-center space-x-2">
                               <Calendar className="w-4 h-4 text-primary" />
-                              <span className="text-muted-foreground">{case_item.yearFiled}</span>
+                              <span className="text-muted-foreground">{case_item.year_filed}</span>
                             </div>
                           </td>
                           <td className="p-4">
                             <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
-                              case_item.statusType === 'success' ? 'bg-green-100 text-green-800' :
-                              case_item.statusType === 'pending' ? 'bg-yellow-100 text-yellow-800' :
+                              case_item.status_type === 'success' ? 'bg-green-100 text-green-800' :
+                              case_item.status_type === 'pending' ? 'bg-yellow-100 text-yellow-800' :
                               'bg-blue-100 text-blue-800'
                             }`}>
                               {case_item.status}

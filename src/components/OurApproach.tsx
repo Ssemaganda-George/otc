@@ -1,5 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BookOpen, Users, Megaphone, Lightbulb } from "lucide-react";
+import { supabase } from "@/lib/supabase";
+
+interface Department {
+  id: string;
+  title: string;
+  description: string;
+  icon_name: string;
+  key_activities: string[];
+}
+
+const iconMap = {
+  BookOpen,
+  Users,
+  Megaphone,
+  Lightbulb
+};
 
 const departments = [
   {
@@ -8,7 +24,7 @@ const departments = [
     description: "Generating evidence to inform policy, practice, and innovation through comprehensive research and analysis across all sectors.",
     keyActivities: [
       "Documentation and Think tanks",
-      "Policy Analysis and Legislative Scrutiny", 
+      "Policy Analysis and Legislative Scrutiny",
       "Experiments and Implementation",
       "Kimeeza / Public debates"
     ]
@@ -49,14 +65,50 @@ const departments = [
 ];
 
 export function OurApproach() {
-  // State to control visibility of each department's details
-  const [openDetails, setOpenDetails] = useState(Array(departments.length).fill(false));
+  const [departments, setDepartments] = useState<Department[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [openDetails, setOpenDetails] = useState<boolean[]>([]);
+
+  useEffect(() => {
+    fetchDepartments();
+  }, []);
+
+  useEffect(() => {
+    setOpenDetails(new Array(departments.length).fill(false));
+  }, [departments]);
+
+  const fetchDepartments = async () => {
+    const { data, error } = await supabase
+      .from('our_approach_departments')
+      .select('*')
+      .order('display_order', { ascending: true });
+
+    if (error) {
+      console.error('Error fetching departments:', error);
+    } else {
+      setDepartments(data || []);
+    }
+    setLoading(false);
+  };
 
   const handleToggle = (idx: number) => {
     setOpenDetails((prev) =>
       prev.map((open, i) => (i === idx ? !open : open))
     );
   };
+
+  if (loading) {
+    return (
+      <section className="py-24 bg-background">
+        <div className="container mx-auto px-6">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+            <p className="text-muted-foreground">Loading departments...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-24 bg-background">
@@ -75,48 +127,51 @@ export function OurApproach() {
 
           {/* Departments Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-            {departments.map((department, index) => (
-              <div 
-                key={department.title}
-                className="bg-card border border-border p-8 shadow-card hover:shadow-blue transition-all duration-300 card-hover"
-              >
-                <div className="flex items-start mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mr-6 flex-shrink-0">
-                    <department.icon className="w-8 h-8 text-primary" />
+            {departments.map((department, index) => {
+              const IconComponent = iconMap[department.icon_name as keyof typeof iconMap] || BookOpen;
+              return (
+                <div
+                  key={department.id}
+                  className="bg-card border border-border p-8 shadow-card hover:shadow-blue transition-all duration-300 card-hover"
+                >
+                  <div className="flex items-start mb-6">
+                    <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mr-6 flex-shrink-0">
+                      <IconComponent className="w-8 h-8 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-playfair font-semibold text-gradient-blue mb-3">
+                        {department.title}
+                      </h3>
+                      <p className="text-body text-muted-foreground leading-relaxed mb-4">
+                        {department.description}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-playfair font-semibold text-gradient-blue mb-3">
-                      {department.title}
-                    </h3>
-                    <p className="text-body text-muted-foreground leading-relaxed mb-4">
-                      {department.description}
-                    </p>
+
+                  <div className="ml-22">
+                    <button
+                      className="mb-4 px-5 py-2 rounded-full bg-golden text-golden-foreground text-xs font-semibold shadow-lg hover:bg-golden-dark hover:scale-105 transition active:scale-95 focus:outline-none focus:ring-2 focus:ring-golden focus:ring-offset-2"
+                      onClick={() => handleToggle(index)}
+                    >
+                      {openDetails[index] ? "Hide Details" : "View Details"}
+                    </button>
+                    {openDetails[index] && (
+                      <>
+                        <h4 className="font-semibold text-foreground mb-3">Key Activities:</h4>
+                        <ul className="space-y-2">
+                          {department.key_activities?.map((activity, activityIndex) => (
+                            <li key={activityIndex} className="flex items-start space-x-3">
+                              <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                              <span className="text-sm text-muted-foreground">{activity}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </>
+                    )}
                   </div>
                 </div>
-                
-                <div className="ml-22">
-                  <button
-                    className="mb-4 px-5 py-2 rounded-full bg-golden text-golden-foreground text-xs font-semibold shadow-lg hover:bg-golden-dark hover:scale-105 transition active:scale-95 focus:outline-none focus:ring-2 focus:ring-golden focus:ring-offset-2"
-                    onClick={() => handleToggle(index)}
-                  >
-                    {openDetails[index] ? "Hide Details" : "View Details"}
-                  </button>
-                  {openDetails[index] && (
-                    <>
-                      <h4 className="font-semibold text-foreground mb-3">Key Activities:</h4>
-                      <ul className="space-y-2">
-                        {department.keyActivities.map((activity, activityIndex) => (
-                          <li key={activityIndex} className="flex items-start space-x-3">
-                            <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="text-sm text-muted-foreground">{activity}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </>
-                  )}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Connectivity Statement */}

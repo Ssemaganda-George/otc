@@ -1,9 +1,65 @@
+import { useState, useEffect } from "react";
 import { Navigation } from "@/components/ui/navigation";
 import { Footer } from "@/components/Footer";
 import { Lightbulb, Smartphone, Music, Users, Shield, Heart, ExternalLink, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { supabase } from "@/lib/supabase";
+
+interface InnovationInitiative {
+  id: string;
+  title: string;
+  description: string;
+  icon_name: string;
+  is_coming_soon: boolean;
+}
+
+const iconMap = {
+  Lightbulb,
+  Smartphone,
+  Music,
+  Users,
+  Shield,
+  Heart,
+};
 
 export default function InnovationsPage() {
+  const [initiatives, setInitiatives] = useState<InnovationInitiative[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchInitiatives();
+  }, []);
+
+  const fetchInitiatives = async () => {
+    const { data, error } = await supabase
+      .from('innovation_hub_initiatives')
+      .select('*')
+      .order('display_order', { ascending: true });
+
+    if (error) {
+      console.error('Error fetching innovation initiatives:', error);
+    } else {
+      setInitiatives(data || []);
+    }
+    setLoading(false);
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navigation />
+        <main className="pt-20">
+          <div className="container mx-auto px-6 py-24">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+              <p className="mt-4 text-muted-foreground">Loading innovation initiatives...</p>
+            </div>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -41,40 +97,25 @@ export default function InnovationsPage() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-                {[
-                  {
-                    icon: Users,
-                    title: "Hackathons",
-                    description: "Bringing together innovators to solve Africa's most pressing challenges through collaborative tech events. (Coming Soon)"
-                  },
-                  {
-                    icon: Lightbulb,
-                    title: "OTC Innovation Fund",
-                    description: "Supporting groundbreaking tech solutions with funding and mentorship for African entrepreneurs. (Coming Soon)"
-                  },
-                  {
-                    icon: Shield,
-                    title: "Data",
-                    description: "Providing data solutions and analytics for rights-based decision making and innovation. (Coming Soon)"
-                  },
-                  {
-                    icon: Smartphone,
-                    title: "OTC Sandbox",
-                    description: "A safe environment for testing and developing innovative tech solutions before full deployment. (Coming Soon)"
-                  }
-                ].map((service, index) => (
-                  <div key={index} className="bg-card border border-border p-8 shadow-card hover:shadow-blue transition-all duration-300">
-                    <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
-                      <service.icon className="w-6 h-6 text-primary" />
+                {initiatives.map((initiative) => {
+                  const IconComponent = iconMap[initiative.icon_name as keyof typeof iconMap] || Lightbulb;
+                  return (
+                    <div key={initiative.id} className="bg-card border border-border p-8 shadow-card hover:shadow-blue transition-all duration-300">
+                      <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
+                        <IconComponent className="w-6 h-6 text-primary" />
+                      </div>
+                      <h3 className="text-xl font-playfair font-semibold text-gradient-blue mb-3">
+                        {initiative.title}
+                        {initiative.is_coming_soon && (
+                          <span className="ml-2 text-sm text-orange-600 font-normal">(Coming Soon)</span>
+                        )}
+                      </h3>
+                      <p className="text-body text-muted-foreground leading-relaxed">
+                        {initiative.description}
+                      </p>
                     </div>
-                    <h3 className="text-xl font-playfair font-semibold text-gradient-blue mb-3">
-                      {service.title}
-                    </h3>
-                    <p className="text-body text-muted-foreground leading-relaxed">
-                      {service.description}
-                    </p>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
