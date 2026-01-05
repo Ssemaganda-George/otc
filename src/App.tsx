@@ -50,7 +50,6 @@ import ManageHeroSlides from "./pages/admin/ManageHeroSlides";
 import ManageResearchExperts from "./pages/admin/ManageResearchExperts";
 import ManageBlogs from "./pages/admin/ManageBlogs";
 import ManageResources from "./pages/admin/ManageResources";
-import ManageContactInfo from "./pages/admin/ManageContactInfo";
 import ManageNewsUpdates from "./pages/admin/ManageNewsUpdates";
 import ManageResearchPublications from "./pages/admin/ManageResearchPublications";
 import ManageAboutUs from "./pages/admin/ManageAboutUs";
@@ -65,6 +64,7 @@ import ManageMessages from "./pages/admin/ManageMessages";
 
 import AdminLayout from "./components/AdminLayout";
 import { AuthProvider } from "./contexts/AuthContext";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 
 const queryClient = new QueryClient();
 
@@ -119,7 +119,11 @@ function App() {
           <Route path="/admin/login" element={<AdminLogin />} />
 
           {/* 🔐 ADMIN AREA */}
-          <Route path="/admin" element={<AdminLayout />}>
+          <Route path="/admin" element={
+            <ErrorBoundary>
+              <AdminLayout />
+            </ErrorBoundary>
+          }>
             <Route index element={<AdminDashboard />} />
             <Route path="team" element={<ManageTeam />} />
             <Route path="research-experts" element={<ManageResearchExperts />} />
@@ -128,7 +132,6 @@ function App() {
             <Route path="hero-slides" element={<ManageHeroSlides />} />
             <Route path="blogs" element={<ManageBlogs />} />
             <Route path="resources" element={<ManageResources />} />
-            <Route path="contact-info" element={<ManageContactInfo />} />
             <Route path="news-updates" element={<ManageNewsUpdates />} />
             <Route path="research-publications" element={<ManageResearchPublications />} />
             <Route path="about-us" element={<ManageAboutUs />} />
@@ -154,7 +157,11 @@ export default function RootApp() {
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
-        <App />
+        <TooltipProvider>
+          <App />
+          <Toaster />
+          <Sonner />
+        </TooltipProvider>
       </Router>
     </QueryClientProvider>
   );

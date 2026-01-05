@@ -6,8 +6,17 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { supabase } from "@/lib/supabase";
-import { Plus, Edit, Trash2, Save, X, Upload, Calendar } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
+import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
+import { DataTable, Column } from "@/components/ui/data-table";
+import { ModalForm } from "@/components/ui/modal-form";
+import { useCrud } from "@/hooks/useCrud";
+import { useBulkOperations } from "@/hooks/useBulkOperations";
+import { newsUpdateSchema } from "@/lib/schemas";
+import { Plus, Edit, Trash2, Download, Heart, Share, Star } from "lucide-react";
 
 interface NewsUpdate {
   id: string;
@@ -29,493 +38,428 @@ interface NewsUpdate {
   created_at: string;
 }
 
+const categories = [
+  "ANNOUNCEMENT",
+  "EVENT", 
+  "NEWS",
+  "POLICY BRIEF",
+  "REPORT",
+  "UPDATE"
+];
+
 export default function ManageNewsUpdates() {
   const { user } = useAuth();
   const navigate = useNavigate();
-  const [news, setNews] = useState<NewsUpdate[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [editingId, setEditingId] = useState<string | null>(null);
-  const [formData, setFormData] = useState({
-    title: "",
-    slug: "",
-    excerpt: "",
-    content: "",
-    featured_image: "",
-    pdf_url: "",
-    gallery_images: "",
-    publish_date: "",
-    is_featured: false,
-    category: "",
-    tags: "",
-    display_order: 0
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<NewsUpdate | null>(null);
+
+  // Use CRUD hook
+  const {
+    data: news,
+    loading,
+    create,
+    update,
+    remove,
+    fetchAll
+  } = useCrud<NewsUpdate>({
+    table: 'news_updates'
   });
-  const [selectedImage, setSelectedImage] = useState<File | null>(null);
-  const [selectedPdf, setSelectedPdf] = useState<File | null>(null);
+
+  // Use bulk operations hook
+  const {
+    selectedIds,
+    isProcessing: bulkProcessing,
+    toggleSelection,
+    clearSelection,
+    bulkDelete
+  } = useBulkOperations({
+    table: 'news_updates',
+    onSuccess: () => fetchAll()
+  });
 
   useEffect(() => {
     if (!user) {
       navigate('/admin/login');
       return;
     }
-    fetchNews();
-  }, [user, navigate]);
+    fetchAll('display_order', false);
+  }, [user, navigate, fetchAll]);
 
-  const fetchNews = async () => {
-    try {
-      const { data, error } = await supabase
-        .from('news_updates')
-        .select('*')
-        .order('display_order', { ascending: true })
-        .order('created_at', { ascending: false });
+  const handleCreate = async (data: any) => {
+    const formattedData = {
+      ...data,
+      gallery_images: data.gallery_images ? data.gallery_images.split(',').map((s: string) => s.trim()) : [],
+      tags: data.tags ? data.tags.split(',').map((s: string) => s.trim()) : [],
+      display_order: parseInt(data.display_order) || 0
+    };
+    await create(formattedData);
+    setShowCreateModal(false);
+  };
 
-      if (error) {
-        console.error('Error fetching news updates:', error);
-        if (error.code === 'PGRST116') {
-          alert('The news_updates table does not exist. Please run the database setup script.');
-        }
-      } else {
-        setNews(data || []);
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      setNews([]);
+  const handleEdit = async (data: any) => {
+    if (!selectedItem) return;
+    const formattedData = {
+      ...data,
+      gallery_images: data.gallery_images ? data.gallery_images.split(',').map((s: string) => s.trim()) : [],
+      tags: data.tags ? data.tags.split(',').map((s: string) => s.trim()) : [],
+      display_order: parseInt(data.display_order) || 0
+    };
+    await update(selectedItem.id, formattedData);
+    setShowEditModal(false);
+    setSelectedItem(null);
+  };
+
+  const handleDelete = async () => {
+    if (!selectedItem) return;
+    await remove(selectedItem.id);
+    setShowDeleteDialog(false);
+    setSelectedItem(null);
+  };
+
+  const handleBulkDelete = async () => {
+    await bulkDelete();
+  };
+
+  const openEditModal = (item: NewsUpdate) => {
+    setSelectedItem(item);
+    setShowEditModal(true);
+  };
+
+  const openDeleteDialog = (item: NewsUpdate) => {
+    setSelectedItem(item);
+    setShowDeleteDialog(true);
+  };
+
+  const columns: Column<NewsUpdate>[] = [
+    {
+      key: 'title',
+      header: 'Title',
+      sortable: true,
+      render: (value, item) => (
+        <div className="max-w-xs">
+          <div className="font-medium truncate">{value}</div>
+          <div className="text-sm text-gray-500 truncate">{item.excerpt}</div>
+        </div>
+      )
+    },
+    {
+      key: 'category',
+      header: 'Category',
+      sortable: true,
+      render: (value) => (
+        <Badge variant="secondary">{value}</Badge>
+      )
+    },
+    {
+      key: 'is_featured',
+      header: 'Featured',
+      sortable: true,
+      render: (value) => value ? <Star className="w-4 h-4 text-yellow-500" /> : null
+    },
+    {
+      key: 'publish_date',
+      header: 'Published',
+      sortable: true,
+      render: (value) => new Date(value).toLocaleDateString()
+    },
+    {
+      key: 'download_count',
+      header: 'Stats',
+      render: (_, item) => (
+        <div className="flex items-center space-x-3 text-sm text-gray-600">
+          <div className="flex items-center">
+            <Download className="w-3 h-3 mr-1" />
+            {item.download_count}
+          </div>
+          <div className="flex items-center">
+            <Heart className="w-3 h-3 mr-1" />
+            {item.like_count}
+          </div>
+          <div className="flex items-center">
+            <Share className="w-3 h-3 mr-1" />
+            {item.reshare_count}
+          </div>
+        </div>
+      )
     }
-    setLoading(false);
-  };
+  ];
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value, type } = e.target;
-    if (type === 'checkbox') {
-      const checked = (e.target as HTMLInputElement).checked;
-      setFormData(prev => ({ ...prev, [name]: checked }));
-    } else {
-      setFormData(prev => ({ ...prev, [name]: value }));
-    }
-  };
+  const renderForm = (form: any) => (
+    <div className="space-y-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <Label htmlFor="title">Title *</Label>
+          <Input
+            id="title"
+            {...form.register('title')}
+            placeholder="Enter news title"
+          />
+          {form.formState.errors.title && (
+            <p className="text-sm text-red-600">{form.formState.errors.title.message}</p>
+          )}
+        </div>
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      if (e.target.name === 'featured_image') {
-        setSelectedImage(file);
-      } else if (e.target.name === 'pdf') {
-        setSelectedPdf(file);
-      }
-    }
-  };
+        <div className="space-y-2">
+          <Label htmlFor="slug">Slug *</Label>
+          <Input
+            id="slug"
+            {...form.register('slug')}
+            placeholder="url-friendly-slug"
+          />
+          {form.formState.errors.slug && (
+            <p className="text-sm text-red-600">{form.formState.errors.slug.message}</p>
+          )}
+        </div>
+      </div>
 
-  const uploadFile = async (file: File, folder: string): Promise<string> => {
-    const fileExt = file.name.split('.').pop();
-    const fileName = `${Date.now()}.${fileExt}`;
-    const filePath = `${folder}/${fileName}`;
+      <div className="space-y-2">
+        <Label htmlFor="excerpt">Excerpt *</Label>
+        <Textarea
+          id="excerpt"
+          {...form.register('excerpt')}
+          placeholder="Brief description"
+          rows={3}
+        />
+        {form.formState.errors.excerpt && (
+          <p className="text-sm text-red-600">{form.formState.errors.excerpt.message}</p>
+        )}
+      </div>
 
-    const { error: uploadError } = await supabase.storage
-      .from('news-updates')
-      .upload(filePath, file);
+      <div className="space-y-2">
+        <Label htmlFor="content">Content *</Label>
+        <Textarea
+          id="content"
+          {...form.register('content')}
+          placeholder="Full content"
+          rows={6}
+        />
+        {form.formState.errors.content && (
+          <p className="text-sm text-red-600">{form.formState.errors.content.message}</p>
+        )}
+      </div>
 
-    if (uploadError) {
-      throw uploadError;
-    }
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <Label htmlFor="category">Category *</Label>
+          <Select onValueChange={(value) => form.setValue('category', value)}>
+            <SelectTrigger>
+              <SelectValue placeholder="Select category" />
+            </SelectTrigger>
+            <SelectContent>
+              {categories.map((category) => (
+                <SelectItem key={category} value={category}>
+                  {category}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          {form.formState.errors.category && (
+            <p className="text-sm text-red-600">{form.formState.errors.category.message}</p>
+          )}
+        </div>
 
-    const { data } = supabase.storage
-      .from('news-updates')
-      .getPublicUrl(filePath);
+        <div className="space-y-2">
+          <Label htmlFor="publish_date">Publish Date *</Label>
+          <Input
+            id="publish_date"
+            type="date"
+            {...form.register('publish_date')}
+          />
+          {form.formState.errors.publish_date && (
+            <p className="text-sm text-red-600">{form.formState.errors.publish_date.message}</p>
+          )}
+        </div>
+      </div>
 
-    return data.publicUrl;
-  };
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <Label htmlFor="featured_image">Featured Image URL</Label>
+          <Input
+            id="featured_image"
+            {...form.register('featured_image')}
+            placeholder="https://example.com/image.jpg"
+          />
+        </div>
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+        <div className="space-y-2">
+          <Label htmlFor="pdf_url">PDF URL</Label>
+          <Input
+            id="pdf_url"
+            {...form.register('pdf_url')}
+            placeholder="https://example.com/document.pdf"
+          />
+        </div>
+      </div>
 
-    try {
-      let featuredImageUrl = formData.featured_image;
-      let pdfUrl = formData.pdf_url;
+      <div className="space-y-2">
+        <Label htmlFor="tags">Tags (comma-separated)</Label>
+        <Input
+          id="tags"
+          {...form.register('tags')}
+          placeholder="tag1, tag2, tag3"
+        />
+      </div>
 
-      if (selectedImage) {
-        featuredImageUrl = await uploadFile(selectedImage, 'news');
-      }
+      <div className="space-y-2">
+        <Label htmlFor="gallery_images">Gallery Images (comma-separated URLs)</Label>
+        <Textarea
+          id="gallery_images"
+          {...form.register('gallery_images')}
+          placeholder="https://example.com/image1.jpg, https://example.com/image2.jpg"
+          rows={2}
+        />
+      </div>
 
-      if (selectedPdf) {
-        pdfUrl = await uploadFile(selectedPdf, 'documents');
-      }
+      <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-2">
+          <Checkbox
+            id="is_featured"
+            {...form.register('is_featured')}
+          />
+          <Label htmlFor="is_featured">Featured</Label>
+        </div>
 
-      const newsData = {
-        title: formData.title,
-        slug: formData.slug,
-        excerpt: formData.excerpt,
-        content: formData.content,
-        featured_image: featuredImageUrl,
-        pdf_url: pdfUrl,
-        gallery_images: formData.gallery_images ? formData.gallery_images.split(',').map(url => url.trim()) : [],
-        publish_date: formData.publish_date ? new Date(formData.publish_date).toISOString() : new Date().toISOString(),
-        is_featured: formData.is_featured,
-        category: formData.category,
-        tags: formData.tags ? formData.tags.split(',').map(tag => tag.trim()) : [],
-        display_order: formData.display_order || 0
-      };
-
-      if (editingId) {
-        const { error } = await supabase
-          .from('news_updates')
-          .update(newsData)
-          .eq('id', editingId);
-
-        if (error) throw error;
-      } else {
-        const { error } = await supabase
-          .from('news_updates')
-          .insert([newsData]);
-
-        if (error) throw error;
-      }
-
-      resetForm();
-      fetchNews();
-    } catch (error) {
-      console.error('Error saving news update:', error);
-      alert('Error saving news update. Please try again.');
-    }
-  };
-
-  const handleEdit = (newsItem: NewsUpdate) => {
-    setEditingId(newsItem.id);
-    setFormData({
-      title: newsItem.title,
-      slug: newsItem.slug,
-      excerpt: newsItem.excerpt,
-      content: newsItem.content,
-      featured_image: newsItem.featured_image,
-      pdf_url: newsItem.pdf_url,
-      gallery_images: newsItem.gallery_images?.join(', ') || "",
-      publish_date: newsItem.publish_date ? new Date(newsItem.publish_date).toISOString().split('T')[0] : "",
-      is_featured: newsItem.is_featured,
-      category: newsItem.category,
-      tags: newsItem.tags?.join(', ') || "",
-      display_order: newsItem.display_order || 0
-    });
-  };
-
-  const handleDelete = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this news update?')) return;
-
-    try {
-      const { error } = await supabase
-        .from('news_updates')
-        .delete()
-        .eq('id', id);
-
-      if (error) throw error;
-
-      fetchNews();
-    } catch (error) {
-      console.error('Error deleting news update:', error);
-      alert('Error deleting news update. Please try again.');
-    }
-  };
-
-  const resetForm = () => {
-    setEditingId(null);
-    setFormData({
-      title: "",
-      slug: "",
-      excerpt: "",
-      content: "",
-      featured_image: "",
-      pdf_url: "",
-      gallery_images: "",
-      publish_date: "",
-      is_featured: false,
-      category: "",
-      tags: "",
-      display_order: 0
-    });
-    setSelectedImage(null);
-    setSelectedPdf(null);
-  };
+        <div className="space-y-2">
+          <Label htmlFor="display_order">Display Order</Label>
+          <Input
+            id="display_order"
+            type="number"
+            {...form.register('display_order')}
+            placeholder="0"
+            className="w-20"
+          />
+        </div>
+      </div>
+    </div>
+  );
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background p-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center">Loading news updates...</div>
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <Skeleton className="h-8 w-48" />
+          <Skeleton className="h-10 w-32" />
         </div>
+        <Card>
+          <CardContent className="p-6">
+            <div className="space-y-4">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <div key={i} className="flex items-center space-x-4">
+                  <Skeleton className="h-12 w-12 rounded" />
+                  <div className="space-y-2 flex-1">
+                    <Skeleton className="h-4 w-3/4" />
+                    <Skeleton className="h-3 w-1/2" />
+                  </div>
+                  <Skeleton className="h-8 w-20" />
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background p-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-center mb-8">
-          <div>
-            <h1 className="text-3xl font-bold text-foreground">News & Updates</h1>
-            <p className="text-muted-foreground">Add, edit, and manage news articles and updates</p>
-          </div>
-          <Button
-            onClick={() => setEditingId('new')}
-            className="flex items-center gap-2"
-          >
-            <Plus className="w-4 h-4" />
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900">Manage News Updates</h1>
+          <p className="text-gray-600">Create and manage news articles, announcements, and updates</p>
+        </div>
+        <div className="flex items-center space-x-3">
+          {selectedIds.length > 0 && (
+            <Button
+              variant="destructive"
+              onClick={handleBulkDelete}
+              disabled={bulkProcessing}
+            >
+              Delete Selected ({selectedIds.length})
+            </Button>
+          )}
+          <Button onClick={() => setShowCreateModal(true)}>
+            <Plus className="w-4 h-4 mr-2" />
             Add News Update
           </Button>
         </div>
-
-        {/* Form */}
-        {(editingId === 'new' || editingId) && (
-          <Card className="mb-8">
-            <CardHeader>
-              <CardTitle>{editingId === 'new' ? 'Add New News Update' : 'Edit News Update'}</CardTitle>
-              <CardDescription>
-                Fill in the details for the news update
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="title">Title *</Label>
-                    <Input
-                      id="title"
-                      name="title"
-                      value={formData.title}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="slug">Slug *</Label>
-                    <Input
-                      id="slug"
-                      name="slug"
-                      value={formData.slug}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="excerpt">Excerpt *</Label>
-                  <Textarea
-                    id="excerpt"
-                    name="excerpt"
-                    value={formData.excerpt}
-                    onChange={handleInputChange}
-                    rows={3}
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="content">Content *</Label>
-                  <Textarea
-                    id="content"
-                    name="content"
-                    value={formData.content}
-                    onChange={handleInputChange}
-                    rows={8}
-                    required
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="category">Category</Label>
-                    <Input
-                      id="category"
-                      name="category"
-                      value={formData.category}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="display_order">Display Order</Label>
-                    <Input
-                      id="display_order"
-                      name="display_order"
-                      type="number"
-                      value={formData.display_order}
-                      onChange={handleInputChange}
-                      placeholder="0"
-                      min="0"
-                    />
-                    <p className="text-xs text-muted-foreground">Lower numbers appear first (0 = highest priority)</p>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="tags">Tags</Label>
-                    <Input
-                      id="tags"
-                      name="tags"
-                      value={formData.tags}
-                      onChange={handleInputChange}
-                      placeholder="Comma-separated"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="gallery_images">Gallery Images</Label>
-                    <Input
-                      id="gallery_images"
-                      name="gallery_images"
-                      value={formData.gallery_images}
-                      onChange={handleInputChange}
-                      placeholder="Comma-separated URLs"
-                    />
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-2">
-                  <input
-                    type="checkbox"
-                    id="is_featured"
-                    name="is_featured"
-                    checked={formData.is_featured}
-                    onChange={handleInputChange}
-                    className="rounded"
-                  />
-                  <Label htmlFor="is_featured">Featured Article</Label>
-                </div>
-
-                <div className="space-y-4">
-                  <h3 className="text-lg font-semibold">Media Files</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="featured_image">Featured Image</Label>
-                      <div className="flex items-center gap-4">
-                        <Input
-                          id="featured_image"
-                          name="featured_image"
-                          value={formData.featured_image}
-                          onChange={handleInputChange}
-                          placeholder="Image URL or upload file"
-                        />
-                        <div className="relative">
-                          <Input
-                            type="file"
-                            accept="image/*"
-                            name="featured_image"
-                            onChange={handleFileChange}
-                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                          />
-                          <Button type="button" variant="outline" className="flex items-center gap-2">
-                            <Upload className="w-4 h-4" />
-                            Upload
-                          </Button>
-                        </div>
-                      </div>
-                      {selectedImage && (
-                        <p className="text-sm text-muted-foreground">Selected: {selectedImage.name}</p>
-                      )}
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="pdf">PDF Document</Label>
-                      <div className="flex items-center gap-4">
-                        <Input
-                          id="pdf_url"
-                          name="pdf_url"
-                          value={formData.pdf_url}
-                          onChange={handleInputChange}
-                          placeholder="PDF URL or upload file"
-                        />
-                        <div className="relative">
-                          <Input
-                            type="file"
-                            accept=".pdf"
-                            name="pdf"
-                            onChange={handleFileChange}
-                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                          />
-                          <Button type="button" variant="outline" className="flex items-center gap-2">
-                            <Upload className="w-4 h-4" />
-                            Upload PDF
-                          </Button>
-                        </div>
-                      </div>
-                      {selectedPdf && (
-                        <p className="text-sm text-muted-foreground">Selected: {selectedPdf.name}</p>
-                      )}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <Button type="submit" className="flex items-center gap-2">
-                    <Save className="w-4 h-4" />
-                    {editingId === 'new' ? 'Create News Update' : 'Update News Update'}
-                  </Button>
-                  <Button type="button" variant="outline" onClick={resetForm}>
-                    <X className="w-4 h-4 mr-2" />
-                    Cancel
-                  </Button>
-                </div>
-              </form>
-            </CardContent>
-          </Card>
-        )}
-
-        {/* News List */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {news.map((newsItem) => (
-            <Card key={newsItem.id} className="hover:shadow-lg transition-shadow">
-              <CardHeader className="text-center">
-                <div className="w-20 h-20 bg-primary rounded-lg mx-auto mb-4 flex items-center justify-center">
-                  {newsItem.featured_image ? (
-                    <img
-                      src={newsItem.featured_image}
-                      alt={newsItem.title}
-                      className="w-full h-full rounded-lg object-cover"
-                    />
-                  ) : (
-                    <Calendar className="w-8 h-8 text-white" />
-                  )}
-                </div>
-                <CardTitle className="text-lg">{newsItem.title}</CardTitle>
-                <CardDescription>
-                  {newsItem.category} • {newsItem.is_featured && '⭐ Featured'}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
-                  {newsItem.excerpt}
-                </p>
-
-                <div className="flex gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => handleEdit(newsItem)}
-                    className="flex-1"
-                  >
-                    <Edit className="w-3 h-3 mr-1" />
-                    Edit
-                  </Button>
-                  <Button
-                    variant="destructive"
-                    size="sm"
-                    onClick={() => handleDelete(newsItem.id)}
-                    className="flex-1"
-                  >
-                    <Trash2 className="w-3 h-3 mr-1" />
-                    Delete
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        {news.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-muted-foreground">No news updates found. Add your first news update!</p>
-          </div>
-        )}
       </div>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>News Updates</CardTitle>
+          <CardDescription>
+            {news.length} news update{news.length !== 1 ? 's' : ''} total
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <DataTable
+            data={news}
+            columns={columns}
+            loading={loading}
+            selectable={true}
+            selectedIds={selectedIds}
+            onSelectionChange={(ids) => {
+              clearSelection();
+              ids.forEach(id => toggleSelection(id));
+            }}
+            onEdit={openEditModal}
+            onDelete={openDeleteDialog}
+            searchPlaceholder="Search news updates..."
+            emptyMessage="No news updates found"
+          />
+        </CardContent>
+      </Card>
+
+      {/* Create Modal */}
+      <ModalForm
+        open={showCreateModal}
+        onOpenChange={setShowCreateModal}
+        title="Create News Update"
+        description="Add a new news article or announcement"
+        schema={newsUpdateSchema}
+        onSubmit={handleCreate}
+        size="xl"
+      >
+        {renderForm}
+      </ModalForm>
+
+      {/* Edit Modal */}
+      <ModalForm
+        open={showEditModal}
+        onOpenChange={setShowEditModal}
+        title="Edit News Update"
+        description="Modify the news article details"
+        schema={newsUpdateSchema}
+        defaultValues={selectedItem ? {
+          ...selectedItem,
+          gallery_images: selectedItem.gallery_images?.join(', ') || '',
+          tags: selectedItem.tags?.join(', ') || ''
+        } : undefined}
+        onSubmit={handleEdit}
+        size="xl"
+      >
+        {renderForm}
+      </ModalForm>
+
+      {/* Delete Confirmation Dialog */}
+      <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete News Update</AlertDialogTitle>
+            <AlertDialogDescription>
+              Are you sure you want to delete "{selectedItem?.title}"? This action cannot be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={handleDelete} className="bg-red-600 hover:bg-red-700">
+              Delete
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
