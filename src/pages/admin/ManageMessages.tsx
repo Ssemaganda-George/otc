@@ -110,7 +110,7 @@ export default function ManageMessages() {
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-center h-64">
             <div className="text-center">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+              <div className="animate-spin h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
               <p className="text-muted-foreground">Loading messages...</p>
             </div>
           </div>
@@ -210,7 +210,7 @@ export default function ManageMessages() {
                 <CardContent className="space-y-6">
                   <div>
                     <h4 className="font-medium mb-2">Contact Information</h4>
-                    <div className="bg-muted/50 rounded-lg p-4 space-y-2">
+                    <div className="bg-muted/50 p-4 space-y-2">
                       <p><strong>Name:</strong> {selectedMessage.first_name} {selectedMessage.last_name}</p>
                       <p><strong>Email:</strong> <a href={`mailto:${selectedMessage.email}`} className="text-primary hover:underline">{selectedMessage.email}</a></p>
                       {selectedMessage.organization && (
@@ -221,7 +221,7 @@ export default function ManageMessages() {
 
                   <div>
                     <h4 className="font-medium mb-2">Message</h4>
-                    <div className="bg-muted/50 rounded-lg p-4">
+                    <div className="bg-muted/50 p-4">
                       <p className="whitespace-pre-wrap">{selectedMessage.message}</p>
                     </div>
                   </div>

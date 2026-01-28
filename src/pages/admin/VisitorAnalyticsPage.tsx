@@ -404,7 +404,7 @@ export default function VisitorAnalyticsPage() {
                   <div className="text-center py-8">Loading...</div>
                 ) : stats.topPages.length > 0 ? (
                   stats.topPages.map((page, index) => (
-                    <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div key={index} className="flex items-center justify-between p-3 bg-gray-50">
                       <div className="flex-1">
                         <p className="font-medium text-sm">{page.title}</p>
                         <p className="text-xs text-gray-500">{page.page_path}</p>
@@ -439,7 +439,7 @@ export default function VisitorAnalyticsPage() {
                     <div className="text-center py-8">Loading...</div>
                   ) : stats.deviceBreakdown.length > 0 ? (
                     stats.deviceBreakdown.map((device, index) => (
-                      <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                      <div key={index} className="flex items-center justify-between p-3 bg-gray-50">
                         <div className="flex items-center space-x-3">
                           {getDeviceIcon(device.device_type)}
                           <span className="font-medium capitalize">{device.device_type}</span>
@@ -474,7 +474,7 @@ export default function VisitorAnalyticsPage() {
                     <div className="text-center py-8">Loading...</div>
                   ) : stats.browserBreakdown.length > 0 ? (
                     stats.browserBreakdown.map((browser, index) => (
-                      <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                      <div key={index} className="flex items-center justify-between p-3 bg-gray-50">
                         <span className="font-medium">{browser.browser}</span>
                         <div className="text-right">
                           <p className="font-semibold">{browser.count}</p>
@@ -507,7 +507,7 @@ export default function VisitorAnalyticsPage() {
                   <div className="text-center py-8">Loading...</div>
                 ) : stats.countryBreakdown.length > 0 ? (
                   stats.countryBreakdown.slice(0, 10).map((country, index) => (
-                    <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div key={index} className="flex items-center justify-between p-3 bg-gray-50">
                       <span className="font-medium">{country.country}</span>
                       <div className="text-right">
                         <p className="font-semibold">{country.count}</p>
@@ -539,7 +539,7 @@ export default function VisitorAnalyticsPage() {
                   <div className="text-center py-8">Loading...</div>
                 ) : stats.recentSessions.length > 0 ? (
                   stats.recentSessions.map((session, index) => (
-                    <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div key={index} className="flex items-center justify-between p-3 bg-gray-50">
                       <div className="flex-1">
                         <div className="flex items-center space-x-2">
                           {getDeviceIcon(session.device_type)}

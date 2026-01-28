@@ -205,7 +205,7 @@ export default function ManageOurImpact() {
           {impactStats.map((stat) => (
             <Card key={stat.id} className="hover:shadow-lg transition-shadow">
               <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-primary rounded-lg mx-auto mb-4 flex items-center justify-center">
+                <div className="w-16 h-16 bg-primary mx-auto mb-4 flex items-center justify-center">
                   <TrendingUp className="w-8 h-8 text-white" />
                 </div>
                 <CardTitle className="text-3xl font-bold text-primary">{stat.number}</CardTitle>

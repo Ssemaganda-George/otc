@@ -393,7 +393,7 @@ export default function ManageRepositories() {
         <CardContent>
           <div className="space-y-4">
             {repositories.map((repo) => (
-              <div key={repo.id} className="flex items-center justify-between p-4 border rounded-lg">
+              <div key={repo.id} className="flex items-center justify-between p-4 border">
                 <div className="flex-1">
                   <h3 className="font-semibold text-lg">{repo.title}</h3>
                   <p className="text-sm text-gray-600 mb-2">{repo.description}</p>

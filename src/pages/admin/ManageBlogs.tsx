@@ -209,7 +209,7 @@ export default function ManageBlogs() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex items-center justify-center min-h-[400px]">
             <div className="text-center">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+              <div className="animate-spin h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
               <p className="text-gray-600">Loading blog posts...</p>
             </div>
           </div>
@@ -222,7 +222,7 @@ export default function ManageBlogs() {
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header Section */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
+        <div className="bg-white shadow-sm border border-gray-200 p-6 mb-8">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
               <h1 className="text-3xl font-bold text-gray-900">Blog Posts</h1>
@@ -411,7 +411,7 @@ export default function ManageBlogs() {
         )}
 
         {/* Blogs List */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="bg-white shadow-sm border border-gray-200 p-6">
           <h2 className="text-xl font-semibold text-gray-900 mb-6">All Blog Posts</h2>
           {blogs.length === 0 ? (
             <div className="text-center py-12">
@@ -424,7 +424,7 @@ export default function ManageBlogs() {
               {blogs.map((blog) => (
                 <Card key={blog.id} className="border border-gray-200 hover:shadow-md hover:border-primary/20 transition-all duration-200">
                   <CardHeader className="pb-3">
-                    <div className="w-full h-32 bg-gray-100 rounded-lg mb-3 flex items-center justify-center overflow-hidden">
+                    <div className="w-full h-32 bg-gray-100 mb-3 flex items-center justify-center overflow-hidden">
                       {blog.featured_image ? (
                         <img
                           src={blog.featured_image}

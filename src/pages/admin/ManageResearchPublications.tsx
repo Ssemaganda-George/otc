@@ -476,7 +476,7 @@ export default function ManageResearchPublications() {
                           <p className="text-xs text-muted-foreground mb-2">
                             Supported formats: JPEG, PNG, GIF, WebP (Max: 10MB)
                           </p>
-                          <div className="w-20 h-20 border border-border rounded-lg overflow-hidden">
+                          <div className="w-20 h-20 border border-border overflow-hidden">
                             <img
                               src={URL.createObjectURL(selectedThumbnail)}
                               alt="Thumbnail preview"
@@ -551,7 +551,7 @@ export default function ManageResearchPublications() {
                 </div>
 
                 {uploadProgress && (
-                  <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <div className="mt-4 p-3 bg-blue-50 border border-blue-200">
                     <p className="text-sm text-blue-700">{uploadProgress}</p>
                   </div>
                 )}
@@ -565,12 +565,12 @@ export default function ManageResearchPublications() {
           {publications.map((publication) => (
             <Card key={publication.id} className="hover:shadow-lg transition-shadow">
               <CardHeader className="text-center">
-                <div className="w-20 h-20 bg-primary rounded-lg mx-auto mb-4 flex items-center justify-center">
+                <div className="w-20 h-20 bg-primary mx-auto mb-4 flex items-center justify-center">
                   {publication.thumbnail ? (
                     <img
                       src={publication.thumbnail}
                       alt={publication.title}
-                      className="w-full h-full rounded-lg object-cover"
+                      className="w-full h-full object-cover"
                     />
                   ) : (
                     <FileText className="w-8 h-8 text-white" />

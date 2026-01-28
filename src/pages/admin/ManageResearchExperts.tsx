@@ -457,12 +457,12 @@ export default function ManageResearchExperts() {
           {experts.map((expert) => (
             <Card key={expert.id} className="hover:shadow-lg transition-shadow">
               <CardHeader className="text-center">
-                <div className="w-20 h-20 bg-primary rounded-full mx-auto mb-4 flex items-center justify-center">
+                <div className="w-20 h-20 bg-primary mx-auto mb-4 flex items-center justify-center">
                   {expert.image ? (
                     <img
                       src={expert.image}
                       alt={expert.name}
-                      className="w-full h-full rounded-full object-cover"
+                      className="w-full h-full object-cover"
                     />
                   ) : (
                     <span className="text-white text-xl font-bold">
@@ -471,7 +471,7 @@ export default function ManageResearchExperts() {
                   )}
                 </div>
                 <div className="flex items-center justify-between mb-2">
-                  <div className="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded">
+                  <div className="text-sm text-gray-500 bg-gray-100 px-2 py-1">
                     Order: {expert.display_order}
                   </div>
                 </div>

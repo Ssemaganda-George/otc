@@ -320,7 +320,7 @@ export default function DownloadsAnalyticsPage() {
             ) : stats.topResources.length > 0 ? (
               <div className="space-y-4">
                 {stats.topResources.map((resource, index) => (
-                  <div key={index} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                  <div key={index} className="flex items-center justify-between p-4 bg-gray-50">
                     <div className="flex-1">
                       <h4 className="font-medium text-gray-900">{resource.title}</h4>
                       <p className="text-sm text-gray-500">{resource.category}</p>
@@ -373,7 +373,7 @@ export default function DownloadsAnalyticsPage() {
                           <div className="font-medium text-gray-900">{resource.title}</div>
                         </td>
                         <td className="py-3 px-4">
-                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                          <span className="inline-flex items-center px-2.5 py-0.5 text-xs font-medium bg-blue-100 text-blue-800">
                             {resource.category}
                           </span>
                         </td>

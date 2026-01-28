@@ -254,7 +254,7 @@ export default function ManageCoreValues() {
           {coreValues.map((coreValue) => (
             <Card key={coreValue.id} className="hover:shadow-lg transition-shadow">
               <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-primary rounded-lg mx-auto mb-4 flex items-center justify-center">
+                <div className="w-16 h-16 bg-primary mx-auto mb-4 flex items-center justify-center">
                   <span className="text-white text-xl font-bold">
                     {coreValue.display_order || '?'}
                   </span>

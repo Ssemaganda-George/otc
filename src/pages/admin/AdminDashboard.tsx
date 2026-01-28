@@ -564,7 +564,7 @@ export default function AdminDashboard() {
                         setReportFormat('csv');
                         // Close popover by clicking outside or programmatically
                       }}
-                      className={`w-full text-left px-3 py-2 rounded-md text-sm hover:bg-gray-100 ${
+                      className={`w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${
                         reportFormat === 'csv' ? 'bg-gray-100 font-medium' : ''
                       }`}
                     >
@@ -575,7 +575,7 @@ export default function AdminDashboard() {
                         setReportFormat('json');
                         // Close popover by clicking outside or programmatically
                       }}
-                      className={`w-full text-left px-3 py-2 rounded-md text-sm hover:bg-gray-100 ${
+                      className={`w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${
                         reportFormat === 'json' ? 'bg-gray-100 font-medium' : ''
                       }`}
                     >
@@ -586,7 +586,7 @@ export default function AdminDashboard() {
                         setReportFormat('pdf');
                         // Close popover by clicking outside or programmatically
                       }}
-                      className={`w-full text-left px-3 py-2 rounded-md text-sm hover:bg-gray-100 ${
+                      className={`w-full text-left px-3 py-2 text-sm hover:bg-gray-100 ${
                         reportFormat === 'pdf' ? 'bg-gray-100 font-medium' : ''
                       }`}
                     >
@@ -595,7 +595,7 @@ export default function AdminDashboard() {
                     <div className="border-t border-gray-200 my-2"></div>
                     <button
                       onClick={downloadStatisticsReport}
-                      className="w-full text-left px-3 py-2 rounded-md text-sm bg-primary text-white hover:bg-primary/90 font-medium"
+                      className="w-full text-left px-3 py-2 text-sm bg-primary text-white hover:bg-primary/90 font-medium"
                     >
                       Download Now
                     </button>
@@ -606,7 +606,7 @@ export default function AdminDashboard() {
                 <p className="text-sm text-gray-500">Last login</p>
                 <p className="text-sm font-medium text-gray-900">{new Date().toLocaleDateString()}</p>
               </div>
-              <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+              <div className="w-12 h-12 bg-primary flex items-center justify-center">
                 <span className="text-white font-semibold text-lg">A</span>
               </div>
             </div>
@@ -616,7 +616,7 @@ export default function AdminDashboard() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Website Statistics */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
+        <div className="bg-white shadow-sm border border-gray-200 p-6 mb-8">
           <h2 className="text-xl font-semibold text-gray-900 mb-6">Website Statistics</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Card className="border-0 shadow-sm hover:shadow-md transition-shadow cursor-pointer" onClick={() => navigate('/admin/analytics/visitors/demographics')}>
@@ -667,7 +667,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* Stats Overview */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
+        <div className="bg-white shadow-sm border border-gray-200 p-6 mb-8">
           <h2 className="text-xl font-semibold text-gray-900 mb-6">System Overview</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Card className="border-0 shadow-sm hover:shadow-md transition-shadow">
@@ -808,12 +808,12 @@ export default function AdminDashboard() {
                 { action: "Added new team member", time: "1 day ago", type: "team" },
                 { action: "Modified BiTA program", time: "3 days ago", type: "program" },
               ].map((activity, index) => (
-                <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                <div key={index} className="flex items-center justify-between p-3 bg-gray-50">
                   <div>
                     <p className="font-medium text-sm">{activity.action}</p>
                     <p className="text-xs text-gray-500">{activity.time}</p>
                   </div>
-                  <div className={`px-2 py-1 rounded-full text-xs font-medium ${
+                  <div className={`px-2 py-1 text-xs font-medium ${
                     activity.type === 'page' ? 'bg-blue-100 text-blue-800' :
                     activity.type === 'team' ? 'bg-green-100 text-green-800' :
                     'bg-purple-100 text-purple-800'
@@ -837,13 +837,13 @@ export default function AdminDashboard() {
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <span className="text-sm">Website Status</span>
-                <span className="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
+                <span className="px-2 py-1 bg-green-100 text-green-800 text-xs font-medium">
                   Online
                 </span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-sm">Database</span>
-                <span className="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
+                <span className="px-2 py-1 bg-green-100 text-green-800 text-xs font-medium">
                   Connected
                 </span>
               </div>

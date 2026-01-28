@@ -374,12 +374,12 @@ export default function ManageResources() {
           {resources.map((resource) => (
             <Card key={resource.id} className="hover:shadow-lg transition-shadow">
               <CardHeader className="text-center">
-                <div className="w-20 h-20 bg-primary rounded-lg mx-auto mb-4 flex items-center justify-center">
+                <div className="w-20 h-20 bg-primary mx-auto mb-4 flex items-center justify-center">
                   {resource.thumbnail ? (
                     <img
                       src={resource.thumbnail}
                       alt={resource.title}
-                      className="w-full h-full rounded-lg object-cover"
+                      className="w-full h-full object-cover"
                     />
                   ) : (
                     <Download className="w-8 h-8 text-white" />

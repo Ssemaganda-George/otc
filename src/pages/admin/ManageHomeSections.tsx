@@ -390,12 +390,12 @@ export default function ManageHomeSections() {
           {sections.map((section) => (
             <Card key={section.id} className="hover:shadow-lg transition-shadow">
               <CardHeader className="text-center">
-                <div className="w-20 h-20 bg-primary rounded-lg mx-auto mb-4 flex items-center justify-center">
+                <div className="w-20 h-20 bg-primary mx-auto mb-4 flex items-center justify-center">
                   {section.image ? (
                     <img
                       src={section.image}
                       alt={section.title}
-                      className="w-full h-full rounded-lg object-cover"
+                      className="w-full h-full object-cover"
                     />
                   ) : (
                     <span className="text-white text-2xl font-bold">

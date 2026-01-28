@@ -161,7 +161,7 @@ export default function ManageAboutUs() {
 
         {/* Form */}
         {(editingId === 'new' || editingId) && (
-          <Card className="mb-8">
+          <Card className="mb-8 rounded-none">
             <CardHeader>
               <CardTitle>{editingId === 'new' ? 'Add New Section' : 'Edit Section'}</CardTitle>
               <CardDescription>
@@ -214,9 +214,9 @@ export default function ManageAboutUs() {
         {/* Sections List */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {sections.map((section) => (
-            <Card key={section.id} className="hover:shadow-lg transition-shadow">
+            <Card key={section.id} className="hover:shadow-lg transition-shadow rounded-none">
               <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-primary rounded-lg mx-auto mb-4 flex items-center justify-center">
+                <div className="w-16 h-16 bg-primary mx-auto mb-4 flex items-center justify-center">
                   <span className="text-white text-xl font-bold">
                     {section.section_type === 'about_us' ? 'A' : section.section_type === 'mission' ? 'M' : 'V'}
                   </span>
