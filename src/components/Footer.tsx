@@ -143,7 +143,7 @@ export function Footer() {
 					<AOSWrapper animation="fade-up" delay={100}>
 						<div className="space-y-6">
 							<H3 className="text-gray-800 font-semibold">Quick Links</H3>
-							<ul className="space-y-4">
+							<ul className="space-y-1">
 								<li><Link to="/" className="text-gray-600 hover:text-accent transition-all duration-300 flex items-center group py-1">
 									<span className="group-hover:translate-x-1 transition-transform duration-300">Home</span>
 									<ArrowRight className="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1 text-accent" />
@@ -176,7 +176,7 @@ export function Footer() {
 					<AOSWrapper animation="fade-up" delay={200}>
 						<div className="space-y-6">
 							<H3 className="text-gray-800 font-semibold">Our Products</H3>
-							<ul className="space-y-4">
+							<ul className="space-y-1">
 								<li><Link to="/products/strategic-litigation" className="text-gray-600 hover:text-accent transition-all duration-300 flex items-center group py-1">
 									<span className="group-hover:translate-x-1 transition-transform duration-300">Strategic Litigation</span>
 									<ArrowRight className="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1 text-accent" />
@@ -199,10 +199,10 @@ export function Footer() {
 
 					{/* Contact & Newsletter */}
 					<AOSWrapper animation="fade-up" delay={300}>
-						<div className="space-y-8">
+						<div className="space-y-4">
 							<div>
 								<H3 className="text-gray-800 font-semibold mb-6">Contact Info</H3>
-								<div className="space-y-4">
+								<div className="space-y-2">
 									<div className="flex items-start space-x-3 group">
 										<div className="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-accent/30 transition-colors">
 											<MapPin className="h-4 w-4 text-accent" />
@@ -231,7 +231,7 @@ export function Footer() {
 									Get the <span className="text-accent font-semibold">latest insights</span> on tech law and innovation across Africa.
 								</Body>
 								<form
-									className="space-y-4"
+									className="space-y-2"
 									onSubmit={handleNewsletterSubmit}
 								>
 									<Input
