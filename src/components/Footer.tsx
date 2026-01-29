@@ -103,7 +103,7 @@ export function Footer() {
 									href="https://twitter.com/OneTechConnect"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="w-12 h-12 bg-white hover:bg-accent/10 border border-gray-200 hover:border-accent/30 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-sm group"
+									className="w-10 h-10 bg-white hover:bg-accent/10 border border-gray-50 hover:border-accent/30 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-sm group"
 									aria-label="Twitter"
 								>
 									<Twitter className="h-5 w-5 text-gray-600 group-hover:text-accent transition-colors" />
@@ -112,7 +112,7 @@ export function Footer() {
 									href="https://linkedin.com/company/onetechconnect"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="w-12 h-12 bg-white hover:bg-accent/10 border border-gray-200 hover:border-accent/30 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-sm group"
+									className="w-10 h-10 bg-white hover:bg-accent/10 border border-gray-50 hover:border-accent/30 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-sm group"
 									aria-label="LinkedIn"
 								>
 									<Linkedin className="h-5 w-5 text-gray-600 group-hover:text-accent transition-colors" />
@@ -121,7 +121,7 @@ export function Footer() {
 									href="https://facebook.com/OneTechConnect"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="w-12 h-12 bg-white hover:bg-accent/10 border border-gray-200 hover:border-accent/30 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-sm group"
+									className="w-10 h-10 bg-white hover:bg-accent/10 border border-gray-50 hover:border-accent/30 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-sm group"
 									aria-label="Facebook"
 								>
 									<Facebook className="h-5 w-5 text-gray-600 group-hover:text-accent transition-colors" />
@@ -130,7 +130,7 @@ export function Footer() {
 									href="https://instagram.com/onetechconnect"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="w-12 h-12 bg-white hover:bg-accent/10 border border-gray-200 hover:border-accent/30 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-sm group"
+									className="w-10 h-10 bg-white hover:bg-accent/10 border border-gray-50 hover:border-accent/30 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-sm group"
 									aria-label="Instagram"
 								>
 									<Instagram className="h-5 w-5 text-gray-600 group-hover:text-accent transition-colors" />
