@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/admin-card";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -355,15 +354,15 @@ export default function ManageWhatWeDo() {
               </Button>
             </div>
 
-            {/* Focus Area modal */}
-            <Dialog open={!!focusAreaEditingId} onOpenChange={(open) => { if (!open) resetFocusAreaForm(); }}>
-              <DialogContent className="max-w-lg bg-white rounded-lg shadow-md p-6">
-                <div>
-                  <div className="mb-2">
-                    <h3 className="text-lg font-semibold text-gray-900">{focusAreaEditingId === 'new' ? 'Add Focus Area' : 'Edit Focus Area'}</h3>
-                    <p className="text-sm text-gray-500 mt-1">Create or edit focus areas for the What We Do page.</p>
-                  </div>
-
+            {(focusAreaEditingId === 'new' || focusAreaEditingId) && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>{focusAreaEditingId === 'new' ? 'Add New Focus Area' : 'Edit Focus Area'}</CardTitle>
+                  <CardDescription>
+                    Create or edit focus areas for the What We Do page
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
                   <form onSubmit={handleFocusAreaSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
@@ -374,7 +373,6 @@ export default function ManageWhatWeDo() {
                           value={focusAreaFormData.title}
                           onChange={(e) => handleInputChange(e, setFocusAreaFormData)}
                           required
-                          autoFocus
                         />
                       </div>
                       <div className="space-y-2">
@@ -422,14 +420,20 @@ export default function ManageWhatWeDo() {
                       />
                     </div>
 
-                    <div className="flex items-center justify-end gap-2">
-                      <Button type="button" variant="outline" onClick={resetFocusAreaForm} className="h-9 px-4 text-sm">Cancel</Button>
-                      <Button type="submit" className="h-9 px-4 text-sm">{focusAreaEditingId === 'new' ? 'Create' : 'Save'}</Button>
+                    <div className="flex gap-4">
+                      <Button type="submit" className="flex items-center gap-2">
+                        <Save className="w-4 h-4" />
+                        {focusAreaEditingId === 'new' ? 'Create Focus Area' : 'Update Focus Area'}
+                      </Button>
+                      <Button type="button" variant="outline" onClick={resetFocusAreaForm}>
+                        <X className="w-4 h-4 mr-2" />
+                        Cancel
+                      </Button>
                     </div>
                   </form>
-                </div>
-              </DialogContent>
-            </Dialog>
+                </CardContent>
+              </Card>
+            )}
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {focusAreas.map((area) => (
@@ -483,15 +487,15 @@ export default function ManageWhatWeDo() {
               </Button>
             </div>
 
-            {/* Department modal */}
-            <Dialog open={!!departmentEditingId} onOpenChange={(open) => { if (!open) resetDepartmentForm(); }}>
-              <DialogContent className="max-w-lg bg-white rounded-lg shadow-md p-6">
-                <div>
-                  <div className="mb-2">
-                    <h3 className="text-lg font-semibold text-gray-900">{departmentEditingId === 'new' ? 'Add Department' : 'Edit Department'}</h3>
-                    <p className="text-sm text-gray-500 mt-1">Create or edit departments for the What We Do page.</p>
-                  </div>
-
+            {(departmentEditingId === 'new' || departmentEditingId) && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>{departmentEditingId === 'new' ? 'Add New Department' : 'Edit Department'}</CardTitle>
+                  <CardDescription>
+                    Create or edit departments for the What We Do page
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
                   <form onSubmit={handleDepartmentSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
@@ -502,7 +506,6 @@ export default function ManageWhatWeDo() {
                           value={departmentFormData.title}
                           onChange={(e) => handleInputChange(e, setDepartmentFormData)}
                           required
-                          autoFocus
                         />
                       </div>
                       <div className="space-y-2">
@@ -533,14 +536,20 @@ export default function ManageWhatWeDo() {
                       />
                     </div>
 
-                    <div className="flex items-center justify-end gap-2">
-                      <Button type="button" variant="outline" onClick={resetDepartmentForm} className="h-9 px-4 text-sm">Cancel</Button>
-                      <Button type="submit" className="h-9 px-4 text-sm">{departmentEditingId === 'new' ? 'Create' : 'Save'}</Button>
+                    <div className="flex gap-4">
+                      <Button type="submit" className="flex items-center gap-2">
+                        <Save className="w-4 h-4" />
+                        {departmentEditingId === 'new' ? 'Create Department' : 'Update Department'}
+                      </Button>
+                      <Button type="button" variant="outline" onClick={resetDepartmentForm}>
+                        <X className="w-4 h-4 mr-2" />
+                        Cancel
+                      </Button>
                     </div>
                   </form>
-                </div>
-              </DialogContent>
-            </Dialog>
+                </CardContent>
+              </Card>
+            )}
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {departments.map((dept) => (
@@ -594,15 +603,15 @@ export default function ManageWhatWeDo() {
               </Button>
             </div>
 
-            {/* Programme modal */}
-            <Dialog open={!!programmeEditingId} onOpenChange={(open) => { if (!open) resetProgrammeForm(); }}>
-              <DialogContent className="max-w-lg bg-white rounded-lg shadow-md p-6">
-                <div>
-                  <div className="mb-2">
-                    <h3 className="text-lg font-semibold text-gray-900">{programmeEditingId === 'new' ? 'Add Programme' : 'Edit Programme'}</h3>
-                    <p className="text-sm text-gray-500 mt-1">Create or edit programmes for the What We Do page.</p>
-                  </div>
-
+            {(programmeEditingId === 'new' || programmeEditingId) && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>{programmeEditingId === 'new' ? 'Add New Programme' : 'Edit Programme'}</CardTitle>
+                  <CardDescription>
+                    Create or edit programmes for the What We Do page
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
                   <form onSubmit={handleProgrammeSubmit} className="space-y-6">
                     <div className="space-y-2">
                       <Label htmlFor="title">Title *</Label>
@@ -612,7 +621,6 @@ export default function ManageWhatWeDo() {
                         value={programmeFormData.title}
                         onChange={(e) => handleInputChange(e, setProgrammeFormData)}
                         required
-                        autoFocus
                       />
                     </div>
 
@@ -641,14 +649,20 @@ export default function ManageWhatWeDo() {
                       />
                     </div>
 
-                    <div className="flex items-center justify-end gap-2">
-                      <Button type="button" variant="outline" onClick={resetProgrammeForm} className="h-9 px-4 text-sm">Cancel</Button>
-                      <Button type="submit" className="h-9 px-4 text-sm">{programmeEditingId === 'new' ? 'Create' : 'Save'}</Button>
+                    <div className="flex gap-4">
+                      <Button type="submit" className="flex items-center gap-2">
+                        <Save className="w-4 h-4" />
+                        {programmeEditingId === 'new' ? 'Create Programme' : 'Update Programme'}
+                      </Button>
+                      <Button type="button" variant="outline" onClick={resetProgrammeForm}>
+                        <X className="w-4 h-4 mr-2" />
+                        Cancel
+                      </Button>
                     </div>
                   </form>
-                </div>
-              </DialogContent>
-            </Dialog>
+                </CardContent>
+              </Card>
+            )}
 
             <div className="space-y-6">
               {programmes.map((programme) => (

@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/admin-card";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/lib/supabase";
@@ -149,15 +148,16 @@ export default function ManageOurImpact() {
           </Button>
         </div>
 
-        {/* Impact Stat modal */}
-        <Dialog open={!!editingId} onOpenChange={(open) => { if (!open) resetForm(); }}>
-          <DialogContent className="max-w-md bg-white rounded-lg shadow-md p-6">
-            <div>
-              <div className="mb-2">
-                <h3 className="text-lg font-semibold text-gray-900">{editingId === 'new' ? 'Add Impact Stat' : 'Edit Impact Stat'}</h3>
-                <p className="text-sm text-gray-500 mt-1">Create or edit impact statistics for the home page.</p>
-              </div>
-
+        {/* Form */}
+        {(editingId === 'new' || editingId) && (
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle>{editingId === 'new' ? 'Add New Impact Statistic' : 'Edit Impact Statistic'}</CardTitle>
+              <CardDescription>
+                Create or edit impact statistics for the home page
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
@@ -169,7 +169,6 @@ export default function ManageOurImpact() {
                       onChange={handleInputChange}
                       placeholder="100+"
                       required
-                      autoFocus
                     />
                   </div>
 
@@ -186,14 +185,20 @@ export default function ManageOurImpact() {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-end gap-2">
-                  <Button type="button" variant="outline" onClick={resetForm} className="h-9 px-4 text-sm">Cancel</Button>
-                  <Button type="submit" className="h-9 px-4 text-sm">{editingId === 'new' ? 'Create' : 'Save'}</Button>
+                <div className="flex gap-4">
+                  <Button type="submit" className="flex items-center gap-2">
+                    <Save className="w-4 h-4" />
+                    {editingId === 'new' ? 'Create Impact Stat' : 'Update Impact Stat'}
+                  </Button>
+                  <Button type="button" variant="outline" onClick={resetForm}>
+                    <X className="w-4 h-4 mr-2" />
+                    Cancel
+                  </Button>
                 </div>
               </form>
-            </div>
-          </DialogContent>
-        </Dialog>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Statistics List */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
