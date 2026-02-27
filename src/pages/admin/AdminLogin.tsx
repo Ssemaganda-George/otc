@@ -3,7 +3,8 @@ import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import AdminCard from '@/components/ui/admin-card';
+import { CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useNavigate } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react';
 
@@ -29,22 +30,25 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <Card className="w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center bg-background px-4">
+      <AdminCard className="w-full max-w-md">
         <CardHeader>
           <CardTitle>OTC Admin Login</CardTitle>
           <CardDescription>Enter your credentials to access the admin dashboard.</CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4" aria-describedby={error ? 'login-error' : undefined}>
             <div>
               <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
+                name="email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                autoFocus
+                autoComplete="email"
               />
             </div>
             <div>
@@ -52,35 +56,36 @@ export default function AdminLogin() {
               <div className="relative">
                 <Input
                   id="password"
-                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="pr-10"
                   required
+                  autoComplete="current-password"
                 />
-                <Button
+                <button
                   type="button"
-                  variant="ghost"
-                  size="sm"
-                  className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
                   onClick={() => setShowPassword(!showPassword)}
-                  aria-label={showPassword ? "Hide password" : "Show password"}
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                  className="absolute right-1 top-1/2 -translate-y-1/2 p-1 text-muted-foreground hover:opacity-80"
                 >
-                  {showPassword ? (
-                    <EyeOff className="h-4 w-4 text-muted-foreground" />
-                  ) : (
-                    <Eye className="h-4 w-4 text-muted-foreground" />
-                  )}
-                </Button>
+                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                </button>
               </div>
             </div>
-            {error && <p className="text-red-500 text-sm">{error}</p>} {/* Display error */}
-            <Button type="submit" className="w-full">
+            {error && (
+              <p id="login-error" role="alert" className="text-red-600 text-sm">
+                {error}
+              </p>
+            )}
+
+            <Button type="submit" className="w-full" aria-label="Sign in to admin dashboard">
               Login
             </Button>
           </form>
         </CardContent>
-      </Card>
+      </AdminCard>
     </div>
   );
 }

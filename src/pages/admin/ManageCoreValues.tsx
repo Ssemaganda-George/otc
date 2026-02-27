@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/admin-card";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -159,137 +160,81 @@ export default function ManageCoreValues() {
   }
 
   return (
-    <div className="min-h-screen bg-background p-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-center mb-8">
+    <div className="min-h-screen bg-background p-6">
+      <div className="max-w-4xl mx-auto">
+        <div className="flex justify-between items-start mb-6">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Core Values Manager</h1>
-            <p className="text-muted-foreground">Manage the core values that define our organization</p>
+            <h1 className="text-2xl font-semibold text-foreground">Core Values</h1>
+            <p className="text-sm text-gray-500">Manage the core values shown on the website</p>
           </div>
-          <Button
-            onClick={() => setEditingId('new')}
-            className="flex items-center gap-2"
-          >
-            <Plus className="w-4 h-4" />
-            Add Core Value
+          <Button onClick={() => setEditingId('new')} className="h-9 px-3">
+            <Plus className="w-4 h-4 mr-2" />
+            Add
           </Button>
         </div>
 
-        {/* Form */}
-        {(editingId === 'new' || editingId) && (
-          <Card className="mb-8">
-            <CardHeader>
-              <CardTitle>{editingId === 'new' ? 'Add New Core Value' : 'Edit Core Value'}</CardTitle>
-              <CardDescription>
-                Define a core value that represents our organizational principles
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="title">Title *</Label>
-                    <Input
-                      id="title"
-                      name="title"
-                      value={formData.title}
-                      onChange={handleInputChange}
-                      required
-                    />
+        {/* Modal Form (classy, compact) */}
+        <Dialog open={!!editingId} onOpenChange={(open) => { if (!open) resetForm(); }}>
+          <DialogContent className="max-w-lg bg-white rounded-lg shadow-md p-6">
+            <div>
+              <div className="mb-2">
+                <h3 className="text-lg font-semibold text-gray-900">{editingId === 'new' ? 'Add Core Value' : 'Edit Core Value'}</h3>
+                <p className="text-sm text-gray-500 mt-1">Quickly add or edit a core value shown on the site.</p>
+              </div>
+
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
+                  <div className="md:col-span-2 space-y-1">
+                    <Label htmlFor="title" className="text-sm">Title *</Label>
+                    <Input id="title" name="title" value={formData.title} onChange={handleInputChange} required placeholder="E.g. Integrity" autoFocus />
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="display_order">Display Order</Label>
-                    <Input
-                      id="display_order"
-                      name="display_order"
-                      type="number"
-                      value={formData.display_order}
-                      onChange={handleInputChange}
-                      placeholder="0"
-                    />
+                  <div className="space-y-1">
+                    <Label htmlFor="display_order" className="text-sm">Order</Label>
+                    <Input id="display_order" name="display_order" type="number" value={formData.display_order} onChange={handleInputChange} placeholder="0" />
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="description">Description</Label>
-                  <Textarea
-                    id="description"
-                    name="description"
-                    value={formData.description}
-                    onChange={handleInputChange}
-                    rows={4}
-                    placeholder="Describe what this core value means to the organization..."
-                  />
+                <div className="space-y-1">
+                  <Label htmlFor="description" className="text-sm">Description</Label>
+                  <Textarea id="description" name="description" value={formData.description} onChange={handleInputChange} rows={4} placeholder="Describe the core value in one or two sentences." />
                 </div>
 
-                <div className="flex items-center space-x-2">
-                  <input
-                    type="checkbox"
-                    id="is_active"
-                    checked={formData.is_active}
-                    onChange={(e) => handleSelectChange('is_active', e.target.checked)}
-                    className="rounded"
-                  />
-                  <Label htmlFor="is_active">Active (visible on website)</Label>
-                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2">
+                    <input type="checkbox" id="is_active" checked={formData.is_active} onChange={(e) => handleSelectChange('is_active', e.target.checked)} className="rounded" />
+                    <Label htmlFor="is_active" className="text-sm">Active</Label>
+                  </div>
 
-                <div className="flex gap-2">
-                  <Button type="submit" className="flex items-center gap-2">
-                    <Save className="w-4 h-4" />
-                    {editingId === 'new' ? 'Create Core Value' : 'Update Core Value'}
-                  </Button>
-                  <Button type="button" variant="outline" onClick={resetForm}>
-                    <X className="w-4 h-4 mr-2" />
-                    Cancel
-                  </Button>
+                  <div className="flex items-center gap-2">
+                    <Button type="button" variant="outline" onClick={() => resetForm()} className="h-9 px-4 text-sm">Cancel</Button>
+                    <Button type="submit" className="h-9 px-4 text-sm">{editingId === 'new' ? 'Create' : 'Save'}</Button>
+                  </div>
                 </div>
               </form>
-            </CardContent>
-          </Card>
-        )}
+            </div>
+          </DialogContent>
+        </Dialog>
 
         {/* Core Values List */}
-        <div className="grid gap-6">
+        <div className="space-y-3">
           {coreValues.map((coreValue) => (
-            <Card key={coreValue.id} className="hover:shadow-lg transition-shadow">
-              <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-primary mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-white text-xl font-bold">
-                    {coreValue.display_order || '?'}
-                  </span>
-                </div>
-                <CardTitle className="text-lg">{coreValue.title}</CardTitle>
-                <CardDescription>
-                  Order: {coreValue.display_order}
-                  {!coreValue.is_active && (
-                    <span className="text-red-500 ml-2">(Inactive)</span>
-                  )}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground mb-4">
-                  {coreValue.description || 'No description provided.'}
-                </p>
-                <div className="flex gap-2 justify-end">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => handleEdit(coreValue)}
-                    className="flex items-center gap-2"
-                  >
-                    <Edit className="w-4 h-4" />
-                    Edit
-                  </Button>
-                  <Button
-                    variant="destructive"
-                    size="sm"
-                    onClick={() => handleDelete(coreValue.id)}
-                    className="flex items-center gap-2"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                    Delete
-                  </Button>
+            <Card key={coreValue.id} className="hover:shadow transition-shadow">
+              <CardContent className="p-4">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3">
+                      <div className="text-sm font-medium text-gray-700">{coreValue.title}</div>
+                      <div className="text-xs text-gray-500">{coreValue.display_order}</div>
+                      {!coreValue.is_active && <div className="text-xs text-red-500">Inactive</div>}
+                    </div>
+                    <p className="mt-2 text-sm text-gray-600">{coreValue.description || 'No description provided.'}</p>
+                  </div>
+
+                  <div className="flex items-start gap-2">
+                    <Button variant="outline" size="sm" onClick={() => handleEdit(coreValue)} className="h-8 px-2 text-sm">Edit</Button>
+                    <Button variant="destructive" size="sm" onClick={() => handleDelete(coreValue.id)} className="h-8 px-2 text-sm">Delete</Button>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -297,9 +242,7 @@ export default function ManageCoreValues() {
         </div>
 
         {coreValues.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-gray-500">No core values found. Click "Add Core Value" to create your first one.</p>
-          </div>
+          <div className="text-center py-8 text-sm text-gray-500">No core values found. Click "Add" to create your first one.</div>
         )}
       </div>
     </div>

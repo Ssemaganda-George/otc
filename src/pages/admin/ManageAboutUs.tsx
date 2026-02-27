@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/admin-card";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -143,35 +144,31 @@ export default function ManageAboutUs() {
   }
 
   return (
-    <div className="min-h-screen bg-background p-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-center mb-8">
+    <div className="min-h-screen bg-background p-6">
+      <div className="max-w-4xl mx-auto">
+        <div className="flex justify-between items-start mb-6">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">About Us Manager</h1>
-            <p className="text-muted-foreground">Manage About Us, Mission, and Vision content sections</p>
+            <h1 className="text-2xl font-semibold text-foreground">About Us</h1>
+            <p className="text-sm text-gray-500">Manage About Us, Mission & Vision sections</p>
           </div>
-          <Button
-            onClick={() => setEditingId('new')}
-            className="flex items-center gap-2"
-          >
-            <Plus className="w-4 h-4" />
-            Add Section
+          <Button onClick={() => setEditingId('new')} className="h-9 px-3">
+            <Plus className="w-4 h-4 mr-2" />
+            Add
           </Button>
         </div>
 
-        {/* Form */}
-        {(editingId === 'new' || editingId) && (
-          <Card className="mb-8 rounded-none">
-            <CardHeader>
-              <CardTitle>{editingId === 'new' ? 'Add New Section' : 'Edit Section'}</CardTitle>
-              <CardDescription>
-                Create or edit About Us, Mission, or Vision content sections
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-2">
-                  <Label htmlFor="section_type">Section Type *</Label>
+        {/* Modal Form (classy, compact) */}
+        <Dialog open={!!editingId} onOpenChange={(open) => { if (!open) resetForm(); }}>
+          <DialogContent className="max-w-lg bg-white rounded-lg shadow-md p-6">
+            <div>
+              <div className="mb-2">
+                <h3 className="text-lg font-semibold text-gray-900">{editingId === 'new' ? 'Add Section' : 'Edit Section'}</h3>
+                <p className="text-sm text-gray-500 mt-1">Create or edit About Us, Mission, or Vision content.</p>
+              </div>
+
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="space-y-1">
+                  <Label htmlFor="section_type" className="text-sm">Section Type *</Label>
                   <Select value={formData.section_type} onValueChange={(value: 'about_us' | 'mission' | 'vision') => handleSelectChange('section_type', value)}>
                     <SelectTrigger>
                       <SelectValue placeholder="Select section type" />
@@ -184,8 +181,8 @@ export default function ManageAboutUs() {
                   </Select>
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="content">Content *</Label>
+                <div className="space-y-1">
+                  <Label htmlFor="content" className="text-sm">Content *</Label>
                   <Textarea
                     id="content"
                     name="content"
@@ -193,65 +190,36 @@ export default function ManageAboutUs() {
                     onChange={handleInputChange}
                     rows={6}
                     placeholder="Enter the content for this section..."
+                    autoFocus
                   />
                 </div>
 
-                <div className="flex gap-4">
-                  <Button type="submit" className="flex items-center gap-2">
-                    <Save className="w-4 h-4" />
-                    {editingId === 'new' ? 'Create Section' : 'Update Section'}
-                  </Button>
-                  <Button type="button" variant="outline" onClick={resetForm}>
-                    <X className="w-4 h-4 mr-2" />
-                    Cancel
-                  </Button>
+                <div className="flex items-center justify-end gap-2">
+                  <Button type="button" variant="outline" onClick={resetForm} className="h-9 px-4 text-sm">Cancel</Button>
+                  <Button type="submit" className="h-9 px-4 text-sm">{editingId === 'new' ? 'Create' : 'Save'}</Button>
                 </div>
               </form>
-            </CardContent>
-          </Card>
-        )}
+            </div>
+          </DialogContent>
+        </Dialog>
 
         {/* Sections List */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="space-y-3">
           {sections.map((section) => (
-            <Card key={section.id} className="hover:shadow-lg transition-shadow rounded-none">
-              <CardHeader className="text-center">
-                <div className="w-16 h-16 bg-primary mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-white text-xl font-bold">
-                    {section.section_type === 'about_us' ? 'A' : section.section_type === 'mission' ? 'M' : 'V'}
-                  </span>
-                </div>
-                <CardTitle className="text-lg">
-                  {section.section_type === 'about_us' ? 'About Us' : section.section_type === 'mission' ? 'Mission' : 'Vision'}
-                </CardTitle>
-                <CardDescription>
-                  {section.section_type.replace('_', ' ').toUpperCase()}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground mb-4 line-clamp-4">
-                  {section.content}
-                </p>
+            <Card key={section.id} className="hover:shadow transition-shadow">
+              <CardContent className="p-4">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3">
+                      <div className="text-sm font-medium text-gray-700">{section.section_type === 'about_us' ? 'About Us' : section.section_type === 'mission' ? 'Mission' : 'Vision'}</div>
+                    </div>
+                    <p className="mt-2 text-sm text-gray-600 line-clamp-4">{section.content}</p>
+                  </div>
 
-                <div className="flex gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => handleEdit(section)}
-                    className="flex-1"
-                  >
-                    <Edit className="w-3 h-3 mr-1" />
-                    Edit
-                  </Button>
-                  <Button
-                    variant="destructive"
-                    size="sm"
-                    onClick={() => handleDelete(section.id)}
-                    className="flex-1"
-                  >
-                    <Trash2 className="w-3 h-3 mr-1" />
-                    Delete
-                  </Button>
+                  <div className="flex items-start gap-2">
+                    <Button variant="outline" size="sm" onClick={() => handleEdit(section)} className="h-8 px-2 text-sm">Edit</Button>
+                    <Button variant="destructive" size="sm" onClick={() => handleDelete(section.id)} className="h-8 px-2 text-sm">Delete</Button>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -259,9 +227,7 @@ export default function ManageAboutUs() {
         </div>
 
         {sections.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-muted-foreground">No About Us sections found. Add your first section!</p>
-          </div>
+          <div className="text-center py-8 text-sm text-gray-500">No sections found. Click "Add" to create your first one.</div>
         )}
       </div>
     </div>

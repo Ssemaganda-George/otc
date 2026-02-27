@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/admin-card";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -130,18 +131,15 @@ export default function ManagePrograms() {
           </div>
         </div>
 
-        {/* Form Section */}
-        {(editingId === 'new' || editingId) && (
-          <Card className="mb-8 border-0 shadow-sm">
-            <CardHeader className="bg-gray-50 border-b border-gray-200">
-              <CardTitle className="text-xl text-gray-900">
-                {editingId === 'new' ? 'Add New Program' : 'Edit Program'}
-              </CardTitle>
-              <CardDescription className="text-gray-600">
-                {editingId === 'new' ? 'Create a new program with all necessary details' : 'Update the program information'}
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="p-6">
+        {/* Program modal */}
+        <Dialog open={!!editingId} onOpenChange={(open) => { if (!open) handleCancel(); }}>
+          <DialogContent className="max-w-2xl bg-white rounded-lg shadow-md p-6">
+            <div>
+              <div className="mb-2">
+                <h3 className="text-lg font-semibold text-gray-900">{editingId === 'new' ? 'Add Program' : 'Edit Program'}</h3>
+                <p className="text-sm text-gray-500 mt-1">Create or edit a program offering.</p>
+              </div>
+
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
                   <Label htmlFor="title" className="text-sm font-medium text-gray-700">Title *</Label>
@@ -152,6 +150,7 @@ export default function ManagePrograms() {
                     required
                     className="border-gray-300 focus:border-primary focus:ring-primary"
                     placeholder="Enter program title"
+                    autoFocus
                   />
                 </div>
                 <div>
@@ -200,20 +199,15 @@ export default function ManagePrograms() {
                     onChange={(e) => setFormData({ ...formData, focus_areas: e.target.value })}
                   />
                 </div>
-                <div className="flex space-x-2">
-                  <Button type="submit">
-                    <Save className="w-4 h-4 mr-2" />
-                    Save
-                  </Button>
-                  <Button type="button" variant="outline" onClick={handleCancel}>
-                    <X className="w-4 h-4 mr-2" />
-                    Cancel
-                  </Button>
+
+                <div className="flex items-center justify-end gap-2">
+                  <Button type="button" variant="outline" onClick={handleCancel} className="h-9 px-4 text-sm">Cancel</Button>
+                  <Button type="submit" className="h-9 px-4 text-sm">Save</Button>
                 </div>
               </form>
-            </CardContent>
-          </Card>
-        )}
+            </div>
+          </DialogContent>
+        </Dialog>
 
         {/* Programs List */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

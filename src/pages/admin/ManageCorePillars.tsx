@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/admin-card";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -104,16 +105,15 @@ export default function ManageCorePillars() {
           </Button>
         </div>
 
-        {/* Form */}
-        {(editingId === 'new' || editingId) && (
-          <Card className="mb-8">
-            <CardHeader>
-              <CardTitle>{editingId === 'new' ? 'Add New Pillar' : 'Edit Pillar'}</CardTitle>
-              <CardDescription>
-                Configure the core pillars (R, A, T) that appear on the home page
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
+        {/* Modal Form (compact admin pattern) */}
+        <Dialog open={!!editingId} onOpenChange={(open) => { if (!open) handleCancel(); }}>
+          <DialogContent className="max-w-lg bg-white rounded-lg shadow-md p-6">
+            <div>
+              <div className="mb-2">
+                <h3 className="text-lg font-semibold text-gray-900">{editingId === 'new' ? 'Add Pillar' : 'Edit Pillar'}</h3>
+                <p className="text-sm text-gray-500 mt-1">Configure the core pillars (R, A, T) that appear on the home page.</p>
+              </div>
+
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
@@ -124,6 +124,7 @@ export default function ManageCorePillars() {
                       onChange={(e) => setFormData({ ...formData, letter: e.target.value })}
                       placeholder="R"
                       required
+                      autoFocus
                     />
                   </div>
                   <div>
@@ -166,20 +167,15 @@ export default function ManageCorePillars() {
                   />
                   <Label htmlFor="is_active">Active</Label>
                 </div>
-                <div className="flex gap-2">
-                  <Button type="submit" className="flex items-center gap-2">
-                    <Save className="w-4 h-4" />
-                    {editingId === 'new' ? 'Create' : 'Update'}
-                  </Button>
-                  <Button type="button" variant="outline" onClick={handleCancel}>
-                    <X className="w-4 h-4 mr-2" />
-                    Cancel
-                  </Button>
+
+                <div className="flex items-center justify-end gap-2">
+                  <Button type="button" variant="outline" onClick={handleCancel} className="h-9 px-4 text-sm">Cancel</Button>
+                  <Button type="submit" className="h-9 px-4 text-sm">{editingId === 'new' ? 'Create' : 'Save'}</Button>
                 </div>
               </form>
-            </CardContent>
-          </Card>
-        )}
+            </div>
+          </DialogContent>
+        </Dialog>
 
         {/* List */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
