@@ -20,15 +20,6 @@ interface ImpactStat {
   label: string;
 }
 
-interface CorePillar {
-  id: string;
-  letter: string;
-  title: string;
-  description: string;
-  display_order: number;
-  is_active: boolean;
-}
-
 interface CoreValue {
   id: string;
   title: string;
@@ -46,10 +37,17 @@ interface NewsItem {
   publish_date: string;
 }
 
+const ourProducts = [
+  { name: "OTC Innovation Hub", initial: "IH", tagline: "Developing, connecting and scaling African innovation.", href: "/innovation-hub" },
+  { name: "OTC Academy", initial: "AC", tagline: "Research, learning and capability development.", href: "/academy" },
+  { name: "Legal & Business Support Centre", initial: "LB", tagline: "Protecting innovations and structuring opportunity.", href: "/legal-business-support" },
+  { name: "OTC Fund", initial: "FD", tagline: "Capital for African innovation and innovators.", href: "/fund" },
+  { name: "OTC Media Hub", initial: "MH", tagline: "Creating, telling and amplifying African stories.", href: "/media" },
+];
+
 const Index = () => {
   const [homeSections, setHomeSections] = useState<HomeSection[]>([]);
   const [impactStats, setImpactStats] = useState<ImpactStat[]>([]);
-  const [corePillars, setCorePillars] = useState<CorePillar[]>([]);
   const [coreValues, setCoreValues] = useState<CoreValue[]>([]);
   const [latestNews, setLatestNews] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -60,17 +58,15 @@ const Index = () => {
 
   const fetchData = async () => {
     try {
-      const [sectionsRes, statsRes, pillarsRes, valuesRes, newsRes] = await Promise.all([
+      const [sectionsRes, statsRes, valuesRes, newsRes] = await Promise.all([
         supabase.from('home_sections').select('*').eq('is_active', true).order('display_order'),
         supabase.from('our_impact_stats').select('*').order('created_at'),
-        supabase.from('core_pillars').select('*').eq('is_active', true).order('display_order'),
         supabase.from('core_values').select('*').eq('is_active', true).order('display_order'),
         supabase.from('news_updates').select('id, title, excerpt, featured_image, category, publish_date').eq('is_featured', true).order('publish_date', { ascending: false }).limit(3)
       ]);
 
       if (sectionsRes.data) setHomeSections(sectionsRes.data);
       if (statsRes.data) setImpactStats(statsRes.data);
-      if (pillarsRes.data) setCorePillars(pillarsRes.data);
       if (valuesRes.data) setCoreValues(valuesRes.data);
       if (newsRes.data) setLatestNews(newsRes.data);
     } catch (error) {
@@ -182,25 +178,43 @@ const Index = () => {
           </section>
         </AOSWrapper>
 
-        {/* 3. Core Pillars (What We Do) */}
+        {/* 3. Our Five Products */}
         <AOSWrapper animation="fade-up" delay={200}>
           <section className="py-16 bg-gray-50">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
-              <h3 className="text-2xl font-bold text-foreground mb-8">What We Do</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {corePillars.map((pillar) => (
-                  <div key={pillar.id} className="bg-foreground text-white p-6 shadow-lg border border-gray-800 hover:shadow-card transition-all duration-300">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-primary flex items-center justify-center text-white font-bold">
-                        {pillar.letter}
-                      </div>
-                      <div>
-                        <h4 className="text-lg font-bold">{pillar.title}</h4>
-                        <p className="text-sm text-white/90 mt-2">{pillar.description}</p>
-                      </div>
+              <div className="text-center mb-12">
+                <h3 className="text-2xl md:text-3xl font-bold text-foreground font-poppins">Our Products</h3>
+                <p className="text-muted-foreground mt-2">Five ways we turn African ideas into scalable solutions.</p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                {ourProducts.map((product) => (
+                  <Link
+                    key={product.href}
+                    to={product.href}
+                    className="group bg-foreground text-white p-6 shadow-lg border border-gray-800 hover:shadow-card transition-all duration-300 flex flex-col"
+                  >
+                    <div className="w-12 h-12 bg-primary flex items-center justify-center text-white font-bold mb-4 group-hover:scale-110 transition-transform duration-300">
+                      {product.initial}
                     </div>
-                  </div>
+                    <h4 className="text-lg font-bold">{product.name}</h4>
+                    <p className="text-sm text-white/80 mt-2 flex-1">{product.tagline}</p>
+                  </Link>
                 ))}
+              </div>
+            </div>
+          </section>
+        </AOSWrapper>
+
+        {/* 3.5. Our Partners */}
+        <AOSWrapper animation="fade-up" delay={250}>
+          <section className="py-16 bg-white">
+            <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+              <h3 className="text-2xl md:text-3xl font-bold text-foreground font-poppins mb-10">Our Partners</h3>
+              <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6 text-muted-foreground font-semibold text-sm md:text-base uppercase tracking-wide">
+                <span>ADIJUST</span>
+                <span>Ministry of Health</span>
+                <span>Personal Data Protection Office</span>
+                <span>Ministry of Science & Innovation</span>
               </div>
             </div>
           </section>

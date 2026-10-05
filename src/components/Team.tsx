@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
-import { LinkedinIcon, MailIcon, TwitterIcon, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { LinkedinIcon, MailIcon, TwitterIcon, X, ChevronLeft, ChevronRight, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "@/lib/supabase";
@@ -50,7 +50,7 @@ export function Team() {
 					expertise: Array.isArray(member.expertise) ? member.expertise : [],
 					education: Array.isArray(member.education) ? member.education : [],
 					experience: Array.isArray(member.experience) ? member.experience : [],
-					social: member.social || { linkedin: '', email: '', twitter: '' }
+					social: { linkedin: '', email: '', twitter: '', ...(member.social || {}) }
 				}));
 
 				setTeamMembers(transformedData);
@@ -107,7 +107,7 @@ export function Team() {
 						{/* Section Header */}
 						<div className="text-center mb-20">
 							<div className="inline-flex items-center justify-center w-20 h-20 bg-primary/10 rounded-full mb-8">
-								<span className="text-3xl">👥</span>
+								<Users className="w-9 h-9 text-primary" />
 							</div>
 							<h2 className="heading-section text-primary mb-6">
 								Our Team
@@ -136,88 +136,98 @@ export function Team() {
 								<p className="text-muted-foreground">No team members found.</p>
 							</div>
 						) : (
-							<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+							<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
 								{teamMembers.map((member, index) => (
 									<div
 										key={member.id || member.name}
-										className="group bg-card overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 card-hover opacity-0 translate-y-8 animate-fade-in border border-border/50 hover:border-primary/20"
+										className="group bg-card overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 card-hover opacity-0 translate-y-8 animate-fade-in border border-border/50 hover:border-primary/20 cursor-pointer"
 										style={{
-											animationDelay: `${index * 0.2}s`,
+											animationDelay: `${index * 0.15}s`,
 											animationFillMode: "forwards",
 										}}
 										onClick={() => openModal(index)}
 									>
-										{/* Profile Image */}
-										<div className="relative h-96 overflow-hidden bg-gradient-to-br from-primary/5 to-primary/10">
-											<img
-												src={member.image}
-												alt={member.name}
-												loading="lazy"
-												className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
-											/>
-											{/* Subtle overlay for better text contrast */}
+										{/* Profile Photo */}
+										<div className="relative aspect-square overflow-hidden bg-gradient-to-br from-primary/5 to-primary/10">
+											{member.image ? (
+												<img
+													src={member.image}
+													alt={member.name}
+													loading="lazy"
+													className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
+												/>
+											) : (
+												<div className="w-full h-full flex items-center justify-center text-4xl font-bold font-poppins text-primary">
+													{member.name.split(' ').map(p => p[0]).slice(0, 2).join('')}
+												</div>
+											)}
 											<div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 										</div>
 
 										{/* Content */}
-										<div className="p-6">
-											{/* Name and Position */}
-											<div className="mb-4">
-												<h3 className="text-xl font-playfair font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+										<div className="p-6 text-center">
+											<h3 className="text-lg font-playfair font-bold text-foreground mb-1 group-hover:text-primary transition-colors duration-300">
 												{member.name}
 											</h3>
-											<p className="text-primary font-semibold text-sm uppercase tracking-wide">
+											<p className="text-primary font-semibold text-xs uppercase tracking-wide">
 												{member.position}
 											</p>
-										</div>
 
-										{/* Social Links */}
-										<div className="flex items-center justify-center space-x-3 pt-2 border-t border-border/50" onClick={(e) => e.stopPropagation()}>
-											<Button
-												asChild
-												variant="ghost"
-												size="icon"
-												className="w-9 h-9 hover:bg-primary/10 hover:text-primary transition-colors duration-300"
-											>
-												<a
-													href={member.social.linkedin}
-													target="_blank"
-													rel="noopener noreferrer"
-													aria-label="LinkedIn"
-												>
-													<LinkedinIcon className="w-4 h-4" />
-												</a>
-											</Button>
-											<Button
-												asChild
-												variant="ghost"
-												size="icon"
-												className="w-9 h-9 hover:bg-primary/10 hover:text-primary transition-colors duration-300"
-											>
-												<a href={`mailto:${member.social.email}`} aria-label="Email">
-													<MailIcon className="w-4 h-4" />
-												</a>
-											</Button>
-											<Button
-												asChild
-												variant="ghost"
-												size="icon"
-												className="w-9 h-9 hover:bg-primary/10 hover:text-primary transition-colors duration-300"
-											>
-												<a
-													href={member.social.twitter}
-													target="_blank"
-													rel="noopener noreferrer"
-													aria-label="Twitter"
-												>
-													<TwitterIcon className="w-4 h-4" />
-												</a>
-											</Button>
+											{/* Social Links */}
+											{(member.social.linkedin || member.social.email || member.social.twitter) && (
+												<div className="flex items-center justify-center space-x-3 pt-4 mt-4 border-t border-border/50" onClick={(e) => e.stopPropagation()}>
+													{member.social.linkedin && (
+														<Button
+															asChild
+															variant="ghost"
+															size="icon"
+															className="w-9 h-9 hover:bg-primary/10 hover:text-primary transition-colors duration-300"
+														>
+															<a
+																href={member.social.linkedin}
+																target="_blank"
+																rel="noopener noreferrer"
+																aria-label="LinkedIn"
+															>
+																<LinkedinIcon className="w-4 h-4" />
+															</a>
+														</Button>
+													)}
+													{member.social.email && (
+														<Button
+															asChild
+															variant="ghost"
+															size="icon"
+															className="w-9 h-9 hover:bg-primary/10 hover:text-primary transition-colors duration-300"
+														>
+															<a href={`mailto:${member.social.email}`} aria-label="Email">
+																<MailIcon className="w-4 h-4" />
+															</a>
+														</Button>
+													)}
+													{member.social.twitter && (
+														<Button
+															asChild
+															variant="ghost"
+															size="icon"
+															className="w-9 h-9 hover:bg-primary/10 hover:text-primary transition-colors duration-300"
+														>
+															<a
+																href={member.social.twitter}
+																target="_blank"
+																rel="noopener noreferrer"
+																aria-label="Twitter"
+															>
+																<TwitterIcon className="w-4 h-4" />
+															</a>
+														</Button>
+													)}
+												</div>
+											)}
 										</div>
 									</div>
-								</div>
-							))}
-						</div>
+								))}
+							</div>
 						)}
 
 						{/* Call to Action */}

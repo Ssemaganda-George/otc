@@ -10,31 +10,26 @@ import AboutPage from "./pages/AboutPage";
 import WhoWeArePage from "./pages/WhoWeArePage";
 import OTCFrameworkPage from "./pages/OTCFrameworkPage";
 import OurValuesPage from "./pages/OurValuesPage";
-import WhatWeDoPage from "./pages/WhatWeDoPage";
 import OurApproachPage from "./pages/OurApproachPage";
-import FocusAreasPage from "./pages/FocusAreasPage";
-import OurProductsPage from "./pages/OurProductsPage";
-import ProductsOverviewPage from "./pages/ProductsOverviewPage";
-import OurServicesPage from "./pages/OurServicesPage";
+import BoardMembersPage from "./pages/BoardMembersPage";
 import NewsUpdatesPage from "./pages/NewsUpdatesPage";
 import TeamPage from "./pages/TeamPage";
 import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
-import StrategicLitigationPage from "./pages/StrategicLitigationPage";
-import InnovationsPage from "./pages/InnovationsPage";
-import ConsultancyPage from "./pages/ConsultancyPage";
-import ShortCoursesPage from "./pages/ShortCoursesPage";
-import CenterForDigitalJusticePage from "./pages/CenterForDigitalJusticePage";
+import InnovationHubPage from "./pages/InnovationHubPage";
+import AcademyPage from "./pages/AcademyPage";
+import ResearchCentrePage from "./pages/ResearchCentrePage";
+import FundPage from "./pages/FundPage";
+import LegalBusinessSupportPage from "./pages/LegalBusinessSupportPage";
+import MediaHubPage from "./pages/MediaHubPage";
+import CampaignDevelopmentPage from "./pages/media/CampaignDevelopmentPage";
+import FilmArtPage from "./pages/media/FilmArtPage";
+import DigitalEventsPage from "./pages/media/DigitalEventsPage";
 import DonatePage from "./pages/DonatePage";
 import NewsletterPage from "./pages/NewsletterPage";
-import ProgrammesPage from "./pages/ProgrammesPage";
 import VisionMissionPage from "./pages/VisionMissionPage";
 import PhilosophyPage from "./pages/PhilosophyPage";
 import ResearchExpertsPage from "./pages/ResearchExpertsPage";
-import TSGPage from "./pages/programmes/TSGPage";
-import AiNowPage from "./pages/programmes/AiNowPage";
-import BiTAPage from "./pages/programmes/BiTAPage";
-import EMTPage from "./pages/programmes/EMTPage";
 import ResearchPublicationsPage from "./pages/ResearchPublicationsPage";
 import RepositoryPage from "./pages/RepositoryPage";
 
@@ -44,8 +39,7 @@ import { AnalyticsTracker } from "@/components/AnalyticsTracker";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminLogin from "./pages/admin/AdminLogin";
 import ManageTeam from "./pages/admin/ManageTeam";
-import ManagePrograms from "./pages/admin/ManagePrograms";
-import ManageProducts from "./pages/admin/ManageProducts";
+import ManageBoardMembers from "./pages/admin/ManageBoardMembers";
 import ManageHeroSlides from "./pages/admin/ManageHeroSlides";
 import ManageResearchExperts from "./pages/admin/ManageResearchExperts";
 import ManageBlogs from "./pages/admin/ManageBlogs";
@@ -54,9 +48,7 @@ import ManageNewsUpdates from "./pages/admin/ManageNewsUpdates";
 import ManageResearchPublications from "./pages/admin/ManageResearchPublications";
 import ManageAboutUs from "./pages/admin/ManageAboutUs";
 import ManageCoreValues from "./pages/admin/ManageCoreValues";
-import ManageWhatWeDo from "./pages/admin/ManageWhatWeDo";
 import ManageOurImpact from "./pages/admin/ManageOurImpact";
-import ManageCorePillars from "./pages/admin/ManageCorePillars";
 import ManageRepositories from "./pages/admin/ManageRepositories";
 import VisitorAnalyticsPage from "./pages/admin/VisitorAnalyticsPage";
 import DownloadsAnalyticsPage from "./pages/admin/DownloadsAnalyticsPage";
@@ -86,25 +78,18 @@ function App() {
           <Route path="/about/research-experts" element={<PageTransition><ResearchExpertsPage /></PageTransition>} />
           <Route path="/about/otc-framework" element={<PageTransition><OTCFrameworkPage /></PageTransition>} />
           <Route path="/about/values" element={<PageTransition><OurValuesPage /></PageTransition>} />
-          <Route path="/what-we-do" element={<PageTransition><WhatWeDoPage /></PageTransition>} />
-          <Route path="/what-we-do/approach" element={<PageTransition><OurApproachPage /></PageTransition>} />
-          <Route path="/what-we-do/focus-areas" element={<PageTransition><FocusAreasPage /></PageTransition>} />
-          <Route path="/what-we-do/programmes" element={<PageTransition><ProgrammesPage /></PageTransition>} />
+          <Route path="/about/approach" element={<PageTransition><OurApproachPage /></PageTransition>} />
+          <Route path="/about/board-members" element={<PageTransition><BoardMembersPage /></PageTransition>} />
 
-          <Route path="/programmes/tsg" element={<PageTransition><TSGPage /></PageTransition>} />
-          <Route path="/programmes/ainow" element={<PageTransition><AiNowPage /></PageTransition>} />
-          <Route path="/programmes/bita" element={<PageTransition><BiTAPage /></PageTransition>} />
-          <Route path="/programmes/emt" element={<PageTransition><EMTPage /></PageTransition>} />
-
-          <Route path="/our-products" element={<PageTransition><OurProductsPage /></PageTransition>} />
-          <Route path="/our-products/overview" element={<PageTransition><ProductsOverviewPage /></PageTransition>} />
-          <Route path="/our-products/services" element={<PageTransition><OurServicesPage /></PageTransition>} />
-
-          <Route path="/products/strategic-litigation" element={<PageTransition><StrategicLitigationPage /></PageTransition>} />
-          <Route path="/products/innovations" element={<PageTransition><InnovationsPage /></PageTransition>} />
-          <Route path="/products/center-for-digital-justice" element={<PageTransition><CenterForDigitalJusticePage /></PageTransition>} />
-          <Route path="/products/consultancy" element={<PageTransition><ConsultancyPage /></PageTransition>} />
-          <Route path="/products/short-courses" element={<PageTransition><ShortCoursesPage /></PageTransition>} />
+          <Route path="/innovation-hub" element={<PageTransition><InnovationHubPage /></PageTransition>} />
+          <Route path="/academy" element={<PageTransition><AcademyPage /></PageTransition>} />
+          <Route path="/academy/research-centre" element={<PageTransition><ResearchCentrePage /></PageTransition>} />
+          <Route path="/fund" element={<PageTransition><FundPage /></PageTransition>} />
+          <Route path="/legal-business-support" element={<PageTransition><LegalBusinessSupportPage /></PageTransition>} />
+          <Route path="/media" element={<PageTransition><MediaHubPage /></PageTransition>} />
+          <Route path="/media/campaign-development" element={<PageTransition><CampaignDevelopmentPage /></PageTransition>} />
+          <Route path="/media/film-and-art" element={<PageTransition><FilmArtPage /></PageTransition>} />
+          <Route path="/media/digital-and-events" element={<PageTransition><DigitalEventsPage /></PageTransition>} />
 
           <Route path="/news" element={<PageTransition><NewsUpdatesPage /></PageTransition>} />
           <Route path="/news/research-publications" element={<PageTransition><ResearchPublicationsPage /></PageTransition>} />
@@ -126,9 +111,8 @@ function App() {
           }>
             <Route index element={<AdminDashboard />} />
             <Route path="team" element={<ManageTeam />} />
+            <Route path="board-members" element={<ManageBoardMembers />} />
             <Route path="research-experts" element={<ManageResearchExperts />} />
-            <Route path="programs" element={<ManagePrograms />} />
-            <Route path="products" element={<ManageProducts />} />
             <Route path="hero-slides" element={<ManageHeroSlides />} />
             <Route path="blogs" element={<ManageBlogs />} />
             <Route path="resources" element={<ManageResources />} />
@@ -136,9 +120,7 @@ function App() {
             <Route path="research-publications" element={<ManageResearchPublications />} />
             <Route path="about-us" element={<ManageAboutUs />} />
             <Route path="core-values" element={<ManageCoreValues />} />
-            <Route path="what-we-do" element={<ManageWhatWeDo />} />
             <Route path="our-impact" element={<ManageOurImpact />} />
-            <Route path="core-pillars" element={<ManageCorePillars />} />
             <Route path="repositories" element={<ManageRepositories />} />
             <Route path="messages" element={<ManageMessages />} />
             <Route path="analytics/visitors/demographics" element={<VisitorAnalyticsPage />} />

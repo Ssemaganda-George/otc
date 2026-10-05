@@ -1,30 +1,50 @@
-import { Target, Eye, Heart, Users, Briefcase, Lightbulb, Globe } from "lucide-react";
+import { Users, Lightbulb, ShieldCheck, Handshake, Target, Leaf, Shield, GraduationCap, TrendingUp } from "lucide-react";
 
 const values = [
   {
+    icon: Users,
+    title: "African Agency & Ownership",
+    description: "African people should have the agency, capacity and opportunity to shape, create and own solutions."
+  },
+  {
     icon: Lightbulb,
     title: "Innovation",
-    description: "Driving creative, future-oriented solutions that harness technology to improve lives and transform societies."
+    description: "We embrace creativity, experimentation and better ways of solving real problems."
   },
   {
-    icon: Globe,
-    title: "Afrocentrism",
-    description: "Advancing an African-led tech agenda, rooted in local knowledge, institutions, and leadership to shape Africa's digital present and future."
+    icon: ShieldCheck,
+    title: "Integrity",
+    description: "We work with honesty, accountability, transparency and professionalism."
   },
   {
-    icon: Heart,
-    title: "Human Rights & Social Justice",
-    description: "Ensuring that digital transformation upholds rights, dignity, and equity, and reduces inequalities for all Africans."
+    icon: Handshake,
+    title: "Collaboration",
+    description: "We connect people, institutions, expertise, ideas and resources."
   },
   {
     icon: Target,
     title: "Excellence",
-    description: "Committing to the highest standards of professionalism, integrity, and impact in all our work."
+    description: "We pursue high standards in our products, relationships and delivery."
   },
   {
-    icon: Users,
-    title: "Connectivity",
-    description: "Building technologies and systems that seamlessly connect people, communities, and innovations across Africa."
+    icon: Leaf,
+    title: "Sustainability",
+    description: "We design for lasting economic, social and environmental value."
+  },
+  {
+    icon: Shield,
+    title: "Protection & Fairness",
+    description: "We protect rights, intellectual property, interests and value while promoting fair relationships."
+  },
+  {
+    icon: GraduationCap,
+    title: "People & Talent",
+    description: "We invest in human potential, knowledge, creativity and leadership."
+  },
+  {
+    icon: TrendingUp,
+    title: "Impact",
+    description: "We focus on meaningful change that can be demonstrated and sustained."
   }
 ];
 
@@ -36,11 +56,11 @@ export function OurValues() {
           {/* Section Header */}
           <div className="text-center mb-16">
             <h2 className="heading-section text-gradient-blue mb-6">
-              Our Core Values
+              Our Values
             </h2>
             <p className="text-body text-muted-foreground max-w-3xl mx-auto">
-              These fundamental principles guide everything we do and shape our approach 
-              to advancing Africa's digital transformation.
+              These fundamental principles guide everything we do and shape our approach
+              to building African-owned solutions.
             </p>
           </div>
 

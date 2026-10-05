@@ -45,9 +45,6 @@ export default function AdminLayout() {
       items: [
         { name: "About & Pages", path: "/admin/about-us" },
         { name: "Core Values", path: "/admin/core-values" },
-        { name: "Core Pillars", path: "/admin/core-pillars" },
-        { name: "What We Do", path: "/admin/what-we-do" },
-        { name: "Programs", path: "/admin/programs" },
         { name: "Our Impact", path: "/admin/our-impact" },
       ],
     },
@@ -55,13 +52,13 @@ export default function AdminLayout() {
       title: "People",
       items: [
         { name: "Team", path: "/admin/team" },
+        { name: "Board Members", path: "/admin/board-members" },
         { name: "Research Experts", path: "/admin/research-experts" },
       ],
     },
     {
       title: "Products & Media",
       items: [
-        { name: "Products", path: "/admin/products" },
         { name: "Hero Slides", path: "/admin/hero-slides" },
       ],
     },

@@ -1,5 +1,6 @@
 import { Navigation } from "@/components/ui/navigation";
 import { About } from "@/components/About";
+import { BoardMembers } from "@/components/BoardMembers";
 import { Team } from "@/components/Team";
 import { Footer } from "@/components/Footer";
 
@@ -9,6 +10,7 @@ const AboutPage = () => {
       <Navigation />
       <main className="pt-6">
         <About />
+        <BoardMembers />
         <Team />
       </main>
       <Footer />

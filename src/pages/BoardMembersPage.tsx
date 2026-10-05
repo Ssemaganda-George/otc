@@ -1,17 +1,17 @@
 import { Navigation } from "@/components/ui/navigation";
-import { ProductsOverview } from "@/components/ProductsOverview";
+import { BoardMembers } from "@/components/BoardMembers";
 import { Footer } from "@/components/Footer";
 
-const ProductsOverviewPage = () => {
+const BoardMembersPage = () => {
   return (
     <div className="min-h-screen bg-background custom-scrollbar">
       <Navigation />
       <main className="pt-20">
-        <ProductsOverview />
+        <BoardMembers />
       </main>
       <Footer />
     </div>
   );
 };
 
-export default ProductsOverviewPage;
+export default BoardMembersPage;

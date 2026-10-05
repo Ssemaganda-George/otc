@@ -18,11 +18,11 @@
     --card-foreground: 217 91% 8%;        /* #030925 Navy Blue text on cards */
     --card-hover: 0 0% 96%;               /* Light grey on hover */
 
-    /* Brand Blue for Text and Accents */
-    --primary: 217 91% 30%;               /* #1A365D Darker Navy Blue for better readability */
-    --primary-foreground: 0 0% 100%;      /* White text on blue */
-    --primary-glow: 217 91% 50%;          /* Lighter blue for glows */
-    --primary-dark: 217 91% 20%;          /* Very dark navy for depth */
+    /* Brand Gold for Text and Accents (per OTC preferred colors: Gold, Grey, White) */
+    --primary: 43 89% 38%;                /* #B8860B Dark Golden Rod - primary brand color */
+    --primary-foreground: 0 0% 100%;      /* White text on gold */
+    --primary-glow: 43 74% 49%;           /* Lighter gold for glows */
+    --primary-dark: 43 89% 28%;           /* Darker gold for depth */
 
     /* Golden Brown for Action Buttons */
     --golden: 43 89% 38%;                 /* #B8860B Dark Golden Rod */
@@ -36,10 +36,10 @@
     --secondary-foreground: 217 91% 8%;   /* #030925 Navy Blue text */
     --secondary-hover: 0 0% 82%;          /* Darker grey on hover */
 
-    /* Accent & Highlights - Blue */
-    --accent: 217 91% 30%;                /* Darker navy blue for accents */
+    /* Accent & Highlights - a little sky-blue, used sparingly */
+    --accent: 199 89% 48%;                /* Sky blue accent touch */
     --accent-foreground: 0 0% 100%;       /* White on accent */
-    --accent-subtle: 217 91% 96%;         /* Very subtle blue tint */
+    --accent-subtle: 199 89% 96%;         /* Very subtle sky-blue tint */
 
     /* Muted Colors - Grey Text */
     --muted: 0 0% 90%;                    /* Light grey for muted backgrounds */
@@ -59,29 +59,29 @@
     /* Gradients */
     --gradient-hero: linear-gradient(135deg, hsl(0 0% 92% / 0.9), hsl(0 0% 89% / 0.95));
     --gradient-card: linear-gradient(180deg, hsl(0 0% 98%), hsl(0 0% 96%));
-    --gradient-blue: linear-gradient(135deg, hsl(217 91% 30%), hsl(217 91% 20%));
+    --gradient-blue: linear-gradient(135deg, hsl(43 89% 38%), hsl(43 89% 28%));
     --gradient-golden: linear-gradient(135deg, hsl(43 89% 38%), hsl(43 89% 28%));
     
     /* Shadows */
     --shadow-elegant: 0 20px 40px -10px hsl(0 0% 0% / 0.1);
-    --shadow-blue: 0 10px 30px -10px hsl(217 91% 35% / 0.15);
+    --shadow-blue: 0 10px 30px -10px hsl(199 89% 48% / 0.2);
     --shadow-golden: 0 10px 30px -10px hsl(43 89% 38% / 0.2);
     --shadow-card: 0 8px 32px -8px hsl(0 0% 0% / 0.06);
 
     /* Spacing & Layout */
     --radius: 1rem;
 
-    /* Dark Section Backgrounds */
-    --dark-navy: 217 91% 12%;             /* #0F1629 Very dark navy */
+    /* Dark Section Backgrounds - neutral grey, not navy */
+    --dark-navy: 0 0% 14%;                /* Dark charcoal grey */
     --dark-brown: 25 40% 15%;             /* #2B1F17 Dark brown */
     --dark-grey: 0 0% 18%;                /* #2E2E2E Dark grey */
-    --dark-blue: 217 50% 18%;             /* #1E293B Dark blue */
+    --dark-blue: 0 0% 20%;                /* Dark grey (was navy) */
     
     /* Dark Section Text Colors */
     --dark-text-primary: 0 0% 95%;        /* Off-white for primary text on dark */
     --dark-text-muted: 0 0% 75%;          /* Light grey for secondary text on dark */
-    --dark-card: 217 91% 15%;             /* Slightly lighter dark navy for cards */
-    --dark-border: 217 50% 25%;           /* Dark border for dark sections */
+    --dark-card: 0 0% 16%;                /* Dark grey for cards (was dark navy) */
+    --dark-border: 0 0% 30%;              /* Dark grey border for dark sections */
 
     /* Sidebar - Grey Theme */
     --sidebar-background: 0 0% 90%;
@@ -447,7 +447,7 @@
   }
   
   .card-dark:hover {
-    box-shadow: 0 10px 30px -10px hsl(217 91% 35% / 0.3);
+    box-shadow: 0 10px 30px -10px hsl(43 89% 38% / 0.3);
   }
   
   /* Dark Section Text Styles */
