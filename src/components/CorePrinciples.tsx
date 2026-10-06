@@ -34,7 +34,7 @@ export function CorePrinciples() {
 				<div className="max-w-6xl mx-auto">
 					{/* Section Header */}
 					<div className="text-center mb-16">
-						<h2 className="heading-section text-gradient-blue mb-6">
+						<h2 className="heading-section text-foreground mb-6">
 							Our Core Principles
 						</h2>
 						<p className="text-body text-muted-foreground max-w-3xl mx-auto">
@@ -48,12 +48,12 @@ export function CorePrinciples() {
 						{principles.map((principle, index) => (
 							<div
 								key={principle.title}
-								className="group bg-card border border-border p-8 shadow-card hover:shadow-blue transition-all duration-300 card-hover text-center"
+								className="group bg-white border border-border p-8 shadow-card hover:shadow-blue transition-all duration-300 card-hover text-center"
 							>
 								<div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
 									<principle.icon className="w-8 h-8 text-primary" />
 								</div>
-								<h3 className="text-xl font-playfair font-semibold text-gradient-blue mb-4">
+								<h3 className="text-xl font-playfair font-semibold text-foreground mb-4">
 									{principle.title}
 								</h3>
 								<p className="text-body text-muted-foreground leading-relaxed">

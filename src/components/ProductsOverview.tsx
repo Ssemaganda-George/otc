@@ -54,7 +54,7 @@ export function ProductsOverview() {
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="heading-section text-gradient-blue mb-6">
+            <h2 className="heading-section text-foreground mb-6">
               Our Products & Solutions
             </h2>
             <p className="text-body text-muted-foreground max-w-3xl mx-auto">
@@ -67,7 +67,7 @@ export function ProductsOverview() {
             {products.map((product, index) => (
               <div 
                 key={product.title}
-                className="bg-card border border-border rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-300 card-hover"
+                className="bg-white border border-border rounded-2xl p-8 shadow-card hover:shadow-blue transition-all duration-300 card-hover"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex items-center mb-6">

@@ -11,7 +11,7 @@ export function HomeContact() {
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="heading-section text-gradient-blue mb-6">
+            <h2 className="heading-section text-foreground mb-6">
               Get In Touch
             </h2>
             <p className="text-body text-muted-foreground max-w-3xl mx-auto text-justify sm:text-center">
@@ -24,7 +24,7 @@ export function HomeContact() {
             {/* Contact Information */}
             <div className="space-y-8">
               <div>
-                <h3 className="heading-card text-gradient-blue mb-6">
+                <h3 className="heading-card text-foreground mb-6">
                   Let's Connect
                 </h3>
                 <p className="text-body text-muted-foreground leading-relaxed mb-8 text-justify sm:text-left">
@@ -83,7 +83,7 @@ export function HomeContact() {
 
               {/* Quick Services */}
               <div className="bg-gradient-to-r from-primary/10 to-primary/5 p-6 border border-primary/20">
-                <h4 className="font-playfair font-semibold text-gradient-blue mb-4">
+                <h4 className="font-playfair font-semibold text-foreground mb-4">
                   How We Can Help
                 </h4>
                 <div className="space-y-3">
@@ -104,8 +104,8 @@ export function HomeContact() {
             </div>
 
             {/* Contact Form */}
-            <div className="bg-card border border-border p-8 shadow-card">
-              <h3 className="heading-card text-gradient-blue mb-6">
+            <div className="bg-white border border-border p-8 shadow-card">
+              <h3 className="heading-card text-foreground mb-6">
                 Send Us a Message
               </h3>
               

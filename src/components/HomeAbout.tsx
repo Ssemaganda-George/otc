@@ -37,7 +37,7 @@ export function HomeAbout() {
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="heading-section text-gradient-blue mb-6">
+            <h2 className="heading-section text-foreground mb-6">
               About OneTechConnect
             </h2>
             <p className="text-body text-muted-foreground max-w-3xl mx-auto">
@@ -47,28 +47,28 @@ export function HomeAbout() {
           </div>
 
           {/* Mission, Vision, Values Grid - Split Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
             {/* Vision */}
-            <div className="card-dark p-8 shadow-card hover:shadow-golden transition-all duration-300 card-hover">
+            <div className="bg-white p-8 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300">
               <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-golden/20 rounded-lg flex items-center justify-center mr-4">
-                  <Lightbulb className="w-6 h-6 text-golden" />
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
+                  <Lightbulb className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="heading-card text-white">Our Vision</h3>
+                <h3 className="heading-card text-foreground">Our Vision</h3>
               </div>
-              <p className="text-body text-gray-300 leading-relaxed text-justify sm:text-left">
+              <p className="text-body text-muted-foreground leading-relaxed">
                 An Africa where innovation and digital transformation advance human rights and Social Justice for everyone.
               </p>
             </div>
             {/* Mission */}
-            <div className="card-dark p-8 shadow-card hover:shadow-golden transition-all duration-300 card-hover">
+            <div className="bg-white p-8 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300">
               <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-golden/20 rounded-lg flex items-center justify-center mr-4">
-                  <Briefcase className="w-6 h-6 text-golden" />
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
+                  <Briefcase className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="heading-card text-white">Our Mission</h3>
+                <h3 className="heading-card text-foreground">Our Mission</h3>
               </div>
-              <p className="text-body text-gray-300 leading-relaxed text-justify sm:text-left">
+              <p className="text-body text-muted-foreground leading-relaxed">
                 To drive inclusive digital transformation in health, sexual and reproductive health, finance, agriculture, and development across Africa while safeguarding fundamental human rights and advancing social justice through research, training, advocacy, and innovation.
               </p>
             </div>
@@ -76,7 +76,7 @@ export function HomeAbout() {
 
           {/* Values Section */}
           <div className="text-center mb-12">
-            <h3 className="heading-card text-white mb-8">Our Core Values</h3>
+            <h3 className="heading-card text-foreground mb-8">Our Core Values</h3>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -85,13 +85,13 @@ export function HomeAbout() {
                 key={value.title}
                 className={`text-center group animate-fade-in-up opacity-0 [animation-delay:${index * 0.2}s] [animation-fill-mode:forwards]`}
               >
-                <div className="w-16 h-16 bg-golden/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:shadow-golden transition-all duration-300 group-hover:scale-110">
-                  <value.icon className="w-8 h-8 text-golden" />
+                <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:shadow-lg transition-all duration-300 group-hover:scale-110">
+                  <value.icon className="w-8 h-8 text-primary" />
                 </div>
-                <h4 className="text-xl font-playfair font-semibold text-white mb-4">
+                <h4 className="text-xl font-bold text-foreground mb-4">
                   {value.title}
                 </h4>
-                <p className="text-body text-gray-300">
+                <p className="text-body text-muted-foreground">
                   {value.description}
                 </p>
               </div>

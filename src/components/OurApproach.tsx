@@ -3,7 +3,7 @@ export function OurApproach() {
     <section className="py-24 bg-white">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="heading-section text-gradient-blue mb-8">Our Approach</h2>
+          <h2 className="heading-section text-foreground mb-8">Our Approach</h2>
           <p className="text-body text-muted-foreground leading-relaxed">
             At OTC, we take ideas from opportunity to impact. We discover real problems and opportunities,
             build innovative solutions and enterprises, protect their intellectual and commercial value,

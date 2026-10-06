@@ -9,7 +9,7 @@ export function WhoWeAre() {
           {/* Section Header */}
           <AOSWrapper animation="fade-up">
             <div className="text-center mb-20">
-              <h2 id="who-we-are-title" className="text-5xl md:text-6xl lg:text-7xl font-bold font-poppins text-gradient-blue mb-8 leading-tight">
+              <h2 id="who-we-are-title" className="text-5xl md:text-6xl lg:text-7xl font-bold font-poppins text-foreground mb-8 leading-tight">
                 Who We Are
               </h2>
               <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto text-justify sm:text-center leading-relaxed font-inter">
@@ -32,7 +32,7 @@ export function WhoWeAre() {
                   <div className="w-16 h-16 bg-primary/10 flex items-center justify-center mr-6">
                     <Target className="w-8 h-8 text-primary" aria-hidden="true" />
                   </div>
-                  <h3 className="text-3xl md:text-4xl font-bold font-poppins text-gradient-blue">Our Mission</h3>
+                  <h3 className="text-3xl md:text-4xl font-bold font-poppins text-foreground">Our Mission</h3>
                 </div>
                 <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-inter">
                   To harness African talent, knowledge, technology and creativity to develop, protect, finance and
@@ -46,7 +46,7 @@ export function WhoWeAre() {
                   <div className="w-16 h-16 bg-primary/10 flex items-center justify-center mr-6">
                     <Eye className="w-8 h-8 text-primary" aria-hidden="true" />
                   </div>
-                  <h3 className="text-3xl md:text-4xl font-bold font-poppins text-gradient-blue">Our Vision</h3>
+                  <h3 className="text-3xl md:text-4xl font-bold font-poppins text-foreground">Our Vision</h3>
                 </div>
                 <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-inter">
                   An Africa where young people, ideas and technology drive locally owned solutions that transform

@@ -11,7 +11,7 @@ export function OTCFrameworkDiagram() {
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="heading-section text-gradient-blue mb-6">
+            <h2 className="heading-section text-foreground mb-6">
               OTC Framework Visualization
             </h2>
             <p className="text-body text-muted-foreground max-w-4xl mx-auto">
@@ -150,8 +150,8 @@ export function OTCFrameworkDiagram() {
           </div>
 
           {/* Framework Explanation */}
-          <div className="mt-16 bg-card border border-border rounded-2xl p-8 shadow-card">
-            <h3 className="heading-card text-gradient-blue mb-6 text-center">
+          <div className="mt-16 bg-white border border-border rounded-2xl p-8 shadow-card">
+            <h3 className="heading-card text-foreground mb-6 text-center">
               Understanding the Framework
             </h3>
             

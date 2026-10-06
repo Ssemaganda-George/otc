@@ -124,7 +124,7 @@ export function ServicesComponent() {
 
   if (loading) {
     return (
-      <section className="py-24 bg-secondary/40">
+      <section className="py-24 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
@@ -135,12 +135,12 @@ export function ServicesComponent() {
     );
   }
   return (
-    <section className="py-24 bg-secondary/40">
+    <section className="py-24 bg-white">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="heading-section text-gradient-blue mb-6">
+            <h2 className="heading-section text-foreground mb-6">
               Our Services
             </h2>
             <p className="text-body text-muted-foreground max-w-3xl mx-auto">
@@ -156,7 +156,7 @@ export function ServicesComponent() {
               return (
                 <div
                   key={service.id}
-                  className="bg-card border border-border rounded-2xl p-6 shadow-card hover:shadow-blue transition-all duration-300 card-hover"
+                  className="bg-white border border-border rounded-2xl p-6 shadow-card hover:shadow-blue transition-all duration-300 card-hover"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <div className="text-center mb-6">
@@ -188,7 +188,7 @@ export function ServicesComponent() {
           </div>
 
           {/* Contact Section */}
-          <div className="mt-16 text-center bg-card border border-border rounded-2xl p-8">
+          <div className="mt-16 text-center bg-white border border-border rounded-2xl p-8">
             <h3 className="text-2xl font-playfair font-semibold text-primary mb-4">
               Need Custom Solutions?
             </h3>

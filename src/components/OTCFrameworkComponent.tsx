@@ -9,12 +9,12 @@ export function OTCFramework() {
   const [showInnovation, setShowInnovation] = useState(false);
 
   return (
-    <section id="otc-framework" className="py-24 bg-secondary/40">
+    <section id="otc-framework" className="py-24 bg-white">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="heading-section text-gradient-blue mb-6">
+            <h2 className="heading-section text-foreground mb-6">
               The OTC Framework
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
@@ -45,7 +45,7 @@ export function OTCFramework() {
                 { title: "DEVELOPMENT", desc: "Digitalization & Growth", icon: Target }
               ].map((sector, index) => (
                 <div key={sector.title} className={`relative group animate-fade-in-up opacity-0`} style={{ animationDelay: `${0.2 + index * 0.1}s`, animationFillMode: 'forwards' }}>
-                  <div className="bg-card border-2 border-primary/20 rounded-xl p-4 text-center shadow-card transition-all duration-300 hover:shadow-blue hover:border-primary/40 h-[120px] flex flex-col justify-center">
+                  <div className="bg-white border-2 border-primary/20 rounded-xl p-4 text-center shadow-card transition-all duration-300 hover:shadow-blue hover:border-primary/40 h-[120px] flex flex-col justify-center">
                     <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-2">
                       <sector.icon className="w-4 h-4 text-primary" />
                     </div>
@@ -83,7 +83,7 @@ export function OTCFramework() {
                 { title: "INNOVATION", desc: "Tech solutions", icon: Lightbulb }
               ].map((dept, index) => (
                 <div key={dept.title} className={`relative group animate-fade-in-up opacity-0`} style={{ animationDelay: `${0.7 + index * 0.1}s`, animationFillMode: 'forwards' }}>
-                  <div className="bg-card border border-border rounded-xl p-4 text-center shadow-card transition-all duration-300 hover:shadow-blue hover:scale-105 group-hover:animate-glow-pulse min-h-[100px] flex flex-col justify-center">
+                  <div className="bg-white border border-border rounded-xl p-4 text-center shadow-card transition-all duration-300 hover:shadow-blue hover:scale-105 group-hover:animate-glow-pulse min-h-[100px] flex flex-col justify-center">
                     <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-2">
                       <dept.icon className="w-4 h-4 text-primary" />
                     </div>
@@ -110,9 +110,9 @@ export function OTCFramework() {
           </div>
 
           {/* Operationalising the OTC Framework */}
-          <div className="mt-24 bg-secondary/30 rounded-3xl p-12">
+          <div className="mt-24 bg-white rounded-3xl p-12">
             <div className="text-center mb-16">
-              <h3 className="heading-section text-gradient-blue mb-6">Operationalising the OTC Framework</h3>
+              <h3 className="heading-section text-foreground mb-6">Operationalising the OTC Framework</h3>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
                 We operationalize the OTC Framework through our four (4) strategic pillars
               </p>
@@ -122,7 +122,7 @@ export function OTCFramework() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16">
               {/* Research */}
               <div className="animate-fade-in-up opacity-0" style={{ animationDelay: `0.2s`, animationFillMode: 'forwards' }}>
-                <div className="bg-card border-2 border-primary/20 rounded-xl p-8 text-center shadow-card transition-all duration-300 hover:shadow-blue hover:border-primary/40 h-[200px] flex flex-col justify-between">
+                <div className="bg-white border-2 border-primary/20 rounded-xl p-8 text-center shadow-card transition-all duration-300 hover:shadow-blue hover:border-primary/40 h-[200px] flex flex-col justify-between">
                   <div>
                     <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
                       <Target className="w-6 h-6 text-primary" />
@@ -137,7 +137,7 @@ export function OTCFramework() {
                   </button>
                 </div>
                 {showResearch && (
-                  <div className="mt-4 bg-card border border-primary/10 rounded-xl p-4 shadow-card">
+                  <div className="mt-4 bg-white border border-primary/10 rounded-xl p-4 shadow-card">
                     <ul className="space-y-2 text-left">
                       {[
                         "Documentation",
@@ -159,7 +159,7 @@ export function OTCFramework() {
               </div>
               {/* Training */}
               <div className="animate-fade-in-up opacity-0" style={{ animationDelay: `0.3s`, animationFillMode: 'forwards' }}>
-                <div className="bg-card border-2 border-primary/20 rounded-xl p-8 text-center shadow-card transition-all duration-300 hover:shadow-blue hover:border-primary/40 h-[200px] flex flex-col justify-between">
+                <div className="bg-white border-2 border-primary/20 rounded-xl p-8 text-center shadow-card transition-all duration-300 hover:shadow-blue hover:border-primary/40 h-[200px] flex flex-col justify-between">
                   <div>
                     <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
                       <Users className="w-6 h-6 text-primary" />
@@ -174,7 +174,7 @@ export function OTCFramework() {
                   </button>
                 </div>
                 {showTraining && (
-                  <div className="mt-4 bg-card border border-primary/10 rounded-xl p-4 shadow-card">
+                  <div className="mt-4 bg-white border border-primary/10 rounded-xl p-4 shadow-card">
                     <ul className="space-y-2 text-left">
                       {[
                         "Short courses",
@@ -195,7 +195,7 @@ export function OTCFramework() {
               </div>
               {/* Advocacy */}
               <div className="animate-fade-in-up opacity-0" style={{ animationDelay: `0.4s`, animationFillMode: 'forwards' }}>
-                <div className="bg-card border-2 border-primary/20 rounded-xl p-8 text-center shadow-card transition-all duration-300 hover:shadow-blue hover:border-primary/40 h-[200px] flex flex-col justify-between">
+                <div className="bg-white border-2 border-primary/20 rounded-xl p-8 text-center shadow-card transition-all duration-300 hover:shadow-blue hover:border-primary/40 h-[200px] flex flex-col justify-between">
                   <div>
                     <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
                       <Briefcase className="w-6 h-6 text-primary" />
@@ -210,7 +210,7 @@ export function OTCFramework() {
                   </button>
                 </div>
                 {showAdvocacy && (
-                  <div className="mt-4 bg-card border border-primary/10 rounded-xl p-4 shadow-card">
+                  <div className="mt-4 bg-white border border-primary/10 rounded-xl p-4 shadow-card">
                     <ul className="space-y-2 text-left">
                       {[
                         "Reporting",
@@ -232,7 +232,7 @@ export function OTCFramework() {
               </div>
               {/* Innovation */}
               <div className="animate-fade-in-up opacity-0" style={{ animationDelay: `0.5s`, animationFillMode: 'forwards' }}>
-                <div className="bg-card border-2 border-primary/20 rounded-xl p-8 text-center shadow-card transition-all duration-300 hover:shadow-blue hover:border-primary/40 h-[200px] flex flex-col justify-between">
+                <div className="bg-white border-2 border-primary/20 rounded-xl p-8 text-center shadow-card transition-all duration-300 hover:shadow-blue hover:border-primary/40 h-[200px] flex flex-col justify-between">
                   <div>
                     <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
                       <Lightbulb className="w-6 h-6 text-primary" />
@@ -247,7 +247,7 @@ export function OTCFramework() {
                   </button>
                 </div>
                 {showInnovation && (
-                  <div className="mt-4 bg-card border border-primary/10 rounded-xl p-4 shadow-card">
+                  <div className="mt-4 bg-white border border-primary/10 rounded-xl p-4 shadow-card">
                     <ul className="space-y-2 text-left">
                       {[
                         "Hackathons",
@@ -270,7 +270,7 @@ export function OTCFramework() {
             </div>
 
             {/* Connectivity Statement */}
-            <div className="bg-card border-2 border-primary/20 rounded-2xl p-8 text-center shadow-card mt-16">
+            <div className="bg-white border-2 border-primary/20 rounded-2xl p-8 text-center shadow-card mt-16">
               <div className="flex items-center justify-center mb-4">
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
                   <Globe className="w-6 h-6 text-primary" />

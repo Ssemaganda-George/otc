@@ -55,7 +55,7 @@ export function OurValues() {
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="heading-section text-gradient-blue mb-6">
+            <h2 className="heading-section text-foreground mb-6">
               Our Values
             </h2>
             <p className="text-body text-muted-foreground max-w-3xl mx-auto">
@@ -71,7 +71,7 @@ export function OurValues() {
                 <div className="w-16 h-16 bg-gradient-to-br from-golden/20 to-golden/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:shadow-golden transition-all duration-300 group-hover:scale-110">
                   <value.icon className="w-8 h-8 text-primary" />
                 </div>
-                <h4 className="text-xl font-playfair font-semibold text-gradient-blue mb-4">
+                <h4 className="text-xl font-playfair font-semibold text-foreground mb-4">
                   {value.title}
                 </h4>
                 <p className="text-body text-muted-foreground">

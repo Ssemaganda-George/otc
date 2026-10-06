@@ -19,7 +19,7 @@ export function About() {
 				<div className="max-w-6xl mx-auto">
 					{/* Our Approach */}
 					<div className="text-center mb-20">
-						<h2 className="heading-section text-gradient-blue mb-6">Our Approach</h2>
+						<h2 className="heading-section text-foreground mb-6">Our Approach</h2>
 						<p className="text-body text-muted-foreground max-w-3xl mx-auto leading-relaxed">
 							At OTC, we take ideas from opportunity to impact. We discover real problems and opportunities,
 							build innovative solutions and enterprises, protect their intellectual and commercial value,
@@ -37,20 +37,20 @@ export function About() {
 							{techSolutions.map((solution) => (
 								<div
 									key={solution.name}
-									className="card-dark p-8 shadow-card hover:shadow-golden transition-all duration-300 card-hover"
+									className="bg-white p-8 border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300"
 								>
-									<div className="w-12 h-12 bg-golden/20 rounded-lg flex items-center justify-center mb-6">
-										<Lightbulb className="w-6 h-6 text-golden" />
+									<div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+										<Lightbulb className="w-6 h-6 text-primary" />
 									</div>
-									<h4 className="text-xl font-playfair font-semibold text-white mb-3">{solution.name}</h4>
-									<p className="text-body text-gray-300">{solution.description}</p>
+									<h4 className="text-xl font-bold text-foreground mb-3">{solution.name}</h4>
+									<p className="text-body text-muted-foreground">{solution.description}</p>
 								</div>
 							))}
 						</div>
 						<div className="text-center">
 							<Link
 								to="/innovation-hub"
-								className="inline-flex items-center gap-2 bg-golden text-golden-foreground px-6 py-3 font-bold uppercase tracking-wide hover:opacity-90 transition-opacity"
+								className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 font-bold uppercase tracking-wide hover:bg-primary-dark transition-colors"
 							>
 								<Rocket className="w-5 h-5" />
 								Explore Opportunities

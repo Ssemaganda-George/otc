@@ -168,7 +168,7 @@ export function Contact() {
               </div>
 
               {/* Partnership Opportunities */}
-              <div className="bg-secondary/30 rounded-none p-6 border border-primary/10">
+              <div className="bg-white rounded-none p-6 border border-primary/10">
                 <h4 className="font-playfair font-bold text-primary mb-4">
                   Partnership Opportunities
                 </h4>
@@ -190,7 +190,7 @@ export function Contact() {
             </div>
 
             {/* Contact Form */}
-            <div className="bg-card border border-border/50 rounded-none p-8 shadow-lg">
+            <div className="bg-white border border-border/50 rounded-none p-8 shadow-lg">
               <h3 className="heading-card text-primary mb-6">
                 Send Us a Message
               </h3>
@@ -259,7 +259,7 @@ export function Contact() {
           </div>
 
           {/* Newsletter Signup */}
-          <div className="mt-16 bg-secondary/30 rounded-none p-12 border border-primary/10 shadow-sm">
+          <div className="mt-16 bg-white rounded-none p-12 border border-primary/10 shadow-sm">
             <div className="text-center max-w-3xl mx-auto">
               <h3 className="heading-card text-primary mb-4">
                 Stay Updated

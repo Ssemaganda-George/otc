@@ -51,7 +51,7 @@ export function AreasOfWork() {
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="heading-section text-gradient-blue mb-6">
+            <h2 className="heading-section text-foreground mb-6">
               Areas of Work
             </h2>
             <p className="text-body text-muted-foreground max-w-4xl mx-auto text-justify sm:text-center">
@@ -65,14 +65,14 @@ export function AreasOfWork() {
             {areas.map((area, index) => (
               <div 
                 key={area.title}
-                className={`group bg-card border ${area.borderColor} p-8 shadow-card hover:shadow-blue transition-all duration-500 card-hover`}
+                className={`group bg-white border ${area.borderColor} p-8 shadow-card hover:shadow-blue transition-all duration-500 card-hover`}
               >
                 {/* Icon and Title */}
                 <div className="flex items-center mb-6">
                   <div className={`w-16 h-16 bg-gradient-to-br ${area.color} rounded-2xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300`}>
                     <area.icon className="w-8 h-8 text-primary" />
                   </div>
-                  <h3 className="text-xl font-playfair font-semibold text-gradient-blue">
+                  <h3 className="text-xl font-playfair font-semibold text-foreground">
                     {area.title}
                   </h3>
                 </div>
@@ -85,7 +85,7 @@ export function AreasOfWork() {
                 {/* Features */}
                 <div className="space-y-2 mb-6">
                   {area.features.map((feature) => (
-                    <div key={feature} className="flex items-center text-sm">
+                    <div key={feature} className="flex items-center text-base">
                       <div className="w-2 h-2 bg-primary rounded-full mr-3" />
                       <span className="text-muted-foreground">{feature}</span>
                     </div>
@@ -104,7 +104,7 @@ export function AreasOfWork() {
           {/* Bottom Section */}
           <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-3xl p-12 border border-primary/20">
             <div className="text-center max-w-4xl mx-auto">
-              <h3 className="heading-card text-gradient-blue mb-6">
+              <h3 className="heading-card text-foreground mb-6">
                 Sustainable, Interoperable Solutions
               </h3>
               <p className="text-body text-muted-foreground mb-8 leading-relaxed">

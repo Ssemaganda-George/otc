@@ -72,7 +72,7 @@ export function ProductPageLayout({
             <section className="py-16">
               <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
                 <h2 className="text-2xl md:text-3xl font-bold text-foreground font-poppins mb-6">Why We Exist</h2>
-                <p className="text-muted-foreground leading-relaxed">{whyWeExist}</p>
+                <p className="text-body text-muted-foreground leading-relaxed">{whyWeExist}</p>
               </div>
             </section>
           </AOSWrapper>
@@ -103,7 +103,7 @@ export function ProductPageLayout({
                   {whatWeDo.map((item, i) => (
                     <div key={i} className="bg-white p-8 shadow-md border border-gray-100">
                       {item.title && <h4 className="font-bold text-primary text-xl mb-3">{item.title}</h4>}
-                      <p className="text-muted-foreground text-base leading-relaxed">{item.description}</p>
+                      <p className="text-body text-muted-foreground leading-relaxed">{item.description}</p>
                     </div>
                   ))}
                 </div>

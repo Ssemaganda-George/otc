@@ -52,7 +52,7 @@ export function BoardMembers() {
   }, []);
 
   return (
-    <section id="board-members" className="py-24 bg-secondary/40">
+    <section id="board-members" className="py-24 bg-white">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
@@ -75,7 +75,7 @@ export function BoardMembers() {
               {members.map((member, index) => (
                 <div
                   key={member.id}
-                  className="group bg-card overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 card-hover opacity-0 translate-y-8 animate-fade-in border border-border/50 hover:border-primary/20"
+                  className="group bg-white overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 card-hover opacity-0 translate-y-8 animate-fade-in border border-border/50 hover:border-primary/20"
                   style={{ animationDelay: `${index * 0.15}s`, animationFillMode: "forwards" }}
                 >
                   {/* Profile Photo */}

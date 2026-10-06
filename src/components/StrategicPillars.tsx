@@ -41,7 +41,7 @@ export function StrategicPillars() {
 
   if (loading) {
     return (
-      <section className="py-24 bg-secondary/40">
+      <section className="py-24 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
@@ -52,12 +52,12 @@ export function StrategicPillars() {
     );
   }
   return (
-    <section className="py-24 bg-secondary/40">
+    <section className="py-24 bg-white">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="heading-section text-gradient-blue mb-6">
+            <h2 className="heading-section text-foreground mb-6">
               Our Strategic Pillars
             </h2>
             <p className="text-body text-muted-foreground max-w-3xl mx-auto">
@@ -73,7 +73,7 @@ export function StrategicPillars() {
               return (
                 <div
                   key={pillar.id}
-                  className="bg-card border-2 border-primary/20 rounded-xl p-6 shadow-card transition-all duration-300 hover:shadow-blue hover:border-primary/40"
+                  className="bg-white border-2 border-primary/20 rounded-xl p-6 shadow-card transition-all duration-300 hover:shadow-blue hover:border-primary/40"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <div className="text-center mb-6">
