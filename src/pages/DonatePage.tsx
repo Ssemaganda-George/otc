@@ -1,4 +1,6 @@
 ﻿import { Navigation } from "@/components/ui/navigation";
+import { TopBar } from "@/components/TopBar";
+import { SiteHeader } from "@/components/SiteHeader";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,7 +9,11 @@ import { Heart, Phone, Mail, Building } from "lucide-react";
 
 const DonatePage = () => {
   return (
-    <div className="min-h-screen bg-background custom-scrollbar font-poppins">
+    <div className="min-h-screen bg-white custom-scrollbar font-poppins">
+      <TopBar />
+
+      <SiteHeader />
+
       <Navigation />
       
       <main className="pt-6">

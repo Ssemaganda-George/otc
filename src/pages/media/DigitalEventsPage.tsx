@@ -1,10 +1,16 @@
 import { Navigation } from "@/components/ui/navigation";
+import { TopBar } from "@/components/TopBar";
+import { SiteHeader } from "@/components/SiteHeader";
 import { Footer } from "@/components/Footer";
 import AOSWrapper from "@/components/AOSWrapper";
 
 export default function DigitalEventsPage() {
   return (
-    <div className="min-h-screen bg-background custom-scrollbar font-poppins">
+    <div className="min-h-screen bg-white custom-scrollbar font-poppins">
+      <TopBar />
+
+      <SiteHeader />
+
       <Navigation />
       <main className="pt-6">
         <AOSWrapper animation="fade-up">

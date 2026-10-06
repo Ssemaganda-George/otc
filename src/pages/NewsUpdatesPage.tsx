@@ -1,4 +1,6 @@
 import { Navigation } from "@/components/ui/navigation";
+import { TopBar } from "@/components/TopBar";
+import { SiteHeader } from "@/components/SiteHeader";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Newspaper, Download, X, Loader2, ChevronLeft, ChevronRight, Heart, Share2, Facebook, Twitter, Linkedin, Mail } from "lucide-react";
@@ -297,7 +299,11 @@ export default function NewsUpdatesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background custom-scrollbar font-poppins">
+    <div className="min-h-screen bg-white custom-scrollbar font-poppins">
+      <TopBar />
+
+      <SiteHeader />
+
       <Navigation />
       
       <main className="pt-6">
@@ -320,7 +326,7 @@ export default function NewsUpdatesPage() {
         </section>
 
         {/* News & Updates Articles Section */}
-        <section className="py-12 md:py-24 bg-background">
+        <section className="py-12 md:py-24 bg-white">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
               <div className="text-center mb-8 md:mb-12">
@@ -562,7 +568,7 @@ export default function NewsUpdatesPage() {
                       placeholder="Enter your email address"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="flex-1 px-4 py-3 bg-background border border-input rounded-none text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base touch-manipulation min-h-[48px]"
+                      className="flex-1 px-4 py-3 bg-white border border-input rounded-none text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base touch-manipulation min-h-[48px]"
                       disabled={isLoading}
                     />
                     <Button variant="golden" type="submit" disabled={isLoading} className="group rounded-none touch-manipulation min-h-[48px] px-4 md:px-6 text-base">

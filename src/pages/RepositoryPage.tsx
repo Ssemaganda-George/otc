@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { Navigation } from "@/components/ui/navigation";
+import { TopBar } from "@/components/TopBar";
+import { SiteHeader } from "@/components/SiteHeader";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Search, Filter, Download, ExternalLink, GitBranch, Code, Database, BookOpen, Github, ChevronLeft, ChevronRight, Heart, Share2, Facebook, Twitter, Linkedin, Mail } from "lucide-react";
@@ -329,8 +331,12 @@ export default function RepositoryPage() {
 
   return (
     <>
+      <TopBar />
+
+      <SiteHeader />
+
       <Navigation />
-      <div className="min-h-screen bg-background custom-scrollbar font-poppins">
+      <div className="min-h-screen bg-white custom-scrollbar font-poppins">
         {loading ? (
           <div className="flex items-center justify-center min-h-screen">
             <div className="text-lg">Loading repositories...</div>

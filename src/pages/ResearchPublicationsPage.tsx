@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { Navigation } from "@/components/ui/navigation";
+import { TopBar } from "@/components/TopBar";
+import { SiteHeader } from "@/components/SiteHeader";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Search, Filter, Download, ExternalLink, Calendar, User, Heart, Share2, Facebook, Twitter, Linkedin, Mail } from "lucide-react";
@@ -240,7 +242,11 @@ export default function ResearchPublicationsPage() {
 	};
 
 	return (
-		<div className="min-h-screen bg-background custom-scrollbar font-poppins">
+		<div className="min-h-screen bg-white custom-scrollbar font-poppins">
+			<TopBar />
+
+			<SiteHeader />
+
 			<Navigation />
 
 			<main className="pt-6">
@@ -272,7 +278,7 @@ export default function ResearchPublicationsPage() {
 										placeholder="Search publications..."
 										value={searchTerm}
 										onChange={(e) => setSearchTerm(e.target.value)}
-										className="w-full pl-10 pr-4 py-3 bg-background border border-input rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+										className="w-full pl-10 pr-4 py-3 bg-white border border-input rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
 									/>
 								</div>
 								<div className="flex items-center gap-2">
@@ -280,7 +286,7 @@ export default function ResearchPublicationsPage() {
 									<select
 										value={selectedCategory}
 										onChange={(e) => setSelectedCategory(e.target.value)}
-										className="px-4 py-3 bg-background border border-input rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+										className="px-4 py-3 bg-white border border-input rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
 									>
 										{categories.map((cat) => (
 											<option key={cat} value={cat}>
@@ -295,7 +301,7 @@ export default function ResearchPublicationsPage() {
 				</section>
 
 				{/* Publications Grid */}
-				<section className="py-24 bg-background">
+				<section className="py-24 bg-white">
 					<div className="max-w-7xl mx-auto px-6 lg:px-8">
 						<div className="max-w-6xl mx-auto">
 							{loading ? (

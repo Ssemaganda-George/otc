@@ -1,4 +1,6 @@
 import { Navigation } from "@/components/ui/navigation";
+import { TopBar } from "@/components/TopBar";
+import { SiteHeader } from "@/components/SiteHeader";
 import { Footer } from "@/components/Footer";
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
@@ -71,7 +73,11 @@ const VisionMissionPage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background custom-scrollbar">
+      <div className="min-h-screen bg-white custom-scrollbar">
+        <TopBar />
+
+        <SiteHeader />
+
         <Navigation />
         <div className="pt-20 flex items-center justify-center min-h-[50vh]">
           <div className="text-center">
@@ -85,8 +91,12 @@ const VisionMissionPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background custom-scrollbar">
+    <div className="min-h-screen bg-white custom-scrollbar">
       {/* Fixed Navigation Bar */}
+      <TopBar />
+
+      <SiteHeader />
+
       <Navigation />
 
       <main className="pt-20">
