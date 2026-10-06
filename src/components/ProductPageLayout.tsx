@@ -55,9 +55,9 @@ export function ProductPageLayout({
             <div className="max-w-5xl mx-auto px-6 lg:px-8 text-center">
               <p className="uppercase tracking-widest text-primary font-bold text-sm mb-4">{eyebrow}</p>
               <h1 className="text-4xl md:text-5xl font-bold text-foreground font-poppins mb-8 leading-tight">{title}</h1>
-              <div className="space-y-5 text-left sm:text-center">
+              <div className="space-y-6 text-left sm:text-center">
                 {intro.map((paragraph, i) => (
-                  <p key={i} className="text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+                  <p key={i} className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto font-medium">
                     {paragraph}
                   </p>
                 ))}
@@ -99,11 +99,11 @@ export function ProductPageLayout({
             <section className="py-16 bg-gray-50">
               <div className="max-w-6xl mx-auto px-6 lg:px-8">
                 <h2 className="text-2xl md:text-3xl font-bold text-foreground font-poppins mb-10 text-center">What We Do</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {whatWeDo.map((item, i) => (
-                    <div key={i} className="bg-white p-6 shadow-md border border-gray-100">
-                      {item.title && <h4 className="font-bold text-primary mb-2">{item.title}</h4>}
-                      <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                    <div key={i} className="bg-white p-8 shadow-md border border-gray-100">
+                      {item.title && <h4 className="font-bold text-primary text-xl mb-3">{item.title}</h4>}
+                      <p className="text-muted-foreground text-base leading-relaxed">{item.description}</p>
                     </div>
                   ))}
                 </div>
@@ -118,9 +118,9 @@ export function ProductPageLayout({
             <section className="py-16">
               <div className="max-w-5xl mx-auto px-6 lg:px-8 text-center">
                 <h2 className="text-2xl md:text-3xl font-bold text-foreground font-poppins mb-8">Areas of Focus</h2>
-                <div className="flex flex-wrap justify-center gap-3">
+                <div className="flex flex-wrap justify-center gap-4">
                   {areasOfFocus.map((area) => (
-                    <span key={area} className="border border-primary/30 text-primary text-sm font-semibold px-4 py-2">
+                    <span key={area} className="border border-primary/30 text-primary text-base font-semibold px-5 py-2.5">
                       {area}
                     </span>
                   ))}
