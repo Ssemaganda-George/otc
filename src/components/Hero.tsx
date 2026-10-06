@@ -1,9 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import useEmblaCarousel from 'embla-carousel-react';
-import { ChevronLeft, ChevronRight, ArrowRight, Code, Scale, Globe } from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { supabase } from "@/lib/supabase";
-import { Button } from "@/components/ui/button";
 
 interface HeroSlide {
   id: string;
@@ -25,7 +24,6 @@ const HeroSlider = () => {
   const [loading, setLoading] = useState(true);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
-  const [slideProgress, setSlideProgress] = useState(0);
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
@@ -43,15 +41,12 @@ const HeroSlider = () => {
 
       if (error) {
         console.error('Error fetching hero slides:', error);
-        // Use fallback data if database fetch fails
         setSlides(getFallbackSlides());
         setLoading(false);
         return;
       }
 
-      // If no slides from database, use fallback
       if (!data || data.length === 0) {
-        console.log('No slides found in database, using fallback data');
         setSlides(getFallbackSlides());
       } else {
         setSlides(data);
@@ -72,7 +67,6 @@ const HeroSlider = () => {
 
     const onSelect = () => {
       setSelectedIndex(emblaApi.selectedScrollSnap());
-      setSlideProgress(0);
     };
 
     emblaApi.on('select', onSelect);
@@ -91,21 +85,11 @@ const HeroSlider = () => {
         } else if (emblaApi) {
           emblaApi.scrollTo(0);
         }
-      }, 9000); // Changed from 12000 to 9000 milliseconds (9 seconds)
+      }, 9000);
 
       return () => clearInterval(autoScrollInterval);
     }
   }, [emblaApi, slides]);
-
-  useEffect(() => {
-    if (slides.length > 0) {
-      const progressInterval = setInterval(() => {
-        setSlideProgress(prev => (prev + 100 / 90) % 100); // Updates every 100ms for 9 seconds
-      }, 100);
-
-      return () => clearInterval(progressInterval);
-    }
-  }, [slides, selectedIndex]);
 
   const getFallbackSlides = (): HeroSlide[] => [
     {
@@ -163,7 +147,7 @@ const HeroSlider = () => {
 
   if (loading) {
     return (
-      <section className="relative min-h-[90vh] flex items-center justify-center">
+      <section className="relative min-h-[75vh] flex items-center justify-center bg-gray-100">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
           <p className="text-gray-600">Loading...</p>
@@ -174,7 +158,7 @@ const HeroSlider = () => {
 
   if (slides.length === 0) {
     return (
-      <section className="relative min-h-[90vh] flex items-center justify-center">
+      <section className="relative min-h-[75vh] flex items-center justify-center bg-gray-100">
         <div className="text-center">
           <p className="text-gray-600">No hero slides available.</p>
         </div>
@@ -186,74 +170,12 @@ const HeroSlider = () => {
 
   return (
     <section className="relative w-full h-[75vh] flex items-center overflow-hidden">
-      {/* Progress Bar */}
-      <div className="absolute top-0 left-0 right-0 z-30 h-1 bg-white/20">
-        <div
-          className="h-full transition-all duration-100 ease-linear"
-          style={{
-            width: `${slideProgress}%`,
-            backgroundColor: currentSlide?.accent_color || 'hsl(43 89% 38%)' // Default to golden/orange
-          }}
-        ></div>
-      </div>
-
       {/* Embla Carousel */}
       <div className="embla w-full h-full overflow-hidden" ref={emblaRef}>
         <div className="embla__container flex h-full">
           {slides.map((slide) => (
             <div key={slide.id} className="embla__slide relative min-w-full h-full flex">
-              {/* Content Card - Left Side */}
-              <div className="relative z-10 w-full max-w-7xl mx-auto flex items-center px-4 md:px-8">
-                <div className="bg-black/70 backdrop-blur-sm p-2 md:p-4 lg:p-6 max-w-3xl w-full rounded-lg -mt-10">
-                  {/* Category Badge */}
-                  {slide.category && (
-                    <div
-                      className="mb-4 text-sm md:text-base uppercase tracking-wider font-bold inline-block px-4 py-2 rounded-md"
-                      style={{ backgroundColor: slide.accent_color || 'hsl(43 89% 38%)' }}
-                    >
-                      {slide.category}
-                    </div>
-                  )}
-
-                  {/* Title */}
-                  <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 text-white leading-tight">
-                    {slide.title}
-                    {slide.subtitle && <span className="block mt-2 text-2xl md:text-3xl lg:text-4xl xl:text-5xl" style={{ color: slide.accent_color || 'hsl(43 89% 38%)' }}>{slide.subtitle}</span>}
-                  </h1>
-
-                  {/* Accent Line */}
-                  <div
-                    className="h-1.5 w-24 mb-6 rounded-full"
-                    style={{ backgroundColor: slide.accent_color || 'hsl(43 89% 38%)' }}
-                  ></div>
-
-                  {/* Description */}
-                  <p className="text-base md:text-lg lg:text-xl mb-8 text-white/90 max-w-3xl leading-relaxed">
-                    {slide.description}
-                  </p>
-
-                  {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 md:gap-6">
-                    <Link
-                      to={slide.cta_link || "/about"}
-                      className="group flex items-center justify-center w-full sm:w-auto text-white py-4 px-8 rounded-md font-medium transition-all duration-300 text-center uppercase tracking-wide text-sm md:text-base hover:scale-105 hover:shadow-xl min-w-[160px]"
-                      style={{ backgroundColor: slide.accent_color || 'hsl(43 89% 38%)' }}
-                    >
-                      <span>{slide.cta_text || "Learn More"}</span>
-                      <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                    <Link
-                      to="/contact"
-                      className="group flex items-center justify-center w-full sm:w-auto text-white py-4 px-8 rounded-md font-medium transition-all duration-300 text-center uppercase tracking-wide text-sm md:text-base border-2 border-white/60 hover:bg-white/10 hover:scale-105 min-w-[160px] backdrop-blur-sm"
-                    >
-                      <span>Contact Us</span>
-                      <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-
-              {/* Background Image/Video - Right Side */}
+              {/* Background Image/Video */}
               <div className="absolute inset-0 z-0">
                 {slide.video_background ? (
                   <video className="w-full h-full object-cover" autoPlay muted loop playsInline>
@@ -262,48 +184,112 @@ const HeroSlider = () => {
                 ) : (
                   <img src={slide.image} alt={`Slide ${slide.id}`} className="w-full h-full object-cover" />
                 )}
+                {/* Subtle overlay for readability */}
+                <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/20"></div>
+              </div>
+
+              {/* Content */}
+              <div className="relative z-10 w-full max-w-7xl mx-auto flex items-center px-4 md:px-8">
+                <div className="max-w-2xl">
+                  {/* Category Badge */}
+                  {slide.category && (
+                    <div
+                      className="mb-4 text-sm uppercase tracking-wider font-bold inline-block px-4 py-1.5"
+                      style={{ 
+                        backgroundColor: slide.accent_color || 'hsl(43 89% 38%)',
+                        color: 'white'
+                      }}
+                    >
+                      {slide.category}
+                    </div>
+                  )}
+
+                  {/* Title */}
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white leading-tight">
+                    {slide.title}
+                    {slide.subtitle && (
+                      <span 
+                        className="block mt-2 text-3xl md:text-4xl lg:text-5xl"
+                        style={{ color: slide.accent_color || 'hsl(43 89% 38%)' }}
+                      >
+                        {slide.subtitle}
+                      </span>
+                    )}
+                  </h1>
+
+                  {/* Description */}
+                  <p className="text-base md:text-lg mb-8 text-white/90 max-w-xl leading-relaxed">
+                    {slide.description}
+                  </p>
+
+                  {/* Action Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Link
+                      to={slide.cta_link || "/about"}
+                      className="group flex items-center justify-center w-full sm:w-auto text-white py-3 px-6 font-medium transition-all duration-300 text-center uppercase tracking-wide text-sm hover:opacity-90"
+                      style={{ backgroundColor: slide.accent_color || 'hsl(43 89% 38%)' }}
+                    >
+                      <span>{slide.cta_text || "Learn More"}</span>
+                      <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                    <Link
+                      to="/contact"
+                      className="group flex items-center justify-center w-full sm:w-auto text-white py-3 px-6 font-medium transition-all duration-300 text-center uppercase tracking-wide text-sm border-2 border-white/50 hover:bg-white/10"
+                    >
+                      <span>Contact Us</span>
+                      <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Navigation */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex items-center gap-6 bg-black/30 backdrop-blur-md rounded-full px-6 py-3">
+      {/* Navigation - Clean minimal style */}
+      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 flex items-center gap-4">
         {/* Slide Counter */}
-        <div className="text-white text-sm font-medium">
+        <div className="text-white/80 text-sm font-medium">
           {selectedIndex + 1} / {slides.length}
         </div>
 
         {/* Navigation Arrows */}
         <button
           onClick={scrollPrev}
-          className="w-10 h-10 bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300 rounded-full hover:scale-110"
+          className="w-9 h-9 bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300 rounded-full"
+          aria-label="Previous slide"
         >
-          <ChevronLeft className="w-5 h-5" />
+          <ChevronLeft className="w-4 h-4" />
         </button>
 
         {/* Indicators */}
-        <div className="flex gap-3">
+        <div className="flex gap-2">
           {scrollSnaps.map((_, index) => (
             <button
               key={index}
               onClick={() => scrollTo(index)}
               className={`transition-all duration-300 rounded-full ${
                 index === selectedIndex 
-                  ? "w-8 h-3" 
-                  : "w-3 h-3 bg-white/40 hover:bg-white/60"
+                  ? "w-6 h-1.5" 
+                  : "w-1.5 h-1.5 bg-white/40 hover:bg-white/60"
               }`}
-              style={{ backgroundColor: index === selectedIndex ? (currentSlide?.accent_color || 'hsl(43 89% 38%)') : undefined }}
+              style={{ 
+                backgroundColor: index === selectedIndex 
+                  ? (currentSlide?.accent_color || 'hsl(43 89% 38%)') 
+                  : undefined 
+              }}
+              aria-label={`Go to slide ${index + 1}`}
             />
           ))}
         </div>
 
         <button
           onClick={scrollNext}
-          className="w-10 h-10 bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300 rounded-full hover:scale-110"
+          className="w-9 h-9 bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300 rounded-full"
+          aria-label="Next slide"
         >
-          <ChevronRight className="w-5 h-5" />
+          <ChevronRight className="w-4 h-4" />
         </button>
       </div>
     </section>

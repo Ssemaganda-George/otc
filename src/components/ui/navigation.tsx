@@ -40,55 +40,56 @@ export function Navigation() {
     }
   };
 
-  const navLinkClass = "font-poppins font-bold text-[12px] xl:text-[13px] text-foreground hover:text-primary transition-colors duration-500 ease-in-out whitespace-nowrap";
+  // Improved font size and weight for better readability (NERPS-inspired)
+  const navLinkClass = "font-poppins font-semibold text-[14px] xl:text-[15px] text-foreground hover:text-primary transition-colors duration-300 ease-in-out whitespace-nowrap";
 
   return (
     <nav
-      className={`sticky top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
+      className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
         isScrolled
-          ? 'bg-background/95 backdrop-blur-md shadow-lg border-b border-border/50'
-          : 'bg-background'
+          ? 'bg-white/95 backdrop-blur-md shadow-md border-b border-gray-200'
+          : 'bg-white'
       }`}
       role="navigation"
       aria-label="Main navigation"
     >
       <div className="max-w-[1536px] mx-auto px-3 sm:px-4 lg:px-5">
-        <div className="flex items-center justify-between h-[90px]">
+        <div className="flex items-center justify-between h-[80px]">
           {/* Logo */}
           <Link to="/" className="flex-shrink-0" aria-label="OneTechConnect Home">
             <img
               src="/OTC_logo.png"
               alt="OneTechConnect Logo"
-              className="h-12 w-auto transition-all duration-500 ease-in-out hover:scale-105"
+              className="h-10 w-auto transition-all duration-300 ease-in-out"
             />
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:block">
-            <div className="ml-2 flex items-baseline space-x-2 xl:space-x-3">
+            <div className="ml-2 flex items-baseline space-x-3 xl:space-x-4">
               <Link to="/" className={navLinkClass}>Home</Link>
 
               {/* About Us */}
               <div className="relative group">
                 <button className={`${navLinkClass} flex items-center`}>
                   About Us
-                  <ChevronDown className="ml-1 h-3.5 w-3.5 transition-transform duration-500 ease-in-out group-hover:rotate-180" />
+                  <ChevronDown className="ml-1 h-4 w-4 transition-transform duration-300 ease-in-out group-hover:rotate-180" />
                 </button>
-                <div className="absolute left-0 mt-2 w-[220px] min-w-[220px] bg-white shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 ease-in-out border-t-4 border-t-primary border border-gray-200">
-                  <div className="py-3">
-                    <Link to="/about/values" className="block px-5 py-3 text-sm font-poppins font-bold text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-400 ease-in-out border-b border-gray-100">Our Values</Link>
-                    <Link to="/about/team" className="block px-5 py-3 text-sm font-poppins font-bold text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-400 ease-in-out border-b border-gray-100">Our Team</Link>
+                <div className="absolute left-0 mt-2 w-[220px] min-w-[220px] bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out border-t-2 border-t-primary border border-gray-200">
+                  <div className="py-2">
+                    <Link to="/about/values" className="block px-5 py-2.5 text-sm font-poppins font-medium text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-200 ease-in-out border-b border-gray-100">Our Values</Link>
+                    <Link to="/about/team" className="block px-5 py-2.5 text-sm font-poppins font-medium text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-200 ease-in-out border-b border-gray-100">Our Team</Link>
 
                     {/* Our Products — nested flyout */}
                     <div className="relative group/products">
-                      <button className="w-full flex items-center justify-between px-5 py-3 text-sm font-poppins font-bold text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-400 ease-in-out border-b border-gray-100">
+                      <button className="w-full flex items-center justify-between px-5 py-2.5 text-sm font-poppins font-medium text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-200 ease-in-out border-b border-gray-100">
                         Our Products
-                        <ChevronRight className="h-3.5 w-3.5" />
+                        <ChevronRight className="h-4 w-4" />
                       </button>
-                      <div className="absolute left-full top-0 w-[240px] min-w-[240px] bg-white shadow-xl opacity-0 invisible group-hover/products:opacity-100 group-hover/products:visible transition-all duration-300 ease-in-out border-t-4 border-t-primary border border-gray-200">
-                        <div className="py-3">
+                      <div className="absolute left-full top-0 w-[240px] min-w-[240px] bg-white shadow-lg opacity-0 invisible group-hover/products:opacity-100 group-hover/products:visible transition-all duration-300 ease-in-out border-t-2 border-t-primary border border-gray-200">
+                        <div className="py-2">
                           {ourProducts.map((product) => (
-                            <Link key={product.href} to={product.href} className="block px-5 py-3 text-sm font-poppins font-bold text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-400 ease-in-out">
+                            <Link key={product.href} to={product.href} className="block px-5 py-2.5 text-sm font-poppins font-medium text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-200 ease-in-out">
                               {product.name}
                             </Link>
                           ))}
@@ -96,7 +97,7 @@ export function Navigation() {
                       </div>
                     </div>
 
-                    <Link to="/innovation-hub" className="block px-5 py-3 text-sm font-poppins font-bold text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-400 ease-in-out">Our Innovations</Link>
+                    <Link to="/innovation-hub" className="block px-5 py-2.5 text-sm font-poppins font-medium text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-200 ease-in-out">Our Innovations</Link>
                   </div>
                 </div>
               </div>
@@ -107,12 +108,12 @@ export function Navigation() {
               <div className="relative group">
                 <button className={`${navLinkClass} flex items-center`}>
                   OTC Academy
-                  <ChevronDown className="ml-1 h-3.5 w-3.5 transition-transform duration-500 ease-in-out group-hover:rotate-180" />
+                  <ChevronDown className="ml-1 h-4 w-4 transition-transform duration-300 ease-in-out group-hover:rotate-180" />
                 </button>
-                <div className="absolute left-0 mt-2 w-[180px] min-w-[180px] bg-white shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 ease-in-out border-t-4 border-t-primary border border-gray-200">
-                  <div className="py-3">
-                    <Link to="/academy/research-centre" className="block px-5 py-3 text-sm font-poppins font-bold text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-400 ease-in-out border-b border-gray-100">Research</Link>
-                    <Link to="/academy" className="block px-5 py-3 text-sm font-poppins font-bold text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-400 ease-in-out">Training</Link>
+                <div className="absolute left-0 mt-2 w-[180px] min-w-[180px] bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out border-t-2 border-t-primary border border-gray-200">
+                  <div className="py-2">
+                    <Link to="/academy/research-centre" className="block px-5 py-2.5 text-sm font-poppins font-medium text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-200 ease-in-out border-b border-gray-100">Research</Link>
+                    <Link to="/academy" className="block px-5 py-2.5 text-sm font-poppins font-medium text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-200 ease-in-out">Training</Link>
                   </div>
                 </div>
               </div>
@@ -124,12 +125,12 @@ export function Navigation() {
               <div className="relative group">
                 <button className={`${navLinkClass} flex items-center`}>
                   Legal & Business
-                  <ChevronDown className="ml-1 h-3.5 w-3.5 transition-transform duration-500 ease-in-out group-hover:rotate-180" />
+                  <ChevronDown className="ml-1 h-4 w-4 transition-transform duration-300 ease-in-out group-hover:rotate-180" />
                 </button>
-                <div className="absolute right-0 mt-2 w-[200px] min-w-[200px] bg-white shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 ease-in-out border-t-4 border-t-primary border border-gray-200">
-                  <div className="py-3">
-                    <Link to="/legal-business-support" className="block px-5 py-3 text-sm font-poppins font-bold text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-400 ease-in-out border-b border-gray-100">Legal</Link>
-                    <Link to="/legal-business-support" className="block px-5 py-3 text-sm font-poppins font-bold text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-400 ease-in-out">Business Support</Link>
+                <div className="absolute right-0 mt-2 w-[200px] min-w-[200px] bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out border-t-2 border-t-primary border border-gray-200">
+                  <div className="py-2">
+                    <Link to="/legal-business-support" className="block px-5 py-2.5 text-sm font-poppins font-medium text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-200 ease-in-out border-b border-gray-100">Legal</Link>
+                    <Link to="/legal-business-support" className="block px-5 py-2.5 text-sm font-poppins font-medium text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-200 ease-in-out">Business Support</Link>
                   </div>
                 </div>
               </div>
@@ -138,13 +139,13 @@ export function Navigation() {
               <div className="relative group">
                 <button className={`${navLinkClass} flex items-center`}>
                   News & Stories
-                  <ChevronDown className="ml-1 h-3.5 w-3.5 transition-transform duration-500 ease-in-out group-hover:rotate-180" />
+                  <ChevronDown className="ml-1 h-4 w-4 transition-transform duration-300 ease-in-out group-hover:rotate-180" />
                 </button>
-                <div className="absolute right-0 mt-2 w-[220px] min-w-[220px] bg-white shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 ease-in-out border-t-4 border-t-primary border border-gray-200">
-                  <div className="py-3">
-                    <Link to="/news" className="block px-5 py-3 text-sm font-poppins font-bold text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-400 ease-in-out border-b border-gray-100">News</Link>
-                    <Link to="/news/research-publications" className="block px-5 py-3 text-sm font-poppins font-bold text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-400 ease-in-out border-b border-gray-100">Research Publications</Link>
-                    <Link to="/news/repository" className="block px-5 py-3 text-sm font-poppins font-bold text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-400 ease-in-out">Repository</Link>
+                <div className="absolute right-0 mt-2 w-[220px] min-w-[220px] bg-white shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out border-t-2 border-t-primary border border-gray-200">
+                  <div className="py-2">
+                    <Link to="/news" className="block px-5 py-2.5 text-sm font-poppins font-medium text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-200 ease-in-out border-b border-gray-100">News</Link>
+                    <Link to="/news/research-publications" className="block px-5 py-2.5 text-sm font-poppins font-medium text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-200 ease-in-out border-b border-gray-100">Research Publications</Link>
+                    <Link to="/news/repository" className="block px-5 py-2.5 text-sm font-poppins font-medium text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-200 ease-in-out">Repository</Link>
                   </div>
                 </div>
               </div>
@@ -155,7 +156,7 @@ export function Navigation() {
 
           {/* CTA Button */}
           <div className="hidden lg:block ml-2">
-            <Button asChild variant="golden" size="sm" className="px-3 lg:px-4">
+            <Button asChild variant="golden" size="sm" className="px-4 lg:px-5">
               <Link to="/donate">Donate</Link>
             </Button>
           </div>
@@ -164,7 +165,7 @@ export function Navigation() {
           <div className="lg:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 text-foreground hover:text-primary hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary rounded-md transition-all duration-400 ease-in-out"
+              className="inline-flex items-center justify-center p-2 text-foreground hover:text-primary hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary rounded-md transition-all duration-300 ease-in-out"
               aria-expanded={isOpen}
               aria-controls="mobile-menu"
               aria-label={isOpen ? "Close main menu" : "Open main menu"}
@@ -179,7 +180,7 @@ export function Navigation() {
       <>
         {/* Backdrop overlay */}
         <div
-          className={`fixed inset-0 bg-black/50 z-40 lg:hidden transition-opacity duration-700 ease-in-out ${
+          className={`fixed inset-0 bg-black/50 z-40 lg:hidden transition-opacity duration-300 ease-in-out ${
             isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
           }`}
           onClick={() => setIsOpen(false)}
@@ -189,7 +190,7 @@ export function Navigation() {
         {/* Mobile menu */}
         <div
           id="mobile-menu"
-          className={`fixed top-[90px] left-0 right-1/4 bg-background/95 backdrop-blur-md border border-border/50 shadow-lg z-50 lg:hidden max-h-[calc(100vh-110px)] overflow-y-auto scroll-smooth transition-all duration-700 ease-in-out ${
+          className={`fixed top-[80px] left-0 right-1/4 bg-white/95 backdrop-blur-md border border-gray-200 shadow-lg z-50 lg:hidden max-h-[calc(100vh-100px)] overflow-y-auto scroll-smooth transition-all duration-300 ease-in-out ${
             isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
           }`}
           role="menu"
@@ -335,7 +336,7 @@ export function Navigation() {
             <Link to="/contact" className="mobile-nav-link" onClick={() => setIsOpen(false)}>Get in Touch</Link>
 
             {/* Donate Button */}
-            <div className="pt-4 mt-4 border-t border-border/50">
+            <div className="pt-4 mt-4 border-t border-gray-200">
               <Button asChild variant="golden" size="sm" className="w-full">
                 <Link to="/donate" onClick={() => setIsOpen(false)}>Donate</Link>
               </Button>

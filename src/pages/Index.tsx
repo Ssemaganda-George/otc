@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { supabase } from "@/lib/supabase";
 import AOSWrapper from "@/components/AOSWrapper";
+import { ArrowRight } from "lucide-react";
 
 interface HomeSection {
   id: string;
@@ -38,11 +39,11 @@ interface NewsItem {
 }
 
 const ourProducts = [
-  { name: "OTC Innovation Hub", initial: "IH", tagline: "Developing, connecting and scaling African innovation.", href: "/innovation-hub" },
-  { name: "OTC Academy", initial: "AC", tagline: "Research, learning and capability development.", href: "/academy" },
-  { name: "Legal & Business Support Centre", initial: "LB", tagline: "Protecting innovations and structuring opportunity.", href: "/legal-business-support" },
-  { name: "OTC Fund", initial: "FD", tagline: "Capital for African innovation and innovators.", href: "/fund" },
-  { name: "OTC Media Hub", initial: "MH", tagline: "Creating, telling and amplifying African stories.", href: "/media" },
+  { name: "OTC Innovation Hub", tagline: "Developing, connecting and scaling African innovation.", href: "/innovation-hub" },
+  { name: "OTC Academy", tagline: "Research, learning and capability development.", href: "/academy" },
+  { name: "Legal & Business Support Centre", tagline: "Protecting innovations and structuring opportunity.", href: "/legal-business-support" },
+  { name: "OTC Fund", tagline: "Capital for African innovation and innovators.", href: "/fund" },
+  { name: "OTC Media Hub", tagline: "Creating, telling and amplifying African stories.", href: "/media" },
 ];
 
 const Index = () => {
@@ -82,7 +83,7 @@ const Index = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background custom-scrollbar font-poppins">
+      <div className="min-h-screen bg-white custom-scrollbar font-poppins">
         <Navigation />
         <main className="pt-20 flex items-center justify-center min-h-[50vh]">
           <div className="text-center">
@@ -94,65 +95,60 @@ const Index = () => {
       </div>
     );
   }
+
   return (
-    <div className="min-h-screen bg-background custom-scrollbar font-poppins">
+    <div className="min-h-screen bg-white custom-scrollbar font-poppins">
       <Navigation />
 
-      <main className="pt-6">
-        {/* 1. Hero - full viewport height (reuse existing Hero for advanced visuals) */}
+      <main>
+        {/* 1. Hero */}
         <HeroSlider />
 
-        {/* 2. Introduction (About Us, Mission & Vision) */}
+        {/* 2. Introduction - About, Mission, Vision */}
         <AOSWrapper animation="fade-up">
-          <section className="bg-white py-16">
+          <section className="py-20 bg-white">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              {/* About Us Card */}
-              <div className="bg-primary text-primary-foreground p-6 shadow-xl border border-gray-200 hover:shadow-2xl transition-all duration-300">
-                <div className="text-center">
-                  <h2 className="text-xl md:text-2xl font-bold mb-4 font-poppins">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {/* About Us */}
+                <div className="p-8 border-l-4 border-primary bg-gray-50/50">
+                  <h2 className="text-xl font-bold mb-4 text-foreground">
                     {getSectionContent('about_us')?.title || 'ABOUT US'}
                   </h2>
-                  <p className="text-base leading-relaxed text-primary-foreground/90">
+                  <p className="text-base leading-relaxed text-muted-foreground">
                     {getSectionContent('about_us')?.content || 'Loading...'}
                   </p>
                 </div>
-              </div>
 
-              {/* Mission Card */}
-              <div className="bg-card p-6 shadow-xl border border-gray-200 hover:shadow-card transition-all duration-300">
-                <div className="text-center">
-                  <h2 className="text-xl md:text-2xl font-bold text-foreground mb-4 font-poppins">
+                {/* Mission */}
+                <div className="p-8 border-l-4 border-primary/60 bg-gray-50/50">
+                  <h2 className="text-xl font-bold mb-4 text-foreground">
                     {getSectionContent('mission')?.title || 'OUR MISSION'}
                   </h2>
-                  <p className="text-base text-muted-foreground leading-relaxed mb-3">
+                  <p className="text-base text-muted-foreground leading-relaxed">
                     {getSectionContent('mission')?.content || 'Loading...'}
                   </p>
                 </div>
-              </div>
 
-              {/* Vision Card */}
-              <div className="bg-golden text-golden-foreground p-6 shadow-xl border border-gray-200 hover:shadow-golden transition-all duration-300">
-                <div className="text-center">
-                  <h2 className="text-xl md:text-2xl font-bold mb-4 font-poppins">
+                {/* Vision */}
+                <div className="p-8 border-l-4 border-primary/40 bg-gray-50/50">
+                  <h2 className="text-xl font-bold mb-4 text-foreground">
                     {getSectionContent('vision')?.title || 'OUR VISION'}
                   </h2>
-                  <p className="text-base leading-relaxed text-golden-foreground/90">
+                  <p className="text-base text-muted-foreground leading-relaxed">
                     {getSectionContent('vision')?.content || 'Loading...'}
                   </p>
                 </div>
               </div>
             </div>
-            </div>
           </section>
         </AOSWrapper>
 
-        {/* 2.5. Our Values */}
+        {/* 3. Our Values */}
         <AOSWrapper animation="fade-up" delay={100}>
-          <section className="py-16 bg-gradient-to-br from-gray-50 to-white">
+          <section className="py-20 bg-gray-50/50">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 font-poppins">
+              <div className="text-center mb-14">
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
                   Our Values
                 </h2>
                 <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -163,13 +159,18 @@ const Index = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
                 {coreValues.map((value, index) => (
                   <div key={value.id} className="group">
-                    <div className="bg-white p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 h-full">
-                      <div className="flex items-center justify-center w-12 h-12 bg-primary text-white font-bold text-lg mb-4 mx-auto group-hover:scale-110 transition-transform duration-300">
+                    <div className="bg-white p-6 border border-gray-200 hover:border-primary/30 hover:shadow-sm transition-all duration-300 h-full">
+                      <div className="flex items-center justify-center w-10 h-10 bg-primary/10 text-primary font-bold text-sm mb-4 mx-auto group-hover:bg-primary group-hover:text-white transition-colors duration-300">
                         {index + 1}
                       </div>
-                      <h3 className="text-lg font-bold text-foreground text-center mb-3 font-poppins">
+                      <h3 className="text-base font-bold text-foreground text-center mb-2">
                         {value.title}
                       </h3>
+                      {value.description && (
+                        <p className="text-sm text-muted-foreground text-center leading-relaxed">
+                          {value.description}
+                        </p>
+                      )}
                     </div>
                   </div>
                 ))}
@@ -178,26 +179,30 @@ const Index = () => {
           </section>
         </AOSWrapper>
 
-        {/* 3. Our Five Products */}
+        {/* 4. Our Products */}
         <AOSWrapper animation="fade-up" delay={200}>
-          <section className="py-16 bg-gray-50">
+          <section className="py-20 bg-white">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
-              <div className="text-center mb-12">
-                <h3 className="text-2xl md:text-3xl font-bold text-foreground font-poppins">Our Products</h3>
-                <p className="text-muted-foreground mt-2">Five ways we turn African ideas into scalable solutions.</p>
+              <div className="text-center mb-14">
+                <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Our Products</h3>
+                <p className="text-lg text-muted-foreground">Five ways we turn African ideas into scalable solutions.</p>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
                 {ourProducts.map((product) => (
                   <Link
                     key={product.href}
                     to={product.href}
-                    className="group bg-foreground text-white p-6 shadow-lg border border-gray-800 hover:shadow-card transition-all duration-300 flex flex-col"
+                    className="group bg-white p-6 border border-gray-200 hover:border-primary/30 hover:shadow-sm transition-all duration-300 flex flex-col"
                   >
-                    <div className="w-12 h-12 bg-primary flex items-center justify-center text-white font-bold mb-4 group-hover:scale-110 transition-transform duration-300">
-                      {product.initial}
+                    <div className="w-10 h-10 bg-primary/10 flex items-center justify-center text-primary font-bold text-sm mb-4 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+                      {product.name.split(' ').map(w => w[0]).slice(0, 2).join('')}
                     </div>
-                    <h4 className="text-lg font-bold">{product.name}</h4>
-                    <p className="text-sm text-white/80 mt-2 flex-1">{product.tagline}</p>
+                    <h4 className="text-lg font-bold text-foreground mb-2">{product.name}</h4>
+                    <p className="text-sm text-muted-foreground mt-2 flex-1 leading-relaxed">{product.tagline}</p>
+                    <div className="mt-4 flex items-center text-primary text-sm font-semibold">
+                      <span>Learn more</span>
+                      <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </div>
                   </Link>
                 ))}
               </div>
@@ -205,12 +210,12 @@ const Index = () => {
           </section>
         </AOSWrapper>
 
-        {/* 3.5. Our Partners */}
+        {/* 5. Our Partners */}
         <AOSWrapper animation="fade-up" delay={250}>
-          <section className="py-16 bg-white">
+          <section className="py-16 bg-gray-50/50 border-y border-gray-100">
             <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-              <h3 className="text-2xl md:text-3xl font-bold text-foreground font-poppins mb-10">Our Partners</h3>
-              <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6 text-muted-foreground font-semibold text-sm md:text-base uppercase tracking-wide">
+              <h3 className="text-xl font-bold text-foreground mb-8">Our Partners</h3>
+              <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-4 text-muted-foreground font-semibold text-sm md:text-base">
                 <span>ADIJUST</span>
                 <span>Ministry of Health</span>
                 <span>Personal Data Protection Office</span>
@@ -220,16 +225,19 @@ const Index = () => {
           </section>
         </AOSWrapper>
 
-        {/* 4. Impact & Statistics */}
+        {/* 6. Impact & Statistics */}
         <AOSWrapper animation="fade-up" delay={300}>
-          <section className="py-16 bg-primary text-white">
+          <section className="py-20 bg-white">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
-              <h3 className="text-2xl font-bold mb-8 text-white">Our Impact</h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+              <div className="text-center mb-14">
+                <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Our Impact</h3>
+                <p className="text-lg text-muted-foreground">Measuring our contribution to Africa's digital transformation.</p>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 {impactStats.map((stat, index) => (
-                  <div key={stat.id || index} className="py-8 px-4">
-                    <div className="text-4xl md:text-5xl font-extrabold">{stat.number}</div>
-                    <div className="mt-2 text-sm">{stat.label}</div>
+                  <div key={stat.id || index} className="py-6 px-4 border-t-2 border-primary/20">
+                    <div className="text-4xl md:text-5xl font-extrabold text-foreground mb-2">{stat.number}</div>
+                    <div className="text-sm text-muted-foreground">{stat.label}</div>
                   </div>
                 ))}
               </div>
@@ -237,42 +245,46 @@ const Index = () => {
           </section>
         </AOSWrapper>
 
-        {/* 5. Latest News & Opportunities */}
+        {/* 7. Latest News & Opportunities */}
         <AOSWrapper animation="fade-up" delay={400}>
-          <section className="py-16 bg-white">
+          <section className="py-20 bg-gray-50/50">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl font-bold text-foreground">Latest News & Opportunities</h3>
-                <Link to="/news" className="text-primary font-semibold">View All</Link>
+              <div className="flex items-center justify-between mb-10">
+                <h3 className="text-3xl md:text-4xl font-bold text-foreground">Latest News & Opportunities</h3>
+                <Link to="/news" className="text-primary font-semibold flex items-center hover:underline">
+                  View All <ArrowRight className="ml-1 w-4 h-4" />
+                </Link>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {latestNews.map((news) => (
-                  <article key={news.id} className="bg-white border border-gray-100 shadow-sm overflow-hidden">
+                  <article key={news.id} className="bg-white border border-gray-200 hover:border-primary/30 hover:shadow-sm transition-all duration-300 overflow-hidden">
                     <img
                       src={news.featured_image || "/assets/sac3.png"}
                       alt={news.title}
-                      className="w-full h-40 object-cover"
+                      className="w-full h-48 object-cover"
                     />
-                    <div className="p-4">
-                      <span className="inline-block bg-primary text-white text-xs px-2 py-1 mb-2 uppercase">
+                    <div className="p-6">
+                      <span className="inline-block text-primary text-xs font-bold px-2 py-1 mb-3 uppercase tracking-wide">
                         {news.category || 'NEWS'}
                       </span>
-                      <h4 className="text-lg font-bold text-foreground">{news.title}</h4>
-                      <p className="text-sm text-gray-600 mt-2">{news.excerpt}</p>
+                      <h4 className="text-xl font-bold text-foreground mb-3 leading-snug">{news.title}</h4>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{news.excerpt}</p>
                     </div>
                   </article>
                 ))}
               </div>
 
-              <div className="mt-8 text-center">
-                <Link to="/news" className="inline-block bg-primary text-white px-6 py-3 font-bold uppercase">View All News</Link>
+              <div className="mt-10 text-center">
+                <Link to="/news" className="inline-block bg-primary text-white px-8 py-3 font-bold uppercase tracking-wide hover:bg-primary-dark transition-colors duration-300">
+                  View All News
+                </Link>
               </div>
             </div>
           </section>
         </AOSWrapper>
       </main>
 
-      {/* 6. Footer */}
+      {/* Footer */}
       <Footer />
     </div>
   );

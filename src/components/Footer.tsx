@@ -1,11 +1,9 @@
-import { Mail, Phone, MapPin, ArrowRight, ExternalLink, Twitter, Linkedin, Facebook, Send, Instagram, Youtube } from "lucide-react";
+import { Mail, Phone, MapPin, Twitter, Linkedin, Facebook, Send, Instagram } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import AOSWrapper from "@/components/AOSWrapper";
-import { H3, Body, Small } from "@/components/ui/typography";
 
 const quickLinks = [
 	{ name: "About Us", href: "/about" },
@@ -15,21 +13,11 @@ const quickLinks = [
 	{ name: "Contact Us", href: "/contact" }
 ];
 
-const servicesAndProgrammes = [
+const ourProducts = [
 	{ name: "Strategic Litigation", href: "/products/strategic-litigation" },
 	{ name: "Innovation Hub", href: "/products/innovations" },
 	{ name: "Center for Digital Justice", href: "/products/center-for-digital-justice" },
-	{ name: "Consultancy Services", href: "/products/consultancy" },
-	{ name: "Tech & SRHR Governance (TSG)", href: "/programmes/tsg" },
-	{ name: "BigTech Africa (BiTA)", href: "/programmes/bita" },
-	{ name: "AfricanIntelligenceNow (AiNow)", href: "/programmes/ainow" },
-	{ name: "EmpowerThem (EMT)", href: "/programmes/emt" }
-];
-
-const legalLinks = [
-	{ name: "Privacy Policy", href: "#" },
-	{ name: "Terms of Service", href: "#" },
-	{ name: "Cookie Policy", href: "#" }
+	{ name: "Consultancy Services", href: "/products/consultancy" }
 ];
 
 export function Footer() {
@@ -73,214 +61,162 @@ export function Footer() {
 	};
 
 	return (
-		<footer className="relative bg-gradient-to-br from-gray-50 via-white to-gray-100 text-gray-800 border-t border-gray-200" role="contentinfo">
-			{/* Subtle Background Pattern */}
-			<div className="absolute inset-0 opacity-30">
-				<div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.05)_1px,transparent_0)] bg-[length:24px_24px]"></div>
-			</div>
-
-			{/* Accent Border Top */}
-			<div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent via-accent/80 to-accent"></div>
-
-			<div className="relative container mx-auto px-4 md:px-8 py-16 md:py-20 lg:py-24">
+		<footer className="bg-white border-t border-gray-200" role="contentinfo">
+			<div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
 				{/* Main Footer Content */}
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
 					{/* Organization Info */}
-					<AOSWrapper animation="fade-up" className="lg:col-span-1">
-						<div className="space-y-6">
-							<div className="bg-accent/10 rounded-xl p-4 inline-block">
-								<img
-									src="/OTC_logo.png"
-									alt="OneTechConnect Logo"
-									className="h-12 w-auto"
-								/>
-							</div>
-							<Body className="text-gray-600 leading-relaxed">
-								Championing <span className="text-accent font-semibold">Africa's technological and digital justice</span> through research, advocacy, training, and innovation.
-							</Body>
-							<div className="flex space-x-3">
-								<a
-									href="https://twitter.com/OneTechConnect"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="w-10 h-10 bg-white hover:bg-accent/10 border border-gray-50 hover:border-accent/30 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-sm group"
-									aria-label="Twitter"
-								>
-									<Twitter className="h-5 w-5 text-gray-600 group-hover:text-accent transition-colors" />
-								</a>
-								<a
-									href="https://linkedin.com/company/onetechconnect"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="w-10 h-10 bg-white hover:bg-accent/10 border border-gray-50 hover:border-accent/30 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-sm group"
-									aria-label="LinkedIn"
-								>
-									<Linkedin className="h-5 w-5 text-gray-600 group-hover:text-accent transition-colors" />
-								</a>
-								<a
-									href="https://facebook.com/OneTechConnect"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="w-10 h-10 bg-white hover:bg-accent/10 border border-gray-50 hover:border-accent/30 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-sm group"
-									aria-label="Facebook"
-								>
-									<Facebook className="h-5 w-5 text-gray-600 group-hover:text-accent transition-colors" />
-								</a>
-								<a
-									href="https://instagram.com/onetechconnect"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="w-10 h-10 bg-white hover:bg-accent/10 border border-gray-50 hover:border-accent/30 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-sm group"
-									aria-label="Instagram"
-								>
-									<Instagram className="h-5 w-5 text-gray-600 group-hover:text-accent transition-colors" />
-								</a>
-							</div>
+					<div className="space-y-6">
+						<img
+							src="/OTC_logo.png"
+							alt="OneTechConnect Logo"
+							className="h-12 w-auto"
+						/>
+						<p className="text-gray-600 leading-relaxed">
+							Championing <span className="text-primary font-semibold">Africa's technological and digital justice</span> through research, advocacy, training, and innovation.
+						</p>
+						<div className="flex space-x-3">
+							<a
+								href="https://twitter.com/OneTechConnect"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="w-9 h-9 bg-gray-50 hover:bg-primary/10 border border-gray-200 hover:border-primary/30 rounded-lg flex items-center justify-center transition-all duration-300"
+								aria-label="Twitter"
+							>
+								<Twitter className="h-4 w-4 text-gray-600 hover:text-primary transition-colors" />
+							</a>
+							<a
+								href="https://linkedin.com/company/onetechconnect"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="w-9 h-9 bg-gray-50 hover:bg-primary/10 border border-gray-200 hover:border-primary/30 rounded-lg flex items-center justify-center transition-all duration-300"
+								aria-label="LinkedIn"
+							>
+								<Linkedin className="h-4 w-4 text-gray-600 hover:text-primary transition-colors" />
+							</a>
+							<a
+								href="https://facebook.com/OneTechConnect"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="w-9 h-9 bg-gray-50 hover:bg-primary/10 border border-gray-200 hover:border-primary/30 rounded-lg flex items-center justify-center transition-all duration-300"
+								aria-label="Facebook"
+							>
+								<Facebook className="h-4 w-4 text-gray-600 hover:text-primary transition-colors" />
+							</a>
+							<a
+								href="https://instagram.com/onetechconnect"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="w-9 h-9 bg-gray-50 hover:bg-primary/10 border border-gray-200 hover:border-primary/30 rounded-lg flex items-center justify-center transition-all duration-300"
+								aria-label="Instagram"
+							>
+								<Instagram className="h-4 w-4 text-gray-600 hover:text-primary transition-colors" />
+							</a>
 						</div>
-					</AOSWrapper>
+					</div>
 
 					{/* Quick Links */}
-					<AOSWrapper animation="fade-up" delay={100}>
-						<div className="space-y-6">
-							<H3 className="text-gray-800 font-semibold">Quick Links</H3>
-							<ul className="space-y-1">
-								<li><Link to="/" className="text-gray-600 hover:text-accent transition-all duration-300 flex items-center group py-1">
-									<span className="group-hover:translate-x-1 transition-transform duration-300">Home</span>
-									<ArrowRight className="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1 text-accent" />
-								</Link></li>
-								<li><Link to="/about" className="text-gray-600 hover:text-accent transition-all duration-300 flex items-center group py-1">
-									<span className="group-hover:translate-x-1 transition-transform duration-300">About Us</span>
-									<ArrowRight className="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1 text-accent" />
-								</Link></li>
-								<li><Link to="/what-we-do" className="text-gray-600 hover:text-accent transition-all duration-300 flex items-center group py-1">
-									<span className="group-hover:translate-x-1 transition-transform duration-300">What We Do</span>
-									<ArrowRight className="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1 text-accent" />
-								</Link></li>
-								<li><Link to="/our-products" className="text-gray-600 hover:text-accent transition-all duration-300 flex items-center group py-1">
-									<span className="group-hover:translate-x-1 transition-transform duration-300">Our Products</span>
-									<ArrowRight className="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1 text-accent" />
-								</Link></li>
-								<li><Link to="/news" className="text-gray-600 hover:text-accent transition-all duration-300 flex items-center group py-1">
-									<span className="group-hover:translate-x-1 transition-transform duration-300">News & Updates</span>
-									<ArrowRight className="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1 text-accent" />
-								</Link></li>
-								<li><Link to="/contact" className="text-gray-600 hover:text-accent transition-all duration-300 flex items-center group py-1">
-									<span className="group-hover:translate-x-1 transition-transform duration-300">Contact Us</span>
-									<ArrowRight className="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1 text-accent" />
-								</Link></li>
-							</ul>
-						</div>
-					</AOSWrapper>
+					<div className="space-y-6">
+						<h3 className="text-gray-800 font-semibold">Quick Links</h3>
+						<ul className="space-y-2">
+							{quickLinks.map((link) => (
+								<li key={link.name}>
+									<Link to={link.href} className="text-gray-600 hover:text-primary transition-colors duration-300">
+										{link.name}
+									</Link>
+								</li>
+							))}
+						</ul>
+					</div>
 
 					{/* Our Products */}
-					<AOSWrapper animation="fade-up" delay={200}>
-						<div className="space-y-6">
-							<H3 className="text-gray-800 font-semibold">Our Products</H3>
-							<ul className="space-y-1">
-								<li><Link to="/products/strategic-litigation" className="text-gray-600 hover:text-accent transition-all duration-300 flex items-center group py-1">
-									<span className="group-hover:translate-x-1 transition-transform duration-300">Strategic Litigation</span>
-									<ArrowRight className="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1 text-accent" />
-								</Link></li>
-								<li><Link to="/products/innovations" className="text-gray-600 hover:text-accent transition-all duration-300 flex items-center group py-1">
-									<span className="group-hover:translate-x-1 transition-transform duration-300">Innovation Hub</span>
-									<ArrowRight className="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1 text-accent" />
-								</Link></li>
-								<li><Link to="/products/center-for-digital-justice" className="text-gray-600 hover:text-accent transition-all duration-300 flex items-center group py-1">
-									<span className="group-hover:translate-x-1 transition-transform duration-300">Center for Digital Justice</span>
-									<ArrowRight className="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1 text-accent" />
-								</Link></li>
-								<li><Link to="/products/consultancy" className="text-gray-600 hover:text-accent transition-all duration-300 flex items-center group py-1">
-									<span className="group-hover:translate-x-1 transition-transform duration-300">Consultancy Services</span>
-									<ArrowRight className="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1 text-accent" />
-								</Link></li>
-							</ul>
-						</div>
-					</AOSWrapper>
+					<div className="space-y-6">
+						<h3 className="text-gray-800 font-semibold">Our Products</h3>
+						<ul className="space-y-2">
+							{ourProducts.map((product) => (
+								<li key={product.name}>
+									<Link to={product.href} className="text-gray-600 hover:text-primary transition-colors duration-300">
+										{product.name}
+									</Link>
+								</li>
+							))}
+						</ul>
+					</div>
 
 					{/* Contact & Newsletter */}
-					<AOSWrapper animation="fade-up" delay={300}>
-						<div className="space-y-4">
-							<div>
-								<H3 className="text-gray-800 font-semibold mb-6">Contact Info</H3>
-								<div className="space-y-2">
-									<div className="flex items-start space-x-3 group">
-										<div className="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-accent/30 transition-colors">
-											<MapPin className="h-4 w-4 text-accent" />
-										</div>
-										<Body className="text-gray-600 group-hover:text-gray-800 transition-colors">Kampala, Uganda</Body>
-									</div>
-									<div className="flex items-start space-x-3 group">
-										<div className="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-accent/30 transition-colors">
-											<Phone className="h-4 w-4 text-accent" />
-										</div>
-										<Body className="text-gray-600 group-hover:text-gray-800 transition-colors">+256-778410315</Body>
-									</div>
-									<div className="flex items-start space-x-3 group">
-										<div className="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-accent/30 transition-colors">
-											<Mail className="h-4 w-4 text-accent" />
-										</div>
-										<Body className="text-gray-600 group-hover:text-gray-800 transition-colors">info@onetechconnect.org</Body>
-									</div>
+					<div className="space-y-6">
+						<div>
+							<h3 className="text-gray-800 font-semibold mb-4">Contact Info</h3>
+							<div className="space-y-3">
+								<div className="flex items-start space-x-3">
+									<MapPin className="h-4 w-4 text-primary mt-1 flex-shrink-0" />
+									<span className="text-gray-600">Kampala, Uganda</span>
+								</div>
+								<div className="flex items-start space-x-3">
+									<Phone className="h-4 w-4 text-primary mt-1 flex-shrink-0" />
+									<span className="text-gray-600">+256-778410315</span>
+								</div>
+								<div className="flex items-start space-x-3">
+									<Mail className="h-4 w-4 text-primary mt-1 flex-shrink-0" />
+									<span className="text-gray-600">info@onetechconnect.org</span>
 								</div>
 							</div>
-
-							{/* Newsletter Signup */}
-							<div className="bg-gray-50 rounded-xl p-6 border border-gray-200 shadow-sm">
-								<H3 className="text-gray-800 font-semibold mb-3">Stay Updated</H3>
-								<Body className="text-gray-600 mb-4">
-									Get the <span className="text-accent font-semibold">latest insights</span> on tech law and innovation across Africa.
-								</Body>
-								<form
-									className="space-y-2"
-									onSubmit={handleNewsletterSubmit}
-								>
-									<Input
-										type="email"
-										name="email"
-										placeholder="Enter your email"
-										className="bg-white border-gray-300 text-gray-800 placeholder-gray-500 focus:border-accent focus:ring-accent/20 h-12 rounded-lg"
-										required
-									/>
-									<Button
-										variant="primary"
-										size="sm"
-										className="w-full group h-12 rounded-lg"
-										type="submit"
-										disabled={newsletterSubmitting}
-									>
-										{newsletterSubmitting ? "Subscribing..." : "Subscribe"}
-										<Send className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-									</Button>
-								</form>
-								<Small className="text-gray-500 mt-3 block">
-									We respect your privacy. Unsubscribe anytime.
-								</Small>
-							</div>
 						</div>
-					</AOSWrapper>
+
+						{/* Newsletter Signup */}
+						<div className="bg-gray-50 rounded-lg p-5 border border-gray-200">
+							<h3 className="text-gray-800 font-semibold mb-2">Stay Updated</h3>
+							<p className="text-gray-600 text-sm mb-4">
+								Get the <span className="text-primary font-semibold">latest insights</span> on tech law and innovation across Africa.
+							</p>
+							<form
+								className="space-y-2"
+								onSubmit={handleNewsletterSubmit}
+							>
+								<Input
+									type="email"
+									name="email"
+									placeholder="Enter your email"
+									className="bg-white border-gray-300 text-gray-800 placeholder-gray-500 focus:border-primary focus:ring-primary/20 h-10 rounded-md"
+									required
+								/>
+								<Button
+									variant="primary"
+									size="sm"
+									className="w-full group h-10 rounded-md"
+									type="submit"
+									disabled={newsletterSubmitting}
+								>
+									{newsletterSubmitting ? "Subscribing..." : "Subscribe"}
+									<Send className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+								</Button>
+							</form>
+							<p className="text-gray-500 text-xs mt-3">
+								We respect your privacy. Unsubscribe anytime.
+							</p>
+						</div>
+					</div>
 				</div>
 
 				{/* Footer Bottom */}
-				<AOSWrapper animation="fade-up" delay={400}>
-					<div className="border-t border-gray-200 mt-16 pt-8">
-						<div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-							<Body className="text-gray-600">
-								© 2025 <span className="text-accent font-semibold">OneTechConnect</span>. All rights reserved.
-							</Body>
-							<div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-6 text-center">
-								<Link to="/privacy" className="text-gray-600 hover:text-accent transition-colors duration-300 hover:underline">
-									Privacy Policy
-								</Link>
-								<Link to="/terms" className="text-gray-600 hover:text-accent transition-colors duration-300 hover:underline">
-									Terms of Service
-								</Link>
-								<Link to="/cookies" className="text-gray-600 hover:text-accent transition-colors duration-300 hover:underline">
-									Cookie Policy
-								</Link>
-							</div>
+				<div className="border-t border-gray-200 mt-12 pt-8">
+					<div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+						<p className="text-gray-600 text-sm">
+							© 2025 <span className="text-primary font-semibold">OneTechConnect</span>. All rights reserved.
+						</p>
+						<div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-6 text-center">
+							<Link to="/privacy" className="text-gray-600 hover:text-primary transition-colors duration-300 text-sm">
+								Privacy Policy
+							</Link>
+							<Link to="/terms" className="text-gray-600 hover:text-primary transition-colors duration-300 text-sm">
+								Terms of Service
+							</Link>
+							<Link to="/cookies" className="text-gray-600 hover:text-primary transition-colors duration-300 text-sm">
+								Cookie Policy
+							</Link>
 						</div>
 					</div>
-				</AOSWrapper>
+				</div>
 			</div>
 		</footer>
 	);
