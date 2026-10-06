@@ -223,14 +223,14 @@ const Index = () => {
 
         {/* 8. Our Partners */}
         <AOSWrapper animation="fade-up" delay={250}>
-          <section className="py-20 bg-gray-50/50 border-y border-gray-100">
+          <section className="py-20 bg-white border-y border-gray-100">
             <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
               <h3 className="text-xl font-bold text-foreground mb-10">Our Partners</h3>
-              <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-4 text-muted-foreground font-semibold text-sm md:text-base">
-                <span>ADIJUST</span>
-                <span>Ministry of Health</span>
-                <span>Personal Data Protection Office</span>
-                <span>Ministry of Science & Innovation</span>
+              <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
+                <img src="/partners/ministry-of-health.png" alt="Ministry of Health" className="h-12 md:h-16 w-auto object-contain" />
+                <img src="/partners/personal-data-protection-office.png" alt="Personal Data Protection Office" className="h-12 md:h-16 w-auto object-contain" />
+                <img src="/partners/ministry-of-science-innovation.png" alt="Ministry of Science & Innovation" className="h-12 md:h-16 w-auto object-contain" />
+                <img src="/partners/adijust.png" alt="ADIJUST" className="h-12 md:h-16 w-auto object-contain" />
               </div>
             </div>
           </section>
