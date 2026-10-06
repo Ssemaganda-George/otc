@@ -121,12 +121,12 @@ const Index = () => {
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">Who We Are</h2>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">Welcome To OTC</h2>
                   <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                    OTC is a Youth-led African Not for Profit Organization that ensures digital justice in health, sexual reproductive health, finance, agriculture and Development is advanced while ensuring respect to fundamental human rights and social justice for every individual and communities in Africa.
+                    OTC is a youth-led African innovation organisation harnessing talent, technology, creativity and knowledge to build solutions in Health, SRHR and Sustainable Development.
                   </p>
                   <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                    We bring together innovators, entrepreneurs, researchers, technology developers, businesses, investors and institutions to transform ideas into practical, sustainable and scalable solutions.
+                    We turn African ideas into scalable solutions through research, innovation, technical and financial support, business protection and media amplification.
                   </p>
                   <Link to="/about/who-we-are" className="inline-flex items-center text-primary font-semibold hover:underline">
                     Learn more about us <ArrowRight className="ml-2 w-4 h-4" />
@@ -146,14 +146,14 @@ const Index = () => {
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
                 {/* About Us */}
-                <div className="p-8 border-l-4 border-primary bg-gray-50/50">
+                {/* <div className="p-8 border-l-4 border-primary bg-gray-50/50">
                   <h2 className="text-xl font-bold mb-4 text-foreground">
                     {getSectionContent('about_us')?.title || 'ABOUT US'}
                   </h2>
                   <p className="text-base leading-relaxed text-muted-foreground">
                     {getSectionContent('about_us')?.content || 'Loading...'}
                   </p>
-                </div>
+                </div> */}
 
                 {/* Mission */}
                 <div className="p-8 border-l-4 border-primary/60 bg-gray-50/50">
