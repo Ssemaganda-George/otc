@@ -115,7 +115,32 @@ const Index = () => {
         {/* 4. Hero - Images with messages */}
         <HeroSlider />
 
-        {/* 5. Introduction - About, Mission, Vision */}
+        {/* 5. Who We Are */}
+        <AOSWrapper animation="fade-up">
+          <section className="py-24 bg-white">
+            <div className="max-w-7xl mx-auto px-6 lg:px-8">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">Who We Are</h2>
+                  <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                    OTC is a Youth-led African Not for Profit Organization that ensures digital justice in health, sexual reproductive health, finance, agriculture and Development is advanced while ensuring respect to fundamental human rights and social justice for every individual and communities in Africa.
+                  </p>
+                  <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+                    We bring together innovators, entrepreneurs, researchers, technology developers, businesses, investors and institutions to transform ideas into practical, sustainable and scalable solutions.
+                  </p>
+                  <Link to="/about/who-we-are" className="inline-flex items-center text-primary font-semibold hover:underline">
+                    Learn more about us <ArrowRight className="ml-2 w-4 h-4" />
+                  </Link>
+                </div>
+                <div>
+                  <img src="/assets/sac1.png" alt="Who We Are" className="w-full h-auto rounded-lg shadow-lg" />
+                </div>
+              </div>
+            </div>
+          </section>
+        </AOSWrapper>
+
+        {/* 6. Introduction - About, Mission, Vision */}
         <AOSWrapper animation="fade-up">
           <section className="py-24 bg-white">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
