@@ -42,6 +42,7 @@ export function Navigation() {
 
   // Improved font size and weight for better readability (NERPS-inspired)
   const navLinkClass = "font-poppins font-semibold text-[14px] xl:text-[15px] text-foreground hover:text-primary transition-colors duration-300 ease-in-out whitespace-nowrap";
+  const navLinkWithSeparator = "font-poppins font-semibold text-[14px] xl:text-[15px] text-foreground hover:text-primary transition-colors duration-300 ease-in-out whitespace-nowrap border-l border-gray-300 pl-3 xl:pl-4";
 
   return (
     <nav
@@ -54,24 +55,15 @@ export function Navigation() {
       aria-label="Main navigation"
     >
       <div className="max-w-[1536px] mx-auto px-3 sm:px-4 lg:px-5">
-        <div className="flex items-center justify-between h-[80px]">
-          {/* Logo */}
-          <Link to="/" className="flex-shrink-0" aria-label="OneTechConnect Home">
-            <img
-              src="/OTC_logo.png"
-              alt="OneTechConnect Logo"
-              className="h-10 w-auto transition-all duration-300 ease-in-out"
-            />
-          </Link>
-
-          {/* Desktop Navigation */}
-          <div className="hidden lg:block">
+        <div className="flex items-center justify-between h-[70px]">
+          {/* Spacer for alignment (logo is in SiteHeader above) */}
+          <div className="hidden lg:block flex-1">
             <div className="ml-2 flex items-baseline space-x-3 xl:space-x-4">
               <Link to="/" className={navLinkClass}>Home</Link>
 
               {/* About Us */}
               <div className="relative group">
-                <button className={`${navLinkClass} flex items-center`}>
+                <button className={`${navLinkWithSeparator} flex items-center`}>
                   About Us
                   <ChevronDown className="ml-1 h-4 w-4 transition-transform duration-300 ease-in-out group-hover:rotate-180" />
                 </button>
@@ -102,11 +94,11 @@ export function Navigation() {
                 </div>
               </div>
 
-              <Link to="/innovation-hub" className={navLinkClass}>OTC Innovation Hub</Link>
+              <Link to="/innovation-hub" className={navLinkWithSeparator}>OTC Innovation Hub</Link>
 
               {/* OTC Academy */}
               <div className="relative group">
-                <button className={`${navLinkClass} flex items-center`}>
+                <button className={`${navLinkWithSeparator} flex items-center`}>
                   OTC Academy
                   <ChevronDown className="ml-1 h-4 w-4 transition-transform duration-300 ease-in-out group-hover:rotate-180" />
                 </button>
@@ -118,12 +110,12 @@ export function Navigation() {
                 </div>
               </div>
 
-              <Link to="/fund" className={navLinkClass}>OTC Fund</Link>
-              <Link to="/media" className={navLinkClass}>OTC Media</Link>
+              <Link to="/fund" className={navLinkWithSeparator}>OTC Fund</Link>
+              <Link to="/media" className={navLinkWithSeparator}>OTC Media</Link>
 
               {/* Legal & Business Support Centre */}
               <div className="relative group">
-                <button className={`${navLinkClass} flex items-center`}>
+                <button className={`${navLinkWithSeparator} flex items-center`}>
                   Legal & Business
                   <ChevronDown className="ml-1 h-4 w-4 transition-transform duration-300 ease-in-out group-hover:rotate-180" />
                 </button>
@@ -137,7 +129,7 @@ export function Navigation() {
 
               {/* News & Stories (kept as a dropdown — existing pages need to stay reachable) */}
               <div className="relative group">
-                <button className={`${navLinkClass} flex items-center`}>
+                <button className={`${navLinkWithSeparator} flex items-center`}>
                   News & Stories
                   <ChevronDown className="ml-1 h-4 w-4 transition-transform duration-300 ease-in-out group-hover:rotate-180" />
                 </button>
@@ -150,15 +142,8 @@ export function Navigation() {
                 </div>
               </div>
 
-              <Link to="/contact" className={navLinkClass}>Get in Touch</Link>
+              <Link to="/contact" className={navLinkWithSeparator}>Get in Touch</Link>
             </div>
-          </div>
-
-          {/* CTA Button */}
-          <div className="hidden lg:block ml-2">
-            <Button asChild variant="golden" size="sm" className="px-4 lg:px-5">
-              <Link to="/donate">Donate</Link>
-            </Button>
           </div>
 
           {/* Mobile menu button */}
@@ -190,7 +175,7 @@ export function Navigation() {
         {/* Mobile menu */}
         <div
           id="mobile-menu"
-          className={`fixed top-[80px] left-0 right-1/4 bg-white/95 backdrop-blur-md border border-gray-200 shadow-lg z-50 lg:hidden max-h-[calc(100vh-100px)] overflow-y-auto scroll-smooth transition-all duration-300 ease-in-out ${
+          className={`fixed top-[70px] left-0 right-1/4 bg-white/95 backdrop-blur-md border border-gray-200 shadow-lg z-50 lg:hidden max-h-[calc(100vh-90px)] overflow-y-auto scroll-smooth transition-all duration-300 ease-in-out ${
             isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
           }`}
           role="menu"

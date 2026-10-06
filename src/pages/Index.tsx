@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Navigation } from "@/components/ui/navigation";
+import { TopBar } from "@/components/TopBar";
+import { SiteHeader } from "@/components/SiteHeader";
 import HeroSlider from "@/components/HeroSlider";
 import { Footer } from "@/components/Footer";
 import { Link } from "react-router-dom";
@@ -84,6 +86,8 @@ const Index = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-white custom-scrollbar font-poppins">
+        <TopBar />
+        <SiteHeader />
         <Navigation />
         <main className="pt-20 flex items-center justify-center min-h-[50vh]">
           <div className="text-center">
@@ -98,17 +102,24 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-white custom-scrollbar font-poppins">
+      {/* 1. Top Bar - Social icons and search */}
+      <TopBar />
+
+      {/* 2. Site Header - Logo and quick actions */}
+      <SiteHeader />
+
+      {/* 3. Navigation Bar */}
       <Navigation />
 
       <main>
-        {/* 1. Hero */}
+        {/* 4. Hero - Images with messages */}
         <HeroSlider />
 
-        {/* 2. Introduction - About, Mission, Vision */}
+        {/* 5. Introduction - About, Mission, Vision */}
         <AOSWrapper animation="fade-up">
-          <section className="py-20 bg-white">
+          <section className="py-24 bg-white">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
                 {/* About Us */}
                 <div className="p-8 border-l-4 border-primary bg-gray-50/50">
                   <h2 className="text-xl font-bold mb-4 text-foreground">
@@ -143,11 +154,11 @@ const Index = () => {
           </section>
         </AOSWrapper>
 
-        {/* 3. Our Values */}
+        {/* 6. Our Values */}
         <AOSWrapper animation="fade-up" delay={100}>
-          <section className="py-20 bg-gray-50/50">
+          <section className="py-24 bg-gray-50/50">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
-              <div className="text-center mb-14">
+              <div className="text-center mb-16">
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
                   Our Values
                 </h2>
@@ -156,7 +167,7 @@ const Index = () => {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
                 {coreValues.map((value, index) => (
                   <div key={value.id} className="group">
                     <div className="bg-white p-6 border border-gray-200 hover:border-primary/30 hover:shadow-sm transition-all duration-300 h-full">
@@ -179,15 +190,15 @@ const Index = () => {
           </section>
         </AOSWrapper>
 
-        {/* 4. Our Products */}
+        {/* 7. Our Products */}
         <AOSWrapper animation="fade-up" delay={200}>
-          <section className="py-20 bg-white">
+          <section className="py-24 bg-white">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
-              <div className="text-center mb-14">
+              <div className="text-center mb-16">
                 <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Our Products</h3>
                 <p className="text-lg text-muted-foreground">Five ways we turn African ideas into scalable solutions.</p>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
                 {ourProducts.map((product) => (
                   <Link
                     key={product.href}
@@ -210,11 +221,11 @@ const Index = () => {
           </section>
         </AOSWrapper>
 
-        {/* 5. Our Partners */}
+        {/* 8. Our Partners */}
         <AOSWrapper animation="fade-up" delay={250}>
-          <section className="py-16 bg-gray-50/50 border-y border-gray-100">
+          <section className="py-20 bg-gray-50/50 border-y border-gray-100">
             <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-              <h3 className="text-xl font-bold text-foreground mb-8">Our Partners</h3>
+              <h3 className="text-xl font-bold text-foreground mb-10">Our Partners</h3>
               <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-4 text-muted-foreground font-semibold text-sm md:text-base">
                 <span>ADIJUST</span>
                 <span>Ministry of Health</span>
@@ -225,15 +236,15 @@ const Index = () => {
           </section>
         </AOSWrapper>
 
-        {/* 6. Impact & Statistics */}
+        {/* 9. Impact & Statistics */}
         <AOSWrapper animation="fade-up" delay={300}>
-          <section className="py-20 bg-white">
+          <section className="py-24 bg-white">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
-              <div className="text-center mb-14">
+              <div className="text-center mb-16">
                 <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Our Impact</h3>
                 <p className="text-lg text-muted-foreground">Measuring our contribution to Africa's digital transformation.</p>
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
                 {impactStats.map((stat, index) => (
                   <div key={stat.id || index} className="py-6 px-4 border-t-2 border-primary/20">
                     <div className="text-4xl md:text-5xl font-extrabold text-foreground mb-2">{stat.number}</div>
@@ -245,17 +256,17 @@ const Index = () => {
           </section>
         </AOSWrapper>
 
-        {/* 7. Latest News & Opportunities */}
+        {/* 10. Latest News & Opportunities */}
         <AOSWrapper animation="fade-up" delay={400}>
-          <section className="py-20 bg-gray-50/50">
+          <section className="py-24 bg-gray-50/50">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
-              <div className="flex items-center justify-between mb-10">
+              <div className="flex items-center justify-between mb-12">
                 <h3 className="text-3xl md:text-4xl font-bold text-foreground">Latest News & Opportunities</h3>
                 <Link to="/news" className="text-primary font-semibold flex items-center hover:underline">
                   View All <ArrowRight className="ml-1 w-4 h-4" />
                 </Link>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
                 {latestNews.map((news) => (
                   <article key={news.id} className="bg-white border border-gray-200 hover:border-primary/30 hover:shadow-sm transition-all duration-300 overflow-hidden">
                     <img
