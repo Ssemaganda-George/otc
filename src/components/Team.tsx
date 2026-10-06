@@ -95,7 +95,7 @@ export function Team() {
 		<>
 			<section
 				id="team"
-				className="py-24 bg-background"
+				className="py-24 bg-white"
 				style={{
 					'--color-background-warm': 'var(--background)',
 					'--color-text-primary': 'var(--foreground)',

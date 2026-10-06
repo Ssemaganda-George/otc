@@ -1,6 +1,6 @@
 export function OurApproach() {
   return (
-    <section className="py-24 bg-background">
+    <section className="py-24 bg-white">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="heading-section text-gradient-blue mb-8">Our Approach</h2>

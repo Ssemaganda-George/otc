@@ -192,19 +192,19 @@
   }
 
   .heading-card {
-    @apply font-poppins font-bold text-[14px] uppercase text-[#030925];
+    @apply font-poppins font-bold text-[20px] leading-[28px] uppercase text-[#030925];
   }
 
   .text-body {
-    @apply font-poppins font-normal text-[16px] leading-[30px] text-[#030925];
+    @apply font-poppins font-normal text-[18px] leading-[32px] text-[#030925];
   }
 
   .text-caption {
-    @apply font-poppins font-normal text-[12px] leading-[18px] text-[#030925];
+    @apply font-poppins font-normal text-[14px] leading-[22px] text-[#030925];
   }
 
   .text-button {
-    @apply font-poppins font-bold text-[14px] leading-[18px] uppercase text-[#030925];
+    @apply font-poppins font-bold text-[16px] leading-[22px] uppercase text-[#030925];
   }
 
   /* Animation Classes */

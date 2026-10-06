@@ -90,7 +90,7 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-background">
+    <section id="contact" className="py-24 bg-white">
       <div className="container mx-auto px-6">
         <div className="max-w-full mx-auto">
           {/* Section Header */}

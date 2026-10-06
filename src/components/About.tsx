@@ -14,7 +14,7 @@ const techSolutions = [
 
 export function About() {
 	return (
-		<section id="about" className="py-24 bg-background">
+		<section id="about" className="py-24 bg-white">
 			<div className="container mx-auto px-6">
 				<div className="max-w-6xl mx-auto">
 					{/* Our Approach */}
