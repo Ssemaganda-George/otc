@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -43,6 +43,7 @@ export default function ManageHeroSlides() {
     video_background: ""
   });
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const formRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!user) {
@@ -125,6 +126,9 @@ export default function ManageHeroSlides() {
       category: slide.category || "",
       video_background: slide.video_background || ""
     });
+    setTimeout(() => {
+      formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 0);
   };
 
   const handleDelete = async (id: string) => {
@@ -165,115 +169,117 @@ export default function ManageHeroSlides() {
 
       {/* Form */}
       {(editingId === 'new' || editingId) && (
-        <Card className="mb-8">
-          <CardHeader>
-            <CardTitle>{editingId === 'new' ? 'Add New Hero Slide' : 'Edit Hero Slide'}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <Label htmlFor="image">Image</Label>
-                <Input
-                  id="image"
-                  type="file"
-                  accept="image/*"
-                  onChange={handleFileChange}
-                  required={!editingId}
-                />
-                {formData.image && (
-                  <img src={formData.image} alt="Preview" className="mt-2 w-32 h-32 object-cover" />
-                )}
-              </div>
-              <div>
-                <Label htmlFor="title">Title</Label>
-                <Input
-                  id="title"
-                  value={formData.title}
-                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  required
-                />
-              </div>
-              <div>
-                <Label htmlFor="subtitle">Subtitle</Label>
-                <Input
-                  id="subtitle"
-                  value={formData.subtitle}
-                  onChange={(e) => setFormData({ ...formData, subtitle: e.target.value })}
-                />
-              </div>
-              <div>
-                <Label htmlFor="description">Description</Label>
-                <Textarea
-                  id="description"
-                  value={formData.description}
-                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  rows={3}
-                />
-              </div>
-              <div>
-                <Label htmlFor="cta_text">CTA Text</Label>
-                <Input
-                  id="cta_text"
-                  value={formData.cta_text}
-                  onChange={(e) => setFormData({ ...formData, cta_text: e.target.value })}
-                />
-              </div>
-              <div>
-                <Label htmlFor="cta_link">CTA Link</Label>
-                <Input
-                  id="cta_link"
-                  value={formData.cta_link}
-                  onChange={(e) => setFormData({ ...formData, cta_link: e.target.value })}
-                />
-              </div>
-              <div>
-                <Label htmlFor="display_order">Display Order</Label>
-                <Input
-                  id="display_order"
-                  type="number"
-                  value={formData.display_order}
-                  onChange={(e) => setFormData({ ...formData, display_order: e.target.value })}
-                  required
-                />
-              </div>
-              <div>
-                <Label htmlFor="category">Category</Label>
-                <Input
-                  id="category"
-                  value={formData.category}
-                  onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                />
-              </div>
-              <div>
-                <Label htmlFor="video_background">Video Background URL</Label>
-                <Input
-                  id="video_background"
-                  value={formData.video_background}
-                  onChange={(e) => setFormData({ ...formData, video_background: e.target.value })}
-                />
-              </div>
-              <div className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  id="is_active"
-                  checked={formData.is_active}
-                  onChange={(e) => setFormData({ ...formData, is_active: e.target.checked })}
-                />
-                <Label htmlFor="is_active">Active</Label>
-              </div>
-              <div className="flex space-x-2">
-                <Button type="submit">
-                  <Save className="w-4 h-4 mr-2" />
-                  Save
-                </Button>
-                <Button type="button" variant="outline" onClick={handleCancel}>
-                  <X className="w-4 h-4 mr-2" />
-                  Cancel
-                </Button>
-              </div>
-            </form>
-          </CardContent>
-        </Card>
+        <div ref={formRef}>
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle>{editingId === 'new' ? 'Add New Hero Slide' : 'Edit Hero Slide'}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <Label htmlFor="image">Image</Label>
+                  <Input
+                    id="image"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                    required={!editingId}
+                  />
+                  {formData.image && (
+                    <img src={formData.image} alt="Preview" className="mt-2 w-32 h-32 object-cover" />
+                  )}
+                </div>
+                <div>
+                  <Label htmlFor="title">Title</Label>
+                  <Input
+                    id="title"
+                    value={formData.title}
+                    onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                    required
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="subtitle">Subtitle</Label>
+                  <Input
+                    id="subtitle"
+                    value={formData.subtitle}
+                    onChange={(e) => setFormData({ ...formData, subtitle: e.target.value })}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="description">Description</Label>
+                  <Textarea
+                    id="description"
+                    value={formData.description}
+                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                    rows={3}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="cta_text">CTA Text</Label>
+                  <Input
+                    id="cta_text"
+                    value={formData.cta_text}
+                    onChange={(e) => setFormData({ ...formData, cta_text: e.target.value })}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="cta_link">CTA Link</Label>
+                  <Input
+                    id="cta_link"
+                    value={formData.cta_link}
+                    onChange={(e) => setFormData({ ...formData, cta_link: e.target.value })}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="display_order">Display Order</Label>
+                  <Input
+                    id="display_order"
+                    type="number"
+                    value={formData.display_order}
+                    onChange={(e) => setFormData({ ...formData, display_order: e.target.value })}
+                    required
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="category">Category</Label>
+                  <Input
+                    id="category"
+                    value={formData.category}
+                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="video_background">Video Background URL</Label>
+                  <Input
+                    id="video_background"
+                    value={formData.video_background}
+                    onChange={(e) => setFormData({ ...formData, video_background: e.target.value })}
+                  />
+                </div>
+                <div className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    id="is_active"
+                    checked={formData.is_active}
+                    onChange={(e) => setFormData({ ...formData, is_active: e.target.checked })}
+                  />
+                  <Label htmlFor="is_active">Active</Label>
+                </div>
+                <div className="flex space-x-2">
+                  <Button type="submit">
+                    <Save className="w-4 h-4 mr-2" />
+                    Save
+                  </Button>
+                  <Button type="button" variant="outline" onClick={handleCancel}>
+                    <X className="w-4 h-4 mr-2" />
+                    Cancel
+                  </Button>
+                </div>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
       )}
 
       {/* Slides List */}

@@ -116,15 +116,17 @@ export default function AdminLayout() {
   return (
     <div className="flex h-screen bg-gray-50">
       {/* Desktop Sidebar */}
-      <div className="hidden lg:flex lg:w-64 lg:flex-col lg:fixed lg:inset-y-0 bg-white shadow-lg border-r border-gray-200">
-        <div className="flex items-center justify-center h-16 px-4 bg-primary flex-shrink-0">
-          <img
-            src="/OTC_logo.png"
-            alt="SAC OTC Logo"
-            className="h-8 w-11 mr-3 transition-transform duration-300 ease-in-out hover:scale-110"
-          />
-          <h2 className="text-white font-bold text-lg transition-all duration-300 ease-in-out">Admin Panel</h2>
-        </div>
+        <div className="hidden lg:flex lg:w-64 lg:flex-col lg:fixed lg:inset-y-0 bg-white shadow-lg border-r border-gray-200">
+          <div className="flex items-center justify-center h-16 px-4 bg-primary flex-shrink-0">
+            <Link to="/" className="flex items-center gap-3">
+              <img
+                src="/OTC_logo.png"
+                alt="SAC OTC Logo"
+                className="h-8 w-11 transition-transform duration-300 ease-in-out hover:scale-110"
+              />
+              <h2 className="text-white font-bold text-lg transition-all duration-300 ease-in-out">Admin Panel</h2>
+            </Link>
+          </div>
         <nav className="flex-1 mt-8 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent hover:scrollbar-thumb-gray-400 scrollbar-thumb-rounded-full scroll-smooth">
           <div className="px-4 space-y-4 pb-4">
             {sidebarGroups.map((group) => {
@@ -176,17 +178,19 @@ export default function AdminLayout() {
       </div>
 
       {/* Mobile Sidebar */}
-      <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
-        <SheetContent side="left" className="w-64 p-0">
-          <div className="flex flex-col h-full">
-            <div className="flex items-center justify-center h-16 px-4 bg-primary flex-shrink-0">
-              <img
-                src="/OTC_logo.png"
-                alt="SAC OTC Logo"
-                className="h-8 w-11 mr-3"
-              />
-              <h2 className="text-white font-bold text-lg">Admin Panel</h2>
-            </div>
+          <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
+            <SheetContent side="left" className="w-64 p-0">
+              <div className="flex flex-col h-full">
+                <div className="flex items-center justify-center h-16 px-4 bg-primary flex-shrink-0">
+                  <Link to="/" className="flex items-center gap-3">
+                    <img
+                      src="/OTC_logo.png"
+                      alt="SAC OTC Logo"
+                      className="h-8 w-11"
+                    />
+                    <h2 className="text-white font-bold text-lg">Admin Panel</h2>
+                  </Link>
+                </div>
             <nav className="flex-1 mt-8 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent hover:scrollbar-thumb-gray-400 scrollbar-thumb-rounded-full scroll-smooth">
               <div className="px-4 space-y-4 pb-4">
                 {sidebarGroups.map((group) => (

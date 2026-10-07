@@ -1,11 +1,11 @@
 import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import AdminCard from '@/components/ui/admin-card';
 import { CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { useNavigate } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react';
 
 export default function AdminLogin() {
@@ -31,11 +31,18 @@ export default function AdminLogin() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background px-4">
-      <AdminCard className="w-full max-w-md">
-        <CardHeader>
-          <CardTitle>OTC Admin Login</CardTitle>
-          <CardDescription>Enter your credentials to access the admin dashboard.</CardDescription>
-        </CardHeader>
+      <div className="w-full max-w-md">
+        <div className="flex justify-center mb-6">
+          <Link to="/" className="flex items-center gap-3">
+            <img src="/OTC_logo.png" alt="OneTechConnect Logo" className="h-12 w-auto" />
+            <span className="text-xl font-bold text-foreground">Admin</span>
+          </Link>
+        </div>
+        <AdminCard>
+          <CardHeader>
+            <CardTitle>OTC Admin Login</CardTitle>
+            <CardDescription>Enter your credentials to access the admin dashboard.</CardDescription>
+          </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4" aria-describedby={error ? 'login-error' : undefined}>
             <div>
@@ -86,6 +93,7 @@ export default function AdminLogin() {
           </form>
         </CardContent>
       </AdminCard>
+      </div>
     </div>
   );
 }
