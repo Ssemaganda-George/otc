@@ -21,8 +21,8 @@ export function OTCFrameworkDiagram() {
           </div>
 
           {/* Framework Diagram */}
-          <div className="w-full overflow-x-auto">
-            <div className="relative bg-black rounded-3xl p-8 md:p-12 border border-primary/30 shadow-2xl overflow-hidden min-w-[768px]">
+          <div className="w-full">
+            <div className="relative bg-black rounded-3xl p-6 md:p-12 border border-primary/30 shadow-2xl overflow-hidden">
               {/* Background pattern */}
               <div className="absolute inset-0 opacity-5">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-primary/10"></div>
@@ -58,7 +58,7 @@ export function OTCFrameworkDiagram() {
                 </div>
 
                 {/* Third Level - Sectors */}
-                <div className="grid grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {sectors.map((sector, index) => (
                     <div key={sector} className="text-center">
                       <div className={`bg-gradient-to-br from-primary/10 to-primary/20 border border-primary/50 rounded-lg px-4 py-3 shadow-md hover:shadow-blue transition-all duration-300 hover:scale-105 group`}>
@@ -72,7 +72,7 @@ export function OTCFrameworkDiagram() {
 
                 {/* Connecting Lines */}
                 <div className="flex justify-center">
-                  <div className="grid grid-cols-4 gap-8 w-full max-w-md">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 w-full max-w-md">
                     {Array.from({ length: 4 }).map((_, i) => (
                       <div key={i} className="flex justify-center">
                         <ArrowDown className="w-5 h-5 text-primary/60" />
@@ -82,7 +82,7 @@ export function OTCFrameworkDiagram() {
                 </div>
 
                 {/* Fourth Level - Activities */}
-                <div className="grid grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {activities.map((activity, index) => (
                     <div key={activity} className="text-center">
                       <div className={`bg-gradient-to-br from-primary/8 to-primary/15 border border-primary/40 rounded-lg px-4 py-3 shadow-md hover:shadow-blue transition-all duration-300 hover:scale-105 group`}>
@@ -114,7 +114,7 @@ export function OTCFrameworkDiagram() {
               </div>
 
               {/* Sixth Level - Rights */}
-              <div className="grid grid-cols-5 gap-3">
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
                 {rights.map((right, index) => (
                   <div key={right} className="text-center">
                     <div className={`bg-gradient-to-br from-primary/10 to-primary/20 border border-primary/50 rounded-lg px-3 py-2 shadow-md hover:shadow-blue transition-all duration-300 hover:scale-105 group`}>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Navigation } from "@/components/ui/navigation";
 import { TopBar } from "@/components/TopBar";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -7,7 +7,7 @@ import { Footer } from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { supabase } from "@/lib/supabase";
 import AOSWrapper from "@/components/AOSWrapper";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowLeft } from "lucide-react";
 
 interface HomeSection {
   id: string;
@@ -54,6 +54,18 @@ const Index = () => {
   const [coreValues, setCoreValues] = useState<CoreValue[]>([]);
   const [latestNews, setLatestNews] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [centerValueIndex, setCenterValueIndex] = useState(0);
+  const valuesScrollRef = useRef<HTMLDivElement>(null);
+
+  const scrollValues = (direction: 'left' | 'right') => {
+    const container = valuesScrollRef.current;
+    if (!container) return;
+    const scrollAmount = container.clientWidth * 0.75;
+    container.scrollBy({
+      left: direction === 'left' ? -scrollAmount : scrollAmount,
+      behavior: 'smooth'
+    });
+  };
 
   useEffect(() => {
     fetchData();
@@ -82,6 +94,33 @@ const Index = () => {
   const getSectionContent = (sectionType: string) => {
     return homeSections.find(section => section.section_type === sectionType);
   };
+
+  useEffect(() => {
+    const container = valuesScrollRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      const containerCenter = container.scrollLeft + container.clientWidth / 2;
+      const items = container.querySelectorAll('[data-value-index]');
+      let closestIndex = 0;
+      let closestDistance = Infinity;
+
+      items.forEach((item, index) => {
+        const itemCenter = (item as HTMLElement).offsetLeft + (item as HTMLElement).offsetWidth / 2;
+        const distance = Math.abs(containerCenter - itemCenter);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      setCenterValueIndex(closestIndex);
+    };
+
+    handleScroll();
+    container.addEventListener('scroll', handleScroll, { passive: true });
+    return () => container.removeEventListener('scroll', handleScroll);
+  }, [coreValues.length]);
 
   if (loading) {
     return (
@@ -115,99 +154,15 @@ const Index = () => {
         {/* 4. Hero - Images with messages */}
         <HeroSlider />
 
-        {/* 5. Who We Are */}
-        <AOSWrapper animation="fade-up">
-          <section className="py-24 bg-white">
-            <div className="max-w-7xl mx-auto px-6 lg:px-8">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">Welcome To OTC</h2>
-                  <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                    OTC is a youth-led African innovation organisation harnessing talent, technology, creativity and knowledge to build solutions in Health, SRHR and Sustainable Development.
-                  </p>
-                  <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                    We turn African ideas into scalable solutions through research, innovation, technical and financial support, business protection and media amplification.
-                  </p>
-                  <Link to="/about/who-we-are" className="inline-flex items-center text-primary font-semibold hover:underline">
-                    Learn more about us <ArrowRight className="ml-2 w-4 h-4" />
-                  </Link>
-                </div>
-                <div>
-                  <img src="/assets/sac1.png" alt="Who We Are" className="w-full h-auto rounded-lg shadow-lg" />
-                </div>
-              </div>
-            </div>
-          </section>
-        </AOSWrapper>
-
-        {/* 6. Introduction - About, Mission, Vision */}
-        <AOSWrapper animation="fade-up">
-          <section className="py-24 bg-white">
-            <div className="max-w-7xl mx-auto px-6 lg:px-8">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-                {/* About Us */}
-                {/* <div className="p-8 border-l-4 border-primary bg-gray-50/50">
-                  <h2 className="text-xl font-bold mb-4 text-foreground">
-                    {getSectionContent('about_us')?.title || 'ABOUT US'}
-                  </h2>
-                  <p className="text-base leading-relaxed text-muted-foreground">
-                    {getSectionContent('about_us')?.content || 'Loading...'}
-                  </p>
-                </div> */}
-
-                {/* Mission */}
-                <div className="p-8 border-l-4 border-primary/60 bg-gray-50/50">
-                  <h2 className="text-xl font-bold mb-4 text-foreground">
-                    {getSectionContent('mission')?.title || 'OUR MISSION'}
-                  </h2>
-                  <p className="text-base text-muted-foreground leading-relaxed">
-                    {getSectionContent('mission')?.content || 'Loading...'}
-                  </p>
-                </div>
-
-                {/* Vision */}
-                <div className="p-8 border-l-4 border-primary/40 bg-gray-50/50">
-                  <h2 className="text-xl font-bold mb-4 text-foreground">
-                    {getSectionContent('vision')?.title || 'OUR VISION'}
-                  </h2>
-                  <p className="text-base text-muted-foreground leading-relaxed">
-                    {getSectionContent('vision')?.content || 'Loading...'}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-        </AOSWrapper>
-
-        {/* 6. Our Values */}
+        {/* 5. Impact & Statistics */}
         <AOSWrapper animation="fade-up" delay={100}>
-          <section className="py-24 bg-gray-50/50">
+          <section className="py-20 bg-white">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
-              <div className="text-center mb-16">
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                  Our Values
-                </h2>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  The principles that guide our work and shape our commitment to Africa's digital transformation.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
-                {coreValues.map((value, index) => (
-                  <div key={value.id} className="group">
-                    <div className="bg-white p-6 border border-gray-200 hover:border-primary/30 hover:shadow-sm transition-all duration-300 h-full">
-                      <div className="flex items-center justify-center w-10 h-10 bg-primary/10 text-primary font-bold text-sm mb-4 mx-auto group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-                        {index + 1}
-                      </div>
-                      <h3 className="text-base font-bold text-foreground text-center mb-2">
-                        {value.title}
-                      </h3>
-                      {value.description && (
-                        <p className="text-sm text-muted-foreground text-center leading-relaxed">
-                          {value.description}
-                        </p>
-                      )}
-                    </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
+                {impactStats.map((stat, index) => (
+                  <div key={stat.id || index} className="py-6 px-4 border-t-2 border-primary/20">
+                    <div className="text-5xl md:text-6xl font-extrabold text-foreground mb-2">{stat.number}</div>
+                    <div className="text-base text-muted-foreground">{stat.label}</div>
                   </div>
                 ))}
               </div>
@@ -215,29 +170,163 @@ const Index = () => {
           </section>
         </AOSWrapper>
 
-        {/* 7. Our Products */}
+        {/* 6. Who We Are + Mission/Vision */}
+        <AOSWrapper animation="fade-up">
+          <section className="py-24 bg-white">
+            <div className="max-w-7xl mx-auto px-6 lg:px-8">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                  <h2 className="text-5xl md:text-6xl lg:text-6xl font-bold text-foreground mb-6">Welcome To OTC</h2>
+                  <p className="text-xl text-muted-foreground leading-relaxed mb-6">
+                    OTC is a youth-led African innovation organisation harnessing talent, technology, creativity and knowledge to build solutions in Health, SRHR and Sustainable Development.
+                  </p>
+                  <p className="text-xl text-muted-foreground leading-relaxed mb-10">
+                    We turn African ideas into scalable solutions through research, innovation, technical and financial support, business protection and media amplification.
+                  </p>
+                  <Link to="/about/who-we-are" className="inline-flex items-center text-primary text-lg font-semibold hover:underline">
+                    Learn more about us <ArrowRight className="ml-2 w-4 h-4" />
+                  </Link>
+
+                  <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-2xl md:text-3xl font-bold text-primary mb-3">
+                        {getSectionContent('mission')?.title?.replace(/^OUR\s+/i, '') || 'MISSION'}
+                      </h3>
+                      <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+                        {getSectionContent('mission')?.content || 'Loading...'}
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="text-2xl md:text-3xl font-bold text-primary mb-3">
+                        {getSectionContent('vision')?.title?.replace(/^OUR\s+/i, '') || 'VISION'}
+                      </h3>
+                      <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+                        {getSectionContent('vision')?.content || 'Loading...'}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div className="w-full aspect-[4/3] bg-gray-100 rounded-lg shadow-lg flex items-center justify-center">
+                    <span className="text-gray-400 font-medium">Image</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </AOSWrapper>
+
+        {/* 7. Our Values */}
+        <AOSWrapper animation="fade-up" delay={100}>
+          <section className="py-24 bg-gray-50/50">
+            <div className="max-w-7xl mx-auto px-6 lg:px-8">
+                <div className="text-center mb-16">
+                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
+                    Our Values
+                  </h2>
+                  <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                    The principles that guide our work and shape our commitment to Africa's digital transformation.
+                  </p>
+                </div>
+
+              <div className="relative">
+                <button
+                  onClick={() => scrollValues('left')}
+                  className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/90 backdrop-blur rounded-full shadow-lg flex items-center justify-center hover:bg-primary hover:text-white transition-colors -ml-4"
+                  aria-label="Scroll values left"
+                >
+                  <ArrowLeft className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={() => scrollValues('right')}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/90 backdrop-blur rounded-full shadow-lg flex items-center justify-center hover:bg-primary hover:text-white transition-colors -mr-4"
+                  aria-label="Scroll values right"
+                >
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+
+                <div 
+                  ref={valuesScrollRef}
+                  className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 -mx-6 px-6 scrollbar-hide"
+                >
+                {coreValues.map((value, index) => {
+                  const distance = Math.abs(index - centerValueIndex);
+                  const scale = distance === 0 ? 1.08 : distance === 1 ? 1 : 0.94;
+
+                  return (
+                    <div 
+                      key={value.id} 
+                      data-value-index={index}
+                      className="snap-center flex-shrink-0 w-[280px] md:w-[320px]"
+                      style={{ 
+                        transform: `scale(${scale})`,
+                        transition: 'transform 0.4s ease',
+                        transformOrigin: 'center center'
+                      }}
+                    >
+                      <div className="bg-white p-8 border border-gray-200 hover:border-primary/30 hover:shadow-lg transition-all duration-300 h-full">
+                        <h3 className="text-2xl font-bold text-foreground text-center mb-3">
+                          {value.title}
+                        </h3>
+                        {value.description && (
+                          <p className="text-lg text-muted-foreground text-center leading-relaxed">
+                            {value.description}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </section>
+      </AOSWrapper>
+
+      {/* Our Approach */}
+      <AOSWrapper animation="fade-up" delay={150}>
+        <section className="py-24 bg-white">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">Our Approach</h2>
+                <p className="text-xl text-muted-foreground leading-relaxed">
+                  At OTC, we take ideas from opportunity to impact. We discover real problems and opportunities, build innovative solutions and enterprises, protect their intellectual and commercial value, finance their growth with appropriate capital, amplify their stories and connect them to the right audiences, and scale what works to create lasting impact.
+                </p>
+              </div>
+              <div>
+                <div className="w-full aspect-[4/3] bg-gray-100 rounded-lg shadow-lg flex items-center justify-center">
+                  <span className="text-gray-400 font-medium">Image</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        </AOSWrapper>
+
+        {/* 8. Our Approach */}
         <AOSWrapper animation="fade-up" delay={200}>
           <section className="py-24 bg-white">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
               <div className="text-center mb-16">
-                <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Our Products</h3>
-                <p className="text-lg text-muted-foreground">Five ways we turn African ideas into scalable solutions.</p>
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">Our Products</h2>
+                <p className="text-xl text-muted-foreground">Five ways we turn African ideas into scalable solutions.</p>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
                 {ourProducts.map((product) => (
                   <Link
                     key={product.href}
                     to={product.href}
-                    className="group bg-white p-6 border border-gray-200 hover:border-primary/30 hover:shadow-sm transition-all duration-300 flex flex-col"
+                    className="group bg-white border border-gray-200 hover:border-primary/30 transition-all duration-300 flex flex-col"
                   >
-                    <div className="w-10 h-10 bg-primary/10 flex items-center justify-center text-primary font-bold text-sm mb-4 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-                      {product.name.split(' ').map(w => w[0]).slice(0, 2).join('')}
+                    <div className="p-8 flex-1">
+                      <h4 className="text-2xl font-bold text-foreground mb-3">{product.name}</h4>
+                      <p className="text-lg text-muted-foreground leading-relaxed">{product.tagline}</p>
                     </div>
-                    <h4 className="text-lg font-bold text-foreground mb-2">{product.name}</h4>
-                    <p className="text-sm text-muted-foreground mt-2 flex-1 leading-relaxed">{product.tagline}</p>
-                    <div className="mt-4 flex items-center text-primary text-sm font-semibold">
-                      <span>Learn more</span>
-                      <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <div className="px-8 pb-8">
+                      <span className="inline-flex items-center text-primary text-base font-semibold group-hover:translate-x-1 transition-transform">
+                        Learn more <ArrowRight className="ml-2 w-4 h-4" />
+                      </span>
                     </div>
                   </Link>
                 ))}
@@ -246,11 +335,11 @@ const Index = () => {
           </section>
         </AOSWrapper>
 
-        {/* 8. Our Partners */}
+        {/* 10. Our Partners */}
         <AOSWrapper animation="fade-up" delay={250}>
           <section className="py-20 bg-white border-y border-gray-100">
             <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-              <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-10">Our Partners</h3>
+               <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-10">Our Partners</h3>
               <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-10">
                 <img src="/partners/ministry-of-health.png" alt="Ministry of Health" className="h-16 md:h-24 w-auto object-contain" />
                 <img src="/partners/personal-data-protection-office.png" alt="Personal Data Protection Office" className="h-16 md:h-24 w-auto object-contain" />
@@ -261,32 +350,12 @@ const Index = () => {
           </section>
         </AOSWrapper>
 
-        {/* 9. Impact & Statistics */}
-        <AOSWrapper animation="fade-up" delay={300}>
-          <section className="py-24 bg-white">
-            <div className="max-w-7xl mx-auto px-6 lg:px-8">
-              <div className="text-center mb-16">
-                <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Our Impact</h3>
-                <p className="text-lg text-muted-foreground">Measuring our contribution to Africa's digital transformation.</p>
-              </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
-                {impactStats.map((stat, index) => (
-                  <div key={stat.id || index} className="py-6 px-4 border-t-2 border-primary/20">
-                    <div className="text-4xl md:text-5xl font-extrabold text-foreground mb-2">{stat.number}</div>
-                    <div className="text-sm text-muted-foreground">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-        </AOSWrapper>
-
-        {/* 10. Latest News & Opportunities */}
+        {/* 11. Latest News & Opportunities */}
         <AOSWrapper animation="fade-up" delay={400}>
           <section className="py-24 bg-gray-50/50">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
               <div className="flex items-center justify-between mb-12">
-                <h3 className="text-3xl md:text-4xl font-bold text-foreground">Latest News & Opportunities</h3>
+                <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">Latest News & Opportunities</h3>
                 <Link to="/news" className="text-primary font-semibold flex items-center hover:underline">
                   View All <ArrowRight className="ml-1 w-4 h-4" />
                 </Link>
@@ -303,8 +372,8 @@ const Index = () => {
                       <span className="inline-block text-primary text-xs font-bold px-2 py-1 mb-3 uppercase tracking-wide">
                         {news.category || 'NEWS'}
                       </span>
-                      <h4 className="text-xl font-bold text-foreground mb-3 leading-snug">{news.title}</h4>
-                      <p className="text-sm text-muted-foreground leading-relaxed">{news.excerpt}</p>
+                      <h4 className="text-2xl font-bold text-foreground mb-3 leading-snug">{news.title}</h4>
+                      <p className="text-base text-muted-foreground leading-relaxed">{news.excerpt}</p>
                     </div>
                   </article>
                 ))}

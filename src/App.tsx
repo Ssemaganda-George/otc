@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
 import Index from "./pages/Index";
@@ -71,13 +71,13 @@ function App() {
           {/* PUBLIC ROUTES */}
           <Route path="/" element={<PageTransition><Index /></PageTransition>} />
           <Route path="/about" element={<PageTransition><AboutPage /></PageTransition>} />
+          <Route path="/about/values" element={<Navigate to="/about" replace />} />
           <Route path="/about/who-we-are" element={<PageTransition><WhoWeArePage /></PageTransition>} />
           <Route path="/about/vision-mission" element={<PageTransition><VisionMissionPage /></PageTransition>} />
           <Route path="/about/philosophy" element={<PageTransition><PhilosophyPage /></PageTransition>} />
           <Route path="/about/team" element={<PageTransition><TeamPage /></PageTransition>} />
           <Route path="/about/research-experts" element={<PageTransition><ResearchExpertsPage /></PageTransition>} />
           <Route path="/about/otc-framework" element={<PageTransition><OTCFrameworkPage /></PageTransition>} />
-          <Route path="/about/values" element={<PageTransition><OurValuesPage /></PageTransition>} />
           <Route path="/about/approach" element={<PageTransition><OurApproachPage /></PageTransition>} />
           <Route path="/about/board-members" element={<PageTransition><BoardMembersPage /></PageTransition>} />
 

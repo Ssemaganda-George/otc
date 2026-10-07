@@ -9,12 +9,12 @@ export function SiteHeader() {
           <div className="flex items-center justify-between py-8">
             {/* Logo and Tagline */}
             <Link to="/" className="flex flex-col items-start group">
-            <img
-              src="/OTC_logo.png"
-              alt="OneTechConnect Logo"
-              className="h-20 w-auto transition-transform duration-300 group-hover:scale-105"
-            />
-            <p className="text-sm text-muted-foreground font-poppins leading-tight mt-2">
+              <img
+                src="/OTC_logo.png"
+                alt="OneTechConnect Logo"
+                className="h-24 w-auto transition-transform duration-300 group-hover:scale-105"
+              />
+              <p className="text-base text-muted-foreground font-poppins leading-tight mt-2">
               Championing Africa's<br />Technological & Digital Justice
             </p>
           </Link>

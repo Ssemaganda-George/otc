@@ -61,7 +61,7 @@ export function OTCFramework() {
             {/* Central Hub - Human Rights */}
             <div className="relative flex justify-center">
               <div className="relative group animate-fade-in-up opacity-0" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
-                <div className="bg-gradient-to-br from-golden-light/90 to-golden-light/70 border-2 border-golden/50 rounded-2xl p-6 text-center shadow-golden transition-all duration-300 hover:shadow-lg hover:scale-105 group-hover:animate-glow-pulse min-w-[280px]">
+                 <div className="bg-gradient-to-br from-golden-light/90 to-golden-light/70 border-2 border-golden/50 rounded-2xl p-6 text-center shadow-golden transition-all duration-300 hover:shadow-lg hover:scale-105 group-hover:animate-glow-pulse min-w-[240px]">
                   <h4 className="text-lg md:text-xl font-bold text-foreground mb-2">
                     HUMAN RIGHTS & SOCIAL JUSTICE
                   </h4>

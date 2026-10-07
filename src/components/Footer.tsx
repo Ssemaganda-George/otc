@@ -117,7 +117,7 @@ export function Footer() {
 
 					{/* Quick Links */}
 					<div className="space-y-6">
-						<h3 className="text-gray-800 font-semibold">Quick Links</h3>
+						<h3 className="text-xl font-bold text-gray-800">Quick Links</h3>
 						<ul className="space-y-2">
 							{quickLinks.map((link) => (
 								<li key={link.name}>
@@ -131,7 +131,7 @@ export function Footer() {
 
 					{/* Our Products */}
 					<div className="space-y-6">
-						<h3 className="text-gray-800 font-semibold">Our Products</h3>
+						<h3 className="text-xl font-bold text-gray-800">Our Products</h3>
 						<ul className="space-y-2">
 							{ourProducts.map((product) => (
 								<li key={product.name}>
@@ -146,7 +146,7 @@ export function Footer() {
 					{/* Contact & Newsletter */}
 					<div className="space-y-6">
 						<div>
-							<h3 className="text-gray-800 font-semibold mb-4">Contact Info</h3>
+							<h3 className="text-xl font-bold text-gray-800 mb-4">Contact Info</h3>
 							<div className="space-y-3">
 								<div className="flex items-start space-x-3">
 									<MapPin className="h-4 w-4 text-primary mt-1 flex-shrink-0" />
@@ -165,7 +165,7 @@ export function Footer() {
 
 						{/* Newsletter Signup */}
 						<div className="bg-gray-50 rounded-lg p-5 border border-gray-200">
-							<h3 className="text-gray-800 font-semibold mb-2">Stay Updated</h3>
+							<h3 className="text-xl font-bold text-gray-800 mb-2">Stay Updated</h3>
 							<p className="text-gray-600 text-sm mb-4">
 								Get the <span className="text-primary font-semibold">latest insights</span> on tech law and innovation across Africa.
 							</p>
