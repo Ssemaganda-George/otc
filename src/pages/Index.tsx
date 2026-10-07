@@ -260,7 +260,7 @@ const Index = () => {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 {/* Left: Content */}
                 <div>
-                  <h2 className="text-5xl md:text-6xl lg:text-5xl font-black uppercase leading-[0.85] tracking-tight text-foreground mb-6">
+                  <h2 className="text-5xl md:text-6xl lg:text-5xl font-black uppercase leading-[0.85] tracking-tight text-primary mb-6">
                     Welcome To OTC
                   </h2>
                   <p className="text-xl text-muted-foreground leading-relaxed mb-6">
@@ -275,9 +275,9 @@ const Index = () => {
                 </div>
 
                 {/* Right: Image */}
-                <div className="relative">
+                <div className="relative group">
                   <div className="aspect-[4/3] bg-gray-100 rounded-2xl overflow-hidden shadow-2xl">
-                    <img src={getSectionContent('welcome_to_otc')?.image || "/images/DJP_5027.jpg"} alt="Who We Are" className="w-full h-full object-cover" />
+                    <img src={getSectionContent('welcome_to_otc')?.image || "/images/DJP_5027.jpg"} alt="Who We Are" className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-700 ease-out" />
                   </div>
                 </div>
               </div>
@@ -378,14 +378,16 @@ const Index = () => {
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">Our Approach</h2>
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-6">Our Approach</h2>
                 <p className="text-xl text-muted-foreground leading-relaxed">
                   At OTC, we take ideas from opportunity to impact. We discover real problems and opportunities, build innovative solutions and enterprises, protect their intellectual and commercial value, finance their growth with appropriate capital, amplify their stories and connect them to the right audiences, and scale what works to create lasting impact.
                 </p>
               </div>
-              <div>
+              <div className="group">
                 {getSectionContent('our_approach')?.image ? (
-                  <img src={getSectionContent('our_approach')?.image} alt="Our Approach" className="w-full aspect-[4/3] object-cover rounded-2xl shadow-2xl" />
+                  <div className="w-full aspect-[4/3] overflow-hidden rounded-2xl shadow-2xl">
+                    <img src={getSectionContent('our_approach')?.image} alt="Our Approach" className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-700 ease-out" />
+                  </div>
                 ) : (
                   <div className="w-full aspect-[4/3] bg-gray-100 rounded-lg shadow-lg flex items-center justify-center">
                     <span className="text-gray-400 font-medium">Image</span>
