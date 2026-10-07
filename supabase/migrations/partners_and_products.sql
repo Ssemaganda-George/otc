@@ -38,11 +38,11 @@ on conflict (id) do nothing;
 
 -- Insert sample products
 insert into products (name, tagline, description, image_url, link_url, link_text, display_order, is_active) values
-  ('OTC Innovation Hub', 'Developing, connecting and scaling African innovation.', 'A pan-African platform for developing, supporting and scaling innovative solutions to Africa''s challenges and opportunities.', null, '/innovation-hub', 'Explore Innovation Hub', 1, true),
-  ('OTC Academy', 'Research, learning and capability development.', 'Research, learning and capability development for African innovators.', null, '/academy', 'Explore Academy', 2, true),
-  ('Legal & Business Support Centre', 'Protecting innovations and structuring opportunity.', 'Protecting innovations and structuring opportunity through legal and business support.', null, '/legal-business-support', 'Explore Legal Support', 3, true),
-  ('OTC Fund', 'Capital for African innovation and innovators.', 'Capital for African innovation and innovators.', null, '/fund', 'Explore Fund', 4, true),
-  ('OTC Media Hub', 'Creating, telling and amplifying African stories.', 'Creating, telling and amplifying African stories through media.', null, '/media', 'Explore Media Hub', 5, true)
+  ('OTC Innovation Hub', 'Developing, connecting and scaling African innovation.', 'A pan-African platform for developing, supporting and scaling innovative solutions to Africa''s challenges and opportunities.', '/images/DJP_5027.jpg', '/innovation-hub', 'Explore Innovation Hub', 1, true),
+  ('OTC Academy', 'Research, learning and capability development.', 'Research, learning and capability development for African innovators.', '/images/DJP_5020.jpg', '/academy', 'Explore Academy', 2, true),
+  ('Legal & Business Support Centre', 'Protecting innovations and structuring opportunity.', 'Protecting innovations and structuring opportunity through legal and business support.', '/images/DFA-2.jpg', '/legal-business-support', 'Explore Legal Support', 3, true),
+  ('OTC Fund', 'Capital for African innovation and innovators.', 'Capital for African innovation and innovators.', '/images/DFA-25-highlight-sessions-01.jpg', '/fund', 'Explore Fund', 4, true),
+  ('OTC Media Hub', 'Creating, telling and amplifying African stories.', 'Creating, telling and amplifying African stories through media.', '/images/DFA-25-Speakers-X-D01-09.jpg', '/media', 'Explore Media Hub', 5, true)
 on conflict (id) do nothing;
 
 -- Enable Row Level Security (RLS)

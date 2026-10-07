@@ -47,12 +47,22 @@ interface Partner {
   website_url: string | null;
 }
 
-const ourProducts = [
-  { name: "OTC Innovation Hub", tagline: "Developing, connecting and scaling African innovation.", href: "/innovation-hub" },
-  { name: "OTC Academy", tagline: "Research, learning and capability development.", href: "/academy" },
-  { name: "Legal & Business Support Centre", tagline: "Protecting innovations and structuring opportunity.", href: "/legal-business-support" },
-  { name: "OTC Fund", tagline: "Capital for African innovation and innovators.", href: "/fund" },
-  { name: "OTC Media Hub", tagline: "Creating, telling and amplifying African stories.", href: "/media" },
+interface Product {
+  id: string;
+  name: string;
+  tagline: string;
+  description: string | null;
+  image_url: string | null;
+  link_url: string | null;
+  link_text: string | null;
+}
+
+const fallbackProducts: Product[] = [
+  { id: "pr1", name: "OTC Innovation Hub", tagline: "Developing, connecting and scaling African innovation.", description: null, image_url: "/images/DJP_5027.jpg", link_url: "/innovation-hub", link_text: "Learn more" },
+  { id: "pr2", name: "OTC Academy", tagline: "Research, learning and capability development.", description: null, image_url: "/images/DJP_5020.jpg", link_url: "/academy", link_text: "Learn more" },
+  { id: "pr3", name: "Legal & Business Support Centre", tagline: "Protecting innovations and structuring opportunity.", description: null, image_url: "/images/DFA-2.jpg", link_url: "/legal-business-support", link_text: "Learn more" },
+  { id: "pr4", name: "OTC Fund", tagline: "Capital for African innovation and innovators.", description: null, image_url: "/images/DFA-25-highlight-sessions-01.jpg", link_url: "/fund", link_text: "Learn more" },
+  { id: "pr5", name: "OTC Media Hub", tagline: "Creating, telling and amplifying African stories.", description: null, image_url: "/images/DFA-25-Speakers-X-D01-09.jpg", link_url: "/media", link_text: "Learn more" },
 ];
 
 const fallbackPartners: Partner[] = [
@@ -68,12 +78,25 @@ const Index = () => {
   const [coreValues, setCoreValues] = useState<CoreValue[]>([]);
   const [latestNews, setLatestNews] = useState<NewsItem[]>([]);
   const [partners, setPartners] = useState<Partner[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [centerValueIndex, setCenterValueIndex] = useState(0);
   const valuesScrollRef = useRef<HTMLDivElement>(null);
+  const [centerProductIndex, setCenterProductIndex] = useState(0);
+  const productScrollRef = useRef<HTMLDivElement>(null);
 
   const scrollValues = (direction: 'left' | 'right') => {
     const container = valuesScrollRef.current;
+    if (!container) return;
+    const scrollAmount = container.clientWidth * 0.75;
+    container.scrollBy({
+      left: direction === 'left' ? -scrollAmount : scrollAmount,
+      behavior: 'smooth'
+    });
+  };
+
+  const scrollProducts = (direction: 'left' | 'right') => {
+    const container = productScrollRef.current;
     if (!container) return;
     const scrollAmount = container.clientWidth * 0.75;
     container.scrollBy({
@@ -88,12 +111,13 @@ const Index = () => {
 
   const fetchData = async () => {
     try {
-      const [sectionsRes, statsRes, valuesRes, newsRes, partnersRes] = await Promise.all([
+      const [sectionsRes, statsRes, valuesRes, newsRes, partnersRes, productsRes] = await Promise.all([
         supabase.from('home_sections').select('*').eq('is_active', true).order('display_order'),
         supabase.from('our_impact_stats').select('*').order('created_at'),
         supabase.from('core_values').select('*').eq('is_active', true).order('display_order'),
         supabase.from('news_updates').select('id, title, excerpt, featured_image, category, publish_date').eq('is_featured', true).order('publish_date', { ascending: false }).limit(3),
-        supabase.from('partners').select('id, name, logo_url, website_url').eq('is_active', true).order('display_order')
+        supabase.from('partners').select('id, name, logo_url, website_url').eq('is_active', true).order('display_order'),
+        supabase.from('products').select('id, name, tagline, description, image_url, link_url, link_text').eq('is_active', true).order('display_order')
       ]);
 
       if (sectionsRes.data) setHomeSections(sectionsRes.data);
@@ -101,6 +125,7 @@ const Index = () => {
       if (valuesRes.data) setCoreValues(valuesRes.data);
       if (newsRes.data) setLatestNews(newsRes.data);
       if (partnersRes.data) setPartners(partnersRes.data);
+      if (productsRes.data) setProducts(productsRes.data);
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
@@ -138,6 +163,33 @@ const Index = () => {
     container.addEventListener('scroll', handleScroll, { passive: true });
     return () => container.removeEventListener('scroll', handleScroll);
   }, [coreValues.length]);
+
+  useEffect(() => {
+    const container = productScrollRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      const containerCenter = container.scrollLeft + container.clientWidth / 2;
+      const items = container.querySelectorAll('[data-product-index]');
+      let closestIndex = 0;
+      let closestDistance = Infinity;
+
+      items.forEach((item, index) => {
+        const itemCenter = (item as HTMLElement).offsetLeft + (item as HTMLElement).offsetWidth / 2;
+        const distance = Math.abs(containerCenter - itemCenter);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      setCenterProductIndex(closestIndex);
+    };
+
+    handleScroll();
+    container.addEventListener('scroll', handleScroll, { passive: true });
+    return () => container.removeEventListener('scroll', handleScroll);
+  }, [products.length]);
 
   if (loading) {
     return (
@@ -331,7 +383,7 @@ const Index = () => {
         </section>
         </AOSWrapper>
 
-        {/* 8. Our Approach */}
+        {/* Our Products */}
         <AOSWrapper animation="fade-up" delay={200}>
           <section className="py-24 bg-white">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -339,24 +391,69 @@ const Index = () => {
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">Our Products</h2>
                 <p className="text-xl text-muted-foreground">Five ways we turn African ideas into scalable solutions.</p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-                {ourProducts.map((product) => (
-                  <Link
-                    key={product.href}
-                    to={product.href}
-                    className="group bg-white border border-gray-200 rounded-2xl shadow-sm hover:border-primary/30 hover:shadow-md transition-all duration-300 flex flex-col"
-                  >
-                    <div className="p-8 flex-1">
-                      <h4 className="text-2xl font-bold text-foreground mb-3">{product.name}</h4>
-                      <p className="text-lg text-muted-foreground leading-relaxed">{product.tagline}</p>
-                    </div>
-                    <div className="px-8 pb-8">
-                      <span className="inline-flex items-center bg-primary text-white px-8 py-3 rounded-full text-sm md:text-base font-bold uppercase tracking-wide group-hover:bg-primary-dark transition-colors duration-300">
-                        Learn more <ArrowRight className="ml-2 w-4 h-4" />
-                      </span>
-                    </div>
-                  </Link>
-                ))}
+
+              <div className="relative">
+                <button
+                  onClick={() => scrollProducts('left')}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/90 backdrop-blur rounded-full shadow-lg flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
+                  aria-label="Scroll products left"
+                >
+                  <ArrowLeft className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={() => scrollProducts('right')}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/90 backdrop-blur rounded-full shadow-lg flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
+                  aria-label="Scroll products right"
+                >
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+
+                <div
+                  ref={productScrollRef}
+                  className="flex overflow-x-auto snap-x snap-mandatory gap-8 pb-8 -mx-6 px-6 scrollbar-hide"
+                >
+                  {(products.length > 0 ? products : fallbackProducts).map((product, index) => {
+                    const distance = Math.abs(index - centerProductIndex);
+                    const scale = distance === 0 ? 1.08 : distance === 1 ? 1 : 0.94;
+
+                    return (
+                      <div
+                        key={product.id}
+                        data-product-index={index}
+                        className="snap-center flex-shrink-0 w-[300px] md:w-[380px]"
+                        style={{
+                          transform: `scale(${scale})`,
+                          transition: 'transform 0.4s ease',
+                          transformOrigin: 'center center'
+                        }}
+                      >
+                        <div className="bg-white border border-gray-200 hover:border-primary/30 hover:shadow-xl transition-all duration-300 rounded-2xl overflow-hidden h-full flex flex-col">
+                          <div className="aspect-[4/3] bg-gray-100 overflow-hidden">
+                            {product.image_url ? (
+                              <img src={product.image_url} alt={product.name} className="w-full h-full object-cover" />
+                            ) : (
+                              <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/15 to-primary/5">
+                                <span className="text-5xl font-black text-primary/40">{product.name.charAt(0)}</span>
+                              </div>
+                            )}
+                          </div>
+                          <div className="p-8 flex-1 flex flex-col">
+                            <h4 className="text-2xl font-bold text-foreground mb-3">{product.name}</h4>
+                            <p className="text-lg text-muted-foreground leading-relaxed flex-1">{product.tagline}</p>
+                            <div className="pt-6">
+                              <Link
+                                to={product.link_url || '/'}
+                                className="inline-flex items-center bg-primary text-white px-8 py-3 rounded-full text-sm md:text-base font-bold uppercase tracking-wide hover:bg-primary-dark transition-colors duration-300"
+                              >
+                                {product.link_text || 'Learn more'} <ArrowRight className="ml-2 w-4 h-4" />
+                              </Link>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </section>

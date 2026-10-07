@@ -51,6 +51,7 @@ import ManageCoreValues from "./pages/admin/ManageCoreValues";
 import ManageOurImpact from "./pages/admin/ManageOurImpact";
 import ManageHomeSections from "./pages/admin/ManageHomeSections";
 import ManagePartners from "./pages/admin/ManagePartners";
+import ManageProducts from "./pages/admin/ManageProducts";
 import ManageRepositories from "./pages/admin/ManageRepositories";
 import VisitorAnalyticsPage from "./pages/admin/VisitorAnalyticsPage";
 import DownloadsAnalyticsPage from "./pages/admin/DownloadsAnalyticsPage";
@@ -125,6 +126,7 @@ function App() {
              <Route path="our-impact" element={<ManageOurImpact />} />
              <Route path="home-sections" element={<ManageHomeSections />} />
              <Route path="partners" element={<ManagePartners />} />
+             <Route path="products" element={<ManageProducts />} />
             <Route path="repositories" element={<ManageRepositories />} />
             <Route path="messages" element={<ManageMessages />} />
             <Route path="analytics/visitors/demographics" element={<VisitorAnalyticsPage />} />
