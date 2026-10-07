@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import { ProductPageLayout } from "@/components/ProductPageLayout";
 import AOSWrapper from "@/components/AOSWrapper";
 
@@ -44,15 +45,16 @@ export default function MediaHubPage() {
       <AOSWrapper animation="fade-up">
         <section className="py-16 bg-gray-50">
           <div className="max-w-5xl mx-auto px-6 lg:px-8">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground font-poppins mb-10 text-center">Explore OTC Media</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground font-poppins mb-10 text-center">Explore OTC Media</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {bars.map((bar) => (
                 <Link
                   key={bar.href}
                   to={bar.href}
-                  className="group bg-foreground text-white p-8 text-center shadow-lg hover:shadow-card transition-all duration-300"
+                  className="group bg-foreground text-white p-10 text-center shadow-lg hover:shadow-golden hover:-translate-y-1 transition-all duration-300"
                 >
-                  <h4 className="text-lg font-bold group-hover:text-golden transition-colors">{bar.name}</h4>
+                  <h4 className="text-xl font-bold group-hover:text-golden transition-colors">{bar.name}</h4>
+                  <ArrowRight className="w-6 h-6 mx-auto mt-4 text-golden opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </Link>
               ))}
             </div>
@@ -64,8 +66,8 @@ export default function MediaHubPage() {
       <AOSWrapper animation="fade-up" delay={50}>
         <section className="py-16">
           <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground font-poppins mb-6">How This Product Connects to OTC</h2>
-            <p className="text-muted-foreground leading-relaxed">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground font-poppins mb-6">How This Product Connects to OTC</h2>
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
               OTC Media amplifies research and innovation across the ecosystem, supports creators with Academy
               training, protects their work through the Legal & Business Protection Centre, connects promising
               creative ventures to the Fund and tells the stories of OTC products and impact.

@@ -39,17 +39,17 @@ export default function InnovationHubPage() {
       <AOSWrapper animation="fade-up">
         <section className="py-16">
           <div className="max-w-5xl mx-auto px-6 lg:px-8 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground font-poppins mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground font-poppins mb-6">
               Connecting Africa's Innovation Ecosystem
             </h2>
-            <p className="text-muted-foreground leading-relaxed mb-8">
+            <p className="text-lg text-muted-foreground leading-relaxed mb-10 max-w-3xl mx-auto">
               OTC builds stronger connections between African innovators, markets, investors, researchers, businesses
               and institutions, enabling ideas, knowledge, technology and opportunities to move across borders.
             </p>
-            <h3 className="font-bold text-primary mb-4 uppercase tracking-wide text-sm">Who We Work With</h3>
+            <h3 className="font-bold text-accent mb-6 uppercase tracking-[0.25em] text-sm">Who We Work With</h3>
             <div className="flex flex-wrap justify-center gap-3">
               {["Innovators", "Entrepreneurs", "Start-ups", "Researchers", "Students", "Technology Developers", "Investors", "Businesses", "Universities", "Governments", "Development Partners"].map((who) => (
-                <span key={who} className="border border-primary/30 text-primary text-sm font-semibold px-4 py-2">
+                <span key={who} className="border border-primary/30 text-primary text-sm font-semibold px-4 py-2 hover:bg-primary hover:text-white hover:border-primary transition-all duration-300">
                   {who}
                 </span>
               ))}
@@ -62,25 +62,25 @@ export default function InnovationHubPage() {
       <AOSWrapper animation="fade-up" delay={50}>
         <section className="py-16 bg-gray-50">
           <div className="max-w-5xl mx-auto px-6 lg:px-8 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground font-poppins mb-8">Our Innovations</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground font-poppins mb-8">Our Innovations</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-white p-8 shadow-md border border-gray-100">
-                <h4 className="text-lg font-bold text-foreground mb-2">WazaziConnect</h4>
-                <p className="text-sm text-muted-foreground">
+              <div className="bg-white p-8 shadow-md border border-gray-100 hover:shadow-golden hover:-translate-y-1 hover:border-primary/30 transition-all duration-300">
+                <h4 className="text-xl font-bold text-primary mb-2">WazaziConnect</h4>
+                <p className="text-base text-muted-foreground">
                   A digital platform connecting parents and caregivers with trusted health and development resources.
                 </p>
               </div>
-              <div className="bg-white p-8 shadow-md border border-gray-100">
-                <h4 className="text-lg font-bold text-foreground mb-2">HappyFarma</h4>
-                <p className="text-sm text-muted-foreground">
+              <div className="bg-white p-8 shadow-md border border-gray-100 hover:shadow-golden hover:-translate-y-1 hover:border-primary/30 transition-all duration-300">
+                <h4 className="text-xl font-bold text-primary mb-2">HappyFarma</h4>
+                <p className="text-base text-muted-foreground">
                   A technology solution supporting farmers with access to information, inputs and markets.
                 </p>
               </div>
             </div>
-            <p className="mt-10 text-xl font-bold text-foreground">
+            <p className="mt-10 text-2xl font-bold text-foreground">
               Have an Idea? Let's build it. Let's connect it. Let's scale it.
             </p>
-            <p className="text-muted-foreground mt-2">
+            <p className="text-muted-foreground mt-3 text-lg">
               Join the OTC Innovation Hub and be part of building sustainable African solutions for Africa and the world.
             </p>
           </div>

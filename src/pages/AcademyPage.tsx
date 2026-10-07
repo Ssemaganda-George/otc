@@ -43,8 +43,8 @@ export default function AcademyPage() {
       <AOSWrapper animation="fade-up">
         <section className="py-16">
           <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground font-poppins mb-4">Our Fellowship Portfolio</h2>
-            <p className="text-muted-foreground">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground font-poppins mb-4">Our Fellowship Portfolio</h2>
+            <p className="text-lg text-muted-foreground">
               Space for current and previous fellowships, testimonials and learning outcomes — coming soon.
             </p>
           </div>

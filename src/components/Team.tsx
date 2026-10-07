@@ -109,7 +109,7 @@ export function Team() {
 				<div className="mx-auto max-w-6xl relative">
 					{/* Section Header */}
 				<div className="text-center mb-12">
-					<h2 className="font-black uppercase leading-[0.85] tracking-tight text-primary mb-8 text-[clamp(3rem,14vw,12rem)] whitespace-nowrap">
+					<h2 className="font-black uppercase leading-[0.85] tracking-tight text-primary mb-8 text-[clamp(2.5rem,12vw,11rem)] whitespace-nowrap">
 						Our People
 					</h2>
 					<div className="w-32 h-2 bg-accent mx-auto mb-8 rounded-full" />
