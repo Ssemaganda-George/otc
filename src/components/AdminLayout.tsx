@@ -35,8 +35,14 @@ export default function AdminLayout() {
   };
 
   const confirmSignOut = async () => {
-    await signOut();
-    navigate("/");
+    try {
+      await signOut();
+    } catch (error) {
+      console.error('Error signing out:', error);
+    } finally {
+      setShowSignOutDialog(false);
+      navigate("/");
+    }
   };
 
   const sidebarGroups = [
