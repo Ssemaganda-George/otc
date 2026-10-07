@@ -36,7 +36,7 @@ export default function AdminLayout() {
 
   const confirmSignOut = async () => {
     await signOut();
-    navigate("/admin/login");
+    navigate("/");
   };
 
   const sidebarGroups = [

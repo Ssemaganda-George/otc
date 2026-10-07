@@ -58,10 +58,32 @@ import DownloadsAnalyticsPage from "./pages/admin/DownloadsAnalyticsPage";
 import ManageMessages from "./pages/admin/ManageMessages";
 
 import AdminLayout from "./components/AdminLayout";
-import { AuthProvider } from "./contexts/AuthContext";
+import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 
 const queryClient = new QueryClient();
+
+function AdminGuard() {
+  const { user, loading } = useAuth();
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return <AdminLogin />;
+  }
+
+  return (
+    <ErrorBoundary>
+      <AdminLayout />
+    </ErrorBoundary>
+  );
+}
 
 function App() {
   const location = useLocation();
@@ -103,15 +125,8 @@ function App() {
           <Route path="/donate" element={<PageTransition><DonatePage /></PageTransition>} />
           <Route path="/newsletter" element={<PageTransition><NewsletterPage /></PageTransition>} />
 
-          {/* 🔐 ADMIN LOGIN — MUST COME FIRST */}
-          <Route path="/admin/login" element={<AdminLogin />} />
-
-          {/* 🔐 ADMIN AREA */}
-          <Route path="/admin" element={
-            <ErrorBoundary>
-              <AdminLayout />
-            </ErrorBoundary>
-          }>
+          {/* 🔐 ADMIN AREA — shows the login form at /admin when signed out */}
+          <Route path="/admin" element={<AdminGuard />}>
             <Route index element={<AdminDashboard />} />
             <Route path="team" element={<ManageTeam />} />
             <Route path="board-members" element={<ManageBoardMembers />} />
@@ -132,6 +147,9 @@ function App() {
             <Route path="analytics/visitors/demographics" element={<VisitorAnalyticsPage />} />
             <Route path="analytics/downloads" element={<DownloadsAnalyticsPage />} />
           </Route>
+
+          {/* Legacy admin login URL redirects to /admin */}
+          <Route path="/admin/login" element={<Navigate to="/admin" replace />} />
 
           {/* FALLBACK */}
           <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />

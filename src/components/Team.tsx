@@ -225,27 +225,6 @@ export function Team() {
 							</div>
 						)}
 
-					{/* Call to Action */}
-					<div className="text-center mt-12">
-							<div className="bg-gradient-to-br from-primary/5 to-golden/5 rounded-none p-10 border border-primary/10 shadow-xl max-w-6xl mx-auto">
-								<h3 className="heading-card text-primary mb-4">
-									Join Our Innovative Mission
-								</h3>
-								<p className="text-body text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-									We're always looking for passionate individuals who share our
-									vision of advancing digital justice in Africa through innovative
-									technology and legal solutions.
-								</p>
-								<div className="flex flex-col sm:flex-row gap-4 justify-center">
-									<Button variant="golden" size="lg" className="px-8 py-3">
-										View Open Positions
-									</Button>
-									<Button variant="outline" size="lg" className="px-8 py-3 border-primary/20 hover:bg-primary/5">
-										Learn More About Us
-									</Button>
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
 			</section>
