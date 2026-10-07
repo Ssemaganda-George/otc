@@ -8,6 +8,7 @@ import { Mail } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { subscribeToNewsletter } from "@/lib/newsletter";
 
 const NewsletterPage = () => {
   const { toast } = useToast();
@@ -18,22 +19,14 @@ const NewsletterPage = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const formData = new FormData();
-    formData.append("email", email);
-
     try {
-      const response = await fetch("https://formspree.io/f/mdkwwayn", {
-        method: "POST",
-        body: formData,
-        headers: {
-          Accept: "application/json",
-        },
-      });
-
-      if (response.ok) {
+      const result = await subscribeToNewsletter(email, "newsletter-page");
+      if (result.ok) {
         toast({
           title: "Successfully subscribed!",
-          description: "Thank you for subscribing to our newsletter. Check your email for confirmation.",
+          description: result.already
+            ? "This email is already subscribed to our newsletter."
+            : "Thank you for subscribing to our newsletter. Check your email for confirmation.",
         });
         setEmail("");
       } else {

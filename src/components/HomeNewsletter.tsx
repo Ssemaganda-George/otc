@@ -1,8 +1,44 @@
+import { useState } from "react";
 import { Mail, Send, CheckCircle, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useToast } from "@/hooks/use-toast";
+import { subscribeToNewsletter } from "@/lib/newsletter";
 
 export function HomeNewsletter() {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const result = await subscribeToNewsletter(email, "homepage", firstName);
+      if (result.ok) {
+        toast({
+          title: "Successfully subscribed!",
+          description: result.already
+            ? "This email is already subscribed to our newsletter."
+            : "Welcome to our community!",
+        });
+        setEmail("");
+        setFirstName("");
+      } else {
+        throw new Error("Failed to subscribe");
+      }
+    } catch (error) {
+      toast({
+        title: "Subscription failed",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <section className="py-24 bg-primary/5">
       <div className="container mx-auto px-6">
@@ -82,7 +118,7 @@ export function HomeNewsletter() {
                 Join Our Community
               </h3>
               
-              <form className="space-y-6">
+              <form className="space-y-6" onSubmit={handleSubmit}>
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-2">
                     Email Address
@@ -91,6 +127,8 @@ export function HomeNewsletter() {
                     type="email" 
                     placeholder="Enter your email address"
                     className="h-12"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required 
                   />
                 </div>
@@ -102,6 +140,8 @@ export function HomeNewsletter() {
                   <Input 
                     placeholder="Enter your first name"
                     className="h-12"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
                   />
                 </div>
 
@@ -124,8 +164,8 @@ export function HomeNewsletter() {
                   </select>
                 </div>
 
-                <Button variant="golden" size="lg" className="w-full group">
-                  Subscribe Now
+                <Button variant="golden" size="lg" className="w-full group" type="submit" disabled={isSubmitting}>
+                  {isSubmitting ? "Subscribing..." : "Subscribe Now"}
                   <Send className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
 

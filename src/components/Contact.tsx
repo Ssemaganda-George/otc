@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/lib/supabase";
+import { subscribeToNewsletter } from "@/lib/newsletter";
 
 export function Contact() {
   const { toast } = useToast();
@@ -59,20 +60,16 @@ export function Contact() {
 
     const form = e.currentTarget;
     const formData = new FormData(form);
+    const email = (formData.get("email") as string) || "";
 
     try {
-      const response = await fetch("https://formspree.io/f/mdkwwayn", {
-        method: "POST",
-        body: formData,
-        headers: {
-          Accept: "application/json",
-        },
-      });
-
-      if (response.ok) {
+      const result = await subscribeToNewsletter(email, "contact");
+      if (result.ok) {
         toast({
           title: "Successfully subscribed!",
-          description: "Thank you for subscribing to our newsletter.",
+          description: result.already
+            ? "This email is already subscribed to our newsletter."
+            : "Thank you for subscribing to our newsletter.",
         });
         form.reset();
       } else {

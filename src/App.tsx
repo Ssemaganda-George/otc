@@ -56,6 +56,7 @@ import ManageRepositories from "./pages/admin/ManageRepositories";
 import VisitorAnalyticsPage from "./pages/admin/VisitorAnalyticsPage";
 import DownloadsAnalyticsPage from "./pages/admin/DownloadsAnalyticsPage";
 import ManageMessages from "./pages/admin/ManageMessages";
+import ManageNewsletter from "./pages/admin/ManageNewsletter";
 
 import AdminLayout from "./components/AdminLayout";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
@@ -143,7 +144,8 @@ function App() {
              <Route path="partners" element={<ManagePartners />} />
              <Route path="products" element={<ManageProducts />} />
             <Route path="repositories" element={<ManageRepositories />} />
-            <Route path="messages" element={<ManageMessages />} />
+             <Route path="messages" element={<ManageMessages />} />
+             <Route path="newsletter" element={<ManageNewsletter />} />
             <Route path="analytics/visitors/demographics" element={<VisitorAnalyticsPage />} />
             <Route path="analytics/downloads" element={<DownloadsAnalyticsPage />} />
           </Route>

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Newspaper, Download, X, Loader2, ChevronLeft, ChevronRight, Heart, Share2, Facebook, Twitter, Linkedin, Mail } from "lucide-react";
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
+import { subscribeToNewsletter } from "@/lib/newsletter";
 
 interface NewsUpdate {
   id: string;
@@ -276,17 +277,9 @@ export default function NewsUpdatesPage() {
 
     setIsLoading(true);
     try {
-      // Replace with your actual API endpoint (e.g., Mailchimp or your backend)
-      const response = await fetch('/api/subscribe', { // Example: POST to your API
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email }),
-      });
-
-      if (response.ok) {
-        setMessage({ type: 'success', text: 'Thank you for subscribing! You\'ll receive updates soon.' });
+      const result = await subscribeToNewsletter(email, "news-updates");
+      if (result.ok) {
+        setMessage({ type: 'success', text: result.already ? "This email is already subscribed." : "Thank you for subscribing! You'll receive updates soon." });
         setEmail(''); // Clear input on success
       } else {
         throw new Error('Subscription failed. Please try again.');

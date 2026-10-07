@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { subscribeToNewsletter } from "@/lib/newsletter";
 
 const quickLinks = [
 	{ name: "About Us", href: "/about" },
@@ -30,24 +31,20 @@ export function Footer() {
 
 		const form = e.currentTarget;
 		const formData = new FormData(form);
+		const email = (formData.get("email") as string) || "";
 
 		try {
-			const response = await fetch("https://formspree.io/f/mdkwwayn", {
-				method: "POST",
-				body: formData,
-				headers: {
-					Accept: "application/json",
-				},
-			});
-
-			if (response.ok) {
+			const result = await subscribeToNewsletter(email, "footer");
+			if (result.ok) {
 				toast({
 					title: "Successfully subscribed!",
-					description: "Thank you for subscribing to our newsletter.",
+					description: result.already
+						? "This email is already subscribed to our newsletter."
+						: "Thank you for subscribing to our newsletter.",
 				});
 				form.reset();
 			} else {
-				throw new Error("Failed to subscribe");
+				throw new Error(result.error || "Failed to subscribe");
 			}
 		} catch (error) {
 			toast({

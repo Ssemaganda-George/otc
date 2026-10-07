@@ -86,6 +86,7 @@ export default function AdminLayout() {
       title: "Analytics & Communication",
       items: [
         { name: "Messages", path: "/admin/messages" },
+        { name: "Newsletter", path: "/admin/newsletter" },
         { name: "Visitor Analytics", path: "/admin/analytics/visitors/demographics" },
         { name: "Downloads Analytics", path: "/admin/analytics/downloads" },
       ],
