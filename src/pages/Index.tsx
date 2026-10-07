@@ -77,6 +77,13 @@ const fallbackPartners: Partner[] = [
   { id: "p4", name: "ADIJUST", logo_url: "/partners/adijust.png", website_url: null },
 ];
 
+const fallbackImpactStats: ImpactStat[] = [
+  { id: "st1", number: "2+", label: "Solutions Developed" },
+  { id: "st2", number: "8+", label: "Organisations Supported" },
+  { id: "st3", number: "2+", label: "Campaigns Supported" },
+  { id: "st4", number: "1000+", label: "Individuals Reached" },
+];
+
 const Index = () => {
   const [homeSections, setHomeSections] = useState<HomeSection[]>([]);
   const [impactStats, setImpactStats] = useState<ImpactStat[]>([]);
@@ -233,9 +240,11 @@ const Index = () => {
           <section className="py-24 bg-white">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
-                {impactStats.map((stat, index) => (
+                {(impactStats.length > 0 ? impactStats : fallbackImpactStats).map((stat, index) => (
                   <div key={stat.id || index} className="py-6 px-4 border-t-2 border-primary/20">
-                    <div className="text-5xl md:text-6xl font-extrabold text-foreground mb-2">{stat.number}</div>
+                    <div className="text-5xl md:text-6xl font-extrabold text-foreground mb-2">
+                      {stat.number.endsWith('+') ? stat.number : `${stat.number}+`}
+                    </div>
                     <div className="text-base text-muted-foreground">{stat.label}</div>
                   </div>
                 ))}
@@ -498,9 +507,9 @@ const Index = () => {
                 </Link>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-                {latestNews.map((news) => (
-                  <article key={news.id} className="bg-white border border-gray-200 hover:border-primary/30 hover:shadow-sm transition-all duration-300 overflow-hidden">
-                    <img
+                  {latestNews.map((news) => (
+                    <article key={news.id} className="bg-white border border-gray-200 hover:border-primary/30 hover:shadow-sm transition-all duration-300 overflow-hidden">
+                      <img
                       src={news.featured_image || "/assets/sac3.png"}
                       alt={news.title}
                       className="w-full h-56 object-cover rounded-xl shadow-md"
