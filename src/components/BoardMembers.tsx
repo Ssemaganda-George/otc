@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Landmark } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 
 interface BoardMember {
@@ -52,14 +51,10 @@ export function BoardMembers() {
   }, []);
 
   return (
-    <section id="board-members" className="py-24 bg-white">
+    <section id="board-members" className="py-16 bg-white">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-primary/10 rounded-full mb-8">
-              <Landmark className="w-9 h-9 text-primary" />
-            </div>
+          <div className="text-center mb-12">
             <h2 className="heading-section text-primary mb-6">Board Members</h2>
             <p className="text-body text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               The governance leadership guiding OTC's strategic direction.

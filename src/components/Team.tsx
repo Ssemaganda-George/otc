@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
-import { LinkedinIcon, MailIcon, TwitterIcon, X, ChevronLeft, ChevronRight, Users } from "lucide-react";
+import { LinkedinIcon, MailIcon, TwitterIcon, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "@/lib/supabase";
@@ -93,9 +93,9 @@ export function Team() {
 
 	return (
 		<>
-			<section
-				id="team"
-				className="py-24 bg-white"
+		<section
+			id="team"
+			className="py-16 bg-white"
 				style={{
 					'--color-background-warm': 'var(--background)',
 					'--color-text-primary': 'var(--foreground)',
@@ -105,19 +105,14 @@ export function Team() {
 				<div className="container mx-auto px-6">
 					<div className="mx-auto max-w-6xl">
 						{/* Section Header */}
-						<div className="text-center mb-20">
-							<div className="inline-flex items-center justify-center w-20 h-20 bg-primary/10 rounded-full mb-8">
-								<Users className="w-9 h-9 text-primary" />
-							</div>
-							<h2 className="heading-section text-primary mb-6">
-								Our Team
-							</h2>
-							<p className="text-body text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-								Meet the innovative minds behind OneTechConnect - a diverse team of legal experts,
-								technologists, and visionaries committed to advancing digital justice across Africa
-								through cutting-edge solutions and collaborative innovation.
-							</p>
-						</div>
+					<div className="text-center mb-12">
+						<h2 className="heading-section text-primary mb-6">
+							Our Team
+						</h2>
+						<p className="text-body text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+							Meet the people behind OneTechConnect — legal experts, technologists, and visionaries advancing digital justice across Africa.
+						</p>
+					</div>
 
 						{/* Team Grid */}
 						{loading ? (
@@ -230,8 +225,8 @@ export function Team() {
 							</div>
 						)}
 
-						{/* Call to Action */}
-						<div className="text-center mt-20">
+					{/* Call to Action */}
+					<div className="text-center mt-12">
 							<div className="bg-gradient-to-br from-primary/5 to-golden/5 rounded-none p-10 border border-primary/10 shadow-xl max-w-6xl mx-auto">
 								<h3 className="heading-card text-primary mb-4">
 									Join Our Innovative Mission
