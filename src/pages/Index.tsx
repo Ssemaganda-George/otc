@@ -322,7 +322,7 @@ const Index = () => {
 
                 <div 
                   ref={valuesScrollRef}
-                  className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 -mx-6 px-6 scrollbar-hide"
+                  className="relative flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 -mx-6 px-6 scrollbar-hide"
                 >
                 {coreValues.map((value, index) => {
                   const distance = Math.abs(index - centerValueIndex);
@@ -410,11 +410,11 @@ const Index = () => {
 
                 <div
                   ref={productScrollRef}
-                  className="flex overflow-x-auto snap-x snap-mandatory gap-8 pb-8 -mx-6 px-6 scrollbar-hide"
+                  className="relative flex items-center overflow-x-auto snap-x snap-mandatory gap-8 pb-8 -mx-6 px-6 scrollbar-hide"
                 >
                   {(products.length > 0 ? products : fallbackProducts).map((product, index) => {
                     const distance = Math.abs(index - centerProductIndex);
-                    const scale = distance === 0 ? 1.08 : distance === 1 ? 1 : 0.94;
+                    const scale = distance === 0 ? 1.1 : distance === 1 ? 0.96 : 0.9;
 
                     return (
                       <div
@@ -433,17 +433,17 @@ const Index = () => {
                               <img src={product.image_url} alt={product.name} className="w-full h-full object-cover" />
                             ) : (
                               <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/15 to-primary/5">
-                                <span className="text-5xl font-black text-primary/40">{product.name.charAt(0)}</span>
+                                <span className="text-4xl font-black text-primary/40">{product.name.charAt(0)}</span>
                               </div>
                             )}
                           </div>
-                          <div className="p-8 flex-1 flex flex-col">
-                            <h4 className="text-2xl font-bold text-foreground mb-3">{product.name}</h4>
-                            <p className="text-lg text-muted-foreground leading-relaxed flex-1">{product.tagline}</p>
-                            <div className="pt-6">
+                          <div className="p-5 flex-1 flex flex-col">
+                            <h4 className="text-xl font-bold text-foreground mb-2">{product.name}</h4>
+                            <p className="text-base text-muted-foreground leading-relaxed flex-1">{product.tagline}</p>
+                            <div className="pt-4">
                               <Link
                                 to={product.link_url || '/'}
-                                className="inline-flex items-center bg-primary text-white px-8 py-3 rounded-full text-sm md:text-base font-bold uppercase tracking-wide hover:bg-primary-dark transition-colors duration-300"
+                                className="inline-flex items-center bg-primary text-white px-6 py-2.5 rounded-full text-sm font-bold uppercase tracking-wide hover:bg-primary-dark transition-colors duration-300"
                               >
                                 {product.link_text || 'Learn more'} <ArrowRight className="ml-2 w-4 h-4" />
                               </Link>

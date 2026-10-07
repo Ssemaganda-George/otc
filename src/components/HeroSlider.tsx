@@ -38,7 +38,7 @@ const HeroSlider = () => {
       id: "fallback-1",
       title: "Championing Africa's",
       subtitle: "Digital Transformation",
-      description: "OneTechConnect leads Africa's technological advancement through innovative solutions, strategic partnerships, and unwavering commitment to human rights and social justice.",
+      description: "A youth-led African innovation organisation building solutions in Health, SRHR and Sustainable Development.",
       image: "/api/placeholder/1920/1080",
       cta_text: "Explore Our Mission",
       cta_link: "/about",
@@ -51,7 +51,7 @@ const HeroSlider = () => {
       id: "fallback-2",
       title: "OTC Innovation Hub",
       subtitle: "Connecting African Innovation",
-      description: "A pan-African platform for developing, supporting and scaling innovative solutions to Africa's challenges and opportunities.",
+      description: "Developing, connecting and scaling African innovation.",
       image: "/api/placeholder/1920/1080",
       cta_text: "Explore Innovation Hub",
       cta_link: "/innovation-hub",
@@ -64,7 +64,7 @@ const HeroSlider = () => {
       id: "fallback-3",
       title: "OTC Academy & Fund",
       subtitle: "Building Capacity. Mobilising Capital.",
-      description: "Developing people's capabilities and connecting promising African ventures with appropriate forms of capital.",
+      description: "Building capacity and mobilising capital for African innovation.",
       image: "/api/placeholder/1920/1080",
       cta_text: "Explore OTC Academy",
       cta_link: "/academy",
@@ -196,27 +196,18 @@ const HeroSlider = () => {
             <div key={slide.id} className="embla__slide relative min-w-full h-full flex">
               {/* Content Card - Left Side */}
               <div className="relative z-10 w-full md:w-4/5 lg:w-3/5 flex items-center">
-                <div className="bg-black bg-opacity-70 p-6 md:p-8 lg:p-10 max-w-5xl mx-auto md:ml-12 lg:ml-24 w-full">
-                  {/* Category Badge */}
-                  {slide.category && (
-                    <div
-                      className="mb-3 text-sm md:text-base uppercase tracking-wider font-bold inline-block px-3 py-1 rounded-sm bg-golden text-golden-foreground"
-                    >
-                      {slide.category}
-                    </div>
-                  )}
-
+                <div className="bg-black bg-opacity-70 p-5 md:p-6 lg:p-8 max-w-3xl mx-auto md:ml-12 lg:ml-24 w-full">
                   {/* Title */}
-                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 text-white">
+                  <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 text-white">
                     {slide.title}
-                    {slide.subtitle && <span className="block mt-1 text-2xl md:text-3xl lg:text-4xl text-golden">{slide.subtitle}</span>}
+                    {slide.subtitle && <span className="block mt-1 text-xl md:text-2xl lg:text-3xl text-golden">{slide.subtitle}</span>}
                   </h1>
 
                   {/* Accent Line */}
-                  <div className="h-1.5 w-20 mb-4 bg-golden"></div>
+                  <div className="h-1.5 w-20 mb-3 bg-golden"></div>
 
                   {/* Description */}
-                  <p className="text-base md:text-lg lg:text-xl mb-6 text-white/90 max-w-2xl font-light">
+                  <p className="text-base md:text-lg mb-5 text-white/90 max-w-xl font-light leading-relaxed">
                     {slide.description}
                   </p>
 
