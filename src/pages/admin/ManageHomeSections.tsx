@@ -12,7 +12,7 @@ import { Plus, Edit, Trash2, Save, X, Upload, Eye, EyeOff } from "lucide-react";
 
 interface HomeSection {
   id: string;
-  section_type: 'welcome_to_otc' | 'our_approach' | 'our_partners';
+  section_type: 'welcome_to_otc' | 'our_approach';
   title: string;
   image: string;
   display_order: number;
@@ -27,7 +27,7 @@ export default function ManageHomeSections() {
   const [loading, setLoading] = useState(true);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [formData, setFormData] = useState({
-    section_type: 'welcome_to_otc' as 'welcome_to_otc' | 'our_approach' | 'our_partners',
+    section_type: 'welcome_to_otc' as 'welcome_to_otc' | 'our_approach',
     title: "",
     image: "",
     display_order: "",
@@ -48,7 +48,7 @@ export default function ManageHomeSections() {
       const { data, error } = await supabase
         .from('home_sections')
         .select('*')
-        .in('section_type', ['welcome_to_otc', 'our_approach', 'our_partners'])
+        .in('section_type', ['welcome_to_otc', 'our_approach'])
         .order('display_order', { ascending: true });
 
       if (error) {
@@ -212,7 +212,7 @@ export default function ManageHomeSections() {
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-3xl font-bold text-foreground">Home Section Images</h1>
-            <p className="text-muted-foreground">Upload and manage images for Welcome, Approach and Partners sections</p>
+                <p className="text-muted-foreground">Upload and manage images for Welcome and Approach sections</p>
           </div>
           <Button
             onClick={() => setEditingId('new')}
@@ -237,14 +237,13 @@ export default function ManageHomeSections() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <Label htmlFor="section_type">Section *</Label>
-                    <Select value={formData.section_type} onValueChange={(value: 'welcome_to_otc' | 'our_approach' | 'our_partners') => handleSelectChange('section_type', value)}>
+                    <Select value={formData.section_type} onValueChange={(value: 'welcome_to_otc' | 'our_approach') => handleSelectChange('section_type', value)}>
                       <SelectTrigger>
                         <SelectValue placeholder="Select section" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="welcome_to_otc">Welcome To OTC</SelectItem>
                         <SelectItem value="our_approach">Our Approach</SelectItem>
-                        <SelectItem value="our_partners">Our Partners</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -341,13 +340,13 @@ export default function ManageHomeSections() {
                       className="w-full h-full object-cover"
                     />
                   ) : (
-                    <span className="text-white text-2xl font-bold">
-                      {section.section_type === 'welcome_to_otc' ? 'W' : section.section_type === 'our_approach' ? 'A' : 'P'}
-                    </span>
+                      <span className="text-white text-2xl font-bold">
+                        {section.section_type === 'welcome_to_otc' ? 'W' : 'A'}
+                      </span>
                   )}
                 </div>
                 <CardTitle className="text-lg">
-                  {section.title || (section.section_type === 'welcome_to_otc' ? 'Welcome To OTC' : section.section_type === 'our_approach' ? 'Our Approach' : 'Our Partners')}
+                  {section.title || (section.section_type === 'welcome_to_otc' ? 'Welcome To OTC' : 'Our Approach')}
                 </CardTitle>
                 <CardDescription>
                   {section.section_type.replace('_', ' ').toUpperCase()} • Order: {section.display_order}

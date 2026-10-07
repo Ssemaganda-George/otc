@@ -457,6 +457,7 @@ values
   ('blogs', 'blogs', true, 10485760, array['image/*']),
   ('resources', 'resources', true, 10485760, array['image/*','application/pdf']),
   ('products', 'products', true, 10485760, array['image/*']),
+  ('partners', 'partners', true, 10485760, array['image/*']),
   ('research-publications', 'research-publications', true, 10485760, array['image/*','application/pdf','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document']),
   ('research-experts', 'research-experts', true, 10485760, array['image/*']),
   ('home-sections', 'home-sections', true, 10485760, array['image/*']),

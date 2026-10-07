@@ -50,6 +50,7 @@ export default function AdminLayout() {
       title: "Content",
       items: [
         { name: "Home Sections", path: "/admin/home-sections" },
+        { name: "Partners", path: "/admin/partners" },
         { name: "About & Pages", path: "/admin/about-us" },
         { name: "Core Values", path: "/admin/core-values" },
         { name: "Our Impact", path: "/admin/our-impact" },

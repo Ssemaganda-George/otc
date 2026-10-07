@@ -1,7 +1,7 @@
 -- =========================================================================
 -- HOME SECTIONS MIGRATION
 -- =========================================================================
--- Admin-managed homepage section images: Welcome To OTC, Our Approach, Our Partners.
+-- Admin-managed homepage section images: Welcome To OTC and Our Approach.
 -- Run this in your Supabase SQL Editor (Dashboard > SQL Editor > New query).
 -- Idempotent: safe to re-run. Requires schema.sql (or run standalone).
 
@@ -26,14 +26,17 @@ create table if not exists home_sections (
 create unique index if not exists home_sections_section_type_key
   on home_sections (section_type);
 
--- Seed the three admin-managed homepage sections.
+-- Seed the two admin-managed homepage sections.
 -- NOTE: about_us / mission / vision are seeded separately in seed-about.sql.
+-- Partners are managed in the dedicated `partners` table (see partners_and_products.sql).
 insert into home_sections (section_type, title, subtitle, content, image, display_order, is_active)
 values
   ('welcome_to_otc', 'WELCOME TO OTC', null, null, '/images/DJP_5027.jpg', 1, true),
-  ('our_approach', 'OUR APPROACH', null, null, '/images/DFA-2.jpg', 2, true),
-  ('our_partners', 'OUR PARTNERS', null, null, null, 3, true)
+  ('our_approach', 'OUR APPROACH', null, null, '/images/DFA-2.jpg', 2, true)
 on conflict (section_type) do nothing;
+
+-- Remove the legacy our_partners row (partners now live in the `partners` table)
+delete from home_sections where section_type = 'our_partners';
 
 -- Row Level Security: public read, authenticated (admin) write
 alter table home_sections enable row level security;

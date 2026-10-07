@@ -40,6 +40,13 @@ interface NewsItem {
   publish_date: string;
 }
 
+interface Partner {
+  id: string;
+  name: string;
+  logo_url: string;
+  website_url: string | null;
+}
+
 const ourProducts = [
   { name: "OTC Innovation Hub", tagline: "Developing, connecting and scaling African innovation.", href: "/innovation-hub" },
   { name: "OTC Academy", tagline: "Research, learning and capability development.", href: "/academy" },
@@ -48,11 +55,19 @@ const ourProducts = [
   { name: "OTC Media Hub", tagline: "Creating, telling and amplifying African stories.", href: "/media" },
 ];
 
+const fallbackPartners: Partner[] = [
+  { id: "p1", name: "Ministry of Health", logo_url: "/partners/ministry-of-health.png", website_url: "https://health.go.ug" },
+  { id: "p2", name: "Personal Data Protection Office", logo_url: "/partners/personal-data-protection-office.png", website_url: null },
+  { id: "p3", name: "Ministry of Science & Innovation", logo_url: "/partners/ministry-of-science-innovation.png", website_url: null },
+  { id: "p4", name: "ADIJUST", logo_url: "/partners/adijust.png", website_url: null },
+];
+
 const Index = () => {
   const [homeSections, setHomeSections] = useState<HomeSection[]>([]);
   const [impactStats, setImpactStats] = useState<ImpactStat[]>([]);
   const [coreValues, setCoreValues] = useState<CoreValue[]>([]);
   const [latestNews, setLatestNews] = useState<NewsItem[]>([]);
+  const [partners, setPartners] = useState<Partner[]>([]);
   const [loading, setLoading] = useState(true);
   const [centerValueIndex, setCenterValueIndex] = useState(0);
   const valuesScrollRef = useRef<HTMLDivElement>(null);
@@ -73,17 +88,19 @@ const Index = () => {
 
   const fetchData = async () => {
     try {
-      const [sectionsRes, statsRes, valuesRes, newsRes] = await Promise.all([
+      const [sectionsRes, statsRes, valuesRes, newsRes, partnersRes] = await Promise.all([
         supabase.from('home_sections').select('*').eq('is_active', true).order('display_order'),
         supabase.from('our_impact_stats').select('*').order('created_at'),
         supabase.from('core_values').select('*').eq('is_active', true).order('display_order'),
-        supabase.from('news_updates').select('id, title, excerpt, featured_image, category, publish_date').eq('is_featured', true).order('publish_date', { ascending: false }).limit(3)
+        supabase.from('news_updates').select('id, title, excerpt, featured_image, category, publish_date').eq('is_featured', true).order('publish_date', { ascending: false }).limit(3),
+        supabase.from('partners').select('id, name, logo_url, website_url').eq('is_active', true).order('display_order')
       ]);
 
       if (sectionsRes.data) setHomeSections(sectionsRes.data);
       if (statsRes.data) setImpactStats(statsRes.data);
       if (valuesRes.data) setCoreValues(valuesRes.data);
       if (newsRes.data) setLatestNews(newsRes.data);
+      if (partnersRes.data) setPartners(partnersRes.data);
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
@@ -351,10 +368,18 @@ const Index = () => {
             <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
                <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-10">Our Partners</h3>
               <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-10">
-                <img src="/partners/ministry-of-health.png" alt="Ministry of Health" className="h-16 md:h-24 w-auto object-contain" />
-                <img src="/partners/personal-data-protection-office.png" alt="Personal Data Protection Office" className="h-16 md:h-24 w-auto object-contain" />
-                <img src="/partners/ministry-of-science-innovation.png" alt="Ministry of Science & Innovation" className="h-16 md:h-24 w-auto object-contain" />
-                <img src="/partners/adijust.png" alt="ADIJUST" className="h-16 md:h-24 w-auto object-contain" />
+                {(partners.length > 0 ? partners : fallbackPartners).map((partner) => {
+                  const logo = (
+                    <img src={partner.logo_url} alt={partner.name} title={partner.name} className="h-16 md:h-24 w-auto object-contain" />
+                  );
+                  return partner.website_url ? (
+                    <a key={partner.id} href={partner.website_url} target="_blank" rel="noopener noreferrer" aria-label={partner.name} className="inline-block cursor-pointer hover:opacity-80 transition-opacity">
+                      {logo}
+                    </a>
+                  ) : (
+                    <span key={partner.id} className="inline-block">{logo}</span>
+                  );
+                })}
               </div>
             </div>
           </section>
