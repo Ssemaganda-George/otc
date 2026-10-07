@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useSpring } from "framer-motion";
-import { ArrowRight, Quote, Heart, Users, Plus, Minus, Twitter, Linkedin, Facebook, Instagram } from "lucide-react";
+import { ArrowRight, Quote, Heart, Users, Plus, Minus, Twitter, Linkedin, Facebook, Instagram, Award } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { TopBar } from "@/components/TopBar";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -63,9 +63,9 @@ export default function AboutPage() {
   };
 
   const sliderImages = [
-    { src: "/assets/sac1.png", alt: "OTC Team" },
-    { src: "/assets/sac3.png", alt: "OTC Innovation" },
-    { src: "/assets/sac7.jpeg", alt: "OTC Justice" }
+    { src: "/images/DJP_5027.jpg", alt: "OTC Team" },
+    { src: "/images/DJP_5020.jpg", alt: "OTC Innovation" },
+    { src: "/images/DFA-2.jpg", alt: "OTC Impact" }
   ];
 
   const accordionItems = [
@@ -102,15 +102,20 @@ export default function AboutPage() {
       <main>
         {/* Hero - Big ABOUT US heading with description below */}
         <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-white">
+          {/* Decorative solid color shapes */}
+          <div className="absolute -top-24 -right-24 w-96 h-96 bg-accent-light rounded-full opacity-70" aria-hidden="true" />
+          <div className="absolute bottom-10 -left-24 w-72 h-72 bg-golden-light rounded-full opacity-70" aria-hidden="true" />
           <div className="w-full px-6 lg:px-12 pt-20 pb-16">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="font-black uppercase leading-[0.85] tracking-tight text-foreground mb-8 text-[clamp(4rem,18vw,18rem)]">
+              <p className="text-accent font-bold uppercase tracking-[0.25em] text-sm md:text-base mb-6">Who We Are</p>
+              <h1 className="font-black uppercase leading-[0.85] tracking-tight text-primary mb-8 text-[clamp(4rem,18vw,18rem)]">
                 About Us
               </h1>
+              <div className="w-32 h-2 bg-accent rounded-full" />
             </motion.div>
 
             <motion.div
@@ -130,10 +135,10 @@ export default function AboutPage() {
         <section className="relative">
           <div className="relative -mt-8">
             {/* Arched top border */}
-            <svg className="w-full h-16 text-white" viewBox="0 0 1440 64" preserveAspectRatio="none" fill="currentColor">
+            <svg className="w-full h-16 text-golden-light" viewBox="0 0 1440 64" preserveAspectRatio="none" fill="currentColor">
               <path d="M0,64 C360,0 1080,0 1440,64 L1440,64 L0,64 Z" />
             </svg>
-            <div className="bg-gray-50 py-12 overflow-hidden">
+            <div className="bg-golden-light py-12 overflow-hidden">
               <div className="flex w-max animate-marquee">
                 {[...sliderImages, ...sliderImages].map((img, index) => (
                   <motion.div
@@ -144,12 +149,17 @@ export default function AboutPage() {
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     className="w-[38vw] min-w-[260px] flex-shrink-0 px-3"
                   >
-                    <div className="relative overflow-hidden shadow-md h-[400px] md:h-[500px]">
+                    <div className="relative overflow-hidden shadow-md h-[400px] md:h-[500px] rounded-2xl group">
                       <img
                         src={img.src}
                         alt={img.alt}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-700 ease-out"
                       />
+                      <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/25 transition-colors duration-500 flex items-end">
+                        <span className="text-white font-bold uppercase tracking-wide text-lg px-5 pb-5 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                          {img.alt}
+                        </span>
+                      </div>
                     </div>
                   </motion.div>
                 ))}
@@ -158,8 +168,8 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Quote Section - Centered with golden quote mark */}
-        <section className="py-24 bg-white">
+        {/* Quote Section - Sky blue band with golden quote mark */}
+        <section className="py-24 bg-accent-light">
           <div className="max-w-5xl mx-auto px-6 text-center">
             <motion.div
               {...fadeInUp}
@@ -173,15 +183,9 @@ export default function AboutPage() {
             >
               OTC is a Youth-led African Not for Profit Organization that advances digital justice in health, sexual reproductive health, finance, agriculture and development, while ensuring respect for fundamental human rights and social justice for every individual and community in Africa.
             </motion.p>
-          </div>
-        </section>
-
-        {/* Extended Description */}
-        <section className="py-16 bg-white">
-          <div className="max-w-4xl mx-auto px-6 text-center">
             <motion.p
               {...fadeInUp}
-              className="text-lg text-muted-foreground leading-[1.6]"
+              className="text-lg md:text-xl text-muted-foreground leading-[1.6] mt-10 max-w-4xl mx-auto"
             >
               Our approach goes beyond traditional marketing; we leverage evidence-based Social Behaviour Change Communication (SBCC) and cutting-edge creativity to inspire lasting shifts in mindset. We view our clients as collaborative partners, working hand in hand to co-create future-ready campaigns that advocate for social progress, promote healthy behaviours, and drive sustainable growth.
             </motion.p>
@@ -200,14 +204,14 @@ export default function AboutPage() {
                 {/* Geometric background shape */}
                 <div className="absolute -top-8 -left-8 w-64 h-64 bg-primary/10 rounded-full blur-2xl" />
                 <div className="absolute -bottom-8 -right-8 w-64 h-64 bg-primary/5 rounded-full blur-2xl" />
-                <div className="relative">
+                <div className="relative group">
                   <img
-                    src="/assets/sac7.jpeg"
+                    src="/images/DJP_5167.jpg"
                     alt="What drives us"
-                    className="w-full h-[500px] object-cover rounded-2xl shadow-xl"
+                    className="w-full h-[500px] object-cover rounded-2xl shadow-xl scale-105 group-hover:scale-100 transition-transform duration-700 ease-out"
                   />
                   {/* Overlay shape */}
-                  <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-primary rounded-2xl rotate-12" />
+                  <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-primary rounded-2xl rotate-12 transition-transform duration-500 group-hover:rotate-45" />
                 </div>
               </motion.div>
 
@@ -230,9 +234,14 @@ export default function AboutPage() {
                         onClick={() => setOpenAccordion(openAccordion === index ? null : index)}
                         className="w-full flex items-center justify-between py-6 text-left group"
                       >
-                          <h3 className="text-2xl md:text-3xl font-bold text-foreground group-hover:text-primary transition-colors">
-                            {item.title}
-                          </h3>
+                          <div className="flex items-center gap-5">
+                            <span className={`w-11 h-11 rounded-full flex items-center justify-center text-lg font-black flex-shrink-0 transition-all duration-300 ${openAccordion === index ? 'bg-primary text-white' : 'bg-accent-light text-accent group-hover:bg-primary group-hover:text-white'}`}>
+                              {index + 1}
+                            </span>
+                            <h3 className="text-2xl md:text-3xl font-bold text-foreground group-hover:text-primary transition-colors">
+                              {item.title}
+                            </h3>
+                          </div>
                         <div className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center group-hover:border-primary group-hover:bg-primary group-hover:text-white transition-all">
                           {openAccordion === index ? (
                             <Minus className="w-4 h-4" />
@@ -269,7 +278,7 @@ export default function AboutPage() {
               {/* Vision */}
               <motion.div
                 {...fadeInUp}
-                className="bg-white p-10 rounded-2xl shadow-sm border border-gray-100"
+                className="bg-accent-light p-10 rounded-2xl border border-accent-light hover:shadow-blue hover:-translate-y-1 transition-all duration-300"
               >
                 <h3 className="text-5xl md:text-[72px] font-black text-primary leading-[1.0] mb-8">
                   {(getSectionContent('vision')?.title || 'Vision').replace(/^OUR\s+/i, '')}
@@ -282,7 +291,7 @@ export default function AboutPage() {
               {/* Mission */}
               <motion.div
                 {...fadeInUp}
-                className="bg-white p-10 rounded-2xl shadow-sm border border-gray-100"
+                className="bg-golden-light p-10 rounded-2xl border border-golden-light hover:shadow-golden hover:-translate-y-1 transition-all duration-300"
               >
                 <h3 className="text-5xl md:text-[72px] font-black text-primary leading-[1.0] mb-8">
                   {(getSectionContent('mission')?.title || 'Mission').replace(/^OUR\s+/i, '')}
@@ -326,7 +335,7 @@ export default function AboutPage() {
                     className="group"
                   >
                     {/* 1:1 ratio image block */}
-                    <div className="relative aspect-square overflow-hidden rounded-xl mb-6 bg-gradient-to-br from-primary/5 to-primary/10">
+                    <div className="relative aspect-square overflow-hidden rounded-xl mb-6 bg-golden-light/40 shadow-sm group-hover:shadow-golden transition-shadow duration-300">
                       {member.image ? (
                         <img
                           src={member.image}
@@ -335,15 +344,15 @@ export default function AboutPage() {
                         />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center">
-                          <span className="text-7xl font-bold text-primary/20">
+                          <span className="text-7xl font-bold text-primary/30">
                             {member.name.split(' ').map(n => n[0]).join('')}
                           </span>
                         </div>
                       )}
                     </div>
                     {/* Bold name and job title stacked below */}
-                    <h3 className="text-xl font-bold text-foreground mb-1">{member.name}</h3>
-                    <p className="text-primary font-semibold">{member.position}</p>
+                    <h3 className="text-xl font-bold text-foreground mb-1 group-hover:text-primary transition-colors">{member.name}</h3>
+                    <p className="text-accent font-semibold">{member.position}</p>
                   </motion.div>
                 ))}
               </div>
@@ -366,23 +375,27 @@ export default function AboutPage() {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
-              {processSteps.map((step, index) => (
-                <motion.div
-                  key={step.number}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="text-center"
-                >
-                  <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                    <span className="text-2xl font-black">{step.number}</span>
-                  </div>
-                  <h4 className="text-xl md:text-2xl font-bold text-foreground mb-3">{step.title}</h4>
-                  <p className="text-base md:text-lg text-muted-foreground leading-relaxed">{step.description}</p>
-                </motion.div>
-              ))}
+            <div className="relative">
+              {/* Connecting dashed line */}
+              <div className="hidden md:block absolute top-8 left-[12%] right-[12%] border-t-2 border-dashed border-primary/30" aria-hidden="true" />
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+                {processSteps.map((step, index) => (
+                  <motion.div
+                    key={step.number}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="text-center group"
+                  >
+                    <div className={`w-16 h-16 text-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg transition-transform duration-300 group-hover:scale-110 relative z-10 ${index % 2 === 0 ? 'bg-primary' : 'bg-accent'}`}>
+                      <span className="text-2xl font-black">{step.number}</span>
+                    </div>
+                    <h4 className="text-xl md:text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">{step.title}</h4>
+                    <p className="text-base md:text-lg text-muted-foreground leading-relaxed">{step.description}</p>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -410,8 +423,11 @@ export default function AboutPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+            className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-golden hover:-translate-y-1 hover:border-primary/30 transition-all duration-300"
           >
+            <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-5 ${index % 2 === 0 ? 'bg-golden-light' : 'bg-accent-light'}`}>
+              <Award className={`w-6 h-6 ${index % 2 === 0 ? 'text-primary' : 'text-accent'}`} />
+            </div>
             <h3 className="text-xl font-bold text-foreground mb-2">{award.title}</h3>
             <p className="text-muted-foreground leading-relaxed">{award.description}</p>
           </motion.div>
@@ -420,20 +436,20 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* CTA Section - Big pill-shaped button */}
-        <section className="py-24 bg-white">
+        {/* CTA Section - Solid gold band with big pill-shaped button */}
+        <section className="py-24 bg-primary">
           <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center">
             <motion.div {...fadeInUp}>
-              <h2 className="text-5xl md:text-7xl lg:text-8xl font-black mb-12 text-foreground">
+              <h2 className="text-5xl md:text-7xl lg:text-8xl font-black mb-12 text-white">
                 Let's talk.
               </h2>
-              <h2 className="text-5xl md:text-7xl lg:text-8xl font-black mb-12 text-foreground">
+              <h2 className="text-5xl md:text-7xl lg:text-8xl font-black mb-12 text-white">
                 Let's make impact.
               </h2>
               {/* Big pill-shaped button */}
               <Link
                 to="/contact"
-                className="inline-flex items-center bg-primary text-white px-20 py-8 text-2xl md:text-3xl font-bold uppercase tracking-wide rounded-full hover:bg-primary-dark transition-all duration-300 hover:scale-105 shadow-lg"
+                className="inline-flex items-center bg-white text-primary px-20 py-8 text-2xl md:text-3xl font-bold uppercase tracking-wide rounded-full hover:bg-golden-light transition-all duration-300 hover:scale-105 shadow-lg"
               >
                 Get in touch
                 <ArrowRight className="ml-3 w-7 h-7" />
