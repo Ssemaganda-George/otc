@@ -308,16 +308,16 @@ export default function NewsUpdatesPage() {
       
       <main className="pt-6">
         {/* Hero Section */}
-        <section className="py-12 md:py-24 bg-gradient-to-br from-primary/10 to-primary/5">
+        <section className="bg-white py-24">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6">
-                <Newspaper className="w-8 h-8 md:w-10 md:h-10 text-background" />
+              <div className="w-16 h-16 md:w-20 md:h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6">
+                <Newspaper className="w-8 h-8 md:w-10 md:h-10 text-white" />
               </div>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair font-semibold text-gradient-blue mb-6 md:mb-8 px-4">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-foreground mb-6 md:mb-8">
                 News & Updates
               </h1>
-              <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto px-4">
+              <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
                 Stay informed about OTC's latest developments, research findings, advocacy wins,
                 and insights on technology, human rights, and digital transformation across Africa.
               </p>
@@ -326,14 +326,14 @@ export default function NewsUpdatesPage() {
         </section>
 
         {/* News & Updates Articles Section */}
-        <section className="py-12 md:py-24 bg-white">
+        <section className="py-24">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
-              <div className="text-center mb-8 md:mb-12">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair font-semibold text-gradient-blue mb-3 md:mb-4 px-4">
+              <div className="text-center mb-16">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-foreground mb-6">
                   Latest News & Updates
                 </h2>
-                <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto px-4 leading-relaxed">
+                <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                   Stay informed about OTC's latest developments, research findings, advocacy wins, and insights on technology, human rights, and digital transformation across Africa.
                 </p>
               </div>
@@ -341,12 +341,12 @@ export default function NewsUpdatesPage() {
               {loading ? (
                 <div className="flex flex-col items-center justify-center py-16 md:py-24">
                   <Loader2 className="w-8 h-8 md:w-12 md:h-12 animate-spin text-primary mb-4" />
-                  <span className="text-base md:text-lg text-muted-foreground">Loading news updates...</span>
+                   <span className="text-xl text-muted-foreground">Loading news updates...</span>
                 </div>
               ) : newsUpdates.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                   {newsUpdates.map((newsUpdate) => (
-                    <article key={newsUpdate.id} className="bg-card rounded-none shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2">
+                    <article key={newsUpdate.id} className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group">
                       {/* Featured Image */}
                       {newsUpdate.featured_image && (
                         <div className="relative overflow-hidden aspect-[4/3] sm:aspect-[16/10]">
@@ -364,7 +364,7 @@ export default function NewsUpdatesPage() {
                         </div>
                       )}
 
-                      <div className="p-4 md:p-6">
+                       <div className="p-8">
                         {/* Category Badge */}
                         <div className="flex items-center gap-2 mb-3">
                           <div className="bg-secondary/10 text-secondary px-2 py-1 md:px-3 md:py-1 rounded-full text-xs md:text-sm font-medium">
@@ -373,13 +373,13 @@ export default function NewsUpdatesPage() {
                         </div>
 
                         {/* Title */}
-                        <h3 className="text-lg md:text-xl font-bold text-foreground mb-3 line-clamp-2 group-hover:text-primary transition-colors leading-tight">
+                        <h3 className="text-2xl font-bold text-foreground mb-3 line-clamp-2 group-hover:text-primary transition-colors leading-tight">
                           {newsUpdate.title}
                         </h3>
 
                         {/* Excerpt */}
                         {newsUpdate.excerpt && (
-                          <p className="text-sm md:text-base text-muted-foreground mb-4 line-clamp-3 leading-relaxed">
+                           <p className="text-xl text-muted-foreground mb-4 line-clamp-3 leading-relaxed">
                             {newsUpdate.excerpt}
                           </p>
                         )}
@@ -489,8 +489,8 @@ export default function NewsUpdatesPage() {
               ) : (
                 <div className="text-center py-16 md:py-24">
                   <Newspaper className="w-12 h-12 md:w-16 md:h-16 text-muted-foreground mx-auto mb-4" />
-                  <h3 className="text-lg md:text-xl font-semibold text-muted-foreground mb-2">No News Updates Yet</h3>
-                  <p className="text-sm md:text-base text-muted-foreground max-w-md mx-auto">Check back soon for the latest updates from OTC.</p>
+                   <h3 className="text-xl font-semibold text-muted-foreground mb-2">No News Updates Yet</h3>
+                   <p className="text-xl text-muted-foreground max-w-md mx-auto">Check back soon for the latest updates from OTC.</p>
                 </div>
               )}
             </div>
@@ -498,13 +498,13 @@ export default function NewsUpdatesPage() {
         </section>
 
         {/* Newsletter Subscription */}
-        <section className="py-12 md:py-24 bg-gradient-to-br from-card/30 to-background">
+        <section className="py-24 bg-gray-50">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair font-semibold text-gradient-blue mb-3 md:mb-4 px-4">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-foreground mb-6">
                 Stay Updated
               </h2>
-              <p className="text-base md:text-lg text-muted-foreground mb-6 md:mb-8 max-w-3xl mx-auto px-4 leading-relaxed">
+              <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
                 Subscribe to our newsletter to receive the latest news, research updates, and advocacy insights directly in your inbox.
               </p>
 
@@ -518,14 +518,14 @@ export default function NewsUpdatesPage() {
                     className="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-base touch-manipulation min-h-[48px]"
                     required
                   />
-                  <Button type="submit" disabled={isLoading} className="px-6 py-3 touch-manipulation min-h-[48px] text-base">
+                   <Button type="submit" disabled={isLoading} className="px-8 py-4 rounded-full text-base font-bold uppercase tracking-wide touch-manipulation min-h-[48px]">
                     {isLoading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
                     {isLoading ? 'Subscribing...' : 'Subscribe'}
                   </Button>
                 </div>
 
                 {message && (
-                  <div className={`mt-4 p-3 rounded-lg text-sm ${
+                   <div className={`mt-4 p-3 rounded-lg text-base ${
                     message.type === 'success'
                       ? 'bg-green-50 text-green-800 border border-green-200'
                       : 'bg-red-50 text-red-800 border border-red-200'
@@ -539,19 +539,19 @@ export default function NewsUpdatesPage() {
         </section>
 
         {/* Newsletter Signup */}
-        <section className="py-12 md:py-24 bg-gradient-to-br from-card/30 to-background">
+        <section className="py-24 bg-white">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-8 md:mb-12">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair font-semibold text-gradient-blue mb-3 md:mb-4 px-4">
+              <div className="text-center mb-16">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-foreground mb-6">
                   Stay Connected
                 </h2>
-                <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto px-4 leading-relaxed">
+                <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                   Be the first to know about our latest research, advocacy wins, and insights on technology and human rights in Africa.
                 </p>
               </div>
 
-              <div className="bg-card border border-border rounded-none p-6 md:p-8 lg:p-12 shadow-card max-w-2xl mx-auto">
+              <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm max-w-2xl mx-auto">
                 <div className="text-center mb-6 md:mb-8">
                   <h3 className="text-xl md:text-2xl font-playfair font-semibold text-foreground mb-3 md:mb-4">
                     Subscribe to Our Newsletter
@@ -563,15 +563,15 @@ export default function NewsUpdatesPage() {
 
                 <form onSubmit={handleSubscribe} className="max-w-md mx-auto">
                   <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-4 md:mb-6">
-                    <input
-                      type="email"
-                      placeholder="Enter your email address"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="flex-1 px-4 py-3 bg-white border border-input rounded-none text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base touch-manipulation min-h-[48px]"
-                      disabled={isLoading}
-                    />
-                    <Button variant="golden" type="submit" disabled={isLoading} className="group rounded-none touch-manipulation min-h-[48px] px-4 md:px-6 text-base">
+                     <input
+                       type="email"
+                       placeholder="Enter your email address"
+                       value={email}
+                       onChange={(e) => setEmail(e.target.value)}
+                       className="flex-1 px-4 py-3 bg-white border border-gray-200 rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base touch-manipulation min-h-[48px]"
+                       disabled={isLoading}
+                     />
+                     <Button variant="golden" type="submit" disabled={isLoading} className="group rounded-full touch-manipulation min-h-[48px] px-8 text-base font-bold uppercase tracking-wide">
                       {isLoading ? (
                         <>
                           <Loader2 className="w-4 h-4 mr-2 animate-spin" />
@@ -586,14 +586,14 @@ export default function NewsUpdatesPage() {
                     </Button>
                   </div>
 
-                  {message && (
-                    <div className={`p-3 md:p-4 rounded-none text-sm mb-4 ${message.type === 'success' ? 'bg-green-50 border border-green-200 text-green-800' : 'bg-red-50 border border-red-200 text-red-800'}`}>
+                   {message && (
+                     <div className={`p-3 md:p-4 rounded-lg text-base mb-4 ${message.type === 'success' ? 'bg-green-50 border border-green-200 text-green-800' : 'bg-red-50 border border-red-200 text-red-800'}`}>
                       {message.text}
                     </div>
                   )}
 
                   <div className="text-center">
-                    <p className="text-xs text-muted-foreground leading-relaxed">
+                     <p className="text-sm text-muted-foreground leading-relaxed">
                       By subscribing, you agree to receive updates from OneTechConnect.
                       We respect your privacy and you can unsubscribe at any time.
                     </p>

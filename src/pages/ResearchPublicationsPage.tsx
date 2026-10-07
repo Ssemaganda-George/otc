@@ -251,14 +251,14 @@ export default function ResearchPublicationsPage() {
 
 			<main className="pt-6">
 				{/* Hero Section */}
-				<section className="py-24 bg-gradient-to-br from-primary/10 to-primary/5">
+				<section className="bg-white py-24">
 					<div className="max-w-7xl mx-auto px-6 lg:px-8">
 						<div className="max-w-4xl mx-auto text-center">
-							<div className="w-20 h-20 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center mx-auto mb-6">
-								<Search className="w-10 h-10 text-background" />
+							<div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+								<Search className="w-10 h-10 text-white" />
 							</div>
-							<h1 className="heading-section text-gradient-blue mb-8">Research & Publications</h1>
-							<p className="text-body text-muted-foreground leading-relaxed">
+							<h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-foreground mb-8">Research & Publications</h1>
+							<p className="text-xl text-muted-foreground leading-relaxed">
 								Explore our comprehensive collection of research papers, policy briefs, and publications on digital
 								transformation, human rights, and technology governance in Africa.
 							</p>
@@ -267,7 +267,7 @@ export default function ResearchPublicationsPage() {
 				</section>
 
 				{/* Filters Section */}
-				<section className="py-12 bg-card">
+				<section className="py-12 bg-gray-50">
 					<div className="max-w-7xl mx-auto px-6 lg:px-8">
 						<div className="max-w-4xl mx-auto">
 							<div className="flex flex-col md:flex-row gap-4 items-center justify-between">
@@ -314,10 +314,10 @@ export default function ResearchPublicationsPage() {
 										{visiblePublications.map((pub) => (
 											<div
 												key={pub.id}
-												className="bg-card border border-border overflow-hidden shadow-card hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer group"
+												className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer group"
 												onClick={() => window.open(pub.view_url, '_blank')}
 											>
-												<div className="h-48 bg-secondary/20 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+												<div className="h-64 bg-gray-100 rounded-t-2xl overflow-hidden">
 													<img
 														src={pub.thumbnail}
 														alt={pub.title}
@@ -325,19 +325,19 @@ export default function ResearchPublicationsPage() {
 														onError={(e) => (e.currentTarget.src = "/images/placeholder.jpg")} // Fallback
 													/>
 												</div>
-												<div className="p-6 pb-12">
-													<h3 className="text-lg font-semibold text-foreground mb-2 line-clamp-2">
+					<div className="p-8 pb-12">
+						<h3 className="text-2xl font-bold text-foreground mb-2 line-clamp-2">
 														{pub.title}
 													</h3>
-													<div className="flex items-center text-sm text-muted-foreground mb-2">
+													<div className="flex items-center text-base text-muted-foreground mb-2">
 														<User className="w-4 h-4 mr-1" />
 														{pub.authors.join(", ")}
 													</div>
-													<div className="flex items-center text-sm text-muted-foreground mb-4">
+													<div className="flex items-center text-base text-muted-foreground mb-4">
 														<Calendar className="w-4 h-4 mr-1" />
 														{new Date(pub.publish_date).toLocaleDateString()}
 													</div>
-													<p className="text-sm text-muted-foreground mb-4 line-clamp-3">
+													<p className="text-xl text-muted-foreground mb-4 line-clamp-3">
 														{pub.abstract}
 													</p>
 													<div className="flex gap-2">

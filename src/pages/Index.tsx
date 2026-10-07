@@ -156,7 +156,7 @@ const Index = () => {
 
         {/* 5. Impact & Statistics */}
         <AOSWrapper animation="fade-up" delay={100}>
-          <section className="py-20 bg-white">
+          <section className="py-24 bg-white">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
                 {impactStats.map((stat, index) => (
@@ -323,14 +323,14 @@ const Index = () => {
                   <Link
                     key={product.href}
                     to={product.href}
-                    className="group bg-white border border-gray-200 hover:border-primary/30 transition-all duration-300 flex flex-col"
+                    className="group bg-white border border-gray-200 rounded-2xl shadow-sm hover:border-primary/30 hover:shadow-md transition-all duration-300 flex flex-col"
                   >
                     <div className="p-8 flex-1">
                       <h4 className="text-2xl font-bold text-foreground mb-3">{product.name}</h4>
                       <p className="text-lg text-muted-foreground leading-relaxed">{product.tagline}</p>
                     </div>
                     <div className="px-8 pb-8">
-                      <span className="inline-flex items-center text-primary text-base font-semibold group-hover:translate-x-1 transition-transform">
+                      <span className="inline-flex items-center bg-primary text-white px-8 py-3 rounded-full text-sm md:text-base font-bold uppercase tracking-wide group-hover:bg-primary-dark transition-colors duration-300">
                         Learn more <ArrowRight className="ml-2 w-4 h-4" />
                       </span>
                     </div>
@@ -362,7 +362,7 @@ const Index = () => {
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
               <div className="flex items-center justify-between mb-12">
                 <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">Latest News & Opportunities</h3>
-                <Link to="/news" className="text-primary font-semibold flex items-center hover:underline">
+                <Link to="/news" className="text-primary font-semibold inline-flex items-center gap-1 hover:translate-x-1 transition-transform">
                   View All <ArrowRight className="ml-1 w-4 h-4" />
                 </Link>
               </div>
@@ -372,10 +372,10 @@ const Index = () => {
                     <img
                       src={news.featured_image || "/assets/sac3.png"}
                       alt={news.title}
-                      className="w-full h-48 object-cover"
+                      className="w-full h-56 object-cover rounded-xl shadow-md"
                     />
                     <div className="p-6">
-                      <span className="inline-block text-primary text-xs font-bold px-2 py-1 mb-3 uppercase tracking-wide">
+                      <span className="inline-block text-primary text-sm font-bold px-2 py-1 mb-3 uppercase tracking-wide">
                         {news.category || 'NEWS'}
                       </span>
                       <h4 className="text-2xl font-bold text-foreground mb-3 leading-snug">{news.title}</h4>

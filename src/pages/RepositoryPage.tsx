@@ -343,22 +343,22 @@ export default function RepositoryPage() {
           </div>
         ) : (
           <>
-            {/* Hero Section */}
-            <section className="pt-24 pb-16 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
-              <div className="max-w-7xl mx-auto px-6 lg:px-8">
-                <div className="max-w-4xl mx-auto text-center">
-                  <h1 className="text-4xl md:text-5xl font-playfair font-bold text-gradient-blue mb-6">
-                    Repository
-                  </h1>
-                  <p className="text-xl text-muted-foreground">
-                    Explore our open-source tools, research databases, and digital solutions developed to advance digital justice and innovation across Africa.
-                  </p>
-                </div>
-              </div>
-            </section>
+             {/* Hero Section */}
+             <section className="py-24 bg-white">
+               <div className="max-w-7xl mx-auto px-6 lg:px-8">
+                 <div className="max-w-4xl mx-auto text-center">
+                   <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-foreground mb-6">
+                     Repository
+                   </h1>
+                   <p className="text-xl text-muted-foreground">
+                     Explore our open-source tools, research databases, and digital solutions developed to advance digital justice and innovation across Africa.
+                   </p>
+                 </div>
+               </div>
+             </section>
 
       {/* Search and Filter Section */}
-      <section className="py-8 bg-white border-b">
+       <section className="py-8 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
             <div className="flex flex-col md:flex-row gap-4 mb-6">
@@ -401,7 +401,7 @@ export default function RepositoryPage() {
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
-            <div className="overflow-x-auto bg-white shadow-lg rounded-lg">
+            <div className="overflow-x-auto bg-white border border-gray-200 rounded-2xl shadow-sm">
               <table className="w-full">
                 {/* Table Header */}
                 <thead>
@@ -428,7 +428,7 @@ export default function RepositoryPage() {
                                 href={repo.github_url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-primary hover:text-golden font-semibold text-lg transition-colors duration-200"
+                                 className="text-primary hover:text-primary-dark font-semibold text-lg transition-colors duration-200"
                               >
                                 {repo.title}
                               </a>
@@ -438,7 +438,7 @@ export default function RepositoryPage() {
                                   42 downloads
                                 </span>
                               </div>
-                            <p className="text-sm text-muted-foreground line-clamp-2">
+                              <p className="text-base text-muted-foreground line-clamp-2">
                               {repo.description}
                             </p>
                           </div>
@@ -448,11 +448,11 @@ export default function RepositoryPage() {
                       {/* Categories Column */}
                       <td className="py-4 px-6">
                         <div className="flex flex-wrap gap-2">
-                          <span className="text-sm text-gray-800">
+                           <span className="text-base text-foreground">
                             {repo.category}
                           </span>
                           {repo.tags.slice(0, 2).map((tag) => (
-                            <span key={tag} className="text-sm text-gray-600">
+                            <span key={tag} className="text-base text-muted-foreground">
                               • {tag}
                             </span>
                           ))}
@@ -553,9 +553,9 @@ export default function RepositoryPage() {
 
             {/* No Results */}
             {currentItems.length === 0 && (
-              <div className="text-center py-16 bg-white rounded-lg shadow-lg">
+               <div className="text-center py-16 bg-white border border-gray-200 rounded-2xl shadow-sm">
                 <Code className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">No repositories found</h3>
+                 <h3 className="text-2xl font-bold text-foreground mb-2">No repositories found</h3>
                 <p className="text-muted-foreground">
                   Try adjusting your search terms or category filter.
                 </p>

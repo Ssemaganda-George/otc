@@ -60,16 +60,16 @@ const NewsletterPage = () => {
       
       <main className="pt-6">
         {/* Hero Section */}
-        <section className="py-24 bg-gradient-to-br from-primary/10 to-primary/5">
+        <section className="bg-white py-24">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="w-20 h-20 bg-gradient-to-br from-golden to-golden/80 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Mail className="w-10 h-10 text-background" />
+              <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                <Mail className="w-10 h-10 text-white" />
               </div>
-              <h1 className="heading-section text-gradient-blue mb-8">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-foreground mb-8">
                 Subscribe to Our Newsletter
               </h1>
-              <p className="text-body text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+              <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
                 Stay informed about the latest in African tech law, digital rights, and innovation
               </p>
             </div>
@@ -77,22 +77,22 @@ const NewsletterPage = () => {
         </section>
 
         {/* Main Subscription Form */}
-        <section className="py-24">
+        <section className="py-24 bg-gray-50">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="max-w-2xl mx-auto">
-              <Card className="border-2 border-primary/20 shadow-card">
+              <Card className="border border-gray-200 rounded-2xl shadow-sm">
                 <CardHeader className="text-center">
-                  <CardTitle className="text-2xl font-playfair text-gradient-blue mb-2">
+                  <CardTitle className="text-2xl font-bold text-foreground mb-2">
                     Join Our Community
                   </CardTitle>
-                  <CardDescription className="text-lg">
+                  <CardDescription className="text-lg text-muted-foreground">
                     Get monthly updates delivered straight to your inbox
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
+                      <label className="block text-base font-medium text-foreground mb-2">
                         Email Address
                       </label>
                       <Input
@@ -126,10 +126,10 @@ const NewsletterPage = () => {
         </section>
 
         {/* Simple Info Section */}
-        <section className="py-24 bg-secondary/20">
+        <section className="py-24 bg-white">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-2xl font-playfair font-bold text-gradient-blue mb-6">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-foreground mb-6">
                 What You'll Receive
               </h2>
               <p className="text-body text-muted-foreground leading-relaxed mb-8">
@@ -137,7 +137,7 @@ const NewsletterPage = () => {
                 innovation programs, and opportunities across Africa. Stay connected with groundbreaking developments 
                 and be the first to know about our programs and events.
               </p>
-              <div className="bg-card border border-border p-6 shadow-card">
+              <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm">
                 <p className="text-body text-muted-foreground">
                   We send our newsletter monthly, ensuring you stay informed without overwhelming your inbox. 
                   We respect your privacy and will never sell or share your email address.

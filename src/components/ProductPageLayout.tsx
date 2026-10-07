@@ -51,13 +51,13 @@ export function ProductPageLayout({
       <main className="pt-6">
         {/* Hero */}
         <AOSWrapper animation="fade-up">
-          <section className="py-24 bg-gradient-to-br from-primary/10 to-primary/5">
+          <section className="py-24 bg-white">
             <div className="max-w-5xl mx-auto px-6 lg:px-8 text-center">
               <p className="uppercase tracking-widest text-primary font-bold text-sm mb-4">{eyebrow}</p>
-              <h1 className="text-4xl md:text-5xl font-bold text-foreground font-poppins mb-8 leading-tight">{title}</h1>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground font-poppins mb-8 leading-tight">{title}</h1>
               <div className="space-y-6 text-left sm:text-center">
                 {intro.map((paragraph, i) => (
-                  <p key={i} className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto font-medium">
+                  <p key={i} className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
                     {paragraph}
                   </p>
                 ))}
@@ -69,10 +69,10 @@ export function ProductPageLayout({
         {/* Why We Exist */}
         {whyWeExist && (
           <AOSWrapper animation="fade-up" delay={100}>
-            <section className="py-16">
+            <section className="py-24 bg-gray-50">
               <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground font-poppins mb-6">Why We Exist</h2>
-                <p className="text-body text-muted-foreground leading-relaxed">{whyWeExist}</p>
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground font-poppins mb-6">Why We Exist</h2>
+                <p className="text-xl text-muted-foreground leading-relaxed">{whyWeExist}</p>
               </div>
             </section>
           </AOSWrapper>
@@ -81,7 +81,7 @@ export function ProductPageLayout({
         {/* Tags (e.g. funding mechanisms) */}
         {tags && tags.length > 0 && (
           <AOSWrapper animation="fade-up" delay={150}>
-            <section className="pb-4">
+            <section className="py-12 bg-white">
               <div className="max-w-5xl mx-auto px-6 lg:px-8 flex flex-wrap justify-center gap-3">
                 {tags.map((tag) => (
                   <span key={tag} className="bg-foreground text-white text-sm font-semibold px-4 py-2 uppercase tracking-wide">
@@ -96,14 +96,14 @@ export function ProductPageLayout({
         {/* What We Do */}
         {whatWeDo && whatWeDo.length > 0 && (
           <AOSWrapper animation="fade-up" delay={200}>
-            <section className="py-16 bg-gray-50">
+            <section className="py-24 bg-white">
               <div className="max-w-6xl mx-auto px-6 lg:px-8">
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground font-poppins mb-10 text-center">What We Do</h2>
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground font-poppins mb-10 text-center">What We Do</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {whatWeDo.map((item, i) => (
-                    <div key={i} className="bg-white p-8 shadow-md border border-gray-100">
+                    <div key={i} className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm">
                       {item.title && <h4 className="font-bold text-primary text-xl mb-3">{item.title}</h4>}
-                      <p className="text-body text-muted-foreground leading-relaxed">{item.description}</p>
+                      <p className="text-lg text-muted-foreground leading-relaxed">{item.description}</p>
                     </div>
                   ))}
                 </div>
@@ -115,9 +115,9 @@ export function ProductPageLayout({
         {/* Areas of Focus */}
         {areasOfFocus && areasOfFocus.length > 0 && (
           <AOSWrapper animation="fade-up" delay={250}>
-            <section className="py-16">
+            <section className="py-24 bg-gray-50">
               <div className="max-w-5xl mx-auto px-6 lg:px-8 text-center">
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground font-poppins mb-8">Areas of Focus</h2>
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground font-poppins mb-8">Areas of Focus</h2>
                 <div className="flex flex-wrap justify-center gap-4">
                   {areasOfFocus.map((area) => (
                     <span key={area} className="border border-primary/30 text-primary text-base font-semibold px-5 py-2.5">
@@ -133,10 +133,10 @@ export function ProductPageLayout({
         {/* How We Work */}
         {howWeWork && howWeWork.length > 0 && (
           <AOSWrapper animation="fade-up" delay={300}>
-            <section className="py-16 bg-primary text-white">
+            <section className="py-24 bg-primary text-white">
               <div className="max-w-5xl mx-auto px-6 lg:px-8 text-center">
-                <h2 className="text-2xl md:text-3xl font-bold font-poppins mb-8">How We Work</h2>
-                <div className="flex flex-wrap items-center justify-center gap-3 text-sm md:text-base font-bold uppercase tracking-wide">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins mb-8">How We Work</h2>
+                <div className="flex flex-wrap items-center justify-center gap-3 text-base md:text-lg font-bold uppercase tracking-wide">
                   {howWeWork.map((step, i) => (
                     <span key={step} className="flex items-center gap-3">
                       {step}
@@ -155,14 +155,14 @@ export function ProductPageLayout({
         {/* CTAs */}
         {ctas && ctas.length > 0 && (
           <AOSWrapper animation="fade-up" delay={350}>
-            <section className="py-16 bg-gray-50">
+            <section className="py-24 bg-gray-50">
               <div className="max-w-4xl mx-auto px-6 lg:px-8 flex flex-wrap items-center justify-center gap-4">
                 {ctas.map((cta) => (
                   <Link
                     key={cta.href + cta.label}
                     to={cta.href}
-                    className={`px-6 py-3 font-bold uppercase tracking-wide transition-opacity hover:opacity-90 ${
-                      cta.variant === "golden" ? "bg-golden text-golden-foreground" : "bg-foreground text-white"
+                    className={`inline-flex items-center px-8 py-4 text-base font-bold uppercase tracking-wide rounded-full transition-opacity hover:opacity-90 ${
+                      cta.variant === "golden" ? "bg-primary text-white" : "bg-foreground text-white"
                     }`}
                   >
                     {cta.label}
