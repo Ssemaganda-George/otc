@@ -24,6 +24,12 @@ export default function AdminLayout() {
     }
   }, [location.pathname, isMobile]);
 
+  useEffect(() => {
+    if (!user) {
+      navigate("/admin/login");
+    }
+  }, [user, navigate]);
+
   const handleSignOut = () => {
     setShowSignOutDialog(true);
   };
