@@ -95,24 +95,31 @@ export function Team() {
 		<>
 		<section
 			id="team"
-			className="py-16 bg-white"
-				style={{
-					'--color-background-warm': 'var(--background)',
-					'--color-text-primary': 'var(--foreground)',
-					'--color-accent': 'var(--primary)'
-				} as React.CSSProperties}
-			>
-				<div className="container mx-auto px-6">
-					<div className="mx-auto max-w-6xl">
-						{/* Section Header */}
-					<div className="text-center mb-12">
-						<h2 className="heading-section text-primary mb-6">
-							Our Team
-						</h2>
-						<p className="text-body text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-							Meet the people behind OneTechConnect — legal experts, technologists, and visionaries advancing digital justice across Africa.
-						</p>
-					</div>
+			className="py-16 bg-white relative overflow-hidden"
+			style={{
+				'--color-background-warm': 'var(--background)',
+				'--color-text-primary': 'var(--foreground)',
+				'--color-accent': 'var(--primary)'
+			} as React.CSSProperties}
+		>
+			{/* Decorative solid color shapes */}
+			<div className="absolute -top-24 -right-24 w-96 h-96 bg-accent-light rounded-full opacity-70" aria-hidden="true" />
+			<div className="absolute bottom-10 -left-24 w-72 h-72 bg-golden-light rounded-full opacity-70" aria-hidden="true" />
+			<div className="container mx-auto px-6">
+				<div className="mx-auto max-w-6xl relative">
+					{/* Section Header */}
+				<div className="text-center mb-12">
+					<h2 className="font-black uppercase leading-[0.85] tracking-tight text-primary mb-8 text-[clamp(3rem,14vw,12rem)] whitespace-nowrap">
+						Our People
+					</h2>
+					<div className="w-32 h-2 bg-accent mx-auto mb-8 rounded-full" />
+					<h3 className="heading-section text-primary mb-6">
+						Our Team
+					</h3>
+					<p className="text-body text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+						Meet the people behind OneTechConnect — legal experts, technologists, and visionaries advancing digital justice across Africa.
+					</p>
+				</div>
 
 						{/* Team Grid */}
 						{loading ? (
@@ -140,10 +147,10 @@ export function Team() {
 											animationDelay: `${index * 0.15}s`,
 											animationFillMode: "forwards",
 										}}
-										onClick={() => openModal(index)}
-									>
-										{/* Profile Photo */}
-										<div className="relative aspect-square overflow-hidden bg-gradient-to-br from-primary/5 to-primary/10">
+									onClick={() => openModal(index)}
+								>
+									{/* Profile Photo */}
+									<div className="relative aspect-square overflow-hidden bg-golden-light/40">
 											{member.image ? (
 												<img
 													src={member.image}
@@ -156,17 +163,20 @@ export function Team() {
 													{member.name.split(' ').map(p => p[0]).slice(0, 2).join('')}
 												</div>
 											)}
-											<div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+										<div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+										<div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white text-primary text-xs font-bold uppercase tracking-wide px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg whitespace-nowrap">
+											View Profile
 										</div>
+									</div>
 
 										{/* Content */}
 										<div className="p-6 text-center">
 											<h3 className="text-lg font-playfair font-bold text-foreground mb-1 group-hover:text-primary transition-colors duration-300">
 												{member.name}
 											</h3>
-											<p className="text-primary font-semibold text-xs uppercase tracking-wide">
-												{member.position}
-											</p>
+										<p className="text-accent font-semibold text-xs uppercase tracking-wide">
+											{member.position}
+										</p>
 
 											{/* Social Links */}
 											{(member.social.linkedin || member.social.email || member.social.twitter) && (
@@ -238,7 +248,7 @@ export function Team() {
 						animate={{ x: 0, y: 0 }}
 						exit={direction === 'next' ? { x: "-100%" } : direction === 'prev' ? { x: "100%" } : { y: "100%" }}
 						transition={{ duration: 1, ease: "easeOut" }}
-						className="fixed inset-0 z-50 bg-yellow-600 flex items-center justify-center"
+						className="fixed inset-0 z-50 bg-primary flex items-center justify-center"
 					>
 						<div className="relative w-full h-full flex flex-col lg:flex-row">
 							{/* Close Button */}

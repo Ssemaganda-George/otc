@@ -311,9 +311,13 @@ export default function AboutPage() {
               {...fadeInUp}
               className="text-center mb-16"
             >
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6">
-                Meet the team
+              <h2 className="font-black uppercase leading-[0.85] tracking-tight text-primary mb-8 text-[clamp(3rem,14vw,12rem)] whitespace-nowrap">
+                Our People
               </h2>
+              <div className="w-32 h-2 bg-accent mx-auto mb-8 rounded-full" />
+              <h3 className="text-5xl md:text-6xl lg:text-7xl font-bold text-primary mb-6">
+                Our Team
+              </h3>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-[1.6]">
                 The innovative minds behind OneTechConnect - a diverse team of legal experts, technologists, and visionaries committed to advancing digital justice across Africa.
               </p>

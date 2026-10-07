@@ -55,7 +55,9 @@ export function BoardMembers() {
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
+            <p className="text-accent font-bold uppercase tracking-[0.25em] text-sm mb-4">Governance</p>
             <h2 className="heading-section text-primary mb-6">Board Members</h2>
+            <div className="w-24 h-1 bg-primary mx-auto mt-2 mb-6 rounded-full" />
             <p className="text-body text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               The governance leadership guiding OTC's strategic direction.
             </p>
@@ -74,7 +76,7 @@ export function BoardMembers() {
                   style={{ animationDelay: `${index * 0.15}s`, animationFillMode: "forwards" }}
                 >
                   {/* Profile Photo */}
-                  <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-primary/5 to-primary/10">
+                  <div className="relative aspect-square overflow-hidden bg-golden-light/40">
                     {member.image ? (
                       <img
                         src={member.image}
@@ -87,7 +89,7 @@ export function BoardMembers() {
                         {initials(member.name)}
                       </div>
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   </div>
 
                   {/* Content */}
@@ -95,7 +97,7 @@ export function BoardMembers() {
                     <h3 className="text-lg font-playfair font-bold text-foreground mb-1 group-hover:text-primary transition-colors duration-300">
                       {member.name}
                     </h3>
-                    <p className="text-primary font-semibold text-xs uppercase tracking-wide">
+                    <p className="text-accent font-semibold text-xs uppercase tracking-wide">
                       {member.role}
                     </p>
                   </div>
