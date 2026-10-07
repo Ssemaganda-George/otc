@@ -172,44 +172,50 @@ const Index = () => {
 
         {/* 6. Who We Are + Mission/Vision */}
         <AOSWrapper animation="fade-up">
-          <section className="py-24 bg-white">
+          <section className="py-24 bg-white overflow-hidden">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                {/* Left: Content */}
                 <div>
-                  <h2 className="text-5xl md:text-6xl lg:text-6xl font-bold text-foreground mb-6">Welcome To OTC</h2>
+                  <h2 className="text-5xl md:text-6xl lg:text-5xl font-black uppercase leading-[0.85] tracking-tight text-foreground mb-6">
+                    Welcome To OTC
+                  </h2>
                   <p className="text-xl text-muted-foreground leading-relaxed mb-6">
                     OTC is a youth-led African innovation organisation harnessing talent, technology, creativity and knowledge to build solutions in Health, SRHR and Sustainable Development.
                   </p>
                   <p className="text-xl text-muted-foreground leading-relaxed mb-10">
                     We turn African ideas into scalable solutions through research, innovation, technical and financial support, business protection and media amplification.
                   </p>
-                  <Link to="/about/who-we-are" className="inline-flex items-center text-primary text-lg font-semibold hover:underline">
-                    Learn more about us <ArrowRight className="ml-2 w-4 h-4" />
+                  <Link to="/about/who-we-are" className="inline-flex items-center bg-primary text-white px-8 py-4 text-lg font-bold uppercase tracking-wide rounded-full hover:bg-primary-dark transition-all duration-300 hover:scale-105 shadow-lg">
+                    Learn more about us <ArrowRight className="ml-2 w-5 h-5" />
                   </Link>
+                </div>
 
-                  <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                      <h3 className="text-2xl md:text-3xl font-bold text-primary mb-3">
-                        {getSectionContent('mission')?.title?.replace(/^OUR\s+/i, '') || 'MISSION'}
-                      </h3>
-                      <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                        {getSectionContent('mission')?.content || 'Loading...'}
-                      </p>
-                    </div>
-                    <div>
-                      <h3 className="text-2xl md:text-3xl font-bold text-primary mb-3">
-                        {getSectionContent('vision')?.title?.replace(/^OUR\s+/i, '') || 'VISION'}
-                      </h3>
-                      <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                        {getSectionContent('vision')?.content || 'Loading...'}
-                      </p>
-                    </div>
+                {/* Right: Image */}
+                <div className="relative">
+                  <div className="aspect-[4/3] bg-gray-100 rounded-2xl overflow-hidden shadow-2xl">
+                    <img src="/assets/sac1.png" alt="Who We Are" className="w-full h-full object-cover" />
                   </div>
                 </div>
-                <div>
-                  <div className="w-full aspect-[4/3] bg-gray-100 rounded-lg shadow-lg flex items-center justify-center">
-                    <span className="text-gray-400 font-medium">Image</span>
-                  </div>
+              </div>
+
+              {/* Mission & Vision */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-20">
+                <div className="bg-gray-50 p-10 rounded-2xl border border-gray-100">
+                  <h3 className="text-3xl md:text-4xl font-black text-primary mb-4">
+                    {getSectionContent('mission')?.title?.replace(/^OUR\s+/i, '') || 'MISSION'}
+                  </h3>
+                  <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+                    {getSectionContent('mission')?.content || 'Loading...'}
+                  </p>
+                </div>
+                <div className="bg-gray-50 p-10 rounded-2xl border border-gray-100">
+                  <h3 className="text-3xl md:text-4xl font-black text-primary mb-4">
+                    {getSectionContent('vision')?.title?.replace(/^OUR\s+/i, '') || 'VISION'}
+                  </h3>
+                  <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+                    {getSectionContent('vision')?.content || 'Loading...'}
+                  </p>
                 </div>
               </div>
             </div>
@@ -232,14 +238,14 @@ const Index = () => {
               <div className="relative">
                 <button
                   onClick={() => scrollValues('left')}
-                  className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/90 backdrop-blur rounded-full shadow-lg flex items-center justify-center hover:bg-primary hover:text-white transition-colors -ml-4"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/90 backdrop-blur rounded-full shadow-lg flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
                   aria-label="Scroll values left"
                 >
                   <ArrowLeft className="w-5 h-5" />
                 </button>
                 <button
                   onClick={() => scrollValues('right')}
-                  className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/90 backdrop-blur rounded-full shadow-lg flex items-center justify-center hover:bg-primary hover:text-white transition-colors -mr-4"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/90 backdrop-blur rounded-full shadow-lg flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
                   aria-label="Scroll values right"
                 >
                   <ArrowRight className="w-5 h-5" />
