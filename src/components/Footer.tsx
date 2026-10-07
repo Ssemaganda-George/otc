@@ -8,17 +8,18 @@ import { subscribeToNewsletter } from "@/lib/newsletter";
 
 const quickLinks = [
 	{ name: "About Us", href: "/about" },
-	{ name: "What We Do", href: "/what-we-do" },
-	{ name: "Our Products", href: "/our-products" },
+	{ name: "What We Do", href: "/about/who-we-are" },
+	{ name: "Our Products", href: "/innovation-hub" },
 	{ name: "Team", href: "/about/team" },
 	{ name: "Contact Us", href: "/contact" }
 ];
 
 const ourProducts = [
-	{ name: "Strategic Litigation", href: "/products/strategic-litigation" },
-	{ name: "Innovation Hub", href: "/products/innovations" },
-	{ name: "Center for Digital Justice", href: "/products/center-for-digital-justice" },
-	{ name: "Consultancy Services", href: "/products/consultancy" }
+	{ name: "Innovation Hub", href: "/innovation-hub" },
+	{ name: "Academy", href: "/academy" },
+	{ name: "Legal & Business Support", href: "/legal-business-support" },
+	{ name: "OTC Fund", href: "/fund" },
+	{ name: "OTC Media Hub", href: "/media" }
 ];
 
 export function Footer() {
