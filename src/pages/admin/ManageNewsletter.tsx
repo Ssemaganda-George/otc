@@ -69,6 +69,12 @@ export default function ManageNewsletter() {
     }
   };
 
+  const emailAll = () => {
+    const emails = filtered.map(s => s.email).join(',');
+    const subject = encodeURIComponent('OneTechConnect Newsletter');
+    window.location.href = `mailto:?bcc=${emails}&subject=${subject}`;
+  };
+
   if (loading) return <div className="p-8">Loading...</div>;
 
   return (
@@ -78,10 +84,16 @@ export default function ManageNewsletter() {
           <h1 className="text-3xl font-bold text-gray-900">Newsletter Subscribers</h1>
           <p className="text-sm text-gray-500 mt-1">{subscribers.length} total subscriber(s)</p>
         </div>
-        <Button onClick={copyEmails} className="flex items-center space-x-2" disabled={filtered.length === 0}>
-          <Copy className="w-4 h-4" />
-          <span>Copy All Emails</span>
-        </Button>
+        <div className="flex items-center space-x-2">
+          <Button onClick={copyEmails} className="flex items-center space-x-2" disabled={filtered.length === 0}>
+            <Copy className="w-4 h-4" />
+            <span>Copy All Emails</span>
+          </Button>
+          <Button onClick={emailAll} variant="outline" className="flex items-center space-x-2" disabled={filtered.length === 0}>
+            <Mail className="w-4 h-4" />
+            <span>Email All</span>
+          </Button>
+        </div>
       </div>
 
       <div className="mb-6">
