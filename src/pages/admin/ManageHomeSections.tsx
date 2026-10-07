@@ -12,13 +12,9 @@ import { Plus, Edit, Trash2, Save, X, Upload, Eye, EyeOff } from "lucide-react";
 
 interface HomeSection {
   id: string;
-  section_type: 'about_us' | 'mission' | 'vision' | 'objectives';
+  section_type: 'welcome_to_otc' | 'our_approach' | 'our_partners';
   title: string;
-  subtitle: string;
-  content: string;
   image: string;
-  link_url: string;
-  link_text: string;
   display_order: number;
   is_active: boolean;
   created_at: string;
@@ -31,13 +27,9 @@ export default function ManageHomeSections() {
   const [loading, setLoading] = useState(true);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [formData, setFormData] = useState({
-    section_type: 'about_us' as 'about_us' | 'mission' | 'vision' | 'objectives',
+    section_type: 'welcome_to_otc' as 'welcome_to_otc' | 'our_approach' | 'our_partners',
     title: "",
-    subtitle: "",
-    content: "",
     image: "",
-    link_url: "",
-    link_text: "",
     display_order: "",
     is_active: true
   });
@@ -56,6 +48,7 @@ export default function ManageHomeSections() {
       const { data, error } = await supabase
         .from('home_sections')
         .select('*')
+        .in('section_type', ['welcome_to_otc', 'our_approach', 'our_partners'])
         .order('display_order', { ascending: true });
 
       if (error) {
@@ -194,13 +187,9 @@ export default function ManageHomeSections() {
   const resetForm = () => {
     setEditingId(null);
     setFormData({
-      section_type: 'about_us',
+      section_type: 'welcome_to_otc',
       title: "",
-      subtitle: "",
-      content: "",
       image: "",
-      link_url: "",
-      link_text: "",
       display_order: "",
       is_active: true
     });
@@ -222,15 +211,15 @@ export default function ManageHomeSections() {
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">About Us, Mission, Vision & Objectives</h1>
-            <p className="text-muted-foreground">Configure the About Us, Mission, Vision, and Objectives sections of your website</p>
+            <h1 className="text-3xl font-bold text-foreground">Home Section Images</h1>
+            <p className="text-muted-foreground">Upload and manage images for Welcome, Approach and Partners sections</p>
           </div>
           <Button
             onClick={() => setEditingId('new')}
             className="flex items-center gap-2"
           >
             <Plus className="w-4 h-4" />
-            Add Section
+            Add Image
           </Button>
         </div>
 
@@ -238,33 +227,30 @@ export default function ManageHomeSections() {
         {(editingId === 'new' || editingId) && (
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle>{editingId === 'new' ? 'Add New Section' : 'Edit Section'}</CardTitle>
+              <CardTitle>{editingId === 'new' ? 'Add New Image Section' : 'Edit Image Section'}</CardTitle>
               <CardDescription>
-                Configure the content for About Us, Mission, Vision, or Objectives sections
+                Upload an image for a homepage section
               </CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label htmlFor="section_type">Section Type *</Label>
-                    <Select value={formData.section_type} onValueChange={(value: 'about_us' | 'mission' | 'vision' | 'objectives') => handleSelectChange('section_type', value)}>
+                    <Label htmlFor="section_type">Section *</Label>
+                    <Select value={formData.section_type} onValueChange={(value: 'welcome_to_otc' | 'our_approach' | 'our_partners') => handleSelectChange('section_type', value)}>
                       <SelectTrigger>
-                        <SelectValue placeholder="Select section type" />
+                        <SelectValue placeholder="Select section" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="about_us">About Us</SelectItem>
-                        <SelectItem value="mission">Mission</SelectItem>
-                        <SelectItem value="vision">Vision</SelectItem>
-                        <SelectItem value="objectives">Objectives</SelectItem>
+                        <SelectItem value="welcome_to_otc">Welcome To OTC</SelectItem>
+                        <SelectItem value="our_approach">Our Approach</SelectItem>
+                        <SelectItem value="our_partners">Our Partners</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
-                </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label htmlFor="title">Title</Label>
+                    <Label htmlFor="title">Label / Title</Label>
                     <Input
                       id="title"
                       name="title"
@@ -272,78 +258,10 @@ export default function ManageHomeSections() {
                       onChange={handleInputChange}
                     />
                   </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="subtitle">Subtitle</Label>
-                    <Input
-                      id="subtitle"
-                      name="subtitle"
-                      value={formData.subtitle}
-                      onChange={handleInputChange}
-                    />
-                  </div>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="content">Content</Label>
-                  <Textarea
-                    id="content"
-                    name="content"
-                    value={formData.content}
-                    onChange={handleInputChange}
-                    rows={4}
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="link_url">Link URL</Label>
-                    <Input
-                      id="link_url"
-                      name="link_url"
-                      value={formData.link_url}
-                      onChange={handleInputChange}
-                      placeholder="/about"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="link_text">Link Text</Label>
-                    <Input
-                      id="link_text"
-                      name="link_text"
-                      value={formData.link_text}
-                      onChange={handleInputChange}
-                      placeholder="Learn More"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="display_order">Display Order</Label>
-                    <Input
-                      id="display_order"
-                      name="display_order"
-                      type="number"
-                      value={formData.display_order}
-                      onChange={handleInputChange}
-                      placeholder="0"
-                    />
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-2">
-                  <input
-                    type="checkbox"
-                    id="is_active"
-                    checked={formData.is_active}
-                    onChange={(e) => handleCheckboxChange(e.target.checked)}
-                    className="rounded"
-                  />
-                  <Label htmlFor="is_active">Section is Active</Label>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="image">Section Image</Label>
+                  <Label htmlFor="image">Image</Label>
                   <div className="flex items-center gap-4">
                     <Input
                       id="image"
@@ -368,6 +286,31 @@ export default function ManageHomeSections() {
                   {selectedImage && (
                     <p className="text-sm text-muted-foreground">Selected: {selectedImage.name}</p>
                   )}
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="display_order">Display Order</Label>
+                    <Input
+                      id="display_order"
+                      name="display_order"
+                      type="number"
+                      value={formData.display_order}
+                      onChange={handleInputChange}
+                      placeholder="0"
+                    />
+                  </div>
+
+                  <div className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      id="is_active"
+                      checked={formData.is_active}
+                      onChange={(e) => handleCheckboxChange(e.target.checked)}
+                      className="rounded"
+                    />
+                    <Label htmlFor="is_active">Active</Label>
+                  </div>
                 </div>
 
                 <div className="flex gap-4">
@@ -399,12 +342,12 @@ export default function ManageHomeSections() {
                     />
                   ) : (
                     <span className="text-white text-2xl font-bold">
-                      {section.section_type === 'about_us' ? 'A' : section.section_type === 'mission' ? 'M' : section.section_type === 'vision' ? 'V' : 'O'}
+                      {section.section_type === 'welcome_to_otc' ? 'W' : section.section_type === 'our_approach' ? 'A' : 'P'}
                     </span>
                   )}
                 </div>
                 <CardTitle className="text-lg">
-                  {section.title || (section.section_type === 'about_us' ? 'About Us' : section.section_type === 'mission' ? 'Mission' : section.section_type === 'vision' ? 'Vision' : 'Objectives')}
+                  {section.title || (section.section_type === 'welcome_to_otc' ? 'Welcome To OTC' : section.section_type === 'our_approach' ? 'Our Approach' : 'Our Partners')}
                 </CardTitle>
                 <CardDescription>
                   {section.section_type.replace('_', ' ').toUpperCase()} • Order: {section.display_order}
@@ -416,15 +359,6 @@ export default function ManageHomeSections() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                {section.subtitle && (
-                  <p className="text-sm font-medium text-muted-foreground mb-2">
-                    {section.subtitle}
-                  </p>
-                )}
-                <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
-                  {section.content}
-                </p>
-
                 <div className="flex gap-2">
                   <Button
                     variant="outline"
@@ -452,7 +386,7 @@ export default function ManageHomeSections() {
 
         {sections.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-muted-foreground">No home sections found. Add your first section!</p>
+            <p className="text-muted-foreground">No image sections found. Add your first image section!</p>
           </div>
         )}
       </div>

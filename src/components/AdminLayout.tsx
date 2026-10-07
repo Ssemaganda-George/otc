@@ -49,6 +49,7 @@ export default function AdminLayout() {
     {
       title: "Content",
       items: [
+        { name: "Home Sections", path: "/admin/home-sections" },
         { name: "About & Pages", path: "/admin/about-us" },
         { name: "Core Values", path: "/admin/core-values" },
         { name: "Our Impact", path: "/admin/our-impact" },
@@ -65,6 +66,7 @@ export default function AdminLayout() {
     {
       title: "Products & Media",
       items: [
+        { name: "Home Sections", path: "/admin/home-sections" },
         { name: "Hero Slides", path: "/admin/hero-slides" },
       ],
     },

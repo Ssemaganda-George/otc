@@ -49,6 +49,7 @@ import ManageResearchPublications from "./pages/admin/ManageResearchPublications
 import ManageAboutUs from "./pages/admin/ManageAboutUs";
 import ManageCoreValues from "./pages/admin/ManageCoreValues";
 import ManageOurImpact from "./pages/admin/ManageOurImpact";
+import ManageHomeSections from "./pages/admin/ManageHomeSections";
 import ManageRepositories from "./pages/admin/ManageRepositories";
 import VisitorAnalyticsPage from "./pages/admin/VisitorAnalyticsPage";
 import DownloadsAnalyticsPage from "./pages/admin/DownloadsAnalyticsPage";
@@ -118,9 +119,10 @@ function App() {
             <Route path="resources" element={<ManageResources />} />
             <Route path="news-updates" element={<ManageNewsUpdates />} />
             <Route path="research-publications" element={<ManageResearchPublications />} />
-            <Route path="about-us" element={<ManageAboutUs />} />
-            <Route path="core-values" element={<ManageCoreValues />} />
-            <Route path="our-impact" element={<ManageOurImpact />} />
+             <Route path="about-us" element={<ManageAboutUs />} />
+             <Route path="core-values" element={<ManageCoreValues />} />
+             <Route path="our-impact" element={<ManageOurImpact />} />
+             <Route path="home-sections" element={<ManageHomeSections />} />
             <Route path="repositories" element={<ManageRepositories />} />
             <Route path="messages" element={<ManageMessages />} />
             <Route path="analytics/visitors/demographics" element={<VisitorAnalyticsPage />} />
