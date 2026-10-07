@@ -11,10 +11,15 @@ import { ArrowRight, ArrowLeft } from "lucide-react";
 
 interface HomeSection {
   id: string;
-  section_name: string;
-  title: string;
-  content: string;
   section_type: string;
+  title: string;
+  subtitle?: string;
+  content?: string;
+  image?: string;
+  link_url?: string;
+  link_text?: string;
+  display_order?: number;
+  is_active?: boolean;
 }
 
 interface ImpactStat {
