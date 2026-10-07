@@ -194,7 +194,7 @@ const Index = () => {
                 {/* Right: Image */}
                 <div className="relative">
                   <div className="aspect-[4/3] bg-gray-100 rounded-2xl overflow-hidden shadow-2xl">
-                    <img src={getSectionContent('welcome_to_otc')?.image || "/assets/sac1.png"} alt="Who We Are" className="w-full h-full object-cover" />
+                    <img src={getSectionContent('welcome_to_otc')?.image || "/images/DJP_5027.jpg"} alt="Who We Are" className="w-full h-full object-cover" />
                   </div>
                 </div>
               </div>
@@ -301,8 +301,8 @@ const Index = () => {
                 </p>
               </div>
               <div>
-                {getSectionContent('approach')?.image ? (
-                  <img src={getSectionContent('approach')?.image} alt="Our Approach" className="w-full aspect-[4/3] object-cover rounded-2xl shadow-2xl" />
+                {getSectionContent('our_approach')?.image ? (
+                  <img src={getSectionContent('our_approach')?.image} alt="Our Approach" className="w-full aspect-[4/3] object-cover rounded-2xl shadow-2xl" />
                 ) : (
                   <div className="w-full aspect-[4/3] bg-gray-100 rounded-lg shadow-lg flex items-center justify-center">
                     <span className="text-gray-400 font-medium">Image</span>
