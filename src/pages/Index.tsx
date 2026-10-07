@@ -237,11 +237,11 @@ const Index = () => {
 
         {/* 5. Impact & Statistics */}
         <AOSWrapper animation="fade-up" delay={100}>
-          <section className="py-24 bg-white">
+          <section className="py-24 bg-golden-light">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
                 {(impactStats.length > 0 ? impactStats : fallbackImpactStats).map((stat, index) => (
-                  <div key={stat.id || index} className="py-6 px-4 border-t-2 border-primary/20">
+                  <div key={stat.id || index} className={`py-6 px-4 border-t-4 ${index % 2 === 0 ? 'border-primary' : 'border-accent'}`}>
                     <div className="text-5xl md:text-6xl font-extrabold text-foreground mb-2">
                       {stat.number.endsWith('+') ? stat.number : `${stat.number}+`}
                     </div>
@@ -260,6 +260,7 @@ const Index = () => {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 {/* Left: Content */}
                 <div>
+                  <p className="text-accent font-bold uppercase tracking-[0.25em] text-sm mb-5">Who We Are</p>
                   <h2 className="text-5xl md:text-6xl lg:text-5xl font-black uppercase leading-[0.85] tracking-tight text-primary mb-6">
                     Welcome To OTC
                   </h2>
@@ -276,7 +277,8 @@ const Index = () => {
 
                 {/* Right: Image */}
                 <div className="relative group">
-                  <div className="aspect-[4/3] bg-gray-100 rounded-2xl overflow-hidden shadow-2xl">
+                  <div className="absolute -inset-3 border-2 border-golden-light rounded-3xl transition-all duration-500 group-hover:-inset-5 group-hover:border-primary/40" aria-hidden="true" />
+                  <div className="relative aspect-[4/3] bg-gray-100 rounded-2xl overflow-hidden shadow-2xl">
                     <img src={getSectionContent('welcome_to_otc')?.image || "/images/DJP_5027.jpg"} alt="Who We Are" className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-700 ease-out" />
                   </div>
                 </div>
@@ -284,7 +286,7 @@ const Index = () => {
 
               {/* Mission & Vision */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-20">
-                <div className="bg-gray-50 p-10 rounded-2xl border border-gray-100">
+                <div className="bg-golden-light p-10 rounded-2xl border border-golden-light hover:shadow-golden transition-shadow duration-300">
                   <h3 className="text-3xl md:text-4xl font-black text-primary mb-4">
                     {getSectionContent('mission')?.title?.replace(/^OUR\s+/i, '') || 'MISSION'}
                   </h3>
@@ -292,7 +294,7 @@ const Index = () => {
                     {getSectionContent('mission')?.content || 'Loading...'}
                   </p>
                 </div>
-                <div className="bg-gray-50 p-10 rounded-2xl border border-gray-100">
+                <div className="bg-accent-light p-10 rounded-2xl border border-accent-light hover:shadow-blue transition-shadow duration-300">
                   <h3 className="text-3xl md:text-4xl font-black text-primary mb-4">
                     {getSectionContent('vision')?.title?.replace(/^OUR\s+/i, '') || 'VISION'}
                   </h3>
@@ -310,10 +312,12 @@ const Index = () => {
           <section className="py-24 bg-gray-50/50">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <div className="text-center mb-16">
+                  <p className="text-accent font-bold uppercase tracking-[0.25em] text-sm mb-4">What We Stand For</p>
                   <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
                     Our Values
                   </h2>
-                  <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                  <div className="w-24 h-1 bg-primary mx-auto mt-5 rounded-full" />
+                  <p className="text-xl text-muted-foreground max-w-2xl mx-auto mt-6">
                     The principles that guide our work and shape our commitment to Africa's digital transformation.
                   </p>
                 </div>
@@ -353,7 +357,8 @@ const Index = () => {
                         transformOrigin: 'center center'
                       }}
                     >
-                      <div className="bg-white p-8 border border-gray-200 hover:border-primary/30 hover:shadow-lg transition-all duration-300 h-full">
+                      <div className="bg-white p-8 border border-gray-200 hover:border-accent/40 hover:shadow-lg transition-all duration-300 h-full">
+                        <div className="w-10 h-1 bg-accent mx-auto mb-5 rounded-full" />
                         <h3 className="text-2xl font-bold text-foreground text-center mb-3">
                           {value.title}
                         </h3>
@@ -374,10 +379,11 @@ const Index = () => {
 
       {/* Our Approach */}
       <AOSWrapper animation="fade-up" delay={150}>
-        <section className="py-24 bg-white">
+        <section className="py-24 bg-accent-light">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
+                <p className="text-accent font-bold uppercase tracking-[0.25em] text-sm mb-4">How We Work</p>
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-6">Our Approach</h2>
                 <p className="text-xl text-muted-foreground leading-relaxed">
                   At OTC, we take ideas from opportunity to impact. We discover real problems and opportunities, build innovative solutions and enterprises, protect their intellectual and commercial value, finance their growth with appropriate capital, amplify their stories and connect them to the right audiences, and scale what works to create lasting impact.
@@ -404,8 +410,10 @@ const Index = () => {
           <section className="py-24 bg-white">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
               <div className="text-center mb-16">
+                <p className="text-accent font-bold uppercase tracking-[0.25em] text-sm mb-4">What We Offer</p>
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">Our Products</h2>
-                <p className="text-xl text-muted-foreground">Five ways we turn African ideas into scalable solutions.</p>
+                <div className="w-24 h-1 bg-primary mx-auto mt-5 rounded-full" />
+                <p className="text-xl text-muted-foreground mt-6">Five ways we turn African ideas into scalable solutions.</p>
               </div>
 
               <div className="relative">
@@ -443,12 +451,12 @@ const Index = () => {
                           transformOrigin: 'center center'
                         }}
                       >
-                        <div className="bg-white border border-gray-200 hover:border-primary/30 hover:shadow-xl transition-all duration-300 rounded-2xl overflow-hidden h-full flex flex-col">
+                        <div className="group bg-white border border-gray-200 hover:border-primary/30 hover:shadow-golden transition-all duration-300 rounded-2xl overflow-hidden h-full flex flex-col">
                           <div className="aspect-[4/3] bg-gray-100 overflow-hidden">
                             {product.image_url ? (
-                              <img src={product.image_url} alt={product.name} className="w-full h-full object-cover" />
+                              <img src={product.image_url} alt={product.name} className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-500 ease-out" />
                             ) : (
-                              <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/15 to-primary/5">
+                              <div className="w-full h-full flex items-center justify-center bg-golden-light/40">
                                 <span className="text-4xl font-black text-primary/40">{product.name.charAt(0)}</span>
                               </div>
                             )}
@@ -479,7 +487,9 @@ const Index = () => {
         <AOSWrapper animation="fade-up" delay={250}>
           <section className="py-20 bg-white border-y border-gray-100">
             <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-               <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-10">Our Partners</h3>
+               <p className="text-accent font-bold uppercase tracking-[0.25em] text-sm mb-4">Working Together</p>
+             <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">Our Partners</h3>
+             <div className="w-24 h-1 bg-primary mx-auto mb-10 rounded-full" />
               <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-10">
                 {(partners.length > 0 ? partners : fallbackPartners).map((partner) => {
                   const logo = (
@@ -500,35 +510,40 @@ const Index = () => {
 
         {/* 11. Latest News & Opportunities */}
         <AOSWrapper animation="fade-up" delay={400}>
-          <section className="py-24 bg-gray-50/50">
+          <section className="py-24 bg-golden-light">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
-              <div className="flex items-center justify-between mb-12">
-                <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">Latest News & Opportunities</h3>
+              <div className="flex items-end justify-between mb-12">
+                <div>
+                  <p className="text-accent font-bold uppercase tracking-[0.25em] text-sm mb-4">Stay Updated</p>
+                  <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">Latest News & Opportunities</h3>
+                </div>
                 <Link to="/news" className="text-primary font-semibold inline-flex items-center gap-1 hover:translate-x-1 transition-transform">
                   View All <ArrowRight className="ml-1 w-4 h-4" />
                 </Link>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-                  {latestNews.map((news) => (
-                    <article key={news.id} className="bg-white border border-gray-200 hover:border-primary/30 hover:shadow-sm transition-all duration-300 overflow-hidden">
-                      <img
-                      src={news.featured_image || "/assets/sac3.png"}
-                      alt={news.title}
-                      className="w-full h-56 object-cover rounded-xl shadow-md"
-                    />
-                    <div className="p-6">
-                      <span className="inline-block text-primary text-sm font-bold px-2 py-1 mb-3 uppercase tracking-wide">
-                        {news.category || 'NEWS'}
-                      </span>
-                      <h4 className="text-2xl font-bold text-foreground mb-3 leading-snug">{news.title}</h4>
-                      <p className="text-base text-muted-foreground leading-relaxed">{news.excerpt}</p>
-                    </div>
-                  </article>
-                ))}
+                  {latestNews.map((news, index) => (
+                    <article key={news.id} className="group bg-white border border-gray-200 hover:border-primary/30 hover:shadow-golden transition-all duration-300 overflow-hidden rounded-2xl">
+                      <div className="overflow-hidden">
+                        <img
+                        src={news.featured_image || "/assets/sac3.png"}
+                        alt={news.title}
+                        className="w-full h-56 object-cover rounded-t-2xl scale-105 group-hover:scale-110 transition-transform duration-500 ease-out"
+                      />
+                      </div>
+                      <div className="p-6">
+                        <span className={`inline-block text-sm font-bold px-2 py-1 mb-3 uppercase tracking-wide ${index % 2 === 0 ? 'text-primary' : 'text-accent'}`}>
+                          {news.category || 'NEWS'}
+                        </span>
+                        <h4 className="text-2xl font-bold text-foreground mb-3 leading-snug">{news.title}</h4>
+                        <p className="text-base text-muted-foreground leading-relaxed">{news.excerpt}</p>
+                      </div>
+                    </article>
+                  ))}
               </div>
 
               <div className="mt-10 text-center">
-                <Link to="/news" className="inline-block bg-primary text-white px-8 py-3 font-bold uppercase tracking-wide hover:bg-primary-dark transition-colors duration-300">
+                <Link to="/news" className="inline-block bg-primary text-white px-8 py-3 rounded-full font-bold uppercase tracking-wide hover:bg-primary-dark hover:shadow-golden transition-all duration-300">
                   View All News
                 </Link>
               </div>

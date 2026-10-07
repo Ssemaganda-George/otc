@@ -40,6 +40,7 @@
     --accent: 199 89% 48%;                /* Sky blue accent touch */
     --accent-foreground: 0 0% 100%;       /* White on accent */
     --accent-subtle: 199 89% 96%;         /* Very subtle sky-blue tint */
+    --accent-light: 199 89% 88%;          /* Light solid sky-blue, parallel to golden-light */
 
     /* Muted Colors - Grey Text */
     --muted: 0 0% 90%;                    /* Light grey for muted backgrounds */
