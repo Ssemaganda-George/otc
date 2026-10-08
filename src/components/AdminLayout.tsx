@@ -74,6 +74,7 @@ export default function AdminLayout() {
       title: "Products & Media",
       items: [
         { name: "Products", path: "/admin/products" },
+        { name: "Innovations", path: "/admin/innovations" },
         { name: "Home Sections", path: "/admin/home-sections" },
         { name: "Hero Slides", path: "/admin/hero-slides" },
       ],

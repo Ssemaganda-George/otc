@@ -62,12 +62,25 @@ interface Product {
   link_text: string | null;
 }
 
+interface Innovation {
+  id: string;
+  name: string;
+  description: string;
+  logo_url: string | null;
+  website_url: string | null;
+}
+
 const fallbackProducts: Product[] = [
   { id: "pr1", name: "OTC Innovation Hub", tagline: "Developing, connecting and scaling African innovation.", description: null, image_url: "/images/DJP_5027.jpg", link_url: "/innovation-hub", link_text: "Learn more" },
   { id: "pr2", name: "OTC Academy", tagline: "Research, learning and capability development.", description: null, image_url: "/images/DJP_5020.jpg", link_url: "/academy", link_text: "Learn more" },
   { id: "pr3", name: "Legal & Business Support Centre", tagline: "Protecting innovations and structuring opportunity.", description: null, image_url: "/images/DFA-2.jpg", link_url: "/legal-business-support", link_text: "Learn more" },
   { id: "pr4", name: "OTC Fund", tagline: "Capital for African innovation and innovators.", description: null, image_url: "/images/DFA-25-highlight-sessions-01.jpg", link_url: "/fund", link_text: "Learn more" },
   { id: "pr5", name: "OTC Media Hub", tagline: "Creating, telling and amplifying African stories.", description: null, image_url: "/images/DFA-25-Speakers-X-D01-09.jpg", link_url: "/media", link_text: "Learn more" },
+];
+
+const fallbackInnovations: Innovation[] = [
+  { id: "wazazi-connect", name: "WazaziConnect", description: "A digital platform connecting parents and caregivers with trusted health and development resources.", logo_url: null, website_url: null },
+  { id: "happy-farma", name: "HappyFarma", description: "A technology solution supporting farmers with access to information, inputs and markets.", logo_url: null, website_url: null },
 ];
 
 const fallbackPartners: Partner[] = [
@@ -91,6 +104,7 @@ const Index = () => {
   const [latestNews, setLatestNews] = useState<NewsItem[]>([]);
   const [partners, setPartners] = useState<Partner[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
+  const [innovations, setInnovations] = useState<Innovation[]>([]);
   const [loading, setLoading] = useState(true);
   const [centerValueIndex, setCenterValueIndex] = useState(0);
   const valuesScrollRef = useRef<HTMLDivElement>(null);
@@ -123,13 +137,14 @@ const Index = () => {
 
   const fetchData = async () => {
     try {
-      const [sectionsRes, statsRes, valuesRes, newsRes, partnersRes, productsRes] = await Promise.all([
+      const [sectionsRes, statsRes, valuesRes, newsRes, partnersRes, productsRes, innovationsRes] = await Promise.all([
         supabase.from('home_sections').select('*').eq('is_active', true).order('display_order'),
         supabase.from('our_impact_stats').select('*').order('created_at'),
         supabase.from('core_values').select('*').eq('is_active', true).order('display_order'),
         supabase.from('news_updates').select('id, title, excerpt, featured_image, category, publish_date').eq('is_featured', true).order('publish_date', { ascending: false }).limit(3),
         supabase.from('partners').select('id, name, logo_url, website_url').eq('is_active', true).order('display_order'),
-        supabase.from('products').select('id, name, tagline, description, image_url, link_url, link_text').eq('is_active', true).order('display_order')
+        supabase.from('products').select('id, name, tagline, description, image_url, link_url, link_text').eq('is_active', true).order('display_order'),
+        supabase.from('innovations').select('id, name, description, logo_url, website_url').eq('is_active', true).order('display_order')
       ]);
 
       if (sectionsRes.data) setHomeSections(sectionsRes.data);
@@ -138,6 +153,7 @@ const Index = () => {
       if (newsRes.data) setLatestNews(newsRes.data);
       if (partnersRes.data) setPartners(partnersRes.data);
       if (productsRes.data) setProducts(productsRes.data);
+      if (innovationsRes.data) setInnovations(innovationsRes.data);
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
@@ -403,6 +419,44 @@ const Index = () => {
             </div>
           </div>
         </section>
+        </AOSWrapper>
+
+        {/* Our Innovations */}
+        <AOSWrapper animation="fade-up" delay={150}>
+          <section className="py-24 bg-gray-50/50">
+            <div className="max-w-7xl mx-auto px-6 lg:px-8">
+              <div className="text-center mb-16">
+                <p className="text-accent font-bold uppercase tracking-[0.25em] text-sm mb-4">What We've Built</p>
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">Our Innovations</h2>
+                <div className="w-24 h-1 bg-primary mx-auto mt-5 rounded-full" />
+                <p className="text-xl text-muted-foreground mt-6">Home-grown solutions creating sustainable impact across Africa.</p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                {(innovations.length > 0 ? innovations : fallbackInnovations).map((innovation) => (
+                  <div key={innovation.id} className="bg-white p-10 border border-gray-200 hover:border-primary/30 hover:shadow-golden hover:-translate-y-1 transition-all duration-300 rounded-2xl text-center">
+                    {innovation.logo_url ? (
+                      innovation.website_url ? (
+                        <a href={innovation.website_url} target="_blank" rel="noopener noreferrer" aria-label={`Visit ${innovation.name} website`} className="block cursor-pointer">
+                          <img src={innovation.logo_url} alt={innovation.name} className="h-20 w-auto object-contain mx-auto mb-6 hover:opacity-80 transition-opacity" />
+                        </a>
+                      ) : (
+                        <img src={innovation.logo_url} alt={innovation.name} className="h-20 w-auto object-contain mx-auto mb-6" />
+                      )
+                    ) : null}
+                    <h3 className="text-2xl font-bold text-primary mb-3">{innovation.name}</h3>
+                    <p className="text-lg text-muted-foreground leading-relaxed">{innovation.description}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-12 text-center">
+                <Link to="/innovation-hub" className="inline-flex items-center bg-primary text-white px-8 py-4 text-lg font-bold uppercase tracking-wide rounded-full hover:bg-primary-dark transition-all duration-300 hover:scale-105 shadow-lg">
+                  Explore the Innovation Hub <ArrowRight className="ml-2 w-5 h-5" />
+                </Link>
+              </div>
+            </div>
+          </section>
         </AOSWrapper>
 
         {/* Our Products */}

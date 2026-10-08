@@ -181,14 +181,14 @@ export default function AboutPage() {
               {...fadeInUp}
               className="text-3xl md:text-4xl lg:text-[40px] font-bold text-foreground leading-relaxed"
             >
-              OTC is a Youth-led African Not for Profit Organization that advances digital justice in health, sexual reproductive health, finance, agriculture and development, while ensuring respect for fundamental human rights and social justice for every individual and community in Africa.
+              Our approach goes beyond traditional marketing; we leverage evidence-based Social Behaviour Change Communication (SBCC) and cutting-edge creativity to inspire lasting shifts in mindset. We view our clients as collaborative partners, working hand in hand to co-create future-ready campaigns that advocate for social progress, promote healthy behaviours, and drive sustainable growth.
             </motion.p>
-            <motion.p
+            {/* <motion.p
               {...fadeInUp}
               className="text-lg md:text-xl text-muted-foreground leading-[1.6] mt-10 max-w-4xl mx-auto"
             >
               Our approach goes beyond traditional marketing; we leverage evidence-based Social Behaviour Change Communication (SBCC) and cutting-edge creativity to inspire lasting shifts in mindset. We view our clients as collaborative partners, working hand in hand to co-create future-ready campaigns that advocate for social progress, promote healthy behaviours, and drive sustainable growth.
-            </motion.p>
+            </motion.p> */}
           </div>
         </section>
 

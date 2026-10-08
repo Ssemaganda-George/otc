@@ -56,7 +56,7 @@ export function Navigation() {
     >
       <div className="max-w-[1536px] mx-auto px-3 sm:px-4 lg:px-5">
         <div className="flex items-center justify-between h-[80px]">
-          {/* Logo spacer */}
+          {/* Logo / Home link spacer - visible on desktop */}
           <div className="hidden lg:block flex-1">
             <div className="ml-2 flex items-baseline space-x-0 xl:space-x-0">
               <Link to="/" className={navLinkClass}>Home</Link>
@@ -146,8 +146,8 @@ export function Navigation() {
             </div>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="lg:hidden">
+          {/* Mobile menu button - positioned on the right */}
+          <div className="lg:hidden ml-auto">
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="inline-flex items-center justify-center p-2 text-foreground hover:text-primary hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary rounded-md transition-all duration-300 ease-in-out"
@@ -161,27 +161,37 @@ export function Navigation() {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
-      <>
-        {/* Backdrop overlay */}
-        <div
-          className={`fixed inset-0 bg-black/50 z-40 lg:hidden transition-opacity duration-300 ease-in-out ${
-            isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
-          }`}
-          onClick={() => setIsOpen(false)}
-          aria-hidden="true"
-        />
+        {/* Mobile Navigation - Right-side slide-in drawer */}
+        <>
+          {/* Backdrop overlay */}
+          <div
+            className={`fixed inset-0 bg-black/40 z-40 lg:hidden transition-opacity duration-300 ${
+              isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+            }`}
+            onClick={() => setIsOpen(false)}
+            aria-hidden="true"
+          />
 
-        {/* Mobile menu */}
-        <div
-          id="mobile-menu"
-          className={`fixed top-[70px] left-0 right-1/4 bg-white/95 backdrop-blur-md border border-gray-200 shadow-lg z-50 lg:hidden max-h-[calc(100vh-90px)] overflow-y-auto scroll-smooth transition-all duration-300 ease-in-out ${
-            isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
-          }`}
-          role="menu"
-          aria-label="Mobile navigation menu"
-        >
-          <div className="p-4">
+          {/* Mobile menu drawer */}
+          <div
+            id="mobile-menu"
+            className={`fixed top-[80px] right-0 w-[80vw] max-w-[320px] max-h-[calc(100vh-80px)] bg-white border-l border-gray-200 shadow-xl z-50 lg:hidden overflow-y-auto transition-transform duration-300 ease-in-out ${
+              isOpen ? 'translate-x-0' : 'translate-x-full'
+            }`}
+            role="menu"
+            aria-label="Mobile navigation menu"
+          >
+            <div className="sticky top-0 z-10 bg-white border-b border-gray-100 px-4 py-3 flex items-center justify-between">
+              <span className="font-poppins font-bold text-base text-foreground">Menu</span>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="inline-flex items-center justify-center p-2 text-foreground hover:text-primary hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary rounded-md transition-all duration-300"
+                aria-label="Close main menu"
+              >
+                <X className="block h-6 w-6" aria-hidden="true" />
+              </button>
+            </div>
+            <div className="p-4">
             {/* Home Link */}
             <Link to="/" className="mobile-nav-link" onClick={() => setIsOpen(false)}>Home</Link>
 
@@ -195,7 +205,7 @@ export function Navigation() {
                 aria-controls="about-submenu"
               >
                 About Us
-                {openSections.about ? <ChevronDown className="h-4 w-4" aria-hidden="true" /> : <ChevronRight className="h-4 w-4" aria-hidden="true" />}
+                {openSections.about ? <ChevronDown className="h-4 w-4 transition-transform duration-300" aria-hidden="true" /> : <ChevronRight className="h-4 w-4 transition-transform duration-300" aria-hidden="true" />}
               </button>
               <div
                 id="about-submenu"
@@ -215,7 +225,7 @@ export function Navigation() {
                     aria-expanded={openSections['about-products']}
                   >
                     Our Products
-                    {openSections['about-products'] ? <ChevronDown className="h-4 w-4" aria-hidden="true" /> : <ChevronRight className="h-4 w-4" aria-hidden="true" />}
+                    {openSections['about-products'] ? <ChevronDown className="h-4 w-4 transition-transform duration-300" aria-hidden="true" /> : <ChevronRight className="h-4 w-4 transition-transform duration-300" aria-hidden="true" />}
                   </button>
                   <div className={`mobile-nav-content ${openSections['about-products'] ? 'open' : ''}`} role="menu">
                     <div className="pl-4">
@@ -245,7 +255,7 @@ export function Navigation() {
                 aria-controls="academy-submenu"
               >
                 OTC Academy
-                {openSections.academy ? <ChevronDown className="h-4 w-4" aria-hidden="true" /> : <ChevronRight className="h-4 w-4" aria-hidden="true" />}
+                {openSections.academy ? <ChevronDown className="h-4 w-4 transition-transform duration-300" aria-hidden="true" /> : <ChevronRight className="h-4 w-4 transition-transform duration-300" aria-hidden="true" />}
               </button>
               <div
                 id="academy-submenu"
@@ -276,7 +286,7 @@ export function Navigation() {
                 aria-controls="legal-submenu"
               >
                 Legal & Business Support
-                {openSections.legal ? <ChevronDown className="h-4 w-4" aria-hidden="true" /> : <ChevronRight className="h-4 w-4" aria-hidden="true" />}
+                {openSections.legal ? <ChevronDown className="h-4 w-4 transition-transform duration-300" aria-hidden="true" /> : <ChevronRight className="h-4 w-4 transition-transform duration-300" aria-hidden="true" />}
               </button>
               <div
                 id="legal-submenu"
@@ -301,7 +311,7 @@ export function Navigation() {
                 aria-controls="news-submenu"
               >
                 News & Stories
-                {openSections.news ? <ChevronDown className="h-4 w-4" aria-hidden="true" /> : <ChevronRight className="h-4 w-4" aria-hidden="true" />}
+                {openSections.news ? <ChevronDown className="h-4 w-4 transition-transform duration-300" aria-hidden="true" /> : <ChevronRight className="h-4 w-4 transition-transform duration-300" aria-hidden="true" />}
               </button>
               <div
                 id="news-submenu"
@@ -321,7 +331,7 @@ export function Navigation() {
             <Link to="/contact" className="mobile-nav-link" onClick={() => setIsOpen(false)}>Get in Touch</Link>
 
             {/* Donate Button */}
-            <div className="pt-4 mt-4 border-t border-gray-200">
+            <div className="pt-5 mt-4 border-t border-gray-200">
               <Button asChild variant="golden" size="sm" className="w-full">
                 <Link to="/donate" onClick={() => setIsOpen(false)}>Donate</Link>
               </Button>
