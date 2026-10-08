@@ -286,9 +286,9 @@ const Index = () => {
                   <p className="text-xl text-muted-foreground leading-relaxed mb-10">
                     We turn African ideas into scalable solutions through research, innovation, technical and financial support, business protection and media amplification.
                   </p>
-                  <Link to="/about/who-we-are" className="inline-flex items-center bg-primary text-white px-8 py-4 text-lg font-bold uppercase tracking-wide rounded-full hover:bg-primary-dark transition-all duration-300 hover:scale-105 shadow-lg">
-                    Learn more about us <ArrowRight className="ml-2 w-5 h-5" />
-                  </Link>
+                  <a href="http://localhost:8081/about" className="inline-flex items-center bg-primary text-white px-8 py-4 text-lg font-bold uppercase tracking-wide rounded-full hover:bg-primary-dark transition-all duration-300 hover:scale-105 shadow-lg">
+                     Learn more about us <ArrowRight className="ml-2 w-5 h-5" />
+                   </a>
                 </div>
 
                 {/* Right: Image */}
