@@ -406,15 +406,15 @@ const Index = () => {
                 </p>
               </div>
               <div className="group">
-                {getSectionContent('our_approach')?.image ? (
-                  <div className="w-full aspect-[4/3] overflow-hidden rounded-2xl shadow-2xl">
-                    <img src={getSectionContent('our_approach')?.image} alt="Our Approach" className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-700 ease-out" />
-                  </div>
-                ) : (
-                  <div className="w-full aspect-[4/3] bg-gray-100 rounded-lg shadow-lg flex items-center justify-center">
-                    <span className="text-gray-400 font-medium">Image</span>
-                  </div>
-                )}
+                  {getSectionContent('our_approach')?.image ? (
+                    <div className="w-full aspect-[4/3] overflow-hidden rounded-2xl shadow-2xl">
+                      <img src={getSectionContent('our_approach')?.image || "/images/DJP_5020.jpg"} alt="Our Approach" className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-700 ease-out" />
+                    </div>
+                  ) : (
+                    <div className="w-full aspect-[4/3] bg-gray-100 rounded-lg shadow-lg flex items-center justify-center">
+                      <span className="text-gray-400 font-medium">Image</span>
+                    </div>
+                  )}
               </div>
             </div>
           </div>

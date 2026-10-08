@@ -75,6 +75,8 @@ export default function AdminLayout() {
       items: [
         { name: "Products", path: "/admin/products" },
         { name: "Innovations", path: "/admin/innovations" },
+        { name: "Welcome To OTC", path: "/admin/welcome-to-otc" },
+        { name: "Our Approach", path: "/admin/our-approach" },
         { name: "Home Sections", path: "/admin/home-sections" },
         { name: "Hero Slides", path: "/admin/hero-slides" },
       ],
