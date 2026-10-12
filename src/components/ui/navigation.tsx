@@ -58,7 +58,7 @@ export function Navigation() {
         <div className="flex items-center justify-between h-[80px]">
           {/* Logo / Home link spacer - visible on desktop */}
           <div className="hidden lg:block flex-1 min-w-0">
-            <div className="ml-2 flex items-baseline space-x-0 xl:space-x-0 overflow-x-auto scrollbar-hide">
+            <div className="ml-2 flex items-baseline space-x-0 xl:space-x-0">
               <Link to="/" className={navLinkClass}>Home</Link>
 
               {/* About Us */}
@@ -67,7 +67,7 @@ export function Navigation() {
                   About Us
                   <ChevronDown className="ml-1 h-4 w-4 transition-transform duration-300 ease-in-out group-hover:rotate-180" />
                 </button>
-                <div className="absolute left-0 mt-3 w-[240px] min-w-[240px] bg-white shadow-2xl opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 ease-in-out border-t-2 border-t-primary border border-gray-200 rounded-lg z-50">
+                <div className="absolute left-0 top-full w-[240px] min-w-[240px] bg-white shadow-2xl opacity-0 invisible translate-y-1 pointer-events-none group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 ease-in-out border-t-2 border-t-primary border border-gray-200 rounded-lg z-50">
                   <div className="py-2">
                     <Link to="/about" className="block px-5 py-3.5 text-base font-poppins font-medium text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-200 ease-in-out border-b border-gray-100">About OTC</Link>
                     <Link to="/about/team" className="block px-5 py-3.5 text-base font-poppins font-medium text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-200 ease-in-out border-b border-gray-100">Our Team</Link>
@@ -78,7 +78,7 @@ export function Navigation() {
                         Our Products
                         <ChevronRight className="h-4 w-4" />
                       </button>
-                      <div className="absolute left-full top-0 w-[260px] min-w-[260px] bg-white shadow-2xl opacity-0 invisible translate-y-1 group-hover/products:opacity-100 group-hover/products:visible group-hover/products:translate-y-0 transition-all duration-300 ease-in-out border-t-2 border-t-primary border border-gray-200 rounded-lg z-50">
+                      <div className="absolute left-full top-0 w-[260px] min-w-[260px] bg-white shadow-2xl opacity-0 invisible translate-y-1 pointer-events-none group-hover/products:opacity-100 group-hover/products:visible group-hover/products:translate-y-0 group-hover/products:pointer-events-auto transition-all duration-300 ease-in-out border-t-2 border-t-primary border border-gray-200 rounded-lg z-50">
                         <div className="py-2">
                           {ourProducts.map((product) => (
                             <Link key={product.href} to={product.href} className="block px-5 py-3.5 text-base font-poppins font-medium text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-200 ease-in-out">
@@ -102,7 +102,7 @@ export function Navigation() {
                   OTC Academy
                   <ChevronDown className="ml-1 h-4 w-4 transition-transform duration-300 ease-in-out group-hover:rotate-180" />
                 </button>
-                <div className="absolute left-0 mt-3 w-[220px] min-w-[220px] bg-white shadow-2xl opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 ease-in-out border-t-2 border-t-primary border border-gray-200 rounded-lg z-50">
+                <div className="absolute left-0 top-full w-[220px] min-w-[220px] bg-white shadow-2xl opacity-0 invisible translate-y-1 pointer-events-none group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 ease-in-out border-t-2 border-t-primary border border-gray-200 rounded-lg z-50">
                   <div className="py-2">
                     <Link to="/academy/research-centre" className="block px-5 py-3.5 text-base font-poppins font-medium text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-200 ease-in-out border-b border-gray-100">Research</Link>
                     <Link to="/academy" className="block px-5 py-3.5 text-base font-poppins font-medium text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-200 ease-in-out">Training</Link>
@@ -119,10 +119,10 @@ export function Navigation() {
                   Legal & Business
                   <ChevronDown className="ml-1 h-4 w-4 transition-transform duration-300 ease-in-out group-hover:rotate-180" />
                 </button>
-                <div className="absolute right-0 mt-3 w-[240px] min-w-[240px] bg-white shadow-2xl opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 ease-in-out border-t-2 border-t-primary border border-gray-200 rounded-lg z-50">
+                <div className="absolute right-0 top-full w-[240px] min-w-[240px] bg-white shadow-2xl opacity-0 invisible translate-y-1 pointer-events-none group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 ease-in-out border-t-2 border-t-primary border border-gray-200 rounded-lg z-50">
                   <div className="py-2">
                     <Link to="/legal-business-support" className="block px-5 py-3.5 text-base font-poppins font-medium text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-200 ease-in-out border-b border-gray-100">Legal</Link>
-                    <Link to="/legal-business-support" className="block px-5 py-3.5 text-base font-poppins font-medium text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-200 ease-in-out">Business Support</Link>
+                    <Link to="/legal-business-support" className="block px-5 py-3.5 text-base font-poppins font-medium text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-200 ease-in-out border-b border-gray-100">Business Support</Link>
                   </div>
                 </div>
               </div>
@@ -133,7 +133,7 @@ export function Navigation() {
                   News & Stories
                   <ChevronDown className="ml-1 h-4 w-4 transition-transform duration-300 ease-in-out group-hover:rotate-180" />
                 </button>
-                <div className="absolute right-0 mt-3 w-[240px] min-w-[240px] bg-white shadow-2xl opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 ease-in-out border-t-2 border-t-primary border border-gray-200 rounded-lg z-50">
+                <div className="absolute right-0 top-full w-[240px] min-w-[240px] bg-white shadow-2xl opacity-0 invisible translate-y-1 pointer-events-none group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 ease-in-out border-t-2 border-t-primary border border-gray-200 rounded-lg z-50">
                   <div className="py-2">
                     <Link to="/news" className="block px-5 py-3.5 text-base font-poppins font-medium text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-200 ease-in-out border-b border-gray-100">News</Link>
                     <Link to="/news/research-publications" className="block px-5 py-3.5 text-base font-poppins font-medium text-foreground hover:text-primary hover:bg-gray-50 transition-colors duration-200 ease-in-out border-b border-gray-100">Research Publications</Link>
