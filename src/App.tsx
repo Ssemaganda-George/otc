@@ -55,6 +55,7 @@ import ManageProducts from "./pages/admin/ManageProducts";
 import ManageInnovations from "./pages/admin/ManageInnovations";
 import ManageOurApproach from "./pages/admin/ManageOurApproach";
 import ManageWelcomeToOtc from "./pages/admin/ManageWelcomeToOtc";
+import ManageOtcMedia from "./pages/admin/ManageOtcMedia";
 import ManageRepositories from "./pages/admin/ManageRepositories";
 import VisitorAnalyticsPage from "./pages/admin/VisitorAnalyticsPage";
 import DownloadsAnalyticsPage from "./pages/admin/DownloadsAnalyticsPage";
@@ -147,8 +148,9 @@ function App() {
              <Route path="partners" element={<ManagePartners />} />
                <Route path="products" element={<ManageProducts />} />
                <Route path="innovations" element={<ManageInnovations />} />
-               <Route path="our-approach" element={<ManageOurApproach />} />
-               <Route path="welcome-to-otc" element={<ManageWelcomeToOtc />} />
+                <Route path="our-approach" element={<ManageOurApproach />} />
+                <Route path="welcome-to-otc" element={<ManageWelcomeToOtc />} />
+                <Route path="otc-media" element={<ManageOtcMedia />} />
             <Route path="repositories" element={<ManageRepositories />} />
              <Route path="messages" element={<ManageMessages />} />
              <Route path="newsletter" element={<ManageNewsletter />} />

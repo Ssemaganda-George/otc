@@ -3,7 +3,7 @@ import { Link, useLocation, Outlet } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { LogOut, Menu, X, Home, FileText, Users, BookOpen, Briefcase, Image, GraduationCap, Newspaper, File, Phone, Settings, Layout, Target, TrendingUp, Shield, Database, Heart, Mail, Download, ChevronRight, ChevronDown } from "lucide-react";
+import { LogOut, Menu, X, Home, FileText, Users, BookOpen, Briefcase, Image, GraduationCap, Newspaper, File, Phone, Settings, Layout, Target, TrendingUp, Shield, Database, Heart, Mail, Download, ChevronRight, ChevronDown, Film } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -77,6 +77,7 @@ export default function AdminLayout() {
         { name: "Innovations", path: "/admin/innovations" },
         { name: "Welcome To OTC", path: "/admin/welcome-to-otc" },
         { name: "Our Approach", path: "/admin/our-approach" },
+        { name: "OTC Media", path: "/admin/otc-media", icon: Film },
         { name: "Home Sections", path: "/admin/home-sections" },
         { name: "Hero Slides", path: "/admin/hero-slides" },
       ],
