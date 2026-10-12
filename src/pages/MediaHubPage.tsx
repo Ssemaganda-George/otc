@@ -238,7 +238,7 @@ export default function MediaHubPage() {
           </section>
         </AOSWrapper>
 
-        {/* Image Content */}
+        {/* Our Work */}
         <AOSWrapper animation="fade-up" delay={100}>
           <section className="py-20">
             <div className="max-w-6xl mx-auto px-6 lg:px-8">
@@ -247,7 +247,7 @@ export default function MediaHubPage() {
                   <Images className="w-6 h-6" />
                 </div>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground font-poppins">
-                  Image Content
+                  Our Work
                 </h2>
               </div>
               <p className="text-lg text-muted-foreground leading-relaxed mb-12 max-w-3xl">
@@ -279,7 +279,7 @@ export default function MediaHubPage() {
           </section>
         </AOSWrapper>
 
-        {/* Video Content */}
+        {/* Records */}
         <AOSWrapper animation="fade-up" delay={150}>
           <section className="py-20 bg-gray-50">
             <div className="max-w-6xl mx-auto px-6 lg:px-8">
@@ -288,7 +288,7 @@ export default function MediaHubPage() {
                   <Clapperboard className="w-6 h-6" />
                 </div>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground font-poppins">
-                  Video Content
+                  Records
                 </h2>
               </div>
               <p className="text-lg text-muted-foreground leading-relaxed mb-12 max-w-3xl">
