@@ -5,7 +5,6 @@ import { TopBar } from "@/components/TopBar";
 import { SiteHeader } from "@/components/SiteHeader";
 import { Footer } from "@/components/Footer";
 import AOSWrapper from "@/components/AOSWrapper";
-import { ArrowRight } from "lucide-react";
 
 interface WhatWeDoItem {
   title?: string;
@@ -153,13 +152,12 @@ export function ProductPageLayout({
             <section className="py-24 bg-accent-light">
               <div className="max-w-5xl mx-auto px-6 lg:px-8 text-center">
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground font-poppins mb-8">How We Work</h2>
-                <div className="flex flex-wrap items-center justify-center gap-3 text-base md:text-lg font-bold uppercase tracking-wide text-foreground">
-                  {howWeWork.map((step, i) => (
-                    <span key={step} className="flex items-center gap-3">
-                      {step}
-                      {i < howWeWork.length - 1 && <ArrowRight className="w-4 h-4 text-primary" />}
-                    </span>
-                  ))}
+                <div className="mt-12">
+                  <img
+                    src="/How-we-work.png"
+                    alt="How We Work"
+                    className="w-full max-w-4xl mx-auto h-auto object-contain rounded-2xl shadow-xl"
+                  />
                 </div>
               </div>
             </section>
