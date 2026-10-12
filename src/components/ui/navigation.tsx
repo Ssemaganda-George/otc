@@ -41,8 +41,8 @@ export function Navigation() {
   };
 
   // Improved font size and weight for better readability (NERPS-inspired)
-  const navLinkClass = "font-poppins font-semibold text-sm xl:text-base text-foreground hover:text-primary transition-all duration-300 ease-in-out whitespace-nowrap relative group";
-  const navLinkWithSeparator = "font-poppins font-semibold text-sm xl:text-base text-foreground hover:text-primary transition-all duration-300 ease-in-out whitespace-nowrap border-l border-gray-300 pl-2 xl:pl-3";
+  const navLinkClass = "font-poppins font-semibold text-base xl:text-lg text-foreground hover:text-primary transition-all duration-300 ease-in-out whitespace-nowrap relative group";
+  const navLinkWithSeparator = "font-poppins font-semibold text-base xl:text-lg text-foreground hover:text-primary transition-all duration-300 ease-in-out whitespace-nowrap border-l border-gray-300 pl-2 xl:pl-3";
 
   return (
     <nav
