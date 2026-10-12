@@ -1,5 +1,6 @@
 import { ProductPageLayout } from "@/components/ProductPageLayout";
 import AOSWrapper from "@/components/AOSWrapper";
+import { FlaskConical, BookOpen, Award, Building2, Route } from "lucide-react";
 
 export default function AcademyPage() {
   return (
@@ -11,11 +12,11 @@ export default function AcademyPage() {
       ]}
       whyWeExist="Africa's ideas and enterprises grow when people have the skills, confidence and opportunities to turn knowledge into action. OTC Academy closes that gap through practical, future-facing research and learning tied to real work, enterprise and innovation. We aim at equipping African individuals and organisations with the evidence, knowledge, skills and capabilities needed to drive innovation, entrepreneurship and sustainable development. We envision an informed, skilled, innovative and empowered Africa equipped to create and shape its own future."
       whatWeDo={[
-        { description: "Undertake innovation research to support evidence-based solutions, learning material and policy interventions." },
-        { description: "Design and deliver short courses, masterclasses and executive learning." },
-        { description: "Run fellowships, leadership programmes and professional development initiatives." },
-        { description: "Build organisational capability through tailored training and advisory support." },
-        { description: "Develop practical learning pathways linked to OTC research, innovation and enterprise work." },
+        { description: "Undertake innovation research to support evidence-based solutions, learning material and policy interventions.", icon: <FlaskConical className="w-10 h-10" /> },
+        { description: "Design and deliver short courses, masterclasses and executive learning.", icon: <BookOpen className="w-10 h-10" /> },
+        { description: "Run fellowships, leadership programmes and professional development initiatives.", icon: <Award className="w-10 h-10" /> },
+        { description: "Build organisational capability through tailored training and advisory support.", icon: <Building2 className="w-10 h-10" /> },
+        { description: "Develop practical learning pathways linked to OTC research, innovation and enterprise work.", icon: <Route className="w-10 h-10" /> },
       ]}
       areasOfFocus={[
         "Innovation and entrepreneurship",

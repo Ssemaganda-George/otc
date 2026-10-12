@@ -70,10 +70,20 @@ export const AnalyticsTracker = () => {
         const screenResolution = `${window.screen.width}x${window.screen.height}`;
         const language = navigator.language;
 
-        // TEMPORARY: Test with hardcoded country data
-        let country = 'United States';
-        let city = 'New York';
-        console.log('📍 Using test location data:', { country, city });
+        // Detect visitor location via IP geolocation (fallback to Uganda)
+        let country = 'Uganda';
+        let city = 'Kampala';
+        try {
+          const geoRes = await fetch('https://ipapi.co/json/');
+          if (geoRes.ok) {
+            const geoData = await geoRes.json();
+            if (geoData.country_name) country = geoData.country_name;
+            if (geoData.city) city = geoData.city;
+          }
+        } catch (geoError) {
+          console.log('📍 Geolocation failed, using default:', { country, city });
+        }
+        console.log('📍 Visitor location:', { country, city });
 
         // Detect device type
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);

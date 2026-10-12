@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Music, Disc, Film, Palette, Globe, Network } from "lucide-react";
 import { ProductPageLayout } from "@/components/ProductPageLayout";
 import AOSWrapper from "@/components/AOSWrapper";
 
@@ -19,12 +19,12 @@ export default function MediaHubPage() {
       ]}
       whyWeExist="Ideas, talent and innovation need strong stories and creative platforms to travel. OTC Media creates space for African voices, develops creative work and helps creators build audiences, protect value and pursue commercial opportunity."
       whatWeDo={[
-        { description: "Produce music, audio, podcasts, video and digital content through OTC Studios." },
-        { description: "Develop artists, music and creative partnerships through OTC Records." },
-        { description: "Produce films, documentaries, series and short-form audiovisual work through OTC Films." },
-        { description: "Support theatre, drama, visual arts, performance and cultural expression." },
-        { description: "Create social, web and campaign content through OTC Digital." },
-        { description: "Connect creators to business, legal, distribution and commercialisation support." },
+        { description: "Produce music, audio, podcasts, video and digital content through OTC Studios.", icon: <Music className="w-10 h-10" /> },
+        { description: "Develop artists, music and creative partnerships through OTC Records.", icon: <Disc className="w-10 h-10" /> },
+        { description: "Produce films, documentaries, series and short-form audiovisual work through OTC Films.", icon: <Film className="w-10 h-10" /> },
+        { description: "Support theatre, drama, visual arts, performance and cultural expression.", icon: <Palette className="w-10 h-10" /> },
+        { description: "Create social, web and campaign content through OTC Digital.", icon: <Globe className="w-10 h-10" /> },
+        { description: "Connect creators to business, legal, distribution and commercialisation support.", icon: <Network className="w-10 h-10" /> },
       ]}
       areasOfFocus={[
         "Music and audio production",

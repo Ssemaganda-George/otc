@@ -135,6 +135,22 @@ export default function InnovationHubPage() {
           </div>
         </section>
       </AOSWrapper>
+
+      {/* How We Work Image */}
+      <AOSWrapper animation="fade-up" delay={100}>
+        <section className="py-16 bg-accent-light">
+          <div className="max-w-5xl mx-auto px-6 lg:px-8 text-center">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground font-poppins mb-8">How We Work</h2>
+            <div className="mt-8">
+              <img
+                src="/How-we-work.png"
+                alt="How We Work"
+                className="w-full max-w-4xl mx-auto h-auto object-contain rounded-2xl shadow-xl"
+              />
+            </div>
+          </div>
+        </section>
+      </AOSWrapper>
     </ProductPageLayout>
   );
 }
