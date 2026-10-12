@@ -62,6 +62,11 @@ import DownloadsAnalyticsPage from "./pages/admin/DownloadsAnalyticsPage";
 import ManageMessages from "./pages/admin/ManageMessages";
 import ManageNewsletter from "./pages/admin/ManageNewsletter";
 
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import TermsPage from "./pages/TermsPage";
+import CookiesPolicyPage from "./pages/CookiesPolicyPage";
+import CookieConsent from "./components/CookieConsent";
+
 import AdminLayout from "./components/AdminLayout";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import { ErrorBoundary } from "./components/ErrorBoundary";
@@ -96,6 +101,7 @@ function App() {
   return (
     <AuthProvider>
       <AnalyticsTracker />
+      <CookieConsent />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           {/* PUBLIC ROUTES */}
@@ -129,6 +135,11 @@ function App() {
           <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
           <Route path="/donate" element={<PageTransition><DonatePage /></PageTransition>} />
           <Route path="/newsletter" element={<PageTransition><NewsletterPage /></PageTransition>} />
+
+          {/* Legal pages */}
+          <Route path="/privacy" element={<PageTransition><PrivacyPolicyPage /></PageTransition>} />
+          <Route path="/terms" element={<PageTransition><TermsPage /></PageTransition>} />
+          <Route path="/cookies" element={<PageTransition><CookiesPolicyPage /></PageTransition>} />
 
           {/* 🔐 ADMIN AREA — shows the login form at /admin when signed out */}
           <Route path="/admin" element={<AdminGuard />}>
