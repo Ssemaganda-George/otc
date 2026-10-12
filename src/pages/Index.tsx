@@ -79,8 +79,8 @@ const fallbackProducts: Product[] = [
 ];
 
 const fallbackInnovations: Innovation[] = [
-  { id: "wazazi-connect", name: "WazaziConnect", description: "A digital platform connecting parents and caregivers with trusted health and development resources.", logo_url: null, website_url: null },
-  { id: "happy-farma", name: "HappyFarma", description: "A technology solution supporting farmers with access to information, inputs and markets.", logo_url: null, website_url: null },
+  { id: "wazazi-connect", name: "WazaziNet", description: "A digital platform connecting parents and caregivers with trusted health and development resources.", logo_url: null, website_url: null },
+  { id: "happy-farma", name: "HapiFarma", description: "A technology solution supporting farmers with access to information, inputs and markets.", logo_url: null, website_url: null },
 ];
 
 const fallbackPartners: Partner[] = [

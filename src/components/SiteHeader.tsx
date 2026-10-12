@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Mail, FileText, Video } from "lucide-react";
+import { Mail, Video } from "lucide-react";
 
 export function SiteHeader() {
   return (
@@ -38,17 +38,6 @@ export function SiteHeader() {
               size="sm"
               className="hidden md:flex items-center space-x-2 border-primary text-primary hover:bg-primary hover:text-white"
             >
-              <Link to="/news/research-publications">
-                <FileText className="h-4 w-4" />
-                <span>Research Publications</span>
-              </Link>
-            </Button>
-            <Button
-              asChild
-              variant="outline"
-              size="sm"
-              className="hidden md:flex items-center space-x-2 border-primary text-primary hover:bg-primary hover:text-white"
-            >
               <Link to="/media">
                 <Video className="h-4 w-4" />
                 <span>Webinar Series</span>
@@ -56,6 +45,11 @@ export function SiteHeader() {
             </Button>
             <Button asChild variant="golden" size="sm" className="hidden md:flex">
               <Link to="/donate">Donate</Link>
+            </Button>
+            <Button asChild variant="outline" size="sm" className="hidden md:flex">
+              <Link to="/fund">
+                <span>Invest</span>
+              </Link>
             </Button>
           </div>
         </div>
