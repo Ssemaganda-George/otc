@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, isValidElement, cloneElement, ReactElement } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Navigation } from "@/components/ui/navigation";
@@ -118,8 +118,13 @@ export function ProductPageLayout({
                   {whatWeDo.map((item, i) => (
                     <div key={i} className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-golden hover:-translate-y-1 hover:border-primary/30 transition-all duration-300">
                       <div className="flex items-center gap-4 mb-4">
-                        <span className="w-20 h-20 rounded-full flex items-center justify-center flex-shrink-0 text-primary">
-                          {item.icon || <span className="text-3xl font-black">{i + 1}</span>}
+                        <span className="flex-shrink-0 text-primary">
+                          {isValidElement(item.icon)
+                            ? cloneElement(item.icon as ReactElement, {
+                                className: "w-16 h-16",
+                                strokeWidth: 2.5,
+                              })
+                            : item.icon || <span className="text-3xl font-black">{i + 1}</span>}
                         </span>
                         {item.title && <h4 className="font-bold text-primary text-2xl">{item.title}</h4>}
                       </div>

@@ -358,8 +358,8 @@ export default function MediaHubPage() {
                       key={item.description}
                       className="bg-white border border-gray-200 rounded-2xl p-8 text-center shadow-sm hover:shadow-golden hover:-translate-y-1 hover:border-primary/30 transition-all duration-300"
                     >
-                      <div className="w-20 h-20 rounded-full bg-accent-light flex items-center justify-center mx-auto mb-6 text-primary">
-                        <Icon className="w-10 h-10" />
+                      <div className="mx-auto mb-6 text-primary">
+                        <Icon className="w-16 h-16" strokeWidth={2.5} />
                       </div>
                       <p className="text-base text-muted-foreground leading-relaxed">{item.description}</p>
                     </div>
