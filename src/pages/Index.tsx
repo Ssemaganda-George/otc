@@ -7,7 +7,7 @@ import { Footer } from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { supabase } from "@/lib/supabase";
 import AOSWrapper from "@/components/AOSWrapper";
-import { ArrowRight, ArrowLeft } from "lucide-react";
+import { ArrowRight, ArrowLeft, Globe2, Lightbulb, ShieldCheck, Handshake, Award, Trophy, Leaf, Scale } from "lucide-react";
 
 interface HomeSection {
   id: string;
@@ -362,6 +362,24 @@ const Index = () => {
                   const distance = Math.abs(index - centerValueIndex);
                   const scale = distance === 0 ? 1.08 : distance === 1 ? 1 : 0.94;
 
+                  const title = (value.title || "").toLowerCase();
+                  const ValueIcon =
+                    title.includes("agency") || title.includes("ownership") || title.includes("african")
+                      ? Globe2
+                      : title.includes("innovation") || title.includes("creative")
+                      ? Lightbulb
+                      : title.includes("integrity") || title.includes("honesty")
+                      ? ShieldCheck
+                      : title.includes("collaboration") || title.includes("connect")
+                      ? Handshake
+                      : title.includes("excellence") || title.includes("standard")
+                      ? Trophy
+                      : title.includes("sustainability") || title.includes("environment") || title.includes("lasting")
+                      ? Leaf
+                      : title.includes("protection") || title.includes("fairness") || title.includes("justice")
+                      ? Scale
+                      : Award;
+
                   return (
                     <div 
                       key={value.id} 
@@ -374,7 +392,9 @@ const Index = () => {
                       }}
                     >
                       <div className="bg-white p-8 border border-gray-200 hover:border-accent/40 hover:shadow-lg transition-all duration-300 h-full">
-                        <div className="w-10 h-1 bg-accent mx-auto mb-5 rounded-full" />
+                        <div className="mx-auto mb-6 text-accent">
+                          <ValueIcon className="w-16 h-16" strokeWidth={2.5} />
+                        </div>
                         <h3 className="text-2xl font-bold text-foreground text-center mb-3">
                           {value.title}
                         </h3>
