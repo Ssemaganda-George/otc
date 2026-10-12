@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ProductPageLayout } from "@/components/ProductPageLayout";
 import AOSWrapper from "@/components/AOSWrapper";
 import { supabase } from "@/lib/supabase";
+import { Lightbulb, Hammer, Rocket, Network, TrendingUp } from "lucide-react";
 
 interface Innovation {
   id: string;
@@ -51,11 +52,11 @@ export default function InnovationHubPage() {
         "We believe in an Africa that does not simply consume innovation, but creates, owns and scales solutions for Africa and the world.",
       ]}
       whatWeDo={[
-        { title: "IDEATE", description: "We help individuals and organisations identify challenges, explore opportunities and develop innovative ideas." },
-        { title: "BUILD", description: "We support innovators to design, prototype, test and refine products, technologies and services." },
-        { title: "INCUBATE & ACCELERATE", description: "We provide structured support, mentorship and technical assistance to help promising ideas and ventures move from concept to market." },
-        { title: "CONNECT", description: "We connect innovators across Africa with knowledge, talent, markets, investors, institutions and strategic partners." },
-        { title: "SCALE", description: "We support promising solutions to expand into new markets, reach more communities and create sustainable impact." },
+        { title: "IDEATE", description: "We help individuals and organisations identify challenges, explore opportunities and develop innovative ideas.", icon: <Lightbulb className="w-8 h-8" /> },
+        { title: "BUILD", description: "We support innovators to design, prototype, test and refine products, technologies and services.", icon: <Hammer className="w-8 h-8" /> },
+        { title: "INCUBATE & ACCELERATE", description: "We provide structured support, mentorship and technical assistance to help promising ideas and ventures move from concept to market.", icon: <Rocket className="w-8 h-8" /> },
+        { title: "CONNECT", description: "We connect innovators across Africa with knowledge, talent, markets, investors, institutions and strategic partners.", icon: <Network className="w-8 h-8" /> },
+        { title: "SCALE", description: "We support promising solutions to expand into new markets, reach more communities and create sustainable impact.", icon: <TrendingUp className="w-8 h-8" /> },
       ]}
       areasOfFocus={[
         "Health and Wellbeing",
@@ -103,15 +104,21 @@ export default function InnovationHubPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {(innovations.length > 0 ? innovations : fallbackInnovations).map((innovation) => (
                 <div key={innovation.id} className="bg-white p-8 shadow-md border border-gray-100 hover:shadow-golden hover:-translate-y-1 hover:border-primary/30 transition-all duration-300">
-                  {innovation.logo_url ? (
-                    innovation.website_url ? (
-                      <a href={innovation.website_url} target="_blank" rel="noopener noreferrer" aria-label={`Visit ${innovation.name} website`} className="block cursor-pointer">
-                        <img src={innovation.logo_url} alt={innovation.name} className="h-16 w-auto object-contain mb-4 mx-auto hover:opacity-80 transition-opacity" />
-                      </a>
+                  <div className="flex items-center justify-center h-40 mb-4">
+                    {innovation.logo_url ? (
+                      innovation.website_url ? (
+                        <a href={innovation.website_url} target="_blank" rel="noopener noreferrer" aria-label={`Visit ${innovation.name} website`} className="block cursor-pointer">
+                          <img src={innovation.logo_url} alt={innovation.name} className="h-36 w-auto object-contain hover:opacity-80 transition-opacity" />
+                        </a>
+                      ) : (
+                        <img src={innovation.logo_url} alt={innovation.name} className="h-36 w-auto object-contain" />
+                      )
                     ) : (
-                      <img src={innovation.logo_url} alt={innovation.name} className="h-16 w-auto object-contain mb-4 mx-auto" />
-                    )
-                  ) : null}
+                      <div className="h-36 w-36 rounded-full bg-primary/10 flex items-center justify-center">
+                        <span className="text-4xl font-bold text-primary">{innovation.name.charAt(0)}</span>
+                      </div>
+                    )}
+                  </div>
                   <h4 className="text-xl font-bold text-primary mb-2">{innovation.name}</h4>
                   <p className="text-base text-muted-foreground">
                     {innovation.description}

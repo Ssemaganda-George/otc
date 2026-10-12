@@ -9,6 +9,7 @@ import AOSWrapper from "@/components/AOSWrapper";
 interface WhatWeDoItem {
   title?: string;
   description: string;
+  icon?: ReactNode;
 }
 
 interface CTA {
@@ -116,7 +117,9 @@ export function ProductPageLayout({
                   {whatWeDo.map((item, i) => (
                     <div key={i} className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-golden hover:-translate-y-1 hover:border-primary/30 transition-all duration-300">
                       <div className="flex items-center gap-4 mb-4">
-                        <span className="w-10 h-10 rounded-full bg-accent-light text-accent flex items-center justify-center text-lg font-black flex-shrink-0">{i + 1}</span>
+                        <span className="w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0 text-primary">
+                          {item.icon || <span className="text-2xl font-black">{i + 1}</span>}
+                        </span>
                         {item.title && <h4 className="font-bold text-primary text-xl">{item.title}</h4>}
                       </div>
                       <p className="text-lg text-muted-foreground leading-relaxed">{item.description}</p>
