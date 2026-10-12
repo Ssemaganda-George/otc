@@ -54,8 +54,8 @@ export function Navigation() {
       role="navigation"
       aria-label="Main navigation"
     >
-      <div className="max-w-[1536px] mx-auto px-2 sm:px-3 lg:px-4">
-        <div className="flex items-center justify-between h-[70px] lg:h-[80px]">
+      <div className="max-w-[1536px] mx-auto px-3 sm:px-4 lg:px-5">
+        <div className="flex items-center justify-between h-[80px]">
           {/* Logo / Home link spacer - visible on desktop */}
           <div className="hidden lg:block flex-1 min-w-0">
             <div className="ml-2 flex items-baseline space-x-0 xl:space-x-0 overflow-x-auto scrollbar-hide">
