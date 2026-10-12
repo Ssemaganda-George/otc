@@ -117,10 +117,10 @@ export function ProductPageLayout({
                   {whatWeDo.map((item, i) => (
                     <div key={i} className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-golden hover:-translate-y-1 hover:border-primary/30 transition-all duration-300">
                       <div className="flex items-center gap-4 mb-4">
-                        <span className="w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0 text-primary">
-                          {item.icon || <span className="text-2xl font-black">{i + 1}</span>}
+                        <span className="w-20 h-20 rounded-full flex items-center justify-center flex-shrink-0 text-primary">
+                          {item.icon || <span className="text-3xl font-black">{i + 1}</span>}
                         </span>
-                        {item.title && <h4 className="font-bold text-primary text-xl">{item.title}</h4>}
+                        {item.title && <h4 className="font-bold text-primary text-2xl">{item.title}</h4>}
                       </div>
                       <p className="text-lg text-muted-foreground leading-relaxed">{item.description}</p>
                     </div>

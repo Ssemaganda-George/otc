@@ -52,11 +52,11 @@ export default function InnovationHubPage() {
         "We believe in an Africa that does not simply consume innovation, but creates, owns and scales solutions for Africa and the world.",
       ]}
       whatWeDo={[
-        { title: "IDEATE", description: "We help individuals and organisations identify challenges, explore opportunities and develop innovative ideas.", icon: <Lightbulb className="w-8 h-8" /> },
-        { title: "BUILD", description: "We support innovators to design, prototype, test and refine products, technologies and services.", icon: <Hammer className="w-8 h-8" /> },
-        { title: "INCUBATE & ACCELERATE", description: "We provide structured support, mentorship and technical assistance to help promising ideas and ventures move from concept to market.", icon: <Rocket className="w-8 h-8" /> },
-        { title: "CONNECT", description: "We connect innovators across Africa with knowledge, talent, markets, investors, institutions and strategic partners.", icon: <Network className="w-8 h-8" /> },
-        { title: "SCALE", description: "We support promising solutions to expand into new markets, reach more communities and create sustainable impact.", icon: <TrendingUp className="w-8 h-8" /> },
+        { title: "IDEATE", description: "We help individuals and organisations identify challenges, explore opportunities and develop innovative ideas.", icon: <Lightbulb className="w-10 h-10" /> },
+        { title: "BUILD", description: "We support innovators to design, prototype, test and refine products, technologies and services.", icon: <Hammer className="w-10 h-10" /> },
+        { title: "INCUBATE & ACCELERATE", description: "We provide structured support, mentorship and technical assistance to help promising ideas and ventures move from concept to market.", icon: <Rocket className="w-10 h-10" /> },
+        { title: "CONNECT", description: "We connect innovators across Africa with knowledge, talent, markets, investors, institutions and strategic partners.", icon: <Network className="w-10 h-10" /> },
+        { title: "SCALE", description: "We support promising solutions to expand into new markets, reach more communities and create sustainable impact.", icon: <TrendingUp className="w-10 h-10" /> },
       ]}
       areasOfFocus={[
         "Health and Wellbeing",
