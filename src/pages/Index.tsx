@@ -550,20 +550,20 @@ const Index = () => {
                <p className="text-accent font-bold uppercase tracking-[0.25em] text-sm mb-4">Working Together</p>
              <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">Our Partners</h3>
              <div className="w-24 h-1 bg-primary mx-auto mb-10 rounded-full" />
-              <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-10">
-                {(partners.length > 0 ? partners : fallbackPartners).map((partner) => {
-                  const logo = (
-                    <img src={partner.logo_url} alt={partner.name} title={partner.name} className="h-16 md:h-24 w-auto object-contain" />
-                  );
-                  return partner.website_url ? (
-                    <a key={partner.id} href={partner.website_url} target="_blank" rel="noopener noreferrer" aria-label={partner.name} className="inline-block cursor-pointer hover:opacity-80 transition-opacity">
-                      {logo}
-                    </a>
-                  ) : (
-                    <span key={partner.id} className="inline-block">{logo}</span>
-                  );
-                })}
-              </div>
+               <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-10">
+                 {(partners.length > 0 ? partners : fallbackPartners).map((partner) => {
+                   const logo = (
+                     <img src={partner.logo_url} alt={partner.name} title={partner.name} className="h-16 md:h-24 w-auto object-contain transition-transform duration-300 ease-out group-hover:scale-90" />
+                   );
+                   return partner.website_url ? (
+                     <a key={partner.id} href={partner.website_url} target="_blank" rel="noopener noreferrer" aria-label={partner.name} className="inline-block cursor-pointer group">
+                       {logo}
+                     </a>
+                   ) : (
+                     <span key={partner.id} className="inline-block group">{logo}</span>
+                   );
+                 })}
+               </div>
             </div>
           </section>
         </AOSWrapper>
