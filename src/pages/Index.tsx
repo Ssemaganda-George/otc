@@ -577,9 +577,6 @@ const Index = () => {
                   <p className="text-accent font-bold uppercase tracking-[0.25em] text-sm mb-4">Stay Updated</p>
                   <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">Latest News & Opportunities</h3>
                 </div>
-                <Link to="/news" className="text-primary font-semibold inline-flex items-center gap-1 hover:translate-x-1 transition-transform">
-                  View All <ArrowRight className="ml-1 w-4 h-4" />
-                </Link>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
                   {latestNews.map((news, index) => (
