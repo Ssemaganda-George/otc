@@ -435,15 +435,21 @@ const Index = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 {(innovations.length > 0 ? innovations : fallbackInnovations).map((innovation) => (
                   <div key={innovation.id} className="bg-white p-10 border border-gray-200 hover:border-primary/30 hover:shadow-golden hover:-translate-y-1 transition-all duration-300 rounded-2xl text-center">
-                    {innovation.logo_url ? (
-                      innovation.website_url ? (
-                        <a href={innovation.website_url} target="_blank" rel="noopener noreferrer" aria-label={`Visit ${innovation.name} website`} className="block cursor-pointer">
-                          <img src={innovation.logo_url} alt={innovation.name} className="h-20 w-auto object-contain mx-auto mb-6 hover:opacity-80 transition-opacity" />
-                        </a>
+                    <div className="flex items-center justify-center h-40 mb-6">
+                      {innovation.logo_url ? (
+                        innovation.website_url ? (
+                          <a href={innovation.website_url} target="_blank" rel="noopener noreferrer" aria-label={`Visit ${innovation.name} website`} className="block cursor-pointer">
+                            <img src={innovation.logo_url} alt={innovation.name} className="h-36 w-auto object-contain hover:opacity-80 transition-opacity" />
+                          </a>
+                        ) : (
+                          <img src={innovation.logo_url} alt={innovation.name} className="h-36 w-auto object-contain" />
+                        )
                       ) : (
-                        <img src={innovation.logo_url} alt={innovation.name} className="h-20 w-auto object-contain mx-auto mb-6" />
-                      )
-                    ) : null}
+                        <div className="h-36 w-36 rounded-full bg-primary/10 flex items-center justify-center">
+                          <span className="text-4xl font-bold text-primary">{innovation.name.charAt(0)}</span>
+                        </div>
+                      )}
+                    </div>
                     <h3 className="text-2xl font-bold text-primary mb-3">{innovation.name}</h3>
                     <p className="text-lg text-muted-foreground leading-relaxed">{innovation.description}</p>
                   </div>
